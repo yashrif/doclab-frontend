@@ -1,0 +1,110 @@
+/*
+
+--- 001 Typhography System
+
+-FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font Weight
+Default: 400
+Medium: 500
+Semi-bold: 600
+bold: 700
+
+- Line Height
+Default: 1
+Small: 1.05
+Medium: 1.2
+Paragraph Default: 1.6
+Large: 1.8
+
+- Letter Spacing
+-0.5px
+0.75px
+
+
+--- 02 Colors
+
+- Primary: #1c7ed6
+- Tints:
+#fdf2e9
+
+
+- Shades:
+- Accents
+
+
+- Greys
+
+#888
+#767676
+#555
+#333
+#ddd
+#45260a
+
+--- 05 Shadows
+
+
+--- 06 Border Radius
+
+Default: 9px
+Medium: 11px
+
+--- 07 Whitespace
+
+- SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+*/
+
+:root {
+  --primary-first: #1c7ed6;
+  --primary-first-50: rgba(28, 127, 214, 0.5);
+}
+
+/* Reset */
+
+html {
+  font-size: 59.375%;
+  overflow-x: hidden;
+
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif !important;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Focus State */
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.4rem var(--primary-first-50);
+}
+
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+  width: 1.4rem;
+}
+
+::-webkit-scrollbar-track {
+  /* background-color: #e9ecef; */
+  border-radius: 10rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10rem;
+  background-image: linear-gradient(45deg, #adb5bd 0%, #ced4da 100%);
+  box-shadow: inset 0.2rem 0.2rem 0.5rem 0 rgba(#fff, 0.5);
+}
