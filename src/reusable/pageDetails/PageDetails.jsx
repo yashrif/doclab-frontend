@@ -6,7 +6,6 @@ import Comments from "./Comments.jsx";
 import Info from "./Info.jsx";
 import Consult from "./Consult.jsx";
 import theme from "../../styling/theme.jsx";
-// import Infos from "./Infos.jsx";
 
 const PageDetails = ({ category, selectedPerson }) => {
   const style = {

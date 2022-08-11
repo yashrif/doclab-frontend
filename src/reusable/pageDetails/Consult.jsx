@@ -27,7 +27,6 @@ const Consult = ({ selectedPerson, category }) => {
         overflowY: "scroll",
       }}
     >
-      {" "}
       {renderedList}
     </div>
   );
