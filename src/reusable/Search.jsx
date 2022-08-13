@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = ({ term, setTerm, category }) => {
+const Search = ({ term, setTerm, category, bg }) => {
   return (
     <>
       <style>
@@ -19,7 +19,7 @@ const Search = ({ term, setTerm, category }) => {
           fontSize: "1.6rem",
           width: "100%",
           padding: "0.8rem 1.6rem",
-          backgroundColor: "#e9ecef",
+          backgroundColor: bg,
           border: "none",
           borderRadius: "0.9rem",
           transition: "all 0.3s ",
