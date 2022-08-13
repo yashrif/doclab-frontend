@@ -1,10 +1,10 @@
 import React from "react";
-import { Flex, Stack, Text } from "@chakra-ui/react";
+import { Flex, Stack, Text, Box } from "@chakra-ui/react";
 
 const Statistic = () => {
   const style = {
     icon: {
-      "--ionicon-stroke-width": "4.8rem",
+      "--ionicon-stroke-width": "3.6rem",
     },
   };
 
@@ -40,24 +40,17 @@ const Statistic = () => {
       <Flex key={index} alignItems="center" columnGap="16">
         <ion-icon
           name={value.icon}
-          style={{ color: value.iconColor, fontSize: "3rem" }}
+          style={{ color: value.iconColor, fontSize: "3rem", ...style.icon }}
         ></ion-icon>
         <Stack spacing="0">
           <span
-            style={{ fontSize: "1.6rem", fontWeight: "700", color: "#333" }}
+            style={{ fontSize: "1.4rem", fontWeight: "700", color: "#333" }}
           >
             {value.count}
           </span>
-          <div
-            style={{
-              fontSize: "1.2rem",
-              fontWeight: "500",
-              color: "#888",
-              ...style.icon,
-            }}
-          >
+          <Box fontSize="12" fontWeight="medium" color="#888">
             {value.category}
-          </div>
+          </Box>
         </Stack>
       </Flex>
     );
@@ -65,13 +58,13 @@ const Statistic = () => {
 
   return (
     <>
-      <Text fontSize="2xl" color="font.focused" fontWeight="bold" mb="16">
+      {/* <Text fontSize="xl" color="font.focused" fontWeight="bold" mb="12">
         Statistic
-      </Text>
+      </Text> */}
       <Flex
         bg="bg"
         justifyContent="space-around"
-        py="24"
+        py="20"
         borderRadius="2xl"
         boxShadow="0 0.2rem 0.4rem rgba(0, 0, 0, 0.01)"
       >

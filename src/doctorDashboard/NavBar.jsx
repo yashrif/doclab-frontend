@@ -38,12 +38,16 @@ const NavBar = () => {
         alignItems="center"
         columnGap="12"
         px="24"
-        py="12"
-        // bg="bgDarker"
+        py="16"
         borderRadius="2xl"
         fontSize="lg"
-        fontWeight="medium"
+        fontWeight="semibold"
         color="font.muted"
+        transition="all 0.3s"
+        _hover={{
+          color: "font.focused",
+          backgroundColor: "bgDarker",
+        }}
       >
         <ion-icon
           name={value.icon}
@@ -55,11 +59,8 @@ const NavBar = () => {
   });
 
   return (
-    <Center my="48">
-      <Stack spacing="12">
-        <Center fontSize="4xl" color="font.focused" fontWeight="bold" mb="16">
-          DocLab
-        </Center>
+    <Center>
+      <Stack mx="12" spacing="12">
         {renderedNavList}
       </Stack>
     </Center>

@@ -26,7 +26,7 @@ const theme = extendTheme({
     },
 
     bg: "#fff",
-    bgDarker: "#fafafa",
+    bgDarker: "#fafafb",
 
     font: {
       focused: "#18181B",
@@ -98,6 +98,7 @@ const theme = extendTheme({
     8: "0.8rem",
     12: "1.2rem",
     16: "1.6rem",
+    20: "2rem",
     24: "2.4rem",
     28: "2.8rem",
     32: "3.2rem",

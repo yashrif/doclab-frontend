@@ -81,7 +81,21 @@ const PageDetails = ({ category, selectedPerson }) => {
           overflow: "hidden",
         }}
       >
-        <ProfileCard category={category} selectedPerson={selectedPerson} />
+        <ProfileCard
+          category={category}
+          selectedPerson={selectedPerson}
+          entity={[
+            "Name",
+            "Speciality",
+            "Degrees",
+            "Rating",
+            "Info",
+            "ConsultencyCount",
+            "Experience",
+            "Verification",
+          ]}
+          page="findDoctor"
+        />
         <TimeSlot category={category} selectedPerson={selectedPerson} />
 
         <div

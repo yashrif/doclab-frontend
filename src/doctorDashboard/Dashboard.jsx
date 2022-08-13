@@ -1,38 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
-import Search from "../reusable/Search.jsx";
-import Statisttic from "./Statistic.jsx";
-import Schedule from "./Schedule.jsx";
+import Statistic from "./Statistic.jsx";
+// import PendingAppointmets from "./PendingAppointments.jsx";
 import UpcomingAppointments from "./UpcomingAppointments.jsx";
+import ProfileCard from "../reusable/pageDetails/ProfileCard.jsx";
+import fetchData from "../hooks/fetchData.jsx";
 
 const Dashboard = () => {
+  const [personList, errorMessage, fetchpersonList] = fetchData([]);
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  useEffect(() => {
+    fetchpersonList(`doctor`);
+  }, []);
+
+  console.log(personList);
+  console.log(errorMessage);
+
+  useEffect(() => {
+    setSelectedPerson(personList[0]);
+  }, [personList]);
+
   return (
     <Grid
-      templateColumns="9fr 4fr"
-      my="48"
-      // mx="24"
+      templateColumns="1fr"
+      templateRows="auto auto 1fr"
+      gap="16"
       height="100%"
       fontSize="xl"
       color="font.focused"
-      overflow="hidden"
+      bg="bgDarker"
+      borderRadius="2xl"
+      py="16"
+      px="24"
+      // overflow="hidden"
+      // alignItems="strech"
     >
-      <GridItem height="100%" overflow="hidden">
-        <Box mb="24">
-          <Search bg="transparent" />
-        </Box>
-        <Box p="24" height="full" overflow="hidden" bg="bgDarker" borderRadius="2xl">
-          <Box mb="24">
-            <Statisttic />
-          </Box>
-          <Box>
-            <Schedule />
-          </Box>
-          <Box mb="24" height="100%" overflow="hidden">
-            <UpcomingAppointments />
-          </Box>
-        </Box>
+      <GridItem>
+        {selectedPerson ? (
+          <ProfileCard
+            category="doctor"
+            selectedPerson={selectedPerson}
+            entity={["Name", "Speciality", "Degrees", "Rating", "Info"]}
+            page="doctorDashboard"
+          />
+        ) : (
+          <Box>No data</Box>
+        )}
       </GridItem>
-      <GridItem></GridItem>
+
+      <GridItem>
+        <Statistic />
+      </GridItem>
+
+      {/* <GridItem>
+        <PendingAppointmets />
+      </GridItem> */}
+
+      <GridItem overflow="hidden">
+        <UpcomingAppointments />
+      </GridItem>
     </Grid>
   );
 };

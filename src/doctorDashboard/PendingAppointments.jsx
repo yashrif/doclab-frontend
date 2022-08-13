@@ -1,15 +1,15 @@
-import { Text, Box } from "@chakra-ui/react";
 import React from "react";
+import { Text, Box } from "@chakra-ui/react";
 
-const Schedule = () => {
+const PendingAppointmets = () => {
   return (
     <>
       <Text fontSize="xl" color="font.focused" fontWeight="bold" mb="12">
-        Schedule
+        Pending Appointments
       </Text>
       <Box h="12.8rem"></Box>
     </>
   );
 };
 
-export default Schedule;
+export default PendingAppointmets;
