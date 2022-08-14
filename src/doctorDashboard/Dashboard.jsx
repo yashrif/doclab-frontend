@@ -1,64 +1,52 @@
-import React, { useState, useEffect } from "react";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
-import Statistic from "./Statistic.jsx";
-// import PendingAppointmets from "./PendingAppointments.jsx";
-import PendingAppointments from "./PendingAppointments.jsx";
-import ProfileCard from "../reusable/pageDetails/ProfileCard.jsx";
-import fetchData from "../hooks/fetchData.jsx";
+import React from "react";
+import { Box, Grid, GridItem, Center } from "@chakra-ui/react";
+import NavBar from "./NavBar.jsx";
+import Search from "../reusable/Search.jsx";
+import UserInfo from "./UserInfo.jsx";
+import Schedule from "./Schedule.jsx";
+import ProfileLink from "./ProfileLink.jsx";
+// import Header from "../reusable/Header.jsx";
 
 const Dashboard = () => {
-  const [personList, , fetchpersonList] = fetchData([]);
-  const [selectedPerson, setSelectedPerson] = useState(null);
-
-  useEffect(() => {
-    fetchpersonList(`doctor`);
-  }, []);
-
-  useEffect(() => {
-    setSelectedPerson(personList[0]);
-  }, [personList]);
-
   return (
-    <Grid
-      templateColumns="1fr"
-      templateRows="auto auto 1fr"
-      gap="16"
-      height="full"
-      width="ful"
-      fontSize="xl"
-      color="font.focused"
-      bg="bgDarker"
-      borderRadius="2xl"
-      py="16"
-      px="24"
-      // overflow="hidden"
-      // alignItems="strech"
-    >
-      <GridItem>
-        {selectedPerson ? (
-          <ProfileCard
-            category="doctor"
-            selectedPerson={selectedPerson}
-            entity={["Name", "Speciality", "Degrees", "Rating", "Info"]}
-            page="doctorDashboard"
-          />
-        ) : (
-          <Box>No data</Box>
-        )}
-      </GridItem>
+    <Box overflow="hidden">
+      <Grid
+        height="calc(100vh - 4.8rem)"
+        maxW="1280px"
+        mx="auto"
+        my="24"
+        padding="1.2rem 1.2rem 0"
+        bg="bg"
+        // overflow="hidden"
+        templateColumns="auto 7fr 3fr"
+        templateRows="auto 1fr"
+        gap="12"
+        borderRadius="3xl"
+        alignItems="stretch"
+      >
+        <GridItem>
+          <Center fontSize="4xl" color="font.focused" fontWeight="bold">
+            DocLab
+          </Center>
+        </GridItem>
+        <GridItem justifySelf={"center"} w={"50%"}>
+          <Search bg="transparent" />
+        </GridItem>
+        <GridItem justifySelf={"end"} mr="36">
+          <ProfileLink />
+        </GridItem>
 
-      <GridItem>
-        <Statistic />
-      </GridItem>
-
-      {/* <GridItem>
-        <PendingAppointmets />
-      </GridItem> */}
-
-      <GridItem overflow="hidden">
-        <PendingAppointments />
-      </GridItem>
-    </Grid>
+        <GridItem>
+          <NavBar />
+        </GridItem>
+        <GridItem overflow="hidden">
+          <UserInfo />
+        </GridItem>
+        <GridItem>
+          <Schedule />
+        </GridItem>
+      </Grid>
+    </Box>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 // import FindDoctor from "./pages/FindDoctor.jsx";
-import DoctorDashboard from "./doctorDashboard/DoctorDashboard.jsx";
+import Dashboard from "./doctorDashboard/Dashboard.jsx";
 import theme from "./styling/theme.jsx";
 import "./style.css";
 
@@ -24,7 +24,7 @@ const App = () => {
         }}
       >
         {/* <FindDoctor /> */}
-        <DoctorDashboard />
+        <Dashboard />
       </div>
     </ChakraProvider>
   );

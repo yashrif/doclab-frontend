@@ -1,4 +1,4 @@
-import { Center, Flex, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
 const NavBar = () => {
@@ -28,6 +28,10 @@ const NavBar = () => {
     {
       icon: "chatbox-outline",
       title: "Chat",
+    },
+    {
+      icon: "log-out-outline",
+      title: "Log out",
     },
   ];
 
@@ -60,10 +64,17 @@ const NavBar = () => {
   });
 
   return (
-    <Center>
-      <Stack mx="12" spacing="12">
-        {renderedNavList}
-      </Stack>
+    <Center h="full" alignItems="start">
+      <Flex
+        mx="12"
+        pb="36"
+        direction="column"
+        h="full"
+        justifyContent="space-between"
+      >
+        <Box>{renderedNavList.slice(0, -1)}</Box>
+        <Box>{renderedNavList.slice(-1)}</Box>
+      </Flex>
     </Center>
   );
 };

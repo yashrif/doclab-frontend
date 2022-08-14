@@ -16,7 +16,7 @@ const UpcomingAppointmets = () => {
         columnGap="20"
         alignItems="center"
         justifyContent="start"
-        bg="linear-gradient(150deg, #fff, #fff, #fff, #fff, #8bc2f354, #8bc2f3da)"
+        bg="linear-gradient(150deg, #fdfdfd, #fdfdfd, #fdfdfd, #fdfdfd, #8bc2f354, #8bc2f3da)"
         px="24"
         py="12"
         borderRadius="2xl"
