@@ -2,20 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Statistic from "./Statistic.jsx";
 // import PendingAppointmets from "./PendingAppointments.jsx";
-import UpcomingAppointments from "./UpcomingAppointments.jsx";
+import PendingAppointments from "./PendingAppointments.jsx";
 import ProfileCard from "../reusable/pageDetails/ProfileCard.jsx";
 import fetchData from "../hooks/fetchData.jsx";
 
 const Dashboard = () => {
-  const [personList, errorMessage, fetchpersonList] = fetchData([]);
+  const [personList, , fetchpersonList] = fetchData([]);
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   useEffect(() => {
     fetchpersonList(`doctor`);
   }, []);
-
-  console.log(personList);
-  console.log(errorMessage);
 
   useEffect(() => {
     setSelectedPerson(personList[0]);
@@ -26,7 +23,8 @@ const Dashboard = () => {
       templateColumns="1fr"
       templateRows="auto auto 1fr"
       gap="16"
-      height="100%"
+      height="full"
+      width="ful"
       fontSize="xl"
       color="font.focused"
       bg="bgDarker"
@@ -58,7 +56,7 @@ const Dashboard = () => {
       </GridItem> */}
 
       <GridItem overflow="hidden">
-        <UpcomingAppointments />
+        <PendingAppointments />
       </GridItem>
     </Grid>
   );

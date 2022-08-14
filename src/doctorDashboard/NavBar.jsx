@@ -34,6 +34,7 @@ const NavBar = () => {
   const renderedNavList = NavBar.map((value, index) => {
     return (
       <Flex
+        cursor="pointer"
         key={index}
         alignItems="center"
         columnGap="12"

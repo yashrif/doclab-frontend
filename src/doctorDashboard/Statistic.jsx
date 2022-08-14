@@ -67,6 +67,8 @@ const Statistic = () => {
         py="20"
         borderRadius="2xl"
         boxShadow="0 0.2rem 0.4rem rgba(0, 0, 0, 0.01)"
+
+        // border="1px solid #e6e6e6"
       >
         {renderedStatistic}
       </Flex>

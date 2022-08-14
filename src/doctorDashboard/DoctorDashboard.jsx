@@ -3,6 +3,7 @@ import { Box, Grid, GridItem, Center } from "@chakra-ui/react";
 import NavBar from "./NavBar.jsx";
 import Search from "../reusable/Search.jsx";
 import Dashboard from "./Dashboard.jsx";
+import Schedule from "./Schedule.jsx";
 // import Header from "../reusable/Header.jsx";
 
 const DoctorDashboard = () => {
@@ -16,7 +17,7 @@ const DoctorDashboard = () => {
         padding="1.2rem 1.2rem 0"
         bg="bg"
         // overflow="hidden"
-        templateColumns="auto 7fr 2fr"
+        templateColumns="auto 7fr 3fr"
         templateRows="auto 1fr"
         gap="12"
         borderRadius="3xl"
@@ -38,7 +39,9 @@ const DoctorDashboard = () => {
         <GridItem overflow="hidden">
           <Dashboard />
         </GridItem>
-        <GridItem></GridItem>
+        <GridItem>
+          <Schedule />
+        </GridItem>
       </Grid>
     </Box>
   );

@@ -1,14 +1,15 @@
-import { Text, Box } from "@chakra-ui/react";
 import React from "react";
+import { Grid } from "@chakra-ui/react";
+// import { Text, Box } from "@chakra-ui/react";
+import Calendar from "./Calendar.jsx";
+import UpcomingAppointmets from "./UpcomingAppointments.jsx";
 
 const Schedule = () => {
   return (
-    <>
-      <Text fontSize="xl" color="font.focused" fontWeight="bold" mb="12">
-        Schedule
-      </Text>
-      <Box h="12.8rem"></Box>
-    </>
+    <Grid templateColumns="1fr" templateRows="auto 1fr" gap="16" h="full">
+      <Calendar />
+      <UpcomingAppointmets />
+    </Grid>
   );
 };
 

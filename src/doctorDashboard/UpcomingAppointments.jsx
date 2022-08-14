@@ -1,146 +1,75 @@
 import React from "react";
-import {
-  Flex,
-  Text,
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Td,
-  Tbody,
-  Image,
-  TableContainer,
-  Box,
-} from "@chakra-ui/react";
+import { Text, Grid, Image, GridItem, Stack } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 
-const UpcomingAppointments = () => {
-  const TableHeads = ["Name", "Age", "Date", "Time", "Action"];
+const UpcomingAppointmets = () => {
+  let renderedWidgets = [];
 
-  const renderedTableHealds = TableHeads.map((value, index) => {
-    return (
-      <Th
-        key={index}
-        // width="25%"
-        fontSize="14"
-        fontWeight="medium"
-        color="font.muted"
-        py="16"
-        textTransform="none"
-        // textAlign="center"
-      >
-        {value}
-      </Th>
-    );
-  });
-
-  const style = {
-    icon: {
-      "--ionicon-stroke-width": "3.6rem",
-    },
-  };
-
-  const ActionIcons = [
-    { icon: "close-circle-outline", iconColor: "#ff6b6b" },
-    { icon: "checkmark-circle-outline", iconColor: "#40c057" },
-  ];
-
-  const renderedActionIcons = ActionIcons.map((value, index) => {
-    return (
-      <ion-icon
-        key={index}
-        name={value.icon}
-        style={{ color: value.iconColor, fontSize: "2rem", ...style.icon }}
-      ></ion-icon>
-    );
-  });
-
-  const renderedAppointments = [];
-
-  for (let i = 0; i < 10; i++) {
-    renderedAppointments.push(
-      <Tr
+  for (let i = 0; i < 3; i++) {
+    renderedWidgets.push(
+      <Grid
+        role="group"
+        cursor="pointer"
+        maxH="full"
         key={i}
-        color="font.focused"
-        fontSize="lg"
-        fontWeight="medium"
-        transition="all 0.3s"
+        templateColumns="auto 1fr"
+        columnGap="20"
+        alignItems="center"
+        justifyContent="start"
+        bg="linear-gradient(150deg, #fff, #fff, #fff, #fff, #8bc2f354, #8bc2f3da)"
+        px="24"
+        py="12"
         borderRadius="2xl"
-        _hover={{ boxShadow: "0 0.6rem 1.2rem rgba(0, 0, 0, 0.08)" }}
+        boxShadow="0 0.4rem 0.8rem rgba(0, 0, 0, 0.1)"
+        transition="all 0.3s ease-in-out"
+        _hover={{
+          bg: "primary.400",
+        }}
       >
-        <Td overflow="hidden" py="8" px="16">
-          <Flex columnGap="12" alignItems="center">
-            <Image
-              src={faker.image.avatar()}
-              alt="avatar"
-              boxSize="3.6rem"
-              borderRadius="full"
-            />
-            <Text>{faker.name.findName()}</Text>
-          </Flex>
-        </Td>
-        <Td overflow="hidden" px="16">
-          {Math.floor(Math.random() * 80)}
-        </Td>
-        <Td overflow="hidden" px="16">
-          {new Date().toDateString()}
-        </Td>
-        <Td overflow="hidden" px="16">
-          {new Date().toLocaleTimeString()}
-        </Td>
-        <Td>
-          <Flex alignItems="center" columnGap="12">
-            {renderedActionIcons}
-          </Flex>
-        </Td>
-      </Tr>
+        <GridItem>
+          <Image
+            src={faker.image.avatar()}
+            w="20"
+            borderRadius="full"
+            alt="avatar"
+          />
+        </GridItem>
+        <GridItem>
+          <Text
+            fontSize="14"
+            fontWeight="semibold"
+            mb="4"
+            color="focused"
+            _groupHover={{ color: "#fff" }}
+          >
+            {faker.name.findName()}
+          </Text>
+          <Text
+            fontSize="10"
+            fontWeight="medium"
+            color="font.muted"
+            _groupHover={{ color: "#dfdfdf" }}
+          >
+            {new Date().toLocaleTimeString()}
+          </Text>
+          <Text
+            fontSize="12"
+            fontWeight="medium"
+            color="general"
+            _groupHover={{ color: "#efefef" }}
+          >
+            {faker.lorem.words(3)}
+          </Text>
+        </GridItem>
+      </Grid>
     );
   }
 
   return (
-    <Box
-      display="grid"
-      gridTemplateColumns="1fr"
-      gridTemplateRows="auto 1fr"
-      alignItems="stretch"
-      gap="12"
-      height="full"
-      overflow="hidden"
-      bg="bg"
-      borderRadius="2xl"
-      boxShadow="0 0.2rem 0.4rem rgba(0, 0, 0, 0.01)"
-    >
-      <Text
-        fontSize="xl"
-        color="font.focused"
-        fontWeight="bold"
-        // align="center"
-        ml="28"
-        mt="16"
-      >
-        Appointments
-      </Text>
-      {/* <Box overflowY="scroll"> */}
-      <TableContainer
-        // py="24"
-        maxW="full"
-        px="12"
-        bg="bg"
-        // justifyContent="space-around"
-        overflowY="scroll"
-        // height="80%"
-        // overflow="scroll"
-      >
-        <Table variant="unstyled">
-          <Thead>
-            <Tr>{renderedTableHealds}</Tr>
-          </Thead>
-          <Tbody>{renderedAppointments}</Tbody>
-        </Table>
-      </TableContainer>
-    </Box>
-    // </Box>
+    <Stack maxH="full" spacing="16" alignSelf="center">
+      {renderedWidgets}
+    </Stack>
   );
 };
 
-export default UpcomingAppointments;
+export default UpcomingAppointmets;
