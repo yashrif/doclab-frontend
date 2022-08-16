@@ -126,7 +126,7 @@ const Header = () => {
               </a>
             </li>
             <LoginPopUp><li className="header-page-nav-link ">
-              <Button colorScheme='messenger' size='lg' variant='solid'>
+              <Button colorScheme='messenger' size='lg' variant='outline'>
                 Log In
               </Button>
             </li>
