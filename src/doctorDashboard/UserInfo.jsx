@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Center, Grid, GridItem, Spinner } from "@chakra-ui/react";
 import Statistic from "./Statistic.jsx";
 // import PendingAppointmets from "./PendingAppointments.jsx";
 import PendingAppointments from "./PendingAppointments.jsx";
-import ProfileCard from "../reusable/pageDetails/ProfileCard.jsx";
+import ProfileCard from "../reusable/ProfileCard.jsx";
 import fetchData from "../hooks/fetchData.jsx";
 
 const UserInfo = () => {
@@ -43,7 +43,15 @@ const UserInfo = () => {
             page="doctorDashboard"
           />
         ) : (
-          <Box>No data</Box>
+          <Center minH="48">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="primary.base"
+              size="xl"
+            />
+          </Center>
         )}
       </GridItem>
 

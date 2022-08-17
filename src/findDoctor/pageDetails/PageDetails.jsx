@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfileCard from "./ProfileCard.jsx";
+import ProfileCard from "../../reusable/ProfileCard.jsx";
 import TimeSlot from "./TimeSlots.jsx";
 import CommentsNavigation from "./CommentsNavigation.jsx";
 import Comments from "./Comments.jsx";

@@ -45,16 +45,17 @@ const ProfileLink = () => {
         style={{
           color: "#18181B",
           fontSize: "2.4rem",
-          marginRight: "1.2rem",
+          marginRight: ".8rem",
           cursor: "pointer",
           transition: "all 0.3s",
         }}
         name="notifications-outline"
       ></ion-icon>
       <Image
+        cursor="pointer"
         src={faker.image.avatar()}
         alt="Profile"
-        w="16"
+        w="14"
         borderRadius="full"
       />
       <Text fontSize="lg" fontWeight={"semibold"}>

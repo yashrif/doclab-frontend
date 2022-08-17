@@ -1,6 +1,6 @@
 import React from "react";
 import { faker } from "@faker-js/faker";
-import theme from "../../styling/theme.jsx";
+import theme from "../styling/theme.jsx";
 import { Wrap } from "@chakra-ui/react";
 
 const ProfileCard = ({ category, selectedPerson, entity, page }) => {

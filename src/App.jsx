@@ -3,7 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 // import FindDoctor from "./pages/FindDoctor.jsx";
 import Dashboard from "./doctorDashboard/Dashboard.jsx";
 import theme from "./styling/theme.jsx";
-import "./style.css";
+import "./styling/style.css";
 
 const App = () => {
   return (
