@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Grid, Image, GridItem, Stack } from "@chakra-ui/react";
+import { Text, Grid, Image, GridItem, Stack, Box } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 
 const UpcomingAppointmets = () => {
@@ -7,7 +7,7 @@ const UpcomingAppointmets = () => {
 
   for (let i = 0; i < 3; i++) {
     renderedWidgets.push(
-      <>
+      <Box key={i}>
         <style>
           {`
           @keyframes slide-up {
@@ -40,7 +40,6 @@ const UpcomingAppointmets = () => {
           role="group"
           cursor="pointer"
           maxH="full"
-          key={i}
           templateColumns="auto 1fr"
           columnGap="20"
           alignItems="center"
@@ -92,7 +91,7 @@ const UpcomingAppointmets = () => {
             </Text>
           </GridItem>
         </Grid>
-      </>
+      </Box>
     );
   }
 

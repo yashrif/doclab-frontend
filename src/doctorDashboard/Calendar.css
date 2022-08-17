@@ -15,6 +15,10 @@
     color: inherit;
 }
 
+.react-calendar__month-view__days {
+    row-gap: .4rem;
+}
+
 .react-calendar__navigation {
     height: auto;
     margin: 1.2rem 0 1.6rem;

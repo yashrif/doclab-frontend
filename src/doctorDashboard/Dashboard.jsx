@@ -30,7 +30,7 @@ const Dashboard = () => {
           </Center>
         </GridItem>
         <GridItem justifySelf={"center"} w={"50%"}>
-          <Search bg="transparent" />
+          <Search bg="transparent" category="something..." />
         </GridItem>
         <GridItem justifySelf={"end"} mr="36">
           <ProfileLink />
