@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.0.8",
-    "@chakra-ui/react": "^2.2.6",
+    "@chakra-ui/react": "^2.2.8",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -16,7 +16,7 @@
     "axios": "^0.27.2",
     "cra-template": "1.2.0",
     "dayjs": "^1.11.5",
-    "framer-motion": "^7.1.0",
+    "framer-motion": "^7.2.0",
     "react": "^18.2.0",
     "react-calendar": "^3.7.0",
     "react-dom": "^18.2.0",

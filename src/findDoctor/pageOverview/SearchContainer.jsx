@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "../Search.jsx";
+import Search from "../../reusable/Search.jsx";
 import theme from "../../styling/theme.jsx";
 
 const SearchContainer = ({ term, setTerm, category }) => {
