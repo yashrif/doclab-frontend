@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import { Box } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import "react-calendar/dist/Calendar.css";
 import "./Calendar.css";
 import dayjs from "dayjs";
@@ -17,6 +18,8 @@ const App = () => {
         onChange={setDate}
         value={date}
         formatDay={(locale, date) => dayjs(date).format("DD")}
+        prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
+        nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
       />
     </Box>
   );
