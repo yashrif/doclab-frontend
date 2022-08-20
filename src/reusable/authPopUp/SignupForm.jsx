@@ -1,14 +1,14 @@
 import {
-   ModalBody,
+  ModalBody,
   ModalContent, FormControl, Input,
   ModalFooter, Button,
   ModalHeader
   , Text, Select, InputGroup, InputLeftElement,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon, EmailIcon, UnlockIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, EmailIcon } from "@chakra-ui/icons";
 import { subDistrictList } from "../../assets/variable/values.js";
-
+import PasswordInput from "./PaswordInput.jsx";
 
 
 const SignupForm = ({
@@ -32,10 +32,10 @@ const SignupForm = ({
   return (
 
     <ModalContent my='auto' p='2rem' borderRadius='11px'>
-      <ModalCloseButton onClick={onModalClose} p='2rem'/>
-        <ModalHeader textAlign='center' fontSize='2.4rem ' color='blue.700'>Sign Up</ModalHeader>
-        <ModalHeader textAlign='center' fontSize='1.4rem' color='gray.400'>Enter your details</ModalHeader>
-  
+      <ModalCloseButton onClick={onModalClose} p='2rem' />
+      <ModalHeader textAlign='center' fontSize='2.4rem ' color='blue.700'>Sign Up</ModalHeader>
+      <ModalHeader textAlign='center' fontSize='1.4rem' color='gray.400'>Enter your details</ModalHeader>
+
       <ModalBody mt='1.8rem' pb='1.4rem' >
 
         <FormControl display='flex' alignItems='center'>
@@ -52,7 +52,7 @@ const SignupForm = ({
             name="doctorSpeciality" />
         </FormControl>
 
-        <FormControl  mt='1rem' >
+        <FormControl mt='1rem' >
           <Input h='3.4rem' variant='flushed' placeholder='Affiliated Hospital'
             onChange={handleSignupChange}
             value={signupInfo.doctorClinicName}
@@ -92,19 +92,16 @@ const SignupForm = ({
         </FormControl>
 
         <FormControl mt='2.4rem' display='flex' alignItems='center'>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
 
-              size="xs"
-            > <UnlockIcon w='1.8rem' h='1.8rem' mt='auto'
-              ml='0.4rem'
-              color='blue' />
-            </InputLeftElement>
-            <Input h='3.4rem' variant='outline' placeholder='Password'
-              name="doctorPassword"
-              onChange={handleSignupChange} value={signupInfo.doctorPassword} />
-          </InputGroup>
+          <PasswordInput
+            setPassword={(val) =>
+              setSignupInfo(prevState => ({
+                ...prevState,
+                ["doctorPassword"]: val
+              }))
+            }
+            password={signupInfo.doctorPassword}
+          />
         </FormControl>
 
         <FormControl display='flex' mt='1rem' alignItems='center'>

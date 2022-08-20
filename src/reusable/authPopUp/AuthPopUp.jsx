@@ -27,14 +27,14 @@ const AuthPopUp = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [currWindow, setCurrWindow] = useState('logInWindow')
   const [signupInfo, setSignupInfo] = useState({
-    "doctorName": "",
-    "doctorGender": "",
-    "doctorSubDistrict": "",
-    "doctorSpeciality": "",
-    "doctorClinicName": "",
-    "doctorEmail": "",
-    "doctorPassword": "",
-    "doctorLocation": ""
+    doctorName: "",
+    doctorGender: "",
+    doctorSubDistrict: "",
+    doctorSpeciality: "",
+    doctorClinicName: "",
+    doctorEmail: "",
+    doctorPassword: "",
+    doctorLocation: ""
   })
 
   const onModalClose = ()=>{
@@ -79,7 +79,11 @@ const AuthPopUp = ({ children }) => {
       setLoading(false);
     };
 
-    if (signupInfo.doctorEmail != '') {
+    const validate = () => {
+      return validateEmail(signupInfo.doctorEmail) &&
+        true;
+    }
+    if (validate()) {
       setLoading(true);
       fetchLoginToken();
     }

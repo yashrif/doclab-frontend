@@ -1,7 +1,7 @@
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
  import FindDoctor from "./findDoctor/FindDoctor.jsx";
-//import DoctorDashboard from "./doctorDashboard/Dashboard.jsx";
+// import DoctorDashboard from "./doctorDashboard/Dashboard.jsx";
 import theme from "./styling/theme.jsx";
 import "./styling/style.css";
 
