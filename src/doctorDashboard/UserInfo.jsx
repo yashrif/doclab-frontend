@@ -7,16 +7,16 @@ import ProfileCard from "../reusable/ProfileCard.jsx";
 import fetchData from "../hooks/fetchData.jsx";
 
 const UserInfo = () => {
-  const [personList, , fetchpersonList] = fetchData([]);
+  const [person, , fetchperson] = fetchData();
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   useEffect(() => {
-    fetchpersonList(`doctor`);
+    fetchperson(`doctor/${'48fd80a3-a0a1-40f6-99de-8875032e0da9'}`);
   }, []);
 
   useEffect(() => {
-    setSelectedPerson(personList[0]);
-  }, [personList]);
+    setSelectedPerson(person);
+  }, [person]);
 
   return (
     <Grid

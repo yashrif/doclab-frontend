@@ -11,7 +11,7 @@ import LoginSuccess from "./LogInSuccess.jsx";
 import SignupSuccess from "./SignupSuccess.jsx";
 import { useEffect } from "react";
 import axios from "axios";
-import { validateEmail } from "../../assets/variable/values.js";
+import { validateEmail, initialSignup } from "../../assets/variable/values.js";
 const loginUrl = "http://doclab24.herokuapp.com/doctor/login";
 const signupUrl = "http://doclab24.herokuapp.com/doctor/post";
 
@@ -26,22 +26,13 @@ const AuthPopUp = ({ children }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [currWindow, setCurrWindow] = useState('logInWindow')
-  const [signupInfo, setSignupInfo] = useState({
-    doctorName: "",
-    doctorGender: "",
-    doctorSubDistrict: "",
-    doctorSpeciality: "",
-    doctorClinicName: "",
-    doctorEmail: "",
-    doctorPassword: "",
-    doctorLocation: ""
-  })
+  const [signupInfo, setSignupInfo] = useState(initialSignup)
 
   const onModalClose = ()=>{
     setCurrWindow('logInWindow');
     setPassword('');
     setEmail('');
-    setSignupInfo({});
+    setSignupInfo(initialSignup);
     onClose();
   }
   useEffect(() => {
@@ -72,9 +63,11 @@ const AuthPopUp = ({ children }) => {
   useEffect(() => {
 
     const fetchLoginToken = async () => {
-      await axios.post(signupUrl, signupInfo).then(() => {
-
-        setCurrWindow('signUpSuccess')
+      await axios.post(signupUrl, signupInfo).then((res) => {
+        const token = res.data;
+        localStorage.setItem('doctorToken',token);
+        setCurrWindow('signUpSuccess');
+        console.log(localStorage.getItem('doctorToken'));
       }).catch(() => { });
       setLoading(false);
     };
