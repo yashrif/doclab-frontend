@@ -1,0 +1,15 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "ec2-54-147-33-38.compute-1.amazonaws.com",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "doclab-backend",
+      "database": "dfmc402akuv7jm",
+      "username": "nlkordfmpmjibl",
+      "password": "7608d60f76986a2f16ba143aad432eb4a853bb51f95d6bebb80d452e0955a30c",
+      "connectionTimeout": 3000
+    }
+  ]
+}
