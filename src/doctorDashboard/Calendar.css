@@ -79,7 +79,7 @@
 }
 
 .react-calendar__month-view__weekdays {
-    background-color: rgba(110, 72, 235, 0.08);
+    background-color: rgba(110, 72, 235, 0.15);
     margin-bottom: .8rem;
     padding: .8rem .4rem;
     border-radius: 5px;
