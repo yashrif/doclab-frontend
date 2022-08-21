@@ -4,7 +4,8 @@ import {
   ModalFooter, Button, ModalHeader
   , Text, InputGroup, InputLeftElement, ModalCloseButton
 } from "@chakra-ui/react";
-import { EmailIcon, UnlockIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import PasswordInput from "./PaswordInput.jsx";
 
 
 const LoginForm = ({
@@ -51,18 +52,11 @@ const LoginForm = ({
 
 
         <FormControl mt='2.4rem' display='flex' alignItems='center'>
-          <InputGroup>
-          <InputLeftElement
-              pointerEvents="none"
-
-              size="xs"
-            > <UnlockIcon w='1.8rem' h='1.8rem' mt='auto'
-              ml='0.4rem'
-             color='blue' />
-            </InputLeftElement>
-            <Input h='3.4rem' variant='outline' placeholder='Password'
-              onChange={(e) => setPassword(e.target.value)} value={password} />
-          </InputGroup>
+         <PasswordInput
+            password={password}
+            setPassword={setPassword}
+            initialRef={initialRef}
+         />
         </FormControl>
 
       </ModalBody>
