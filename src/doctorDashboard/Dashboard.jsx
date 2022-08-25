@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Grid, GridItem, Center } from "@chakra-ui/react";
-import NavBar from "./NavBar.jsx";
+import NavBar from "../reusable/NavBar.jsx";
 import Search from "../reusable/Search.jsx";
 import UserInfo from "./UserInfo.jsx";
 import Schedule from "./Schedule.jsx";
-import ProfileLink from "./ProfileLink.jsx";
+import ProfileLink from "../reusable/ProfileLink.jsx";
 // import Header from "../reusable/Header.jsx";
 
 const Dashboard = () => {
