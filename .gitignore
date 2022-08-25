@@ -27,4 +27,5 @@ yarn-error.log*
 /DocLab
 /src/colors.css
 /.VSCodeCounter
+/reference
 *.orig
