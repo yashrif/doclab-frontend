@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import theme from "../styling/theme.jsx";
-
+import AuthPopUp from "../reusable/authPopUp/AuthPopUp.jsx";
+import { Button } from "@chakra-ui/react";
 const style = {
   headerNavList: {
     listStyle: "none",
@@ -124,11 +125,12 @@ const Header = () => {
                 Services
               </a>
             </li>
-            <li className="header-page-nav-link ">
-              <a className="header-link nav-cta" href="/">
-                Sign Up
-              </a>
+            <AuthPopUp><li className="header-page-nav-link ">
+              <Button colorScheme='messenger' size='lg' variant='outline'>
+                Log In
+              </Button>
             </li>
+            </AuthPopUp>
           </ul>
         </nav>
       </header>

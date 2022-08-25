@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import MainContainer from "../reusable/MainContainer.jsx";
-import Header from "../reusable/Header.jsx";
-import PageOverview from "../reusable/pageOverview/PageOverview.jsx";
-import PageDetails from "../reusable/pageDetails/PageDetails.jsx";
+import MainContainer from "./MainContainer.jsx";
+import Header from "./Header.jsx";
+import PageOverview from "./pageOverview/PageOverview.jsx";
+import PageDetails from "./pageDetails/PageDetails.jsx";
 
 const FindDoctor = () => {
   const category = "doctor";

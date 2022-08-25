@@ -60,7 +60,6 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
           marginBottom: " 1.2rem",
           transition: "all .3s",
         }}
-         
       >
         <div
           className="person-card-container"

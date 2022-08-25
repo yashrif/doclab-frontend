@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfileCard from "./ProfileCard.jsx";
+import ProfileCard from "../../reusable/ProfileCard.jsx";
 import TimeSlot from "./TimeSlots.jsx";
 import CommentsNavigation from "./CommentsNavigation.jsx";
 import Comments from "./Comments.jsx";
@@ -81,7 +81,21 @@ const PageDetails = ({ category, selectedPerson }) => {
           overflow: "hidden",
         }}
       >
-        <ProfileCard category={category} selectedPerson={selectedPerson} />
+        <ProfileCard
+          category={category}
+          selectedPerson={selectedPerson}
+          entity={[
+            "Name",
+            "Speciality",
+            "Degrees",
+            "Rating",
+            "Info",
+            "ConsultencyCount",
+            "Experience",
+            "Verification",
+          ]}
+          page="findDoctor"
+        />
         <TimeSlot category={category} selectedPerson={selectedPerson} />
 
         <div

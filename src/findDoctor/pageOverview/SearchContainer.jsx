@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "../Search.jsx";
+import Search from "../../reusable/Search.jsx";
 import theme from "../../styling/theme.jsx";
 
 const SearchContainer = ({ term, setTerm, category }) => {
@@ -41,7 +41,7 @@ const SearchContainer = ({ term, setTerm, category }) => {
         </div>
       </div>
       <div className="search-bar">
-        <Search term={term} setTerm={setTerm} category={category} />
+        <Search term={term} setTerm={setTerm} category={category} bg="#e9ecef" />
       </div>
     </>
   );
