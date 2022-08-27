@@ -1,18 +1,19 @@
 import React from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
-import AuthPopUp from "../reusable/authPopUp/AuthPopUp.jsx";
-import { Button } from "@chakra-ui/react";
-const style = {
-  headerNavList: {
-    listStyle: "none",
-    display: "flex",
-    alignItems: "center",
-    columnGap: "3.2rem",
-  },
-};
+import AuthPopUp from "./authPopUp/AuthPopUp.jsx";
+import ButtonFull from "./button/ButtonFull.jsx";
 
 const Header = () => {
+  const style = {
+    headerNavList: {
+      listStyle: "none",
+      display: "flex",
+      alignItems: "center",
+      columnGap: "3.2rem",
+    },
+  };
+
   return (
     <>
       <style>
@@ -20,6 +21,7 @@ const Header = () => {
         .header-link:link,
         .header-link:visited {
           display: inline-block;
+          letter-spacing: .25px;
           text-decoration: none;
           color: #333;
           font-weight: 600;
@@ -33,6 +35,7 @@ const Header = () => {
         .header-link:hover {
           color: ${theme.typography.colors.primaryFirst.primary};
           border-bottom: 0.1rem solid currentColor;
+          text-shadow:  0 0.4rem 0.8rem rgba(28, 126, 214, 0.25);
           box-shadow: 0 0.6rem 0.4rem -0.4rem rgba(28, 126, 214, 0.5);
         }
 
@@ -60,7 +63,7 @@ const Header = () => {
       <header
         style={{
           height: `${theme.typography.containerHeight.header}`,
-          fontSize: "1.6rem",
+          fontSize: "1.7rem",
           padding: `0 ${theme.typography.sectionGap.large}`,
           marginBottom: `${theme.typography.sectionGap.headerBottom}`,
 
@@ -125,11 +128,17 @@ const Header = () => {
                 Services
               </a>
             </li>
-            <AuthPopUp><li className="header-page-nav-link ">
-              <Button colorScheme='messenger' size='lg' variant='outline'>
-                Log In
-              </Button>
-            </li>
+            <AuthPopUp>
+              <li className="header-page-nav-link ">
+                <ButtonFull
+                  py="18"
+                  px="24"
+                  fontSize={"17"}
+                  fontWeight={"semibold"}
+                >
+                  Login
+                </ButtonFull>
+              </li>
             </AuthPopUp>
           </ul>
         </nav>

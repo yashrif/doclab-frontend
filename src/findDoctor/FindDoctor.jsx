@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MainContainer from "./MainContainer.jsx";
-import Header from "./Header.jsx";
+import Header from "../reusable/Header.jsx";
 import PageOverview from "./pageOverview/PageOverview.jsx";
 import PageDetails from "./pageDetails/PageDetails.jsx";
 

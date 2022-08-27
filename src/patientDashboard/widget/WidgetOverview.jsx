@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 
-const PatientOverview = () => {
+const WidgetOverview = () => {
   const style = {
     icon: {
       "--ionicon-stroke-width": "4rem",
@@ -51,7 +51,7 @@ const PatientOverview = () => {
               Male
             </Text>
           </Flex>
-          <Flex gap={"20"}>
+          {/* <Flex gap={"20"}>
             <Text fontSize={"md"} color="font.muted">
               Birthday
             </Text>
@@ -59,7 +59,7 @@ const PatientOverview = () => {
             <Text fontSize={"md"} fontWeight="medium" color={"#333"}>
               {new Date().toLocaleDateString()}
             </Text>
-          </Flex>
+          </Flex> */}
           <Flex gap={"20"}>
             <Text fontSize={"md"} color="font.muted">
               Age
@@ -89,6 +89,9 @@ const PatientOverview = () => {
           </Flex>
         </Stack>
       </StackItem>
+
+      <Spacer />
+
       <StackItem>
         <Stack spacing={"12"}>
           <Center>
@@ -132,4 +135,4 @@ const PatientOverview = () => {
   );
 };
 
-export default PatientOverview;
+export default WidgetOverview;

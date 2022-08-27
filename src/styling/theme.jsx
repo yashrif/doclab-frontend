@@ -20,15 +20,19 @@ const theme = extendTheme({
       400: "#3491e4",
       500: "#1b77cb",
       600: "#105d9f",
+      650: "#0e548f",
       700: "#064273",
       800: "#002848",
       900: "#000e1e",
     },
 
+    bgContainer: "#e8f2fb",
     bg: "#fff",
     bgDarker: "#fafafc",
 
     font: {
+      // hero: "#204289",
+      hero: "#064273",
       focused: "#18181B",
       muted: "#888",
       general: "#555",
@@ -52,6 +56,7 @@ const theme = extendTheme({
     "10xl": "7.4rem",
     "11xl": "8.6rem",
   },
+
   fontWeights: {
     hairline: 100,
     thin: 200,
@@ -63,6 +68,7 @@ const theme = extendTheme({
     extrabold: 800,
     black: 900,
   },
+
   lineHeights: {
     normal: "normal",
     none: 1,
@@ -70,16 +76,9 @@ const theme = extendTheme({
     short: 1.4,
     base: 1.5,
     tall: 1.6,
-    taller: "2",
-    3: ".75rem",
-    4: "1rem",
-    5: "1.25rem",
-    6: "1.5rem",
-    7: "1.75rem",
-    8: "2rem",
-    9: "2.25rem",
-    10: "2.5rem",
+    taller: 2,
   },
+
   letterSpacings: {
     tighter: "-0.05em",
     tight: "-0.025em",
@@ -133,13 +132,16 @@ const theme = extendTheme({
     "6xl": "72rem",
     "7xl": "80rem",
     "8xl": "90rem",
+    "12xl": "120rem",
+    "13xl": "130rem",
+  },
 
-    container: {
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-    },
+  container: {
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1280px",
+    "2xl": "130px",
   },
 
   borderRadius: {

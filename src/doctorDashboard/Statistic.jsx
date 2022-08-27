@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Stack, Text, Box } from "@chakra-ui/react";
+import { Flex, Stack, Box } from "@chakra-ui/react";
 
 const Statistic = () => {
   const style = {
@@ -13,7 +13,7 @@ const Statistic = () => {
       icon: "people-outline",
       iconColor: "#01d1ec",
       count: 100,
-      category: <Text>Patients</Text>,
+      category: "Patients",
     },
     {
       icon: "document-text-outline",

@@ -10,7 +10,7 @@ const WidgetActivities = () => {
 
   let renderedList = [];
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 2; i++) {
     renderedList.push(
       <Text key={i} fontSize={"12"} fontWeight="medium" letterSpacing={".25px"}>
         {new Date().toLocaleString()}
