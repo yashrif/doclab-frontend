@@ -1,69 +1,93 @@
 import React from "react";
-import { Box, Stack, Text, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  Text,
+  Grid,
+  GridItem,
+  UnorderedList,
+  ListItem,
+} from "@chakra-ui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCapsules,
+  faTooth,
+  faEye,
+  faBrain,
+} from "@fortawesome/free-solid-svg-icons";
+import ButtonFull from "../reusable/button/ButtonFull.jsx";
 
 const Services = () => {
-  const style = {
-    icon: {
-      "--ionicon-stroke-width": "3.6rem",
-    },
-  };
-
-  const ServiceList = [
+  const ServiceWidget = [
     {
-      icon: "eye-outline",
+      icon: faBrain,
       iconColor: "#4263eb",
       bgColor: "#dbe4ff",
-      title: "Eye Surgery",
+      title: "Neuorology",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam harum aperiam placeat commodi hic nostrum adipisci nulla neque, velit eligendi veniam soluta natus. Nisi molestias nostrum praesentium exercitationem amet accusamus!",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit velit eligeonem amet accusamus!",
     },
     {
-      icon: "eye-outline",
+      icon: faCapsules,
       iconColor: "#37b24d",
       bgColor: "#d3f9d8",
-      title: "Eye Surgery",
+      title: "Medicine",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam harum aperiam placeat commodi hic nostrum adipisci nulla neque, velit eligendi veniam soluta natus. Nisi molestias nostrum praesentium exercitationem amet accusamus!",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit velit eligeonem amet accusamus!",
     },
     {
-      icon: "eye-outline",
+      icon: faEye,
       iconColor: "#1098ad",
       bgColor: "#c5f6fa",
       title: "Eye Surgery",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam harum aperiam placeat commodi hic nostrum adipisci nulla neque, velit eligendi veniam soluta natus. Nisi molestias nostrum praesentium exercitationem amet accusamus!",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit velit eligeonem amet accusamus!",
     },
     {
-      icon: "eye-outline",
+      icon: faTooth,
       iconColor: "#f59f00",
       bgColor: "#fff3bf",
-      title: "Eye Surgery",
+      title: "Dentistry",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam harum aperiam placeat commodi hic nostrum adipisci nulla neque, velit eligendi veniam soluta natus. Nisi molestias nostrum praesentium exercitationem amet accusamus!",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit velit eligeonem amet accusamus!",
     },
   ];
 
-  const renderedList = ServiceList.map((value, index) => {
+  const ServiceList = [
+    { text: "Top Specialist Doctor" },
+    { text: "State of the art doctor service" },
+    { text: "discount for all medical treatment" },
+    { text: "Appointment is quick and easy" },
+  ];
+
+  const renderedServiceWidget = ServiceWidget.map((value, index) => {
     return (
-      <GridItem key={index}>
+      <GridItem
+        key={index}
+        borderRadius={"2xl"}
+        boxShadow={"0 0 2rem rgba(0, 0, 0, 0.05)"}
+        px="24"
+        py="16"
+      >
         <Stack>
-          <ion-icon
+          <FontAwesomeIcon
+            icon={value.icon}
             style={{
-              fontSize: "2.4rem",
-              ...style.icon,
-              marginBottom: "1.6rem",
-              padding: "1.2rem",
+              fontSize: "2rem",
+              marginBottom: "1.4rem",
+              padding: "1.2rem 1rem",
               color: `${value.iconColor}`,
               backgroundColor: `${value.bgColor}`,
               borderRadius: "50%",
             }}
-            name={value.icon}
-          ></ion-icon>
+            fixedWidth
+          />
           <Text
             fontSize={"18"}
             fontWeight="semibold"
             color={"font.hero"}
             mb={"12"}
+            textTransform="capitalize"
           >
             {value.title}
           </Text>
@@ -77,6 +101,20 @@ const Services = () => {
           </Text>
         </Stack>
       </GridItem>
+    );
+  });
+
+  const renderedServiceList = ServiceList.map((value, index) => {
+    return (
+      <ListItem
+        key={index}
+        fontSize={"18"}
+        fontWeight="medium"
+        color={"font.muted"}
+        lineHeight={"tall"}
+      >
+        {value.text}
+      </ListItem>
     );
   });
 
@@ -104,8 +142,30 @@ const Services = () => {
         The best quality services you can get
       </Text>
 
-      <Grid templateColumns={"repeat(4, 1fr)"} gap="16">
-        {renderedList}
+      <Grid templateColumns="5fr 3fr" gap={"64"}>
+        <Grid templateColumns={"repeat(2, 1fr)"} gap="24">
+          {renderedServiceWidget}
+        </Grid>
+        <GridItem>
+          <Text
+            textTransform={"capitalize"}
+            color={"font.hero"}
+            fontSize="4xl"
+            fontWeight={"bold"}
+            lineHeight="short"
+            mb="48"
+          >
+            We always ensure best medical treatment for your health
+          </Text>
+
+          <UnorderedList spacing={"24"} mb="48" pl="8">
+            {renderedServiceList}
+          </UnorderedList>
+
+          <ButtonFull py="24" px="32" fontSize={"18"}>
+            Book Appointment
+          </ButtonFull>
+        </GridItem>
       </Grid>
     </Box>
   );
