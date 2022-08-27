@@ -5,8 +5,9 @@ import {
   Text,
   Grid,
   GridItem,
-  UnorderedList,
+  List,
   ListItem,
+  ListIcon,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +16,7 @@ import {
   faEye,
   faBrain,
 } from "@fortawesome/free-solid-svg-icons";
+import { MdCheckCircle } from "react-icons/md";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
 
 const Services = () => {
@@ -112,7 +114,14 @@ const Services = () => {
         fontWeight="medium"
         color={"font.muted"}
         lineHeight={"tall"}
+        textTransform="capitalize"
       >
+        <ListIcon
+          as={MdCheckCircle}
+          color="primary.400"
+          mr="12"
+          boxSize={"8"}
+        />
         {value.text}
       </ListItem>
     );
@@ -158,9 +167,9 @@ const Services = () => {
             We always ensure best medical treatment for your health
           </Text>
 
-          <UnorderedList spacing={"24"} mb="48" pl="8">
+          <List spacing={"24"} mb="48" pl="8">
             {renderedServiceList}
-          </UnorderedList>
+          </List>
 
           <ButtonFull py="24" px="32" fontSize={"18"}>
             Book Appointment
