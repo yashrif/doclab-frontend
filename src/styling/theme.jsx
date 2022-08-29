@@ -26,7 +26,7 @@ const theme = extendTheme({
       900: "#000e1e",
     },
 
-    bgContainer: "#e8f2fb",
+    bgContainer: "#f2f5fe",
     bg: "#fff",
     bgDarker: "#fafafc",
 

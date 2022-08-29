@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Stack,
   Text,
   Grid,
   GridItem,
@@ -9,7 +8,6 @@ import {
   ListItem,
   ListIcon,
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCapsules,
   faTooth,
@@ -17,6 +15,7 @@ import {
   faBrain,
 } from "@fortawesome/free-solid-svg-icons";
 import { MdCheckCircle } from "react-icons/md";
+import WidgetServicesWorks from "./reusable/WidgetServicesWorks.jsx";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
 
 const Services = () => {
@@ -64,44 +63,8 @@ const Services = () => {
 
   const renderedServiceWidget = ServiceWidget.map((value, index) => {
     return (
-      <GridItem
-        key={index}
-        borderRadius={"2xl"}
-        boxShadow={"0 0 2rem rgba(0, 0, 0, 0.05)"}
-        px="24"
-        py="16"
-      >
-        <Stack>
-          <FontAwesomeIcon
-            icon={value.icon}
-            style={{
-              fontSize: "2rem",
-              marginBottom: "1.4rem",
-              padding: "1.2rem 1rem",
-              color: `${value.iconColor}`,
-              backgroundColor: `${value.bgColor}`,
-              borderRadius: "50%",
-            }}
-            fixedWidth
-          />
-          <Text
-            fontSize={"18"}
-            fontWeight="semibold"
-            color={"font.hero"}
-            mb={"12"}
-            textTransform="capitalize"
-          >
-            {value.title}
-          </Text>
-          <Text
-            fontSize={"14"}
-            fontWeight="medium"
-            color={"font.muted"}
-            lineHeight={"tall"}
-          >
-            {value.description}
-          </Text>
-        </Stack>
+      <GridItem key={index}>
+        <WidgetServicesWorks value={value} />
       </GridItem>
     );
   });
@@ -151,7 +114,7 @@ const Services = () => {
         The best quality services you can get
       </Text>
 
-      <Grid templateColumns="5fr 3fr" gap={"64"}>
+      <Grid templateColumns="5fr 3fr" gap={"64"} alignItems="center">
         <Grid templateColumns={"repeat(2, 1fr)"} gap="24">
           {renderedServiceWidget}
         </Grid>
@@ -162,7 +125,7 @@ const Services = () => {
             fontSize="4xl"
             fontWeight={"bold"}
             lineHeight="short"
-            mb="48"
+            mb="32"
           >
             We always ensure best medical treatment for your health
           </Text>
@@ -172,7 +135,7 @@ const Services = () => {
           </List>
 
           <ButtonFull py="24" px="32" fontSize={"18"}>
-            Book Appointment
+            Read More
           </ButtonFull>
         </GridItem>
       </Grid>
