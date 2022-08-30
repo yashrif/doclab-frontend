@@ -34,7 +34,7 @@ const theme = extendTheme({
       // hero: "#204289",
       hero: "#064273",
       focused: "#18181B",
-      muted: "#888",
+      muted: "#767676",
       general: "#555",
     },
   },
@@ -244,7 +244,7 @@ const theme = extendTheme({
   methods: {
     capitalize: (s) => {
       return s
-        .split(" ")
+        ?.split(" ")
         .map((n) => {
           return [n.slice(0, 1).toUpperCase(), n.slice(1)].join("");
         })

@@ -15,7 +15,7 @@ const Dashboard = () => {
         maxW="1280px"
         mx="auto"
         my="24"
-        padding="1.2rem 1.2rem 0"
+        padding="1.6rem 1.2rem 0"
         bg="bg"
         // overflow="hidden"
         templateColumns="auto 7fr 3fr"
@@ -25,7 +25,7 @@ const Dashboard = () => {
         alignItems="stretch"
       >
         <GridItem>
-          <Center fontSize="4xl" color="font.focused" fontWeight="bold">
+          <Center fontSize="4xl" color="font.focused" fontWeight="semibold">
             DocLab
           </Center>
         </GridItem>

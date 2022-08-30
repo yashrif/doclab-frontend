@@ -18,11 +18,11 @@ const Hero = () => {
         <Text
           color={"primary.600"}
           fontSize="14"
-          fontWeight="semibold"
+          fontWeight="medium"
           maxWidth="50ch"
           lineHeight="tall"
           marginBottom="8"
-          letterSpacing={".5px"}
+          letterSpacing={".25px"}
         >
           A most popular doctor&apos;s appointment site
         </Text>
@@ -39,11 +39,11 @@ const Hero = () => {
         <Text
           color={"font.hero"}
           fontSize="16"
-          fontWeight="semibold"
+          fontWeight="regular"
           maxWidth="60ch"
           lineHeight="tall"
           marginBottom="48"
-          letterSpacing={".25px"}
+          // letterSpacing={".25px"}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
           praesentium totam delectus dolorum error provident aliquid tempore
@@ -58,8 +58,8 @@ const Hero = () => {
             Contact Us
           </ButtonOutline>
         </Flex>
-        <Text fontSize={"16"} fontWeight="medium" color={"font.hero"}>
-          <span style={{ fontWeight: "600" }}>No insurance?</span> Get your
+        <Text fontSize={"16"} fontWeight="regular" color={"font.hero"}>
+          <span style={{ fontWeight: "500" }}>No insurance?</span> Get your
           preventive care for a low monthly fee.
         </Text>
       </GridItem>

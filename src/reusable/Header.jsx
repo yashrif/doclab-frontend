@@ -24,7 +24,7 @@ const Header = () => {
           letter-spacing: .25px;
           text-decoration: none;
           color: #333;
-          font-weight: 600;
+          font-weight: 500;
           padding: 0.6rem 0 0.5rem 0;
           border-bottom: 0.1rem solid transparent;
 
@@ -75,12 +75,16 @@ const Header = () => {
           /* box-shadow: "0 0 0 .1rem rgba(0, 0, 0, 0.1)", */
         }}
       >
-        <a style={{ textDecoration: "none" }} href="/">
+        <a
+          style={{ textDecoration: "none", height: "5.2rem", width: "13.8rem" }}
+          href="/"
+        >
           <img
             style={{
               /* height:3".6rem", */
               /* width: "2.4rem", */
-              height: "5.2rem",
+              // width: "6.4rem",
+              width: "100%",
             }}
             src={logo}
             alt="logo"
@@ -134,7 +138,7 @@ const Header = () => {
                   py="18"
                   px="24"
                   fontSize={"17"}
-                  fontWeight={"semibold"}
+                  fontWeight={"medium"}
                 >
                   Login
                 </ButtonFull>

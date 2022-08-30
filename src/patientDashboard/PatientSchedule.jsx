@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@chakra-ui/react";
-import PatientSchedule from "./widget/WidgetSchedule.jsx";
+import PatientSchedule from "./widgets/WidgetSchedule.jsx";
 
 const PatientScheduleWidgets = () => {
   return (

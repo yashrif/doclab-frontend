@@ -19,7 +19,7 @@ const PatientSchedule = ({ bg }) => {
       boxShadow={`0 0 16px ${bg}40`}
     >
       <Flex alignItems={"center"} mb="8">
-        <Text fontSize={"2xl"} fontWeight="semibold" letterSpacing={".5px"}>
+        <Text fontSize={"2xl"} fontWeight="medium">
           Next Appointment
         </Text>
         <Spacer />
@@ -39,7 +39,7 @@ const PatientSchedule = ({ bg }) => {
 
       <Spacer />
 
-      <Text fontSize={"12"} fontWeight="medium" color={"font.general"}>
+      <Text fontSize={"12"} fontWeight="regular" color={"font.general"}>
         View Calendar
       </Text>
     </Flex>

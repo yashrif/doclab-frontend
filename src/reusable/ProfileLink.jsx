@@ -58,7 +58,7 @@ const ProfileLink = () => {
         w="14"
         borderRadius="full"
       />
-      <Text fontSize="lg" fontWeight={"semibold"}>
+      <Text fontSize="lg" fontWeight={"medium"}>
         Yashrif Arifin
       </Text>
     </Center>

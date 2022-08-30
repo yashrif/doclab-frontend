@@ -51,8 +51,9 @@ const HowItWorks = () => {
       <GridItem key={index}>
         <WidgetServicesWorks
           value={value}
-          alignItems="center"
-          textAlign={"center"}
+          // alignItems="center"
+          // textAlign={"center"}
+          isBoxShadow={false}
         />
       </GridItem>
     );

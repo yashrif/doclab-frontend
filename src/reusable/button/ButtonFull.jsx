@@ -8,7 +8,7 @@ const ButtonFull = ({ children, px, py, fontSize, fontWeight }) => {
       variant="none"
       textDecoration="none"
       fontSize={fontSize}
-      fontWeight={fontWeight ? fontWeight : "bold"}
+      fontWeight={fontWeight ? fontWeight : "medium"}
       letterSpacing=".25px"
       px={px}
       py={py}

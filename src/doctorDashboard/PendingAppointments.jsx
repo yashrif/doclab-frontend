@@ -64,7 +64,7 @@ const PendingAppointments = () => {
         cursor="pointer"
         color="font.focused"
         fontSize="lg"
-        fontWeight="medium"
+        fontWeight="regular"
         transition="all 0.3s"
         borderRadius="2xl"
         _hover={{ boxShadow: "0 0.6rem 1.2rem rgba(0, 0, 0, 0.08)" }}
@@ -116,7 +116,7 @@ const PendingAppointments = () => {
       <Text
         fontSize="xl"
         color="font.focused"
-        fontWeight="bold"
+        fontWeight="semibold"
         // align="center"
         ml="28"
         mt="16"

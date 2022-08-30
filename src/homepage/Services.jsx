@@ -17,6 +17,8 @@ import {
 import { MdCheckCircle } from "react-icons/md";
 import WidgetServicesWorks from "./reusable/WidgetServicesWorks.jsx";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
+import HeadingPrimary from "./reusable/HeadingPrimary.jsx";
+import HeadingSecondary from "./reusable/HeadingSecondary.jsx";
 
 const Services = () => {
   const ServiceWidget = [
@@ -64,7 +66,12 @@ const Services = () => {
   const renderedServiceWidget = ServiceWidget.map((value, index) => {
     return (
       <GridItem key={index}>
-        <WidgetServicesWorks value={value} />
+        <WidgetServicesWorks
+          value={value}
+          isBoxShadow={true}
+          alignItems="center"
+          textAlign={"center"}
+        />
       </GridItem>
     );
   });
@@ -73,8 +80,8 @@ const Services = () => {
     return (
       <ListItem
         key={index}
-        fontSize={"18"}
-        fontWeight="medium"
+        fontSize={"16"}
+        fontWeight="regular"
         color={"font.muted"}
         lineHeight={"tall"}
         textTransform="capitalize"
@@ -92,27 +99,8 @@ const Services = () => {
 
   return (
     <Box py="96">
-      <Text
-        textTransform={"uppercase"}
-        textAlign={"center"}
-        fontSize={"16"}
-        fontWeight={"semibold"}
-        color={"primary.base"}
-        pb={"16"}
-      >
-        Services
-      </Text>
-      <Text
-        textTransform={"capitalize"}
-        textAlign="center"
-        color={"font.hero"}
-        fontSize="4.4rem"
-        fontWeight={"bold"}
-        lineHeight="1.2"
-        marginBottom="9.6rem"
-      >
-        The best quality services you can get
-      </Text>
+      <HeadingPrimary>Services</HeadingPrimary>
+      <HeadingSecondary>The best quality services you can get</HeadingSecondary>
 
       <Grid templateColumns="5fr 3fr" gap={"64"} alignItems="center">
         <Grid templateColumns={"repeat(2, 1fr)"} gap="24">
@@ -123,7 +111,7 @@ const Services = () => {
             textTransform={"capitalize"}
             color={"font.hero"}
             fontSize="4xl"
-            fontWeight={"bold"}
+            fontWeight={"semibold"}
             lineHeight="short"
             mb="32"
           >

@@ -7,7 +7,7 @@ const HeadingSecondary = ({children}) => {
       textTransform={"uppercase"}
       textAlign={"center"}
       fontSize={"16"}
-      fontWeight={"semibold"}
+      fontWeight={"medium"}
       color={"primary.base"}
       pb={"16"}
     >

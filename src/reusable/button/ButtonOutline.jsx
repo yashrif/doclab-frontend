@@ -8,7 +8,7 @@ const ButtonOutline = ({ children, px, py, fontWeight }) => {
       variant="none"
       textDecoration="none"
       fontSize={"18"}
-      fontWeight={fontWeight ? fontWeight : "bold"}
+      fontWeight={fontWeight ? fontWeight : "medium"}
       letterSpacing=".25px"
       px={px}
       py={py}

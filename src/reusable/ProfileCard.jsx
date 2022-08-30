@@ -22,7 +22,7 @@ const ProfileCard = ({ category, selectedPerson, entity, page }) => {
     },
     span: {
       fontColor: "#333",
-      fontWeight: "600",
+      fontWeight: "500",
       marginRight: ".4rem",
     },
   };
@@ -141,9 +141,9 @@ const ProfileCard = ({ category, selectedPerson, entity, page }) => {
                 name="school-outline"
               ></ion-icon>
               <p>
-                {selectedPerson[`${category}Degrees`].length == 0
+                {selectedPerson[`${category}Degrees`]?.length == 0
                   ? "MBBS"
-                  : selectedPerson[`${category}Degrees`].map(
+                  : selectedPerson[`${category}Degrees`]?.map(
                       (e) => e.name + ". "
                     )}
               </p>

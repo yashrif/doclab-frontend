@@ -2,15 +2,15 @@ import React from "react";
 import { Stack, Text } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const WidgetServicesWorks = ({ value, alignItems, textAlign }) => {
+const WidgetServicesWorks = ({ value, alignItems, textAlign, isBoxShadow }) => {
   return (
     <Stack
       borderRadius={"2xl"}
-      px="24"
-      py="16"
+      px={isBoxShadow ? "24" : "16"}
+      py={isBoxShadow ? "16" : "0"}
       alignItems={alignItems ? alignItems : "start"}
       bg="bg"
-      boxShadow={"0 0 2rem rgba(0, 0, 0, 0.05)"}
+      boxShadow={isBoxShadow ? "0 0 2rem rgba(0, 0, 0, 0.05)" : "none"}
     >
       <FontAwesomeIcon
         icon={value.icon}
@@ -26,7 +26,7 @@ const WidgetServicesWorks = ({ value, alignItems, textAlign }) => {
       />
       <Text
         fontSize={"18"}
-        fontWeight="semibold"
+        fontWeight="medium"
         color={"font.hero"}
         mb={"12"}
         textTransform="capitalize"
@@ -35,7 +35,7 @@ const WidgetServicesWorks = ({ value, alignItems, textAlign }) => {
       </Text>
       <Text
         fontSize={"14"}
-        fontWeight="medium"
+        fontWeight="regular"
         color={"font.muted"}
         lineHeight={"tall"}
         textAlign={textAlign}

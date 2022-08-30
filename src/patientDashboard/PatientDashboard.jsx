@@ -3,7 +3,7 @@ import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
 import NavBar from "../reusable/NavBar.jsx";
-import WidgetOverview from "./widget/WidgetOverview.jsx";
+import WidgetOverview from "./widgets/WidgetOverview.jsx";
 import PatientHealth from "./PatientHealth.jsx";
 import PatientSchedule from "./PatientSchedule.jsx";
 import PatientActivities from "./PatientActivities.jsx";
