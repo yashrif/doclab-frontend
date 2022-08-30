@@ -6,7 +6,14 @@ import ButtonOutline from "../reusable/button/ButtonOutline.jsx";
 
 const Hero = () => {
   return (
-    <Grid templateColumns={"45fr 55fr"} px="32" maxW={"13xl"} mx="auto" pt="48" pb="96">
+    <Grid
+      templateColumns={"45fr 55fr"}
+      px="32"
+      maxW={"13xl"}
+      mx="auto"
+      pt="48"
+      pb="96"
+    >
       <GridItem>
         <Text
           color={"primary.600"}
@@ -15,7 +22,7 @@ const Hero = () => {
           maxWidth="50ch"
           lineHeight="tall"
           marginBottom="8"
-          letterSpacing={".25px"}
+          letterSpacing={".5px"}
         >
           A most popular doctor&apos;s appointment site
         </Text>
@@ -52,10 +59,8 @@ const Hero = () => {
           </ButtonOutline>
         </Flex>
         <Text fontSize={"16"} fontWeight="medium" color={"font.hero"}>
-          <Text display={"inline-block"} fontWeight="semibold">
-            No insurance?
-          </Text>{" "}
-          Get your preventive care for a low monthly fee.
+          <span style={{ fontWeight: "600" }}>No insurance?</span> Get your
+          preventive care for a low monthly fee.
         </Text>
       </GridItem>
 

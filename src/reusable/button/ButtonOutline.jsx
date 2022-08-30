@@ -15,7 +15,7 @@ const ButtonOutline = ({ children, px, py, fontWeight }) => {
       color="font.hero"
       border="none"
       // borderRadius="xl"
-      borderRadius="full"
+      borderRadius="xl"
       bg={"bg"}
       // boxShadow={`inset 0 0 0 0.25rem ${theme.colors.primary.base}`}
       transition="all 0.3s"

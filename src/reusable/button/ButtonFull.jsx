@@ -15,7 +15,7 @@ const ButtonFull = ({ children, px, py, fontSize, fontWeight }) => {
       color="#fff"
       border="none"
       // borderRadius="xl"
-      borderRadius="full"
+      borderRadius="xl"
       // boxShadow={`inset 0 0 0 0.25rem ${theme.colors.primary.base}`}
       transition="all 0.3s"
       bg="primary.400"
