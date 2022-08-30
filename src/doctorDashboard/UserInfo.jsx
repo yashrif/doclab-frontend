@@ -4,18 +4,18 @@ import Statistic from "./Statistic.jsx";
 // import PendingAppointmets from "./PendingAppointments.jsx";
 import PendingAppointments from "./PendingAppointments.jsx";
 import ProfileCard from "../reusable/ProfileCard.jsx";
-import fetchData from "../hooks/fetchData.jsx";
+import apiGet from "../hooks/apiGet.jsx";
 
 const UserInfo = () => {
-  const [person, , fetchperson] = fetchData();
+  const [person, , fetchperson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   useEffect(() => {
-    fetchperson(`doctor/${'48fd80a3-a0a1-40f6-99de-8875032e0da9'}`);
+    fetchperson('http://localhost:8085/auth' ,  { headers: { TOKEN: "2e6600ff-ed5f-4d14-8ca9-3eecc8905496" } });
   }, []);
 
   useEffect(() => {
-    setSelectedPerson(person);
+    setSelectedPerson(person["authDoctor"]);
   }, [person]);
 
   return (

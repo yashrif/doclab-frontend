@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import fetchData from "../../hooks/fetchData.jsx";
+import apiGet from "../../hooks/apiGet.jsx";
 import PageSummary from "./PageSummary.jsx";
 import SearchContainer from "./SearchContainer.jsx";
 import PersonList from "./PersonList.jsx";
 import theme from "../../styling/theme.jsx";
-
+import { SERVER } from "../../assets/variable/values.js";
 const PageOverview = ({ category, setSelectedPerson }) => {
   const [term, setTerm] = useState("");
-  const [personList, errorMessage, fetchpersonList] = fetchData([]);
+  const [personList, errorMessage, fetchpersonList] = apiGet([]);
   const [personFilteredList, setPersonFilteredList] = useState(personList);
   const [displayDescription, setDisplayDescription] = useState(true);
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    fetchpersonList(`${category}`);
+    fetchpersonList(`${SERVER}/${category}`,{});
   }, []);
 
   useEffect(() => {

@@ -492,7 +492,14 @@ export const initialSignup = {
   doctorSubDistrict: "",
   doctorSpeciality: "",
   doctorClinicName: "",
-  doctorEmail: "",
-  doctorPassword: "",
-  doctorLocation: ""
+  authEmail: "",
+  authPassword: "",
+  doctorLocation: "",
+  patientName : "",
+  patientGender: "",
+  patientPhone : "",
+  patientSubDistrict: "",
 };
+
+// export const SERVER = "http://localhost:8085";
+export const SERVER = "https://doclab24.herokuapp.com";

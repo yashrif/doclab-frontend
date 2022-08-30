@@ -1,18 +1,17 @@
 import {
-  ModalBody,
-  ModalContent, FormControl, Input,
+  ModalContent,
   ModalFooter, Button,
   ModalHeader
-  , Text, Select, InputGroup, InputLeftElement,
+  , Text,
   ModalCloseButton,
+  Box,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon, EmailIcon } from "@chakra-ui/icons";
-import { subDistrictList } from "../../assets/variable/values.js";
-import PasswordInput from "./PaswordInput.jsx";
-
-
+import { useState, useRef, useEffect } from "react";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
+import DoctorSignup from "./DoctorSignupForm.jsx"
+import PatientSignup from "./PatientSignupForm.jsx"
 const SignupForm = ({
-  initialRef,
+  setCatagory,
   setCurrWindow,
   loading,
   setSignupInfo,
@@ -21,6 +20,12 @@ const SignupForm = ({
   setDoSignup,
   onModalClose
 }) => {
+  const [docNow, setDocNow] = useState(true);
+  const refInput = useRef(null);
+
+  useEffect(() => {
+    refInput.current.focus();
+  }, [docNow]);
   const handleSignupChange = e => {
     const { name, value } = e.target;
     setSignupInfo(prevState => ({
@@ -35,83 +40,83 @@ const SignupForm = ({
       <ModalCloseButton onClick={onModalClose} p='2rem' />
       <ModalHeader textAlign='center' fontSize='2.4rem ' color='blue.700'>Sign Up</ModalHeader>
       <ModalHeader textAlign='center' fontSize='1.4rem' color='gray.400'>Enter your details</ModalHeader>
+      <Box display="flex" mt="2.4rem" >
+        <Button
+          onClick={() => {
+            setDocNow(true);
+            setCatagory("doctor")
+            refInput.current.focus();
+          }}
+          colorScheme="none"
+          variant="none"
+          textDecoration="none"
+          fontSize={12}
+          fontWeight="semiBold"
+          letterSpacing=".25px"
+          px={5}
+          py={12}
+          color="#fff"
+          border="none"
+          // borderRadius="xl"
+          borderRadius="5px"
+          borderTopRightRadius={0}
+          borderBottomRightRadius={0}
+          // boxShadow={`inset 0 0 0 0.25rem ${theme.colors.primary.base}`}
+          transition="all 0.3s"
+          bg={docNow ? "primary.400" : "gray.200"}
+          _hover={{
+            color: "#fff",
+            bg: docNow ? "primary.500" : "gray.400",
+            //boxShadow: `inset 0 0 0 0.25rem rgba(28, 126, 214, 0.25),  0 0.2rem .2rem rgba(28, 126, 214, 0.5)`,
+          }}
+        >Doctor
+        </Button>
+        <Button onClick={() => {
+          setDocNow(false);
+          refInput.current.focus();
+          setCatagory("patient");
+        }}
+          colorScheme="none"
+          variant="none"
+          textDecoration="none"
+          fontSize={12}
+          fontWeight="semiBold"
+          letterSpacing=".25px"
+          px={5}
+          color="#000"
+          border="none"
+          // borderRadius="xl"
 
-      <ModalBody mt='1.8rem' pb='1.4rem' >
+          borderRadius="5px"
+          borderTopLeftRadius={0}
+          borderBottomLeftRadius={0}
 
-        <FormControl display='flex' alignItems='center'>
-          <Input ref={initialRef} h='3.4rem' variant='flushed' placeholder='Full Name'
-            onChange={handleSignupChange}
-            value={signupInfo.doctorName}
-            name="doctorName" />
-        </FormControl>
+          // boxShadow={`inset 0 0 0 0.25rem ${theme.colors.primary.base}`}
+          transition="all 0.3s"
+          bg={!docNow ? "primary.400" : "gray.200"}
+          _hover={{
+            color: "#fff",
+            bg: !docNow ? "primary.500" : "gray.400",
+            //boxShadow: `inset 0 0 0 0.25rem rgba(28, 126, 214, 0.25),  0 0.2rem .2rem rgba(28, 126, 214, 0.5)`,
+          }}
+        >Patient</Button>
+      </Box>
 
-        <FormControl mt='1rem' display='flex' alignItems='center'>
-          <Input h='3.4rem' variant='flushed' placeholder='Speciality'
-            onChange={handleSignupChange}
-            value={signupInfo.doctorSpeciality}
-            name="doctorSpeciality" />
-        </FormControl>
-
-        <FormControl mt='1rem' >
-          <Input h='3.4rem' variant='flushed' placeholder='Affiliated Hospital'
-            onChange={handleSignupChange}
-            value={signupInfo.doctorClinicName}
-            name="doctorClinicName" />
-        </FormControl>
-
-
-
-        <Select placeholder='Select Gender'
-          name="doctorGender" mt='2.4rem'
-          h='2.8rem'
-          onChange={handleSignupChange}>
-          <option value='Male'>Male</option>
-          <option value='Female'>Female</option>
-        </Select>
-        <Select name="doctorSubDistrict" mt='2.4rem'
-          onChange={handleSignupChange} placeholder='Select Sub-Distric'>
-          {
-            subDistrictList.map((ele) => <option value={ele} key={ele}>{ele}</option>)}
-
-        </Select>
-
-        <FormControl mt='2.4rem'>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-
-              size="xs"
-            > <EmailIcon w='1.8rem' h='1.8rem' mt='auto'
-              ml='1rem'
-              color='blue' />
-            </InputLeftElement>
-            <Input h='3rem' variant='outline' placeholder='User Email' type='email'
-              name="doctorEmail" pl='3rem'
-              onChange={handleSignupChange} value={signupInfo.doctorEmail} />
-          </InputGroup>
-        </FormControl>
-
-        <FormControl mt='2.4rem' display='flex' alignItems='center'>
-
-          <PasswordInput
-            setPassword={(val) =>
-              setSignupInfo(prevState => ({
-                ...prevState,
-                ["doctorPassword"]: val
-              }))
-            }
-            password={signupInfo.doctorPassword}
-          />
-        </FormControl>
-
-        <FormControl display='flex' mt='1rem' alignItems='center'>
-          <Input h='3.4rem' variant='flushed' placeholder='Location'
-            onChange={handleSignupChange}
-            value={signupInfo.doctorLocation}
-            name="doctorLocation" />
-        </FormControl>
-
-      </ModalBody>
+      {docNow ?
+        <DoctorSignup
+          handleSignupChange={handleSignupChange}
+          signupInfo={signupInfo}
+          refInput={refInput}
+          setSignupInfo={setSignupInfo}
+        />
+        :
+        <PatientSignup
+          handleSignupChange={handleSignupChange}
+          signupInfo={signupInfo}
+          refInput={refInput}
+          setSignupInfo={setSignupInfo}
+        />
+      }
 
       <ModalFooter display='flex' mt='1.8rem' justifyContent='space-evenly'>
         <Button isLoading={loading} colorScheme='blue' size='lg' onClick={() => {
