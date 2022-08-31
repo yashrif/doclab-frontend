@@ -34,8 +34,8 @@ const Accordion = ({ selectedPerson, category, number }) => {
         style={{
           cursor: "pointer",
           padding: "2.2rem 2.4rem 2.4rem",
-          borderRadius: ".5rem  ",
-          boxShadow: "0 0 1.6rem rgba(0, 0, 0, 0.07)",
+          borderRadius: ".9rem  ",
+          boxShadow: "0 0 1.6rem rgba(0, 0, 0, 0.08)",
           borderTop: `.4rem solid ${
             isOpen
               ? theme.typography.colors.primaryFirst.tints[0]
@@ -129,7 +129,7 @@ const Accordion = ({ selectedPerson, category, number }) => {
                 <h3
                   style={{
                     fontSize: "1.4rem",
-                    fontWeight: "600",
+                    fontWeight: "500",
                     letterSpacing: ".015rem",
                   }}
                 >

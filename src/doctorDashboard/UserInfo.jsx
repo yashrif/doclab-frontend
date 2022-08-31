@@ -40,7 +40,6 @@ const UserInfo = () => {
             category="doctor"
             selectedPerson={selectedPerson}
             entity={["Name", "Speciality", "Degrees", "Rating", "Info"]}
-            page="doctorDashboard"
           />
         ) : (
           <Center minH="48">

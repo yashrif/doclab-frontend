@@ -103,13 +103,14 @@ const PageOverview = ({ category, setSelectedPerson }) => {
 
           display: "flex",
           flexDirection: "column",
-          overflow: "hidden",
+          // overflow: "hidden",
         }}
       >
         <div
           style={{
             backgroundColor: `${theme.typography.colors.background.container}`,
             borderRadius: "1.1rem",
+            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
           <div style={{ margin: "1.6rem 2.4rem" }}>
@@ -153,6 +154,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
             borderRadius: "1.1rem",
             backgroundColor: `${theme.typography.colors.background.container}`,
             overflow: "hidden",
+            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
           <PersonList

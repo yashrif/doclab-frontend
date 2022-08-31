@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import theme from "../../styling/theme.jsx";
 
-const CommentsNavigation = ({ selectedNav, setselectedNav }) => {
+const Navigation = ({ selectedNav, setselectedNav }) => {
   const [activeNav, setActiveNav] = useState(null);
 
   const style = {
@@ -52,7 +52,7 @@ const CommentsNavigation = ({ selectedNav, setselectedNav }) => {
           onMouseEnter={() => setActiveNav(index)}
           onMouseLeave={() => setActiveNav(null)}
           onClick={() => setselectedNav(index)}
-          onKeyDown={() =>{}}
+          onKeyDown={() => {}}
         >
           {value}
         </div>
@@ -86,4 +86,4 @@ const CommentsNavigation = ({ selectedNav, setselectedNav }) => {
   );
 };
 
-export default CommentsNavigation;
+export default Navigation;

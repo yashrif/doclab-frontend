@@ -207,7 +207,7 @@ const theme = extendTheme({
     // Heights
 
     containerWidth: {
-      overviewMin: "40rem",
+      overviewMin: "35rem",
     },
 
     containerHeight: {

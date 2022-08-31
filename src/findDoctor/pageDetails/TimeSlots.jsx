@@ -42,7 +42,7 @@ const TimeSlot = ({ category, selectedPerson }) => {
   let date = new Date();
   date.setDate(date.getDate() + incrementDate);
   let renderedDate = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     if (i) date.setDate(date.getDate() + 1);
 
     renderedDate.push(
@@ -71,7 +71,7 @@ const TimeSlot = ({ category, selectedPerson }) => {
     <div
       style={{
         fontSize: "1.4rem",
-        padding: "1.6rem 3.2rem",
+        padding: "1.6rem 1.6rem",
         backgroundColor: `${theme.typography.colors.background.personCard}`,
         borderRadius: "1.1rem",
         borderBottomRightRadius: "1.1rem",
@@ -85,7 +85,7 @@ const TimeSlot = ({ category, selectedPerson }) => {
           alignItems: "center",
         }}
       >
-        <h3 style={{ fontSize: "1.4rem", marginBottom: ".8rem" }}>
+        <h3 style={{ fontSize: "1.4rem", marginBottom: ".4rem" }}>
           {selectedPerson[`${category}ClinicName`]}
         </h3>
 
@@ -102,25 +102,6 @@ const TimeSlot = ({ category, selectedPerson }) => {
       </div>
 
       <div style={{ display: "flex", gap: "1.6rem", marginBottom: ".8rem" }}>
-        <div
-          style={{
-            ...style.iconAndText,
-            fontSize: "1.2rem",
-            gap: ".4rem",
-            marginBottom: ".8rem",
-          }}
-        >
-          <span style={{ ...style.span, margin: "0" }}>
-            {selectedPerson[`${category}Rating`]}
-          </span>
-          <ion-icon
-            style={{
-              color: "#fab005",
-            }}
-            name="star"
-          ></ion-icon>
-        </div>
-
         <div
           style={{
             fontSize: "1.2rem",

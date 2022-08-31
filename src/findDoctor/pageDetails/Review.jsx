@@ -1,7 +1,7 @@
 import React from "react";
 import { faker } from "@faker-js/faker";
 
-const Comment = () => {
+const Review = () => {
   const today = new Date();
 
   return (
@@ -31,11 +31,11 @@ const Comment = () => {
             marginBottom: "1.2rem",
           }}
         >
-          <h3 style={{ fontSize: "1.4rem", fontWeight: "600" }}>
+          <h3 style={{ fontSize: "1.4rem", fontWeight: "500" }}>
             {faker.name.findName()}
           </h3>
           <p
-            style={{ fontSize: "1.2rem", color: "#999", fontWeight: "500" }}
+            style={{ fontSize: "1.2rem", color: "#999" }}
           >{`${today.toLocaleDateString()} ${today.toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
@@ -84,4 +84,4 @@ const Comment = () => {
   );
 };
 
-export default Comment;
+export default Review;

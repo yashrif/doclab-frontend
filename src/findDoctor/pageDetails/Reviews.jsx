@@ -1,7 +1,7 @@
 import React from "react";
-import Comment from "./Comment.jsx";
+import Comment from "./Review.jsx";
 
-const Comments = () => {
+const Reviews = () => {
   let renderedList = [];
   for (let i = 1; i <= 10; i++) {
     renderedList.push(<Comment key={i} />);
@@ -24,4 +24,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default Reviews;

@@ -49,7 +49,7 @@ const Info = ({ selectedPerson, category }) => {
         <p
           style={{
             fontSize: "1.6rem",
-            fontWeight: "600",
+            fontWeight: "500",
             color: `${theme.typography.colors.primaryFirst.primary}`,
             marginBottom: ".8rem",
           }}
@@ -65,7 +65,7 @@ const Info = ({ selectedPerson, category }) => {
             marginBottom: ".8rem",
           }}
         >
-          <span style={{ fontWeight: "600" }}>
+          <span style={{ fontWeight: "500" }}>
             {selectedPerson[`${category}Rating`]}
           </span>
           <div
@@ -100,7 +100,7 @@ const Info = ({ selectedPerson, category }) => {
       <div
         style={{
           fontSize: "1.4rem",
-          fontWeight: "600",
+          fontWeight: "500",
         }}
       >
         Schedule
