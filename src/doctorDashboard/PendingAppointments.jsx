@@ -27,7 +27,7 @@ const PendingAppointments = () => {
         color="font.muted"
         py="16"
         textTransform="none"
-        // textAlign="center"
+      // textAlign="center"
       >
         {value}
       </Th>
@@ -41,8 +41,14 @@ const PendingAppointments = () => {
   };
 
   const ActionIcons = [
-    { icon: "close-circle-outline", iconColor: "#ff6b6b" },
-    { icon: "checkmark-circle-outline", iconColor: "#40c057" },
+    {
+      icon: "close-circle-outline",
+      iconColor: "#ff6b6b",
+    },
+    {
+      icon: "checkmark-circle-outline",
+      iconColor: "#40c057",
+    },
   ];
 
   const renderedActionIcons = ActionIcons.map((value, index) => {
@@ -111,7 +117,7 @@ const PendingAppointments = () => {
       borderRadius="2xl"
       boxShadow="0 0.4rem 0.8rem rgba(0, 0, 0, 0.01)"
 
-      // border="1px solid #e6e6e6"
+    // border="1px solid #e6e6e6"
     >
       <Text
         fontSize="xl"
@@ -131,8 +137,8 @@ const PendingAppointments = () => {
         bg="bg"
         // justifyContent="space-around"
         overflowY="scroll"
-        // height="80%"
-        // overflow="scroll"
+      // height="80%"
+      // overflow="scroll"
       >
         <Table variant="unstyled">
           <Thead>

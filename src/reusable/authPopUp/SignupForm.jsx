@@ -40,7 +40,7 @@ const SignupForm = ({
       <ModalCloseButton onClick={onModalClose} p='2rem' />
       <ModalHeader textAlign='center' fontSize='2.4rem ' color='blue.700'>Sign Up</ModalHeader>
       <ModalHeader textAlign='center' fontSize='1.4rem' color='gray.400'>Enter your details</ModalHeader>
-      <Box display="flex" mt="2.4rem" >
+      <Box display="flex" mt="2.4rem" justifyContent={"center"} >
         <Button
           onClick={() => {
             setDocNow(true);
