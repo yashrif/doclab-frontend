@@ -1,19 +1,28 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 // import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
 
-const TODAY = new Date();
-const TOMORROW = new Date();
-TOMORROW.setDate(TOMORROW.getDate() + 1);
-const dateFormat = {
-  // weekday: "short",
-  month: "short",
-  day: "numeric",
-};
+const TimeSlot = () => {
+  const TODAY = new Date();
+  const TOMORROW = new Date();
+  TOMORROW.setDate(TOMORROW.getDate() + 1);
+  const DATE_FOTMAT = {
+    // weekday: "short",
+    month: "short",
+    day: "numeric",
+  };
 
-const TimeSlot = ({ category, selectedPerson }) => {
-  const [incrementDate, setIncrementDate] = useState(0);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [increment, setIncrement] = useState(0);
+
+  useEffect(() => {
+    let tempDate = new Date();
+    tempDate.setDate(tempDate.getDate() + increment);
+    console.log(tempDate);
+    setSelectedDate(tempDate);
+  }, [increment]);
+
   const style = {
     icon: {
       fontSize: "1.4rem",
@@ -37,57 +46,59 @@ const TimeSlot = ({ category, selectedPerson }) => {
     },
   };
 
-  console.log("rendered");
+  console.log("selected date: " + selectedDate.toLocaleDateString());
 
-  let date = new Date();
-  date.setDate(date.getDate() + incrementDate);
-  let renderedDate = [];
-  for (let i = 0; i < 3; i++) {
-    if (i) date.setDate(date.getDate() + 1);
-
-    renderedDate.push(
-      <p
-        style={{
-          borderBottom:
-            selectedDate.getDate() === date.getDate()
-              ? "1px solid blue"
-              : "none",
-          color: selectedDate.getDate() === date.getDate() ? "#333" : "#555",
-          fontWeight: selectedDate.getDate() === date.getDate() ? "600" : "500",
-          paddingBottom: ".3rem",
-        }}
-        key={i}
-      >
-        {date.getDate() === TODAY.getDate()
-          ? "Today"
-          : date.getDate() === TOMORROW.getDate()
-          ? "Tomorrow"
-          : date.toLocaleDateString("en-US", dateFormat)}
-      </p>
-    );
-  }
-
-  return (
-    <div
+  const renderedDate = (
+    <p
       style={{
-        fontSize: "1.4rem",
-        padding: "1.6rem 3.2rem",
-        backgroundColor: `${theme.typography.colors.background.personCard}`,
-        borderRadius: "1.1rem",
-        borderBottomRightRadius: "1.1rem",
-        height: "100%",
+        borderBottom: "1px solid blue",
+        color: "#333",
+        fontWeight: "600",
+        paddingBottom: ".3rem",
       }}
     >
+      {selectedDate.toLocaleDateString() === TODAY.toLocaleDateString()
+        ? "Today"
+        : selectedDate.toLocaleDateString() === TOMORROW.toLocaleDateString()
+        ? "Tomorrow"
+        : selectedDate.toLocaleDateString("en-US", DATE_FOTMAT)}
+    </p>
+  );
+
+  return (
+    <>
+      <style>
+        {`
+         .time-slot ion-icon:hover {
+          background-color: rgba(28, 126, 214) !important;
+          box-shadow: inset 0 0 0 0.25rem rgba(28, 126, 214, 0.25),  0 0 1.2rem rgba(28, 126, 214, 0.5) !important;
+         }
+
+         .time-slot ion-icon:active {
+            transform: scale(1.2);
+         }
+        `}
+      </style>
       <div
+        style={{
+          fontSize: "1.4rem",
+          padding: "1.6rem 1.6rem",
+          backgroundColor: `${theme.typography.colors.background.personCard}`,
+          borderRadius: "1.1rem",
+          borderBottomRightRadius: "1.1rem",
+          height: "100%",
+        }}
+      >
+        {/* <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <h3 style={{ fontSize: "1.4rem", marginBottom: ".8rem" }}>
+        <h3 style={{ fontSize: "1.4rem", marginBottom: ".4rem" }}>
           {selectedPerson[`${category}ClinicName`]}
-        </h3>
+        </h3> */}
 
         {/* <p
           style={{
@@ -99,28 +110,9 @@ const TimeSlot = ({ category, selectedPerson }) => {
         >
           {`Time slots`.toUpperCase()}
         </p> */}
-      </div>
+        {/* </div> */}
 
-      <div style={{ display: "flex", gap: "1.6rem", marginBottom: ".8rem" }}>
-        <div
-          style={{
-            ...style.iconAndText,
-            fontSize: "1.2rem",
-            gap: ".4rem",
-            marginBottom: ".8rem",
-          }}
-        >
-          <span style={{ ...style.span, margin: "0" }}>
-            {selectedPerson[`${category}Rating`]}
-          </span>
-          <ion-icon
-            style={{
-              color: "#fab005",
-            }}
-            name="star"
-          ></ion-icon>
-        </div>
-
+        {/* <div style={{ display: "flex", gap: "1.6rem", marginBottom: ".8rem" }}>
         <div
           style={{
             fontSize: "1.2rem",
@@ -134,14 +126,14 @@ const TimeSlot = ({ category, selectedPerson }) => {
             </span>
           </p>
         </div>
-      </div>
+      </div> */}
 
-      {/* <p style={{ fontSize: "1.2rem" }}>
+        {/* <p style={{ fontSize: "1.2rem" }}>
               {theme.methods.capitalize(selectedPerson[`${category}SubDistrict`])}
             </p> */}
 
-      <div>
         <div
+          className="time-slot"
           style={{
             fontSize: "1.3rem",
             display: "flex",
@@ -151,16 +143,14 @@ const TimeSlot = ({ category, selectedPerson }) => {
           }}
         >
           <ion-icon
+            className="btn"
             role={"button"}
             tabIndex={0}
             onClick={() => {
-              if (incrementDate > 0) {
-                setIncrementDate(incrementDate - 1);
-              }
-              if (selectedDate.getDate() !== TODAY.getDate()) {
-                let tempDate = new Date();
-                tempDate.setDate(selectedDate.getDate() - 1);
-                setSelectedDate(tempDate);
+              if (
+                selectedDate.toLocaleDateString() !== TODAY.toLocaleDateString()
+              ) {
+                setIncrement(increment - 1);
               }
             }}
             style={{
@@ -172,19 +162,17 @@ const TimeSlot = ({ category, selectedPerson }) => {
               backgroundColor: "rgba(28, 126, 214, .70)",
               boxShadow: "0 .4rem .4rem rgba(0, 0, 0, .15)",
               cursor: "pointer",
+              transition: "all .3s",
             }}
             name="chevron-back-outline"
           ></ion-icon>
           {renderedDate}
           <ion-icon
+            className="btn"
             role={"button"}
             tabIndex={0}
             onClick={() => {
-              if (selectedDate.getDate() !== TODAY.getDate())
-                setIncrementDate(incrementDate + 1);
-              let tempDate = new Date();
-              tempDate.setDate(selectedDate.getDate() + 1);
-              setSelectedDate(tempDate);
+              setIncrement(increment + 1);
             }}
             style={{
               ...style.icon,
@@ -195,12 +183,13 @@ const TimeSlot = ({ category, selectedPerson }) => {
               backgroundColor: "rgba(28, 126, 214, .70)",
               boxShadow: "0 .4rem .4rem rgba(0, 0, 0, .15) ",
               cursor: "pointer",
+              transition: "all .3s",
             }}
             name="chevron-forward-outline"
           ></ion-icon>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

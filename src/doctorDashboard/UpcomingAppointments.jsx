@@ -66,7 +66,7 @@ const UpcomingAppointmets = () => {
           <GridItem>
             <Text
               fontSize="14"
-              fontWeight="semibold"
+              fontWeight="medium"
               mb="4"
               color="focused"
               _groupHover={{ color: "#fff" }}
@@ -75,7 +75,7 @@ const UpcomingAppointmets = () => {
             </Text>
             <Text
               fontSize="10"
-              fontWeight="medium"
+              fontWeight="regular"
               color="font.muted"
               _groupHover={{ color: "#dfdfdf" }}
             >
@@ -83,7 +83,7 @@ const UpcomingAppointmets = () => {
             </Text>
             <Text
               fontSize="12"
-              fontWeight="medium"
+              fontWeight="regular"
               color="general"
               _groupHover={{ color: "#efefef" }}
             >

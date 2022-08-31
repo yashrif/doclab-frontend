@@ -5,12 +5,12 @@ import theme from "../../styling/theme.jsx";
 const style = {
   analyticSpan: {
     color: "#333",
-    fontWeight: "600",
+    fontWeight: "500",
     marginRight: "0.4rem",
   },
   ionIcon: {
     color: `${theme.typography.colors.primaryFirst.primary}`,
-    fontSize: "1rem",
+    fontSize: "1.2rem",
     padding: ".4rem",
     borderRadius: "50%",
     backgroundColor: "rgba(166, 216, 255, 0.5)",
@@ -63,10 +63,10 @@ const PageSummary = ({
           style={{
             justifySelf: "right",
             fontSize: "1.4rem",
-            fontWeight: "500",
+            fontWeight: "400",
           }}
         >
-          <span style={{ color: "#333", fontWeight: "600" }}>
+          <span style={{ color: "#333", fontWeight: "500" }}>
             {numberofPatients - 1}+
           </span>{" "}
           Patients
@@ -136,12 +136,12 @@ const PageSummary = ({
             </p>
           </div>
 
-          <div style={style.iconAndText}>
+          {/* <div style={style.iconAndText}>
             <ion-icon style={style.ionIcon} name="time-outline"></ion-icon>
             <p>
               <span style={style.analyticSpan}>24/7</span>Available
             </p>
-          </div>
+          </div> */}
         </div>
       )}
     </>

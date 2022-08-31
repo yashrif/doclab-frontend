@@ -10,9 +10,14 @@ const WidgetActivities = () => {
 
   let renderedList = [];
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 2; i++) {
     renderedList.push(
-      <Text key={i} fontSize={"12"} fontWeight="medium" letterSpacing={".25px"}>
+      <Text
+        key={i}
+        fontSize={"12"}
+        fontWeight="regular"
+        letterSpacing={".25px"}
+      >
         {new Date().toLocaleString()}
       </Text>
     );
@@ -28,7 +33,7 @@ const WidgetActivities = () => {
       boxShadow={"0 0 24px rgba(28, 126, 214, .1)"}
     >
       <Flex alignItems={"center"} mb="12">
-        <Text fontSize={"2xl"} fontWeight="semibold" letterSpacing={".5px"}>
+        <Text fontSize={"2xl"} fontWeight="medium" letterSpacing={".5px"}>
           Recent Activities
         </Text>
 

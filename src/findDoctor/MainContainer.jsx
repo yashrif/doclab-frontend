@@ -6,13 +6,13 @@ const MainContainer = ({ children }) => {
     <section
       style={{
         height: `calc(
-            100% - ${theme.typography.containerHeight.header} - ${theme.typography.sectionGap.medium} - ${theme.typography.sectionGap.headerBottom}
+            100% - ${theme.typography.containerHeight.header} - ${theme.typography.sectionGap.medium} - ${theme.typography.sectionGap.headerBottom} - 4.8rem
           )`,
-        margin: `0 ${theme.typography.sectionGap.large} ${theme.typography.sectionGap.medium}`,
+        margin: `2.4rem ${theme.typography.sectionGap.large} ${theme.typography.sectionGap.medium}`,
         display: "grid",
-        gridTemplateColumns: `minmax(${theme.typography.containerWidth.overviewMin}, 5fr) 13fr`,
+        gridTemplateColumns: `minmax(${theme.typography.containerWidth.overviewMin}, 4fr) 13fr`,
         alignItems: "start",
-        columnGap: `${theme.typography.sectionGap.mediumHigh}`,
+        columnGap: `${theme.typography.sectionGap.medium}`,
         // overflow: "hidden",
       }}
     >

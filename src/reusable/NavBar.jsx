@@ -46,7 +46,7 @@ const NavBar = () => {
         py="16"
         borderRadius="2xl"
         fontSize="lg"
-        fontWeight="semibold"
+        fontWeight="medium"
         color="font.muted"
         transition="all 0.3s"
         _hover={{

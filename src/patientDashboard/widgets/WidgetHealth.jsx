@@ -35,7 +35,7 @@ const WidgetHealth = ({ title, description, value, unit, cordY }) => {
         <Text
           color="font.focused"
           fontSize={"xl"}
-          fontWeight="semibold"
+          fontWeight="medium"
           mb={"4"}
           letterSpacing=".5px"
         >
@@ -45,7 +45,7 @@ const WidgetHealth = ({ title, description, value, unit, cordY }) => {
           {description}
         </Text>
         <Flex alignItems={"baseline"} gap="8">
-          <Text color={"font.focused"} fontSize="3xl" fontWeight={"extrabold"}>
+          <Text color={"font.focused"} fontSize="3xl" fontWeight={"semibold"}>
             {value}
           </Text>
           <Text color={"font.muted"} fontSize="md">

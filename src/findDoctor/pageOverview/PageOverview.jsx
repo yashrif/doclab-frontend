@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import fetchData from "../../hooks/fetchData.jsx";
+import apiGet from "../../hooks/apiGet.jsx";
 import PageSummary from "./PageSummary.jsx";
 import SearchContainer from "./SearchContainer.jsx";
 import PersonList from "./PersonList.jsx";
 import theme from "../../styling/theme.jsx";
-
+import { SERVER } from "../../assets/variable/values.js";
 const PageOverview = ({ category, setSelectedPerson }) => {
   const [term, setTerm] = useState("");
-  const [personList, errorMessage, fetchpersonList] = fetchData([]);
+  const [personList, errorMessage, fetchpersonList] = apiGet([]);
   const [personFilteredList, setPersonFilteredList] = useState(personList);
   const [displayDescription, setDisplayDescription] = useState(true);
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    fetchpersonList(`${category}`);
+    fetchpersonList(`${SERVER}/${category}`,{});
   }, []);
 
   useEffect(() => {
@@ -103,13 +103,14 @@ const PageOverview = ({ category, setSelectedPerson }) => {
 
           display: "flex",
           flexDirection: "column",
-          overflow: "hidden",
+          // overflow: "hidden",
         }}
       >
         <div
           style={{
             backgroundColor: `${theme.typography.colors.background.container}`,
             borderRadius: "1.1rem",
+            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
           <div style={{ margin: "1.6rem 2.4rem" }}>
@@ -153,6 +154,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
             borderRadius: "1.1rem",
             backgroundColor: `${theme.typography.colors.background.container}`,
             overflow: "hidden",
+            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
           <PersonList

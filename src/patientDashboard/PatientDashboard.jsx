@@ -3,7 +3,7 @@ import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
 import NavBar from "../reusable/NavBar.jsx";
-import PatientOverview from "./PatientOverview.jsx";
+import WidgetOverview from "./widgets/WidgetOverview.jsx";
 import PatientHealth from "./PatientHealth.jsx";
 import PatientSchedule from "./PatientSchedule.jsx";
 import PatientActivities from "./PatientActivities.jsx";
@@ -40,7 +40,7 @@ const PatientDashboard = () => {
         <GridItem>
           <NavBar />
         </GridItem>
-        <GridItem overflow="hidden" colSpan={"2"} pt="16" pb="24" px="24">
+        <GridItem overflow="hidden" colSpan={"2"} pt="16" pb="16" px="24">
           <Grid
             gridTemplateColumns="1fr 4fr"
             templateRows={"repeat(3, 1fr)"}
@@ -49,14 +49,14 @@ const PatientDashboard = () => {
             height={"full"}
           >
             <GridItem rowSpan={"2"}>
-              <PatientOverview />
+              <WidgetOverview />
             </GridItem>
 
             <PatientHealth />
 
             <PatientSchedule />
 
-            <GridItem colSpan={"2"}>
+            <GridItem colSpan={"2"} mb="8">
               <PatientActivities />
             </GridItem>
           </Grid>

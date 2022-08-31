@@ -1,35 +1,35 @@
 import React, { useState } from "react";
 import ProfileCard from "../../reusable/ProfileCard.jsx";
 import TimeSlot from "./TimeSlots.jsx";
-import CommentsNavigation from "./CommentsNavigation.jsx";
-import Comments from "./Comments.jsx";
+import Navigation from "./Navigation.jsx";
+import Reviews from "./Reviews.jsx";
 import Info from "./Info.jsx";
 import Consult from "./Consult.jsx";
 import theme from "../../styling/theme.jsx";
 
 const PageDetails = ({ category, selectedPerson }) => {
-  const style = {
-    icon: {
-      fontSize: "1.4rem",
-      "--ionicon-stroke-width": "4.8rem",
-    },
+  // const style = {
+  //   icon: {
+  //     fontSize: "1.4rem",
+  //     "--ionicon-stroke-width": "4.8rem",
+  //   },
 
-    iconRounded: {
-      padding: ".4rem",
-      borderRadius: "50%",
-    },
+  //   iconRounded: {
+  //     padding: ".4rem",
+  //     borderRadius: "50%",
+  //   },
 
-    iconAndText: {
-      display: "flex",
-      alignItems: "center",
-      gap: ".8rem",
-    },
-    span: {
-      fontColor: "#333",
-      fontWeight: "600",
-      marginRight: ".4rem",
-    },
-  };
+  //   iconAndText: {
+  //     display: "flex",
+  //     alignItems: "center",
+  //     gap: ".8rem",
+  //   },
+  //   span: {
+  //     fontColor: "#333",
+  //     fontWeight: "600",
+  //     marginRight: ".4rem",
+  //   },
+  // };
 
   const [selectedNav, setselectedNav] = useState(0);
 
@@ -43,7 +43,7 @@ const PageDetails = ({ category, selectedPerson }) => {
         overflow: "hidden",
       }}
     >
-      <div
+      {/* <div
         style={{
           ...style.iconAndText,
           marginBottom: "1.6rem",
@@ -66,14 +66,14 @@ const PageDetails = ({ category, selectedPerson }) => {
           }}
           name="arrow-down"
         ></ion-icon>
-      </div>
+      </div> */}
 
       <div
         style={{
           width: "100%",
           height: "100%",
           display: "grid",
-          gridTemplateColumns: "11fr 6fr",
+          gridTemplateColumns: "11fr 3fr",
           gridTemplateRows: "auto 1fr",
           alignItems: "start",
           columnGap: `${theme.typography.sectionGap.medium}`,
@@ -81,22 +81,35 @@ const PageDetails = ({ category, selectedPerson }) => {
           overflow: "hidden",
         }}
       >
-        <ProfileCard
-          category={category}
-          selectedPerson={selectedPerson}
-          entity={[
-            "Name",
-            "Speciality",
-            "Degrees",
-            "Rating",
-            "Info",
-            "ConsultencyCount",
-            "Experience",
-            "Verification",
-          ]}
-          page="findDoctor"
-        />
-        <TimeSlot category={category} selectedPerson={selectedPerson} />
+        <div
+          style={{
+            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
+          }}
+        >
+          <ProfileCard
+            category={category}
+            selectedPerson={selectedPerson}
+            entity={[
+              "Name",
+              "Speciality",
+              "Degrees",
+              "Rating",
+              "Info",
+              "ConsultencyCount",
+              "Experience",
+              "Verification",
+            ]}
+          />
+        </div>
+
+        <div
+          style={{
+            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
+            alignSelf: "stretch",
+          }}
+        >
+          <TimeSlot category={category} selectedPerson={selectedPerson} />
+        </div>
 
         <div
           style={{
@@ -107,16 +120,17 @@ const PageDetails = ({ category, selectedPerson }) => {
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
+            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
-          <CommentsNavigation
+          <Navigation
             selectedNav={selectedNav}
             setselectedNav={setselectedNav}
           />
           {selectedNav === 0 && (
             <Info selectedPerson={selectedPerson} category={category} />
           )}
-          {selectedNav === 1 && <Comments />}
+          {selectedNav === 1 && <Reviews />}
           {selectedNav === 2 && (
             <Consult selectedPerson={selectedPerson} category={category} />
           )}

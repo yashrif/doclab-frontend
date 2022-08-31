@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@chakra-ui/react";
-import WidgetActivities from "./widget/WidgetActivities.jsx";
+import WidgetActivities from "./widgets/WidgetActivities.jsx";
 
 const PatientActivities = () => {
   return (

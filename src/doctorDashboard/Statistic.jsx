@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Stack, Text, Box } from "@chakra-ui/react";
+import { Flex, Stack, Box } from "@chakra-ui/react";
 
 const Statistic = () => {
   const style = {
@@ -13,7 +13,7 @@ const Statistic = () => {
       icon: "people-outline",
       iconColor: "#01d1ec",
       count: 100,
-      category: <Text>Patients</Text>,
+      category: "Patients",
     },
     {
       icon: "document-text-outline",
@@ -44,11 +44,11 @@ const Statistic = () => {
         ></ion-icon>
         <Stack spacing="0">
           <span
-            style={{ fontSize: "1.4rem", fontWeight: "700", color: "#333" }}
+            style={{ fontSize: "1.4rem", fontWeight: "600", color: "#333" }}
           >
             {value.count}
           </span>
-          <Box fontSize="12" fontWeight="medium" color="#888">
+          <Box fontSize="12" fontWeight="regular" color="#888">
             {value.category}
           </Box>
         </Stack>
