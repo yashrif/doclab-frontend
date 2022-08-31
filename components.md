@@ -19,7 +19,7 @@
 - Header
 - Main Container
   - Page Overview
-    - fetchData api
+    - apiGet api
       1. axios get request
     1. Page Description VIew Control
     - Page Summary
@@ -46,4 +46,4 @@
   - LoginForm
 
 - Hooks
-  - fetchData
+  - apiGet

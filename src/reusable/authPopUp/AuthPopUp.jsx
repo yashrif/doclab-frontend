@@ -1,6 +1,6 @@
 import {
   Box, Modal,
- ModalOverlay,
+  ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
@@ -10,10 +10,12 @@ import SignupForm from "./SignupForm.jsx";
 import LoginSuccess from "./LogInSuccess.jsx";
 import SignupSuccess from "./SignupSuccess.jsx";
 import { useEffect } from "react";
-import axios from "axios";
 import { validateEmail, initialSignup } from "../../assets/variable/values.js";
-const loginUrl = "http://doclab24.herokuapp.com/doctor/login";
-const signupUrl = "http://doclab24.herokuapp.com/doctor/post";
+import apiLogin from "../../hooks/apiLogin.jsx";
+import apiSignup from "../../hooks/apiSignup.jsx";
+
+// fetch functions
+// const [signupData, signupError, signupFetch] = apiSignup();
 
 const AuthPopUp = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -26,62 +28,84 @@ const AuthPopUp = ({ children }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [currWindow, setCurrWindow] = useState('logInWindow')
-  const [signupInfo, setSignupInfo] = useState(initialSignup)
+  const [signupInfo, setSignupInfo] = useState(initialSignup);
+  const [catagory, setCatagory] = useState("doctor");
 
-  const onModalClose = ()=>{
+  const onModalClose = () => {
     setCurrWindow('logInWindow');
     setPassword('');
     setEmail('');
     setSignupInfo(initialSignup);
     onClose();
   }
+
+
+
+
+  // Login API connections
+
+  const [loginData, loginError, loginFetch] = apiLogin();
+
   useEffect(() => {
-    const credentials = { email: email, password: password };
-    const fetchLoginToken = async () => {
-      await axios.post(loginUrl, credentials).then((res) => {
-        const token = res;
-        localStorage.setItem('doctorToken', token.data);
-        setCurrWindow('signInSuccess')
-        console.log(token.data);
-      }).catch(() => { console.log('errors') });
-      setLoading(false);
-    };
-    const validate = () => {
-      return validateEmail(email) &&
-        true;
-    }
-    if (validate()) {
+    const credentials = { "authEmail": email, "authPassword": password };
+    if (validateEmail(email ?? "") && password.length < 21) {
       setLoading(true);
-      fetchLoginToken();
+      console.log(credentials);
+      loginFetch(credentials);
     }
-
-
-
   }, [doLogin]);
 
+  useEffect(() => {
+    if (loginData != undefined) {
+      setCurrWindow('signInSuccess');
+      localStorage.setItem('TOKEN', loginData);
+      console.log(loginData);
+
+      setLoading(false);
+    }
+  }, [loginData]);
 
   useEffect(() => {
+    if (loginError != undefined) {
+      console.log(loginError);
 
-    const fetchLoginToken = async () => {
-      await axios.post(signupUrl, signupInfo).then((res) => {
-        const token = res.data;
-        localStorage.setItem('doctorToken',token);
-        setCurrWindow('signUpSuccess');
-        console.log(localStorage.getItem('doctorToken'));
-      }).catch(() => { });
       setLoading(false);
-    };
-
-    const validate = () => {
-      return validateEmail(signupInfo.doctorEmail) &&
-        true;
     }
-    if (validate()) {
+  }, [loginError]);
+
+
+
+
+
+  // Signup API connections
+  const [signupData, signupError, signupFetch, signupValidate] = apiSignup();
+
+  useEffect(() => {
+    if (signupValidate(catagory, signupInfo)) {
       setLoading(true);
-      fetchLoginToken();
+      signupFetch(signupInfo, catagory);
+      console.log(signupInfo);
     }
-
   }, [doSignup]);
+
+  useEffect(() => {
+    if (signupData != undefined) {
+      setCurrWindow('signUpSuccess');
+      console.log(signupData);
+
+      setLoading(false);
+    }
+  }, [signupData]);
+
+  useEffect(() => {
+    if (signupError != undefined) {
+      console.log(signupError);
+      setLoading(false);
+    }
+  }, [signupError]);
+
+  
+
 
 
 
@@ -133,6 +157,7 @@ const AuthPopUp = ({ children }) => {
                   setSignupInfo={setSignupInfo}
                   setDoSignup={setDoSignup}
                   doSignup={doSignup}
+                  setCatagory = {setCatagory}
                 />;
               case 'signUpSuccess':
                 return <SignupSuccess
@@ -142,7 +167,7 @@ const AuthPopUp = ({ children }) => {
               case 'signInSuccess':
                 return <LoginSuccess
                   setCurrWindow={setCurrWindow}
-                 onModalClose={onModalClose}
+                  onModalClose={onModalClose}
                 />;
             }
           })()

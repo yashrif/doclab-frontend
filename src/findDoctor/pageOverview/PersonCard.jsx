@@ -1,28 +1,22 @@
 import React from "react";
 import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
-import { useState } from "react";
-
-const style = {
-  icon: {
-    fontSize: "1.2rem",
-    "--ionicon-stroke-width": "4.8rem",
-    transition: "all .3s",
-  },
-
-  iconAndText: {
-    fontSize: "1.2rem",
-    display: "flex",
-    gap: "0.4rem",
-    alignItems: "center",
-  },
-};
 
 const PersonCard = ({ category, id, person, setSelectedPerson }) => {
-  const [iconLocationColor, setIconLocationColor] = useState(
-    theme.typography.colors.primaryFirst.primary
-  );
-  const [iconStarColor, setIconStarColor] = useState("#fcc419");
+  const style = {
+    icon: {
+      fontSize: "1.2rem",
+      "--ionicon-stroke-width": "4.8rem",
+      transition: "all .3s",
+    },
+
+    iconAndText: {
+      fontSize: "1.2rem",
+      display: "flex",
+      gap: "0.4rem",
+      alignItems: "center",
+    },
+  };
 
   return (
     <>
@@ -39,8 +33,12 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
             color: #fff !important;
           }
 
-          .person-card:hover .icon-location {
-            color: #fff !important;
+          .person-card:hover .icon-star ion-icon{
+            color: #fdd65e !important;
+          }
+
+          .person-card:hover .icon-location ion-icon{
+            color: #bbd8f3 !important;
           }
 
           .person-card-container::before {
@@ -79,14 +77,6 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
       </style>
       <div
         className="person-card"
-        onMouseEnter={() => {
-          setIconLocationColor("#bbd8f3");
-          setIconStarColor("#fdd65e");
-        }}
-        onMouseLeave={() => {
-          setIconLocationColor(theme.typography.colors.primaryFirst.primary);
-          setIconStarColor("#fcc419");
-        }}
         role={"button"}
         tabIndex={id}
         onClick={() => setSelectedPerson(person)}
@@ -148,7 +138,7 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
               <div
                 style={{
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "baseline",
                   columnGap: "1.6rem",
                   // justifyContent: "space-between",
                 }}
@@ -165,6 +155,7 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                   {theme.methods.capitalize(person[`${category}Name`])}
                 </h3>
                 <div
+                  className="icon-star"
                   style={{
                     ...style.iconAndText,
                     alignItems: "baseline",
@@ -172,10 +163,9 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                   }}
                 >
                   <ion-icon
-                    className="icon-star"
                     style={{
                       ...style.icon,
-                      color: `${iconStarColor}`,
+                      color: "#fcc419",
                     }}
                     name="star-outline"
                   ></ion-icon>
@@ -209,12 +199,11 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                   {theme.methods.capitalize(person[`${category}Speciality`])}
                 </p>
 
-                <div style={{ ...style.iconAndText }}>
+                <div className="icon-location" style={{ ...style.iconAndText }}>
                   <ion-icon
-                    className="icon-location"
                     style={{
                       ...style.icon,
-                      color: `${iconLocationColor}`,
+                      color: `${theme.typography.colors.primaryFirst.primary}`,
                     }}
                     name="location-outline"
                   ></ion-icon>

@@ -51,16 +51,17 @@ const ProfileLink = () => {
         }}
         name="notifications-outline"
       ></ion-icon>
-      <Image
-        cursor="pointer"
-        src={faker.image.avatar()}
-        alt="Profile"
-        w="14"
-        borderRadius="full"
-      />
-      <Text fontSize="lg" fontWeight={"medium"}>
-        Yashrif Arifin
-      </Text>
+      <Center gap={"16"} cursor="pointer">
+        <Image
+          src={faker.image.avatar()}
+          alt="Profile"
+          w="14"
+          borderRadius="full"
+        />
+        <Text fontSize="lg" fontWeight={"medium"}>
+          Yashrif Arifin
+        </Text>
+      </Center>
     </Center>
   );
 };

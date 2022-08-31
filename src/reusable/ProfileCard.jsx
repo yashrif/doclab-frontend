@@ -81,7 +81,7 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
                   ...style.iconAndText,
                   gap: ".4rem",
                   backgroundColor: "#b9ecc2",
-                  padding: ".4rem .8rem",
+                  padding: ".4rem .6rem",
                   borderRadius: "20rem",
                 }}
               >
@@ -94,7 +94,11 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
                   }}
                   name="checkmark-circle-outline"
                 ></ion-icon>
-                <p style={{ fontSize: "1rem", color: "#555" }}>Verified</p>
+                <p
+                  style={{ fontSize: "1rem", color: "#399147", fontWeight: "500" }}
+                >
+                  Verified
+                </p>
               </div>
             )}
           </div>

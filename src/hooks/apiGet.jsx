@@ -1,13 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 
-const fetchData = () => {
+const apiGet = () => {
   const [data, fetchData] = useState([]);
   const [error, setError] = useState(null);
 
-  const fetch = async (category) => {
+  const fetch = async (url,headers) => {
     const response = await axios
-      .get(`https://doclab-backend.herokuapp.com/${category}`)
+      .get(url,headers)
       .catch(setError);
 
     fetchData(response.data);
@@ -16,4 +16,4 @@ const fetchData = () => {
   return [data, error, fetch];
 };
 
-export default fetchData;
+export default apiGet;
