@@ -96,22 +96,22 @@ const Header = () => {
             style={style.headerNavList}
           >
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/">
+              <a className="header-link" href="/home">
                 Home
               </a>
             </li>
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/">
+              <a className="header-link" href="/findDoctor">
                 Find Doctor
               </a>
             </li>
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/">
+              <a className="header-link" href="/doctorDashboard">
                 Doctor
               </a>
             </li>
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/">
+              <a className="header-link" href="/patientDashboard">
                 Patient
               </a>
             </li>
