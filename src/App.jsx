@@ -1,8 +1,9 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Box, ChakraProvider } from "@chakra-ui/react";
-// import Homepage from "./homepage/Homepage.jsx";
-// import FindDoctor from "./findDoctor/FindDoctor.jsx";
-// import DoctorDashboard from "./doctorDashboard/Dashboard.jsx";
+import Homepage from "./homepage/Homepage.jsx";
+import FindDoctor from "./findDoctor/FindDoctor.jsx";
+import DoctorDashboard from "./doctorDashboard/Dashboard.jsx";
 import PatientDashboard from "./patientDashboard/PatientDashboard.jsx";
 import theme from "./styling/theme.jsx";
 import "./styling/style.css";
@@ -26,10 +27,23 @@ const App = () => {
           // )`,
         }}
       >
-        {/* <Homepage /> */}
-        {/* <FindDoctor /> */}
-        {/* <DoctorDashboard /> */}
-        <PatientDashboard />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" exact element={<Homepage />} />
+            <Route path="/home" exact element={<Homepage />} />
+            <Route path="/findDoctor" exact element={<FindDoctor />} />
+            <Route
+              path="/doctorDashboard"
+              exact
+              element={<DoctorDashboard />}
+            />
+            <Route
+              path="/patientDashboard"
+              exact
+              element={<PatientDashboard />}
+            />
+          </Routes>
+        </BrowserRouter>
       </Box>
     </ChakraProvider>
   );
