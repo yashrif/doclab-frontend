@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Flex, Grid, GridItem, Image, Link, Text } from "@chakra-ui/react";
+import { faker } from "@faker-js/faker";
 import logo from "../assets/img/logo.png";
 
 const Footer = () => {
@@ -27,13 +28,15 @@ const Footer = () => {
   });
 
   return (
-    <Box py="96">
-      <Grid templateColumns="1.5fr 1fr 1fr">
-        <GridItem>
-          <Link href="/">
-            <Image src={logo} h="24" mb={"32"} />
-          </Link>
-          <Flex gap={"28"} mb="64">
+    <Box py="64">
+      <Grid templateColumns="1.5fr 1fr 1fr 1fr">
+        <GridItem justifySelf={"center"}>
+          <Box mb={"24"}>
+            <Link href="/">
+              <Image src={logo} h="24" />
+            </Link>
+          </Box>
+          <Flex gap={"28"} mb="32">
             {renderedLinkIcons}
           </Flex>
           <Text fontSize={"14"} color="font.muted" lineHeight={"tall"}>
@@ -43,26 +46,106 @@ const Footer = () => {
           </Text>
         </GridItem>
 
-        <GridItem>
+        <GridItem justifySelf={"center"}>
           <Text
             fontSize={"18"}
             fontWeight={"500"}
-            mb={"40"}
+            mb={"36"}
             color="font.general"
           >
             Contact Us
           </Text>
+
+          <Flex flexDirection="column" gap={"24"}>
+            <Link
+              href={`tel:${faker.phone.number()}`}
+              fontSize={"16"}
+              color={"font.muted"}
+              transition="all .3s"
+              _hover={{
+                color: "#555",
+              }}
+            >
+              {faker.phone.number()}
+            </Link>
+            <Link
+              href={`mailto: hello@doclab.com`}
+              fontSize={"16"}
+              color={"font.muted"}
+              transition="all .3s"
+              _hover={{
+                color: "#555",
+              }}
+            >
+              hello@doclab.com
+            </Link>
+          </Flex>
         </GridItem>
 
-        <GridItem>
+        <GridItem justifySelf={"center"}>
           <Text
             fontSize={"18"}
             fontWeight={"500"}
-            mb={"40"}
+            mb={"36"}
+            color="font.general"
+          >
+            Account
+          </Text>
+
+          <Flex flexDirection="column" gap={"24"}>
+            <Link
+              href={`/`}
+              fontSize={"16"}
+              color={"font.muted"}
+              transition="all .3s"
+              _hover={{
+                color: "#555",
+              }}
+            >
+              Create account
+            </Link>
+            <Link
+              href={`/`}
+              fontSize={"16"}
+              color={"font.muted"}
+              transition="all .3s"
+              _hover={{
+                color: "#555",
+              }}
+            >
+              Sign in
+            </Link>
+          </Flex>
+        </GridItem>
+
+        <GridItem justifySelf={"center"}>
+          <Text
+            fontSize={"18"}
+            fontWeight={"500"}
+            mb={"36"}
             color="font.general"
           >
             Support
           </Text>
+
+          <Flex flexDirection={"column"} gap={"24"}>
+            {["Help Center", "FAQ", "Cookies Settings"].map((value, key) => {
+              return (
+                <Link
+                  key={key}
+                  href={`mailto: hello@doclab.com`}
+                  fontSize={"16"}
+                  color={"font.muted"}
+                  transition="all .3s"
+                  _hover={{
+                    color: "#555",
+                  }}
+                >
+                  {value}
+                </Link>
+              );
+            })}
+          </Flex>
         </GridItem>
       </Grid>
     </Box>
