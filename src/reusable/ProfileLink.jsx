@@ -1,6 +1,6 @@
 import React from "react";
-import { Center, Image, Text } from "@chakra-ui/react";
-import { faker } from "@faker-js/faker";
+import { Center } from "@chakra-ui/react";
+import BadgeProfile from "./BadgeProfile.jsx";
 import theme from "../styling/theme.jsx";
 
 const ProfileLink = () => {
@@ -51,17 +51,8 @@ const ProfileLink = () => {
         }}
         name="notifications-outline"
       ></ion-icon>
-      <Center gap={"16"} cursor="pointer">
-        <Image
-          src={faker.image.avatar()}
-          alt="Profile"
-          w="14"
-          borderRadius="full"
-        />
-        <Text fontSize="lg" fontWeight={"medium"}>
-          Yashrif Arifin
-        </Text>
-      </Center>
+
+      <BadgeProfile />
     </Center>
   );
 };

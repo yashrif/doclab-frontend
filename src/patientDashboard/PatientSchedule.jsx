@@ -1,17 +1,19 @@
 import React from "react";
 import { Grid } from "@chakra-ui/react";
-import PatientSchedule from "./widgets/WidgetSchedule.jsx";
+import WidgetNextAppointment from "./widgets/WidgetNextAppointment.jsx";
+import WidgetNextCheckup from "./widgets/WidgetNextCheckup.jsx";
+import WidgetNextMedicine from "./widgets/WidgetNextMedicine.jsx";
 
-const PatientScheduleWidgets = () => {
+const WidgetNextAppointmentWidgets = () => {
   return (
     <Grid templateColumns={"repeat(3, 1fr)"} gap="16">
-      <PatientSchedule bg="#f4f2ff" />
+      <WidgetNextAppointment />
 
-      <PatientSchedule bg="#fff2ec" />
+      <WidgetNextCheckup />
 
-      <PatientSchedule bg="#ecfbff" />
+      <WidgetNextMedicine />
     </Grid>
   );
 };
 
-export default PatientScheduleWidgets;
+export default WidgetNextAppointmentWidgets;

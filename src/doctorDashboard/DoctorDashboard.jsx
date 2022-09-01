@@ -1,15 +1,14 @@
 import React from "react";
-import { Grid, GridItem, Box, Center, Flex, Link } from "@chakra-ui/react";
-import Search from "../reusable/Search.jsx";
-import ProfileLink from "../reusable/ProfileLink.jsx";
+import { Box, Grid, GridItem, Center, Link, Flex } from "@chakra-ui/react";
 import NavBar from "../reusable/NavBar.jsx";
-import WidgetOverview from "./widgets/WidgetOverview.jsx";
-import PatientHealth from "./PatientHealth.jsx";
-import PatientSchedule from "./PatientSchedule.jsx";
-import PatientActivities from "./PatientActivities.jsx";
+import Search from "../reusable/Search.jsx";
+import UserInfo from "./UserInfo.jsx";
+import Schedule from "./Schedule.jsx";
+import ProfileLink from "../reusable/ProfileLink.jsx";
 import theme from "../styling/theme.jsx";
+// import Header from "../reusable/Header.jsx";
 
-const PatientDashboard = () => {
+const Dashboard = () => {
   return (
     <Box overflow="hidden">
       <Grid
@@ -20,14 +19,14 @@ const PatientDashboard = () => {
         padding="1.6rem 1.2rem 0"
         bg="bg"
         // overflow="hidden"
-        templateColumns="auto 1fr auto"
+        templateColumns="auto 7fr 3fr"
         templateRows="auto 1fr"
         gap="12"
         borderRadius="3xl"
         alignItems="stretch"
       >
         <GridItem>
-          <Center fontSize="4xl" color="font.focused" fontWeight="bold">
+          <Center fontSize="4xl" color="font.focused" fontWeight="semibold">
             DocLab
           </Center>
         </GridItem>
@@ -74,7 +73,7 @@ const PatientDashboard = () => {
                   Find Doctor
                 </Link>
                 <Link
-                  href="/doctorDashboard"
+                  href="/patientDashboard"
                   fontSize={"16"}
                   fontWeight={"medium"}
                   color={"font.muted"}
@@ -91,7 +90,6 @@ const PatientDashboard = () => {
                 </Link>
               </Flex>
             </GridItem>
-
             <GridItem justifySelf={"end"}>
               <Search bg="transparent" category="something..." />
             </GridItem>
@@ -105,31 +103,15 @@ const PatientDashboard = () => {
         <GridItem>
           <NavBar />
         </GridItem>
-        <GridItem overflow="hidden" colSpan={"2"} pt="16" pb="16" px="24">
-          <Grid
-            gridTemplateColumns="1fr 4fr"
-            templateRows={"repeat(3, 1fr)"}
-            alignItems="stretch"
-            columnGap="24"
-            rowGap="32"
-            height={"full"}
-          >
-            <GridItem rowSpan={"2"}>
-              <WidgetOverview />
-            </GridItem>
-
-            <PatientHealth />
-
-            <PatientSchedule />
-
-            <GridItem colSpan={"2"} mb="8">
-              <PatientActivities />
-            </GridItem>
-          </Grid>
+        <GridItem overflow="hidden">
+          <UserInfo />
+        </GridItem>
+        <GridItem>
+          <Schedule />
         </GridItem>
       </Grid>
     </Box>
   );
 };
 
-export default PatientDashboard;
+export default Dashboard;

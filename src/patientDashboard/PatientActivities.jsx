@@ -5,10 +5,11 @@ import WidgetActivities from "./widgets/WidgetActivities.jsx";
 const PatientActivities = () => {
   return (
     <Grid
-      height={"full"}
-      alignItems={"stretch"}
+      // height={"full"}
+      // alignItems={"stretch"}
       templateColumns={"repeat(3, 1fr)"}
       gap="24"
+      py="12"
     >
       <WidgetActivities />
       <WidgetActivities />

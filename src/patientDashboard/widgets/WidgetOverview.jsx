@@ -23,7 +23,7 @@ const WidgetOverview = () => {
       spacing={"20"}
       padding="24px 24px"
       borderRadius={"2xl"}
-      boxShadow={"0 0 24px rgba(0, 0, 0, 0.05)"}
+      boxShadow={"0 0 24px rgba(28, 126, 214, .1)"}
     >
       <StackItem>
         <Center>

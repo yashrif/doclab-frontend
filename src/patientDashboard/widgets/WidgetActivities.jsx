@@ -12,12 +12,7 @@ const WidgetActivities = () => {
 
   for (let i = 0; i < 2; i++) {
     renderedList.push(
-      <Text
-        key={i}
-        fontSize={"12"}
-        fontWeight="regular"
-        letterSpacing={".25px"}
-      >
+      <Text key={i} fontSize={"12"} fontWeight="regular" color="font.general">
         {new Date().toLocaleString()}
       </Text>
     );
@@ -28,12 +23,12 @@ const WidgetActivities = () => {
       direction={"column"}
       borderLeft={"5px solid #fa5252"}
       px="32"
-      py="24"
+      py="20"
       borderRadius={"2xl"}
       boxShadow={"0 0 24px rgba(28, 126, 214, .1)"}
     >
       <Flex alignItems={"center"} mb="12">
-        <Text fontSize={"2xl"} fontWeight="medium" letterSpacing={".5px"}>
+        <Text fontSize={"2xl"} fontWeight="medium">
           Recent Activities
         </Text>
 
@@ -49,7 +44,7 @@ const WidgetActivities = () => {
         ></ion-icon>
       </Flex>
 
-      <Flex direction={"column"} gap="8">
+      <Flex direction={"column"} gap=".6rem">
         {renderedList}
       </Flex>
     </Flex>

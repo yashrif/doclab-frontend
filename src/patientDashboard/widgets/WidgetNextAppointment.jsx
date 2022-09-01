@@ -1,49 +1,43 @@
 import React from "react";
 import { Flex, Spacer, Text } from "@chakra-ui/react";
+import { HiOutlineCalendar } from "react-icons/hi";
 
-const PatientSchedule = ({ bg }) => {
-  const style = {
-    icon: {
-      "--ionicon-stroke-width": "4.8rem",
-    },
-  };
-
+const WidgetNextAppointment = () => {
   return (
     <Flex
       height="full"
       direction={"column"}
-      px="16"
+      px="20"
       py="20"
-      bg={bg}
+      bg={"#f4f2ff"}
       borderRadius={"2xl"}
-      boxShadow={`0 0 16px ${bg}40`}
+      boxShadow={`0 0 16px ${"#f4f2ff"}40`}
     >
       <Flex alignItems={"center"} mb="8">
         <Text fontSize={"2xl"} fontWeight="medium">
           Next Appointment
         </Text>
         <Spacer />
-        <ion-icon
+        <HiOutlineCalendar
           style={{
+            fontSize: "2rem",
             color: "#555",
-            fontSize: "1.6rem",
-            ...style.icon,
           }}
-          name="calendar-clear-outline"
-        ></ion-icon>
+        />
       </Flex>
 
-      <Text fontSize={"14"} fontWeight="medium" letterSpacing={".25px"}>
+      <Text fontSize={"14"} color="font.focused" fontWeight="regular">
+        {" "}
         {new Date().toLocaleString()}
       </Text>
 
       <Spacer />
 
-      <Text fontSize={"12"} fontWeight="regular" color={"font.general"}>
+      <Text fontSize={"12"} fontWeight="regular" color={"font.muted"}>
         View Calendar
       </Text>
     </Flex>
   );
 };
 
-export default PatientSchedule;
+export default WidgetNextAppointment;
