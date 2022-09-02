@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
 import AuthPopUp from "./authPopUp/AuthPopUp.jsx";
@@ -75,9 +76,9 @@ const Header = () => {
           /* box-shadow: "0 0 0 .1rem rgba(0, 0, 0, 0.1)", */
         }}
       >
-        <a
+        <Link
           style={{ textDecoration: "none", height: "5.2rem", width: "13.8rem" }}
-          href="/"
+          to="/"
         >
           <img
             style={{
@@ -89,31 +90,33 @@ const Header = () => {
             src={logo}
             alt="logo"
           />
-        </a>
+        </Link>
         <nav style={{ justifySelf: "center" }}>
           <ul
             className="header-global-nav-list header-nav-list"
             style={style.headerNavList}
           >
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/home">
+              <Link className="header-link" to="/home">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/findDoctor">
+              <Link className="header-link" to="/findDoctor">
                 Find Doctor
-              </a>
+              </Link>
             </li>
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/doctorDashboard">
+              <Link className="header-link" to="/doctorDashboard">
                 Doctor
-              </a>
+              </Link>
             </li>
+
             <li className="header-global-nav-link ">
-              <a className="header-link" href="/patientDashboard">
+              <Link className="header-link" to="/patientDashboard">
                 Patient
-              </a>
+              </Link>
+
             </li>
           </ul>
         </nav>
@@ -123,14 +126,14 @@ const Header = () => {
             style={style.headerNavList}
           >
             <li className="header-page-nav-link ">
-              <a className="header-link" href="/">
+              <Link className="header-link" to="/">
                 How it works
-              </a>
+              </Link>
             </li>
             <li className="header-page-nav-link ">
-              <a className="header-link" href="/">
+              <Link className="header-link" to="/">
                 Services
-              </a>
+              </Link>
             </li>
             <AuthPopUp>
               <li className="header-page-nav-link ">

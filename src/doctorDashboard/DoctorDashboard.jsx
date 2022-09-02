@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Grid, GridItem, Center, Link, Flex } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Center, Flex,Link } from "@chakra-ui/react";
+import { Link as ReachLink } from "react-router-dom";
 import NavBar from "../reusable/NavBar.jsx";
 import Search from "../reusable/Search.jsx";
 import UserInfo from "./UserInfo.jsx";
@@ -41,7 +42,8 @@ const Dashboard = () => {
             <GridItem>
               <Flex gap={"24"}>
                 <Link
-                  href="/home"
+                  as={ReachLink}
+                  to="/home"
                   fontSize={"16"}
                   fontWeight={"medium"}
                   color={"font.muted"}
@@ -57,7 +59,8 @@ const Dashboard = () => {
                   Home
                 </Link>
                 <Link
-                  href="/findDoctor"
+                  as={ReachLink}
+                  to="/findDoctor"
                   fontSize={"16"}
                   fontWeight={"medium"}
                   color={"font.muted"}
@@ -73,7 +76,8 @@ const Dashboard = () => {
                   Find Doctor
                 </Link>
                 <Link
-                  href="/patientDashboard"
+                  as={ReachLink}
+                  to="/patientDashboard"
                   fontSize={"16"}
                   fontWeight={"medium"}
                   color={"font.muted"}
