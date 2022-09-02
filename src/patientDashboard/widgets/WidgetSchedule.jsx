@@ -1,34 +1,33 @@
 import React from "react";
 import { Flex, Spacer, Text } from "@chakra-ui/react";
-import { HiOutlineCalendar } from "react-icons/hi";
 
-const WidgetNextAppointment = () => {
+const WidgetNextAppointment = ({ icon, bg, heading, content }) => {
   return (
     <Flex
       height="full"
       direction={"column"}
       px="20"
-      py="20"
-      bg={"#f4f2ff"}
+      py="16"
+      bg={bg}
       borderRadius={"2xl"}
       boxShadow={`0 0 16px ${"#f4f2ff"}40`}
     >
-      <Flex alignItems={"center"} mb="8">
+      <Flex alignItems={"center"} mb="4">
         <Text fontSize={"2xl"} fontWeight="medium">
-          Next Appointment
+          {heading}
         </Text>
         <Spacer />
-        <HiOutlineCalendar
+        {/* <icon
           style={{
             fontSize: "2rem",
             color: "#555",
           }}
-        />
+        /> */}
+        {icon}
       </Flex>
 
-      <Text fontSize={"14"} color="font.focused" fontWeight="regular">
-        {" "}
-        {new Date().toLocaleString()}
+      <Text fontSize={"14"} color="font.general" fontWeight="regular" mb="8">
+        {content}
       </Text>
 
       <Spacer />
