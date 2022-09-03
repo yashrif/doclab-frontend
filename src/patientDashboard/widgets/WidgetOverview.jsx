@@ -9,14 +9,10 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
+import { BsTelephone } from "react-icons/bs";
+import { IoLocationOutline } from "react-icons/io5";
 
 const WidgetOverview = () => {
-  const style = {
-    icon: {
-      "--ionicon-stroke-width": "4rem",
-    },
-  };
-
   return (
     <Stack
       height={"full"}
@@ -96,14 +92,7 @@ const WidgetOverview = () => {
         <Stack spacing={"12"}>
           <Center>
             <Flex gap="8" alignItems={"center"}>
-              <ion-icon
-                style={{
-                  color: "#555",
-                  fontSize: "1.6rem",
-                  ...style.icon,
-                }}
-                name="location-outline"
-              ></ion-icon>
+              <IoLocationOutline fontSize="1.6rem" color="#555" />
               <Text fontSize={"lg"} fontWeight="medium" color={"#333"}>
                 {faker.address.cityName()}
               </Text>
@@ -111,14 +100,7 @@ const WidgetOverview = () => {
           </Center>
           <Center>
             <Flex gap="8" alignItems={"center"}>
-              <ion-icon
-                style={{
-                  color: "#555",
-                  fontSize: "1.6rem",
-                  ...style.icon,
-                }}
-                name="call-outline"
-              ></ion-icon>
+              <BsTelephone fontSize="1.6rem" color="#555" />
               <Text
                 fontSize={"lg"}
                 fontWeight="medium"

@@ -15,19 +15,19 @@ const WidgetNextAppointmentWidgets = () => {
     {
       bg: "#f4f2ff",
       heading: "Next Appointment",
-      icon: <HiOutlineCalendar style={iconStyle} />,
+      icon: <HiOutlineCalendar {...iconStyle} />,
       content: new Date().toLocaleDateString(),
     },
     {
       bg: "#fff2ec",
       heading: "Next Checkup",
-      icon: <RiStethoscopeLine style={iconStyle} />,
+      icon: <RiStethoscopeLine {...iconStyle} />,
       content: new Date().toLocaleDateString(),
     },
     {
       bg: "#d3f9d8",
       heading: "Medicine",
-      icon: <FaCapsules style={iconStyle} />,
+      icon: <FaCapsules {...iconStyle} />,
       content: "Napa Extra 11.00 PM",
     },
   ];

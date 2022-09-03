@@ -16,13 +16,9 @@ const WidgetNextAppointment = ({ icon, bg, heading, content }) => {
         <Text fontSize={"2xl"} fontWeight="medium">
           {heading}
         </Text>
+
         <Spacer />
-        {/* <icon
-          style={{
-            fontSize: "2rem",
-            color: "#555",
-          }}
-        /> */}
+
         {icon}
       </Flex>
 

@@ -21,19 +21,22 @@ const PatientActivities = () => {
         icon={"arrow-forward-outline"}
         heading="Recent Activities"
         content={content[2]}
-        bg="#d0ebff"
+        colorBorder="#d0ebff"
+        // bg="#d0ebff"
       />
       <WidgetActivities
         icon={"alert-circle-outline"}
         heading="Problem List"
         content={content[2]}
-        bg="#ffdeeb"
+        colorBorder="#ffdeeb"
+        // bg="#ffdeeb"
       />
       <WidgetActivities
         icon={"alert-circle-outline"}
         heading="Allergy List"
         content={content[2]}
-        bg="#ffe8cc"
+        colorBorder="#ffe8cc"
+        // bg="#ffe8cc"
       />
     </Grid>
   );

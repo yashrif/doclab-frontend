@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Spacer, Text } from "@chakra-ui/react";
 
-const WidgetActivities = ({ icon, heading, content, bg }) => {
+const WidgetActivities = ({ icon, heading, content, colorBorder, bg }) => {
   const style = {
     icon: {
       "--ionicon-stroke-width": "4.8rem",
@@ -21,8 +21,8 @@ const WidgetActivities = ({ icon, heading, content, bg }) => {
   return (
     <Flex
       direction={"column"}
-      // bg={bg}
-      borderLeft={`.7rem solid ${bg}`}
+      bg={bg ? bg : "#fff"}
+      borderLeft={`.7rem solid ${colorBorder}`}
       px="32"
       py="20"
       borderRadius={"2xl"}
