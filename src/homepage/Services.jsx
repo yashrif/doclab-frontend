@@ -98,7 +98,7 @@ const Services = () => {
   });
 
   return (
-    <Box py="96">
+    <Box mb="96">
       <HeadingPrimary>Services</HeadingPrimary>
       <HeadingSecondary>The best quality services you can get</HeadingSecondary>
 

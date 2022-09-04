@@ -6,15 +6,8 @@ import ButtonOutline from "../reusable/button/ButtonOutline.jsx";
 
 const Hero = () => {
   return (
-    <Grid
-      templateColumns={"45fr 55fr"}
-      px="32"
-      maxW={"13xl"}
-      mx="auto"
-      pt="48"
-      // pb="96"
-    >
-      <GridItem>
+    <Grid templateColumns={"45fr 55fr"} maxW={"13xl"} mx="auto" pt="64" mb="96">
+      <GridItem pb={"13.1rem"}>
         <Text
           color={"primary.600"}
           fontSize="14"
@@ -64,7 +57,7 @@ const Hero = () => {
         </Text>
       </GridItem>
 
-      <Image src={HeroImage} w="60%" justifySelf={"center"} />
+      <Image src={HeroImage} w="55%" justifySelf={"center"} alignSelf={"end"} />
     </Grid>
   );
 };

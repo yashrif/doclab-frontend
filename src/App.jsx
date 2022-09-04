@@ -12,7 +12,7 @@ const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <Box
-        bg="bgContainer"
+        // bg="bgContainer"
         style={{
           // maxWidth: "150rem",
           height: "100vh",

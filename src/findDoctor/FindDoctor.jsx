@@ -3,6 +3,7 @@ import MainContainer from "./MainContainer.jsx";
 import Header from "../reusable/Header.jsx";
 import PageOverview from "./pageOverview/PageOverview.jsx";
 import PageDetails from "./pageDetails/PageDetails.jsx";
+import { Box } from "@chakra-ui/react";
 
 const FindDoctor = () => {
   const category = "doctor";
@@ -11,7 +12,9 @@ const FindDoctor = () => {
 
   return (
     <>
-      <Header />
+      <Box bg="bgContainer">
+        <Header />
+      </Box>
       <MainContainer>
         <PageOverview
           category={category}

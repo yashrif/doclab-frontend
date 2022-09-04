@@ -6,14 +6,15 @@ const MainContainer = ({ children }) => {
     <section
       style={{
         height: `calc(
-            100% - ${theme.typography.containerHeight.header} - ${theme.typography.sectionGap.medium} - ${theme.typography.sectionGap.headerBottom} - 4.8rem
+            100% - ${theme.typography.containerHeight.header} - ${theme.typography.sectionGap.medium} - ${theme.typography.sectionGap.headerBottom} + 2.4rem
           )`,
-        margin: `2.4rem ${theme.typography.sectionGap.large} ${theme.typography.sectionGap.medium}`,
+        padding: `2.4rem ${theme.typography.sectionGap.large} ${theme.typography.sectionGap.medium}`,
         display: "grid",
         gridTemplateColumns: `minmax(${theme.typography.containerWidth.overviewMin}, 4fr) 13fr`,
         alignItems: "start",
         columnGap: `${theme.typography.sectionGap.medium}`,
         // overflow: "hidden",
+        backgroundColor: `${theme.colors.bgContainer}`,
       }}
     >
       {children.map((child) => child)}

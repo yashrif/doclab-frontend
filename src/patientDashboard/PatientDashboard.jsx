@@ -12,7 +12,7 @@ import theme from "../styling/theme.jsx";
 
 const PatientDashboard = () => {
   return (
-    <Box overflow="hidden">
+    <Box overflow="hidden" bg={"bgContainer"}>
       <Grid
         height="calc(100vh - 4.8rem)"
         maxW="1280px"

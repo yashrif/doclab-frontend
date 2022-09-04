@@ -1,4 +1,3 @@
-
 export const subDistrictList = [
   "Abhoynagar",
   "Adamdighi",
@@ -477,7 +476,6 @@ export const subDistrictList = [
   "Uzirpur",
   "Zakiganj",
   "Zianagar",
-
 ];
 
 export const validateEmail = (email) => {
@@ -495,9 +493,9 @@ export const initialSignup = {
   authEmail: "",
   authPassword: "",
   doctorLocation: "",
-  patientName : "",
+  patientName: "",
   patientGender: "",
-  patientPhone : "",
+  patientPhone: "",
   patientSubDistrict: "",
 };
 
