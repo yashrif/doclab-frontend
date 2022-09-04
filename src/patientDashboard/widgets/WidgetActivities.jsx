@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Spacer, Text } from "@chakra-ui/react";
 
-const WidgetActivities = () => {
+const WidgetActivities = ({ icon, heading, content, colorBorder, bg }) => {
   const style = {
     icon: {
       "--ionicon-stroke-width": "4.8rem",
@@ -12,13 +12,8 @@ const WidgetActivities = () => {
 
   for (let i = 0; i < 2; i++) {
     renderedList.push(
-      <Text
-        key={i}
-        fontSize={"12"}
-        fontWeight="regular"
-        letterSpacing={".25px"}
-      >
-        {new Date().toLocaleString()}
+      <Text key={i} fontSize={"14"} fontWeight="regular" color="font.muted">
+        {content[i]}
       </Text>
     );
   }
@@ -26,15 +21,16 @@ const WidgetActivities = () => {
   return (
     <Flex
       direction={"column"}
-      borderLeft={"5px solid #fa5252"}
+      bg={bg ? bg : "#fff"}
+      borderLeft={`.7rem solid ${colorBorder}`}
       px="32"
-      py="24"
+      py="20"
       borderRadius={"2xl"}
       boxShadow={"0 0 24px rgba(28, 126, 214, .1)"}
     >
-      <Flex alignItems={"center"} mb="12">
-        <Text fontSize={"2xl"} fontWeight="medium" letterSpacing={".5px"}>
-          Recent Activities
+      <Flex alignItems={"center"} mb="8">
+        <Text fontSize={"2xl"} fontWeight="medium">
+          {heading}
         </Text>
 
         <Spacer />
@@ -42,14 +38,14 @@ const WidgetActivities = () => {
         <ion-icon
           style={{
             color: "#555",
-            fontSize: "1.6rem",
+            fontSize: "1.8rem",
             ...style.icon,
           }}
-          name="arrow-forward-outline"
+          name={icon}
         ></ion-icon>
       </Flex>
 
-      <Flex direction={"column"} gap="8">
+      <Flex direction={"column"} gap="4">
         {renderedList}
       </Flex>
     </Flex>

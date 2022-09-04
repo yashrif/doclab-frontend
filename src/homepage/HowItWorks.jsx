@@ -60,7 +60,7 @@ const HowItWorks = () => {
   });
 
   return (
-    <Box py={"96"}>
+    <Box mb={"96"}>
       <HeadingPrimary>How it works</HeadingPrimary>
       <HeadingSecondary>Easy steps to get your solution</HeadingSecondary>
       <Grid templateColumns={"repeat(4, 1fr)"} gap={"24"}>

@@ -34,7 +34,7 @@ const PendingAppointments = () => {
   const renderedAppointments = [];
 
   for (let i = 0; i < 10; i++) {
-    renderedAppointments.push(<WidgetAppointment />);
+    renderedAppointments.push(<WidgetAppointment key={i} />);
   }
 
   return (

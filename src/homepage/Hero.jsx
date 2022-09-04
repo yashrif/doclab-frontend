@@ -1,20 +1,13 @@
 import React from "react";
 import { Flex, Grid, GridItem, Text, Image } from "@chakra-ui/react";
-import HeroImage from "../assets/img/hero.png";
+import HeroImage from "../assets/img/hero2.png";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
 import ButtonOutline from "../reusable/button/ButtonOutline.jsx";
 
 const Hero = () => {
   return (
-    <Grid
-      templateColumns={"45fr 55fr"}
-      px="32"
-      maxW={"13xl"}
-      mx="auto"
-      pt="48"
-      pb="96"
-    >
-      <GridItem>
+    <Grid templateColumns={"45fr 55fr"} maxW={"13xl"} mx="auto" pt="64" mb="96">
+      <GridItem pb={"13.1rem"}>
         <Text
           color={"primary.600"}
           fontSize="14"
@@ -64,7 +57,7 @@ const Hero = () => {
         </Text>
       </GridItem>
 
-      <Image src={HeroImage} w="50%" justifySelf={"center"} />
+      <Image src={HeroImage} w="55%" justifySelf={"center"} alignSelf={"end"} />
     </Grid>
   );
 };

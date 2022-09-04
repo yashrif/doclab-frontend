@@ -10,14 +10,18 @@ import Footer from "./Footer.jsx";
 const Homepage = () => {
   return (
     <Box>
-      <Header />
-      <Hero />
+      <Box bg="bgContainer">
+        <Header />
+      </Box>
+      <Box bg="bgContainer">
+        <Hero />
+      </Box>
 
-      <Container>
+      <Container id="howItWorks">
         <HowItWorks />
       </Container>
 
-      <Container>
+      <Container id="services">
         <Services />
       </Container>
 

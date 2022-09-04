@@ -12,7 +12,9 @@ const UserInfo = () => {
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   useEffect(() => {
-    fetchperson(`${SERVER}/auth`, { headers: { TOKEN: "2e6600ff-ed5f-4d14-8ca9-3eecc8905496" } });
+    fetchperson(`${SERVER}/auth`, {
+      headers: { TOKEN: "2e6600ff-ed5f-4d14-8ca9-3eecc8905496" },
+    });
   }, []);
 
   useEffect(() => {
@@ -32,15 +34,23 @@ const UserInfo = () => {
       borderRadius="3xl"
       py="16"
       px="24"
-    // overflow="hidden"
-    // alignItems="strech"
+      // overflow="hidden"
+      // alignItems="strech"
     >
       <GridItem>
         {selectedPerson ? (
           <ProfileCard
             category="doctor"
             selectedPerson={selectedPerson}
-            entity={["Name", "Speciality", "Degrees", "Rating", "Info"]}
+            entity={[
+              "Name",
+              "Speciality",
+              "Degrees",
+              "Rating",
+              "Info",
+              "Experience",
+              "Verification",
+            ]}
           />
         ) : (
           <Center minH="48">

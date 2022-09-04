@@ -26,6 +26,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
+    "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
     "react-svg-curve": "^0.2.1",
     "web-vitals": "^2.1.4"
