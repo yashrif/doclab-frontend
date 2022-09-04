@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Grid, GridItem, Text, Image } from "@chakra-ui/react";
-import HeroImage from "../assets/img/hero.png";
+import HeroImage from "../assets/img/hero2.png";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
 import ButtonOutline from "../reusable/button/ButtonOutline.jsx";
 
