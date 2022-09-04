@@ -11,11 +11,11 @@ const TimelineUpcomingAppointments = ({ i, dots }) => {
               @keyframes slide-up {
                 0% {
                   opacity: 0;
-                  transform: translateX(${10 * (i + 0.5)}rem);
+                  transform: translateY(${10 * (i + 0.5)}rem);
                 }
                 100% {
                   opacity: 1;
-                  transform: translateX(0);
+                  transform: translateY(0);
                 }
               }
 
@@ -74,7 +74,13 @@ const TimelineUpcomingAppointments = ({ i, dots }) => {
           )}
         </Grid>
 
-        <GridItem>
+        <GridItem
+          opacity={setTimeout(() => {
+            return "0";
+          }, 1500)}
+          animation={`slide-up ${0.3 * (i + 1)}s ease-in-out`}
+          transition="all 0.3s ease-in-out"
+        >
           <Text color={"font.muted"} fontSize={"12"}>
             Appointment
           </Text>

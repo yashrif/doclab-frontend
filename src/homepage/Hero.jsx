@@ -12,7 +12,7 @@ const Hero = () => {
       maxW={"13xl"}
       mx="auto"
       pt="48"
-      pb="96"
+      // pb="96"
     >
       <GridItem>
         <Text
@@ -64,7 +64,7 @@ const Hero = () => {
         </Text>
       </GridItem>
 
-      <Image src={HeroImage} w="50%" justifySelf={"center"} />
+      <Image src={HeroImage} w="60%" justifySelf={"center"} />
     </Grid>
   );
 };
