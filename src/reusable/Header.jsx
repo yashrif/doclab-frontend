@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
 import AuthPopUp from "./authPopUp/AuthPopUp.jsx";
@@ -126,14 +127,14 @@ const Header = () => {
             style={style.headerNavList}
           >
             <li className="header-page-nav-link ">
-              <Link className="header-link" to="/">
+              <HashLink className="header-link" to="/#howItWorks">
                 How it works
-              </Link>
+              </HashLink>
             </li>
             <li className="header-page-nav-link ">
-              <Link className="header-link" to="/">
+              <HashLink className="header-link" to="/#services">
                 Services
-              </Link>
+              </HashLink>
             </li>
             <AuthPopUp>
               <li className="header-page-nav-link ">

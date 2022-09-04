@@ -13,11 +13,11 @@ const Homepage = () => {
       <Header />
       <Hero />
 
-      <Container>
+      <Container id="howItWorks">
         <HowItWorks />
       </Container>
 
-      <Container>
+      <Container id="services">
         <Services />
       </Container>
 
