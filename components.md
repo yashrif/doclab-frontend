@@ -54,7 +54,7 @@
 
 ### Api Get
 
-## Api Post
+### Api Post
 
 ### Button Full
 
@@ -134,5 +134,3 @@
   - Widget Schedule
 - Patient Activities
   - Widget Activities
-
-### Page Components
