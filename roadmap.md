@@ -1,4 +1,4 @@
-# Header
+## Header
 
 ## Homepage --> horizontally
 
@@ -16,9 +16,8 @@
 
 # Login
 
-- successsful ? "You have successfully loggedin. You're being redirct to your dashboard"
+- successsful ? "You have successfully logged in. You're being redirct to your dashboard"
 
 # Fixes
 
-1. Dashboard outer container background color should be greyish
-2. Add icon before "no insurance" in hero section
+1. Add icon before "no insurance" in hero section

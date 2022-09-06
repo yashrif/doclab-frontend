@@ -1,10 +1,10 @@
 import React from "react";
-import Comment from "./Review.jsx";
+import Review from "./Review.jsx";
 
 const Reviews = () => {
   let renderedList = [];
   for (let i = 1; i <= 10; i++) {
-    renderedList.push(<Comment key={i} />);
+    renderedList.push(<Review key={i} />);
     if (i !== 10)
       renderedList.push(
         <hr

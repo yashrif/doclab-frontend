@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@chakra-ui/react";
 import Calendar from "./Calendar.jsx";
 // import WidgetUpcomingAppointments from "./reusable/WidgetUpcomingAppointments.jsx";
-import TreeUpcomingAppointments from "./reusable/TimelineUpcomingAppointments.jsx";
+import TimelineUpcomingAppointments from "./reusable/TimelineUpcomingAppointments.jsx";
 
 const Schedule = () => {
   const NumberOfrender = 3;
@@ -13,7 +13,7 @@ const Schedule = () => {
     // renderedWidgets.push(<WidgetUpcomingAppointments key={i} i={i} />);
 
     renderedWidgets.push(
-      <TreeUpcomingAppointments
+      <TimelineUpcomingAppointments
         key={i}
         i={i}
         dots={i === NumberOfrender - 1 ? false : true}
