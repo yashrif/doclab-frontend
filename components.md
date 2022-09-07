@@ -1,23 +1,25 @@
-# App
+# Index
 
-## Reusable
+## App
 
-### Header
+### Reusable
+
+#### Header
 
 - AuthPopUp
 - ButtonFull
 
-### Navbar
+#### Navbar
 
-### Profile Card
+#### Profile Card
 
-### Profile Link
+#### Profile Link
 
-### Search
+#### Search
 
-### Badge Profile
+#### Badge Profile
 
-### AuthPopUp
+#### AuthPopUp
 
 - Login Form
 - Signup Form
@@ -26,45 +28,45 @@
 - Api Login
 - Api Signup
 
-### Login Form
+#### Login Form
 
 - Password Input
 
-### Signup Form
+#### Signup Form
 
 - Doctor Signup Form
 
-### Doctor Signup Form
+#### Doctor Signup Form
 
 - Password Input
 
-### Patient Signup Form
+#### Patient Signup Form
 
 - Password Input
 
-### Login Success
+#### Login Success
 
-### Signup Success
+#### Signup Success
 
-### Password Input
+#### Password Input
 
-### Api Login
+#### Api Login
 
-### Api Signup
+#### Api Signup
 
-### Api Get
+#### Api Get
 
-### Api Post
+#### Api Post
 
-### Button Full
+#### Button Full
 
-### Button Outline
+#### Button Outline
 
 <!-- Not reusable -->
 
-## Not Reusable
+### Not Reusable
 
-### Homepage
+#### Homepage
 
 - Header
 - Hero
@@ -82,7 +84,7 @@
     - Button Full
   - Footer
 
-### Find Doctor
+#### Find Doctor
 
 - Header
 
@@ -107,7 +109,7 @@
     - Consult
       - Accordion
 
-### Doctor Dashboard
+#### Doctor Dashboard
 
 - Search
 - Profile Link
@@ -122,7 +124,7 @@
   - Calendar
   - Timeline Upcoming Appointments / Widget Upcoming Appointments
 
-### Patient Dashboard
+#### Patient Dashboard
 
 - Search
 - Profile Link
