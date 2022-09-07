@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid } from "@chakra-ui/react";
-import WidgetNextAppointment from "./widgets/WidgetSchedule.jsx";
+import WidgetSchedule from "./widgets/WidgetSchedule.jsx";
 import { HiOutlineCalendar } from "react-icons/hi";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { FaCapsules } from "react-icons/fa";
 
-const WidgetNextAppointmentWidgets = () => {
+const WidgetScheduleWidgets = () => {
   const iconStyle = {
     fontSize: "2rem",
     color: "#555",
@@ -34,7 +34,7 @@ const WidgetNextAppointmentWidgets = () => {
 
   const renderedWidgetList = widgetContent.map((value, key) => {
     return (
-      <WidgetNextAppointment
+      <WidgetSchedule
         key={key}
         icon={value.icon}
         bg={value.bg}
@@ -51,4 +51,4 @@ const WidgetNextAppointmentWidgets = () => {
   );
 };
 
-export default WidgetNextAppointmentWidgets;
+export default WidgetScheduleWidgets;

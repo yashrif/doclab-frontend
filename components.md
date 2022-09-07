@@ -1,49 +1,138 @@
-# App
+# Index
 
-1. page background color
-2. page height
+## App
 
-## Pages
+### Reusable
 
-1. Homepage
-2. Find Doctor
-   - Main Container
-   - Header
-   - Page Review
-   - Page Details
-3. Doctor
-4. Patient
+#### Header
 
-### Page Components
+- AuthPopUp
+- ButtonFull
+
+#### Navbar
+
+#### Profile Card
+
+#### Profile Link
+
+#### Search
+
+#### Badge Profile
+
+#### AuthPopUp
+
+- Login Form
+- Signup Form
+- Login Success
+- Signup Success
+- Api Login
+- Api Signup
+
+#### Login Form
+
+- Password Input
+
+#### Signup Form
+
+- Doctor Signup Form
+
+#### Doctor Signup Form
+
+- Password Input
+
+#### Patient Signup Form
+
+- Password Input
+
+#### Login Success
+
+#### Signup Success
+
+#### Password Input
+
+#### Api Login
+
+#### Api Signup
+
+#### Api Get
+
+#### Api Post
+
+#### Button Full
+
+#### Button Outline
+
+<!-- Not reusable -->
+
+### Not Reusable
+
+#### Homepage
 
 - Header
+- Hero
+  - Button Full
+  - Button Outline
+- Container
+  - How it works
+    - Heading Primary
+    - Heading Secondary
+    - Widget Services Works
+  - Services
+    - Heading Primary
+    - Heading Secondary
+    - Widget Services Works
+    - Button Full
+  - Footer
+
+#### Find Doctor
+
+- Header
+
 - Main Container
+
   - Page Overview
-    - apiGet api
-      1. axios get request
-    1. Page Description VIew Control
+
+    - Api Get
     - Page Summary
     - Search Container
       - Search
-        1. controlled search bar
     - Person List
-      - Person Cards
-      1. Scroll position track
-      2. Scroll position control
+      - Person Card
+
   - Page Details
-    - ProfileCard
-    - TimeSlots
-    - CommentsNavigation
+    - Profile Card
+    - Time Slot
+    - Navigation
+    - Reviews
+      - Review
     - Info
-    - Comments
-      - Comment
     - Consult
       - Accordion
-    - Health Feed
-- Login
 
-  - Login
-  - LoginForm
+#### Doctor Dashboard
 
-- Hooks
-  - apiGet
+- Search
+- Profile Link
+- Navbar
+- User Info
+  - Profile Card
+  - Api Get
+  - Statistics
+  - Pending Appointments
+    - Widget Appointment
+- Schedule
+  - Calendar
+  - Timeline Upcoming Appointments / Widget Upcoming Appointments
+
+#### Patient Dashboard
+
+- Search
+- Profile Link
+- Navbar
+- Widget Overview
+- Patient Health
+  - Widget Health
+- Patient Schedule
+  - Widget Schedule
+- Patient Activities
+  - Widget Activities
