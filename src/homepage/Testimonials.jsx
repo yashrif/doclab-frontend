@@ -35,7 +35,7 @@ const Testimonials = () => {
         name: `${faker.name.findName()}`,
         text: `${faker.lorem.paragraph()}`,
       }));
-    }, 9925);
+    }, 9600);
   });
 
   const grow = keyframes`

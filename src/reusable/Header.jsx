@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
 import { useState } from "react";
 import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
@@ -9,8 +9,9 @@ import ButtonFull from "./button/ButtonFull.jsx";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("doctorToken") != null
-    || localStorage.getItem("patientToken") != null);
+    localStorage.getItem("doctorToken") != null ||
+      localStorage.getItem("patientToken") != null
+  );
   const style = {
     headerNavList: {
       listStyle: "none",
@@ -112,12 +113,18 @@ const Header = () => {
                 Find Doctor
               </Link>
             </li>
-            
+
             <li className="header-global-nav-link ">
-              <Link className="header-link" 
-              to={ localStorage.getItem("doctorToken")!=null ?
-                   "/doctorDashboard" :
-                   localStorage.getItem("patientToken")!=null ? "/patientDashboard" : ""}>
+              <Link
+                className="header-link"
+                to={
+                  localStorage.getItem("doctorToken") != null
+                    ? "/doctorDashboard"
+                    : localStorage.getItem("patientToken") != null
+                    ? "/patientDashboard"
+                    : ""
+                }
+              >
                 Dashboard
               </Link>
             </li>
@@ -135,24 +142,12 @@ const Header = () => {
             className="header-page-nav-list header-nav-list"
             style={style.headerNavList}
           >
-            <li className="header-page-nav-link ">
-              <HashLink className="header-link" to="/#howItWorks">
-                How it works
-              </HashLink>
-            </li>
-            <li className="header-page-nav-link ">
-              <HashLink className="header-link" to="/#services">
-                Services
-              </HashLink>
-            </li>
-            
-
             {(window.location.pathname == "/home" ||
               window.location.pathname == "/") && (
               <>
                 <li className="header-page-nav-link ">
                   <HashLink className="header-link" to="/#howItWorks">
-                    Steps
+                    How it works
                   </HashLink>
                 </li>
                 <li className="header-page-nav-link ">
@@ -167,7 +162,7 @@ const Header = () => {
                 </li>
               </>
             )}
-            {(isLoggedIn) ?
+            {isLoggedIn ? (
               <ButtonFull
                 py="18"
                 px="24"
@@ -181,7 +176,7 @@ const Header = () => {
               >
                 Logout
               </ButtonFull>
-              :
+            ) : (
               <AuthPopUp setIsLoggedIn={setIsLoggedIn}>
                 <li className="header-page-nav-link ">
                   <ButtonFull
@@ -189,13 +184,12 @@ const Header = () => {
                     px="24"
                     fontSize={"17"}
                     fontWeight={"medium"}
-
                   >
                     Login
                   </ButtonFull>
                 </li>
               </AuthPopUp>
-            }
+            )}
           </ul>
         </nav>
       </header>
