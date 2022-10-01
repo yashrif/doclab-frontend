@@ -53,6 +53,7 @@ const HowItWorks = () => {
           value={value}
           // alignItems="center"
           // textAlign={"center"}
+          // textAlign={"justify"}
           isBoxShadow={false}
         />
       </GridItem>
@@ -60,7 +61,7 @@ const HowItWorks = () => {
   });
 
   return (
-    <Box mb={"96"}>
+    <Box pt={"96"} mb="96">
       <HeadingPrimary>How it works</HeadingPrimary>
       <HeadingSecondary>Easy steps to get your solution</HeadingSecondary>
       <Grid templateColumns={"repeat(4, 1fr)"} gap={"24"}>

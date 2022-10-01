@@ -5,6 +5,7 @@ import Header from "../reusable/Header.jsx";
 import Hero from "./Hero.jsx";
 import HowItWorks from "./HowItWorks.jsx";
 import Services from "./Services.jsx";
+import Testimonials from "./Testimonials.jsx";
 import Footer from "./Footer.jsx";
 
 const Homepage = () => {
@@ -25,7 +26,13 @@ const Homepage = () => {
         <Services />
       </Container>
 
-      <hr style={{ borderTop: "1px solid #eee" }} />
+      <Container id="testimonials">
+        <Testimonials />
+      </Container>
+
+      <Box mt="12.8rem">
+        <hr style={{ borderTop: "1px solid #eee" }} />
+      </Box>
 
       <Container bg="bg">
         <Footer />
