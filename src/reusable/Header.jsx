@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
 import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
 import AuthPopUp from "./authPopUp/AuthPopUp.jsx";
@@ -70,8 +70,9 @@ const Header = () => {
           marginBottom: `${theme.typography.sectionGap.headerBottom}`,
 
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
-          // justifyContent: "space-between",
+          // gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "repeat(3, auto)",
+          justifyContent: "space-between",
           alignItems: "center",
           /* background-color: "var(--find-doctor-bg-color-tint-1)", */
           /* box-shadow: "0 0 0 .1rem rgba(0, 0, 0, 0.1)", */
@@ -109,16 +110,15 @@ const Header = () => {
             </li>
             <li className="header-global-nav-link ">
               <Link className="header-link" to="/doctorDashboard">
-                Doctor
+                Dashboard
               </Link>
             </li>
 
-            <li className="header-global-nav-link ">
+            {/* <li className="header-global-nav-link ">
               <Link className="header-link" to="/patientDashboard">
                 Patient
               </Link>
-
-            </li>
+            </li> */}
           </ul>
         </nav>
         <nav style={{ justifySelf: "end" }}>
@@ -126,16 +126,26 @@ const Header = () => {
             className="header-page-nav-list header-nav-list"
             style={style.headerNavList}
           >
-            <li className="header-page-nav-link ">
-              <HashLink className="header-link" to="/#howItWorks">
-                How it works
-              </HashLink>
-            </li>
-            <li className="header-page-nav-link ">
-              <HashLink className="header-link" to="/#services">
-                Services
-              </HashLink>
-            </li>
+            {(window.location.pathname == "/home" ||
+              window.location.pathname == "/") && (
+              <>
+                <li className="header-page-nav-link ">
+                  <HashLink className="header-link" to="/#howItWorks">
+                    Steps
+                  </HashLink>
+                </li>
+                <li className="header-page-nav-link ">
+                  <HashLink className="header-link" to="/#services">
+                    Services
+                  </HashLink>
+                </li>
+                <li className="header-page-nav-link ">
+                  <HashLink className="header-link" to="/#testimonials">
+                    Testimonials
+                  </HashLink>
+                </li>
+              </>
+            )}
             <AuthPopUp>
               <li className="header-page-nav-link ">
                 <ButtonFull

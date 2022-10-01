@@ -36,6 +36,7 @@ const theme = extendTheme({
       focused: "#18181B",
       muted: "#767676",
       general: "#555",
+      light: "#fff",
     },
   },
 
