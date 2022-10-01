@@ -12,7 +12,7 @@ import { faker } from "@faker-js/faker";
 import { BsTelephone } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 
-const WidgetOverview = () => {
+const WidgetOverview = ({selectedPerson}) => {
   return (
     <Stack
       height={"full"}
@@ -33,7 +33,7 @@ const WidgetOverview = () => {
       </StackItem>
       <StackItem>
         <Center fontWeight={"medium"} fontSize="xl">
-          {faker.name.findName()}
+          {selectedPerson.patientName}
         </Center>
       </StackItem>
       <StackItem>

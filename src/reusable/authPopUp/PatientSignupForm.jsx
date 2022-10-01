@@ -5,6 +5,9 @@ import {
 import { subDistrictList } from "../../assets/variable/values";
 import PasswordInput from "./PaswordInput.jsx";
 import { EmailIcon } from "@chakra-ui/icons";
+import "./uploaderStyle.css"
+import { Widget } from "@uploadcare/react-widget";
+
 const PatientSignup = ({
   handleSignupChange,
   signupInfo,
@@ -82,6 +85,21 @@ const PatientSignup = ({
         />
       </FormControl>
 
+      <FormControl display='flex' mt='1.4rem' alignItems='center'>
+        <Widget onChange={(fileInfo) => 
+         setSignupInfo(prevState => ({
+              ...prevState,
+              ["patientImageUUID"]: fileInfo.uuid
+            }))
+        }
+          publicKey="6c3c08a73b43963de87b"
+          clearable
+          imagesOnly
+          tabs="file gdrive url"
+
+
+        />
+      </FormControl>
     </ModalBody>
   );
 

@@ -1,0 +1,13 @@
+.uploadcare--widget__button, .uploadcare--widget__button:hover {
+	padding: 5px;
+	background-color: #818181b1;
+	border: 0px solid #6f6d70;
+	border-radius: 0;
+	border-radius: 4px;
+	color: rgb(255, 255, 255);
+	
+}
+
+.uploadcare--widget__button:hover {
+	background-color: rgba(31, 103, 205, 0.929);
+}

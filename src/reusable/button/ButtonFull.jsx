@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 
-const ButtonFull = ({ children, px, py, fontSize, fontWeight }) => {
+const ButtonFull = ({ children, px, py, fontSize, fontWeight, fontColor, onClick }) => {
   return (
     <Button
+    onClick={onClick}
       colorScheme="none"
       variant="none"
       textDecoration="none"
@@ -12,7 +13,7 @@ const ButtonFull = ({ children, px, py, fontSize, fontWeight }) => {
       letterSpacing=".25px"
       px={px}
       py={py}
-      color="#fff"
+      color={fontColor? fontColor : "#fff" }
       border="none"
       // borderRadius="xl"
       borderRadius="xl"

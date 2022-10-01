@@ -26,7 +26,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
   useEffect(() => {
     setPersonFilteredList(
       personList.filter(({ doctorName }) => {
-        return doctorName.toLowerCase().includes(term.toLowerCase());
+        return doctorName.toLowerCase().includ.es(term.toLowerCase());
       })
     );
   }, [term]);

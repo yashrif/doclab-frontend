@@ -5,6 +5,8 @@ import {
 import { subDistrictList } from "../../assets/variable/values";
 import PasswordInput from "./PaswordInput.jsx";
 import { EmailIcon } from "@chakra-ui/icons";
+import { Widget } from "@uploadcare/react-widget";
+import "./uploaderStyle.css"
 const DoctorSignup = ({
   handleSignupChange,
   signupInfo,
@@ -12,6 +14,7 @@ const DoctorSignup = ({
   setSignupInfo
 
 }) => {
+ 
 
   return (
     <ModalBody mt='1.8rem' pb='1.4rem' >
@@ -88,8 +91,27 @@ const DoctorSignup = ({
           value={signupInfo.doctorLocation}
           name="doctorLocation" />
       </FormControl>
+      <FormControl display='flex' mt='1.4rem' alignItems='center'>
+        <Widget onChange={(fileInfo) => 
+         setSignupInfo(prevState => ({
+              ...prevState,
+              ["doctorImageUUID"]: fileInfo.uuid
+            }))
+        }
+          publicKey="6c3c08a73b43963de87b"
+          clearable
+          imagesOnly
+          previewStep
+          crop="400x300 upscale"
+          tabs="file gdrive url"
+
+          
+        />
+      </FormControl>
+
 
     </ModalBody>
+    
   );
 
 }

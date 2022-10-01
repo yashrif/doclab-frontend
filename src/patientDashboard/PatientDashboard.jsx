@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Grid, GridItem, Box, Center, Flex, Link } from "@chakra-ui/react";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
@@ -9,8 +9,25 @@ import PatientHealth from "./PatientHealth.jsx";
 import PatientSchedule from "./PatientSchedule.jsx";
 import PatientActivities from "./PatientActivities.jsx";
 import theme from "../styling/theme.jsx";
+import apiGet from "../hooks/apiGet.jsx";
+import { SERVER } from "../assets/variable/values.js";
 
 const PatientDashboard = () => {
+
+  const [person, , fetchperson] = apiGet();
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  useEffect(() => {
+    fetchperson(`${SERVER}/auth`, {
+      headers: { TOKEN: localStorage.getItem("patientToken") },
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log(person["authPatient"]);
+    setSelectedPerson(person["authPatient"]);
+  }, [person]);
+
   return (
     <Box overflow="hidden" bg={"bgContainer"}>
       <Grid
@@ -119,7 +136,7 @@ const PatientDashboard = () => {
             height={"full"}
           >
             <GridItem rowSpan={"2"}>
-              <WidgetOverview />
+             {selectedPerson && <WidgetOverview selectedPerson={selectedPerson}/>}
             </GridItem>
 
             <PatientHealth />
@@ -133,6 +150,7 @@ const PatientDashboard = () => {
         </GridItem>
       </Grid>
     </Box>
+   
   );
 };
 

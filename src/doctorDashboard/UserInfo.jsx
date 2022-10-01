@@ -13,7 +13,7 @@ const UserInfo = () => {
 
   useEffect(() => {
     fetchperson(`${SERVER}/auth`, {
-      headers: { TOKEN: "2e6600ff-ed5f-4d14-8ca9-3eecc8905496" },
+      headers: { TOKEN: localStorage.getItem("doctorToken") },
     });
   }, []);
 

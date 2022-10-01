@@ -4,10 +4,17 @@ import {
   ModalHeader
   , Text
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+
 
 const LoginSuccess = ({
-  onModalClose
+  onModalClose, setIsLoggedIn
 }) => {
+  useEffect(() => {
+    setIsLoggedIn(true);
+  }, []);
+
+
   return (
     <ModalContent my='auto' p='2rem' borderRadius='11px'>
 

@@ -14,7 +14,10 @@ const apiLogin = () => {
         data["doctorSubDistrict"] == "" ||
         data["doctorSpeciality"] == "" ||
         data["doctorClinicName"] == "" ||
-        data["doctorLocation"])
+        data["doctorLocation"] == "" ||
+        data["doctorImageUUID"] == ""
+        
+        )
         return false;
       else return true;
 
@@ -23,7 +26,8 @@ const apiLogin = () => {
       if (data["patientName"] == "" ||
         data["patientGender"] == "" ||
         data["patientPhone"] == "" ||
-        data["patientSubDistrict"] == "")
+        data["patientSubDistrict"] == "" ||
+        data["patientImageUUID"] == "")
         return false;
       else return true;
     }
@@ -41,6 +45,7 @@ const apiLogin = () => {
         doctorSpeciality: data["doctorSpeciality"],
         doctorClinicName: data["doctorClinicName"],
         doctorLocation: data["doctorLocation"],
+        doctorImageUUID : data["doctorImageUUID"]
 
       }
     else if (catagory == "patient")
@@ -49,6 +54,7 @@ const apiLogin = () => {
         patientGender: data["patientGender"],
         patientPhone: data["patientPhone"],
         patientSubDistrict: data["patientSubDistrict"],
+        patientImageUUID : data["patientImageUUID"]
       }
 
     axios.post(`${SERVER}/auth/signup`, {
@@ -56,7 +62,7 @@ const apiLogin = () => {
       authPassword: data["authPassword"]
     })
       .then((response) => {
-        return axios.post(`${SERVER}/auth/login`, response.data);
+        return axios.post(`${SERVER}/auth/getToken`, response.data);
       })
       .then((response) => {
         return axios.post(url, credentials, { headers: { TOKEN: response.data } });

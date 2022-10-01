@@ -490,6 +490,7 @@ export const initialSignup = {
   doctorSubDistrict: "",
   doctorSpeciality: "",
   doctorClinicName: "",
+  doctorImageUUID: "",
   authEmail: "",
   authPassword: "",
   doctorLocation: "",
@@ -497,7 +498,8 @@ export const initialSignup = {
   patientGender: "",
   patientPhone: "",
   patientSubDistrict: "",
+  patientImageUUID: "",
 };
 
-// export const SERVER = "http://localhost:8085";
-export const SERVER = "https://doclab24.herokuapp.com";
+export const SERVER = "http://localhost:8085";
+//export const SERVER = "https://doclab24.herokuapp.com";

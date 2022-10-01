@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
+import { useState } from "react";
 import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
 import AuthPopUp from "./authPopUp/AuthPopUp.jsx";
 import ButtonFull from "./button/ButtonFull.jsx";
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("doctorToken") != null
+    || localStorage.getItem("patientToken") != null);
   const style = {
     headerNavList: {
       listStyle: "none",
@@ -107,18 +111,22 @@ const Header = () => {
                 Find Doctor
               </Link>
             </li>
+            
             <li className="header-global-nav-link ">
-              <Link className="header-link" to="/doctorDashboard">
-                Doctor
+              <Link className="header-link" 
+              to={ localStorage.getItem("doctorToken")!=null ?
+                   "/doctorDashboard" :
+                   localStorage.getItem("patientToken")!=null ? "/patientDashboard" : ""}>
+                Dashboard
               </Link>
             </li>
 
-            <li className="header-global-nav-link ">
+            {/* <li className="header-global-nav-link ">
               <Link className="header-link" to="/patientDashboard">
                 Patient
               </Link>
 
-            </li>
+            </li> */}
           </ul>
         </nav>
         <nav style={{ justifySelf: "end" }}>
@@ -136,18 +144,36 @@ const Header = () => {
                 Services
               </HashLink>
             </li>
-            <AuthPopUp>
-              <li className="header-page-nav-link ">
-                <ButtonFull
-                  py="18"
-                  px="24"
-                  fontSize={"17"}
-                  fontWeight={"medium"}
-                >
-                  Login
-                </ButtonFull>
-              </li>
-            </AuthPopUp>
+            {(isLoggedIn) ?
+              <ButtonFull
+                py="18"
+                px="24"
+                fontSize={"17"}
+                fontWeight={"medium"}
+                fontColor={"#fff"}
+                onClick={() => {
+                  localStorage.clear();
+                  setIsLoggedIn(false);
+                }}
+              >
+                Logout
+              </ButtonFull>
+              :
+              <AuthPopUp setIsLoggedIn={setIsLoggedIn}>
+                <li className="header-page-nav-link ">
+                  <ButtonFull
+                    py="18"
+                    px="24"
+                    fontSize={"17"}
+                    fontWeight={"medium"}
+
+                  >
+                    Login
+                  </ButtonFull>
+                </li>
+              </AuthPopUp>
+            }
+
           </ul>
         </nav>
       </header>

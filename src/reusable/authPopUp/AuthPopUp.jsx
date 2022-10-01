@@ -17,7 +17,7 @@ import apiSignup from "../../hooks/apiSignup.jsx";
 // fetch functions
 // const [signupData, signupError, signupFetch] = apiSignup();
 
-const AuthPopUp = ({ children }) => {
+const AuthPopUp = ({ children, setIsLoggedIn }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = React.useRef(null)
@@ -45,7 +45,7 @@ const AuthPopUp = ({ children }) => {
   // Login API connections
 
   const [loginData, loginError, loginFetch] = apiLogin();
-
+  
   useEffect(() => {
     const credentials = { "authEmail": email, "authPassword": password };
     if (validateEmail(email ?? "") && password.length < 21) {
@@ -58,7 +58,11 @@ const AuthPopUp = ({ children }) => {
   useEffect(() => {
     if (loginData != undefined) {
       setCurrWindow('signInSuccess');
-      localStorage.setItem('TOKEN', loginData);
+      if (loginData.authDoctor != null)
+        localStorage.setItem('doctorToken', loginData.authToken);
+      else if (loginData.authPatient != null)
+        localStorage.setItem('patientToken', loginData.authToken);
+
       console.log(loginData);
 
       setLoading(false);
@@ -104,7 +108,7 @@ const AuthPopUp = ({ children }) => {
     }
   }, [signupError]);
 
-  
+
 
 
 
@@ -157,7 +161,7 @@ const AuthPopUp = ({ children }) => {
                   setSignupInfo={setSignupInfo}
                   setDoSignup={setDoSignup}
                   doSignup={doSignup}
-                  setCatagory = {setCatagory}
+                  setCatagory={setCatagory}
                 />;
               case 'signUpSuccess':
                 return <SignupSuccess
@@ -166,6 +170,7 @@ const AuthPopUp = ({ children }) => {
                 />;
               case 'signInSuccess':
                 return <LoginSuccess
+                setIsLoggedIn = {setIsLoggedIn}
                   setCurrWindow={setCurrWindow}
                   onModalClose={onModalClose}
                 />;
