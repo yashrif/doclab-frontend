@@ -123,7 +123,10 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                 gridRow: "1/ -3",
                 // alignSelf: "flex-start",
               }}
-              src={faker.image.avatar()}
+              src={person[`${category}ImageUUID`]?
+              'https://ucarecdn.com/' + person[`${category}ImageUUID`] + '/'
+              :
+              faker.image.avatar()}
               alt="avatar"
             />
 

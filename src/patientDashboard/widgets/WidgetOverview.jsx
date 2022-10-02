@@ -24,7 +24,7 @@ const WidgetOverview = ({selectedPerson}) => {
       <StackItem>
         <Center>
           <Image
-            src={faker.image.avatar()}
+            src={'https://ucarecdn.com/' + selectedPerson.patientImageUUID + '/'}
             borderRadius="50%"
             w={"36"}
             h="36"

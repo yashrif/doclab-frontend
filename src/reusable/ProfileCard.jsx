@@ -32,12 +32,14 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
       <img
         style={{
           width: "auto",
-          height: "100%",
+          height: "150px",
           display: "block",
           borderTopLeftRadius: "1.1rem",
           borderBottomLeftRadius: "1.1rem",
         }}
-        src={faker.image.avatar()}
+        src={selectedPerson.doctorImageUUID ? 
+          'https://ucarecdn.com/' + selectedPerson.doctorImageUUID + '/'
+          : faker.image.avatar()}
         alt={`${category}`}
       />
 

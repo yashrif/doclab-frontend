@@ -96,6 +96,7 @@ const PatientSignup = ({
           clearable
           imagesOnly
           tabs="file gdrive url"
+          imageShrink="400x300"
 
 
         />

@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Center, Grid, GridItem, Spinner } from "@chakra-ui/react";
 import Statistic from "./Statistic.jsx";
 // import PendingAppointmets from "./PendingAppointments.jsx";
 import PendingAppointments from "./PendingAppointments.jsx";
 import ProfileCard from "../reusable/ProfileCard.jsx";
-import apiGet from "../hooks/apiGet.jsx";
-import { SERVER } from "../assets/variable/values.js";
 
-const UserInfo = () => {
-  const [person, , fetchperson] = apiGet();
-  const [selectedPerson, setSelectedPerson] = useState(null);
 
-  useEffect(() => {
-    fetchperson(`${SERVER}/auth`, {
-      headers: { TOKEN: localStorage.getItem("doctorToken") },
-    });
-  }, []);
-
-  useEffect(() => {
-    setSelectedPerson(person["authDoctor"]);
-  }, [person]);
-
+const UserInfo = ({
+  selectedPerson,
+  allAppointments,
+  setChangedAppointmentId,
+  setAcceptAppointment
+}) => {
   return (
     <Grid
       templateColumns="1fr"
@@ -34,8 +25,8 @@ const UserInfo = () => {
       borderRadius="3xl"
       py="16"
       px="24"
-      // overflow="hidden"
-      // alignItems="strech"
+    // overflow="hidden"
+    // alignItems="strech"
     >
       <GridItem>
         {selectedPerson ? (
@@ -74,7 +65,11 @@ const UserInfo = () => {
       </GridItem> */}
 
       <GridItem overflow="hidden">
-        <PendingAppointments />
+        <PendingAppointments
+          allAppointments={allAppointments}
+          setChangedAppointmentId={setChangedAppointmentId}
+          setAcceptAppointment={setAcceptAppointment}
+        />
       </GridItem>
     </Grid>
   );

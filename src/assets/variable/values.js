@@ -501,5 +501,7 @@ export const initialSignup = {
   patientImageUUID: "",
 };
 
-export const SERVER = "http://localhost:8085";
+//export const SERVER = "http://localhost:8085";
 //export const SERVER = "https://doclab24.herokuapp.com";
+
+export const SERVER = "https://doclab-backend.herokuapp.com"
