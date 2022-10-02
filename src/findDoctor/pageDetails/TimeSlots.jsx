@@ -19,7 +19,7 @@ const TimeSlot = () => {
   useEffect(() => {
     let tempDate = new Date();
     tempDate.setDate(tempDate.getDate() + increment);
-    console.log(tempDate);
+    // console.log(tempDate);
     setSelectedDate(tempDate);
   }, [increment]);
 
@@ -46,7 +46,7 @@ const TimeSlot = () => {
     },
   };
 
-  console.log("selected date: " + selectedDate.toLocaleDateString());
+  // console.log("selected date: " + selectedDate.toLocaleDateString());
 
   const renderedDate = (
     <p
@@ -65,6 +65,29 @@ const TimeSlot = () => {
     </p>
   );
 
+  const scheduleGenerator = (times, period) => {
+    const render = times.map((time, index) => {
+      return (
+        <p
+          key={index}
+          style={{
+            display: "inline-block",
+            color: `${theme.colors.primary.base}`,
+            fontSize: "1rem",
+            padding: ".4rem .8rem",
+            border: `1px solid ${theme.colors.primary.base}`,
+            borderRadius: ".5rem",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {time} {period}
+        </p>
+      );
+    });
+
+    return render;
+  };
+
   return (
     <>
       <style>
@@ -77,12 +100,16 @@ const TimeSlot = () => {
          .time-slot ion-icon:active {
             transform: scale(1.2);
          }
+
+         ::-webkit-scrollbar {
+          height: .8rem;
+        }
         `}
       </style>
       <div
         style={{
           fontSize: "1.4rem",
-          padding: "1.6rem 1.6rem",
+          padding: "1.6rem 1.6rem 0",
           backgroundColor: `${theme.typography.colors.background.personCard}`,
           borderRadius: "1.1rem",
           borderBottomRightRadius: "1.1rem",
@@ -140,6 +167,7 @@ const TimeSlot = () => {
             gap: "1.2rem",
             justifyContent: "space-between",
             alignItems: "center",
+            marginBottom: "2.4rem",
           }}
         >
           <ion-icon
@@ -187,6 +215,53 @@ const TimeSlot = () => {
             }}
             name="chevron-forward-outline"
           ></ion-icon>
+        </div>
+
+        <div
+          style={{
+            paddingBottom: "1.2rem",
+            overflowX: "scroll",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "1.3rem",
+              fontWeight: "500",
+              color: `${theme.colors.font.focused}`,
+              margin: ".8rem 0",
+            }}
+          >
+            Morning
+          </h3>
+          <div style={{ display: "flex", gap: ".8rem" }}>
+            {scheduleGenerator(["08:00", "08:30", "09:00"], "AM")}
+          </div>
+          <h3
+            style={{
+              fontSize: "1.3rem",
+              fontWeight: "500",
+              color: `${theme.colors.font.focused}`,
+              margin: ".8rem 0",
+            }}
+          >
+            Evening
+          </h3>
+          <div style={{ display: "flex", gap: ".8rem" }}>
+            {scheduleGenerator(
+              [
+                "05:00",
+                "05:30",
+                "06:00",
+                "06:30",
+                "07:00",
+                "07:30",
+                "08:00",
+                "08:30",
+                "09:00",
+              ],
+              "PM"
+            )}
+          </div>
         </div>
       </div>
     </>

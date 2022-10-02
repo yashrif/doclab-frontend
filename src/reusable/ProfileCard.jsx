@@ -31,15 +31,17 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
     <div style={{ display: "grid", gridTemplateColumns: "auto 1fr" }}>
       <img
         style={{
-          width: "auto",
-          height: "150px",
+          maxWidth: "200px",
+          maxHeight: "210px",
           display: "block",
           borderTopLeftRadius: "1.1rem",
           borderBottomLeftRadius: "1.1rem",
         }}
-        src={selectedPerson.doctorImageUUID ? 
-          'https://ucarecdn.com/' + selectedPerson.doctorImageUUID + '/'
-          : faker.image.avatar()}
+        src={
+          selectedPerson.doctorImageUUID
+            ? "https://ucarecdn.com/" + selectedPerson.doctorImageUUID + "/"
+            : faker.image.avatar()
+        }
         alt={`${category}`}
       />
 
@@ -97,7 +99,11 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
                   name="checkmark-circle-outline"
                 ></ion-icon>
                 <p
-                  style={{ fontSize: "1rem", color: "#399147", fontWeight: "500" }}
+                  style={{
+                    fontSize: "1rem",
+                    color: "#399147",
+                    fontWeight: "500",
+                  }}
                 >
                   Verified
                 </p>
@@ -218,10 +224,9 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
         </Grid>
         {entity.includes("Info") && (
           <p style={{ marginTop: ".8rem", lineHeight: "1.5" }}>
-            {selectedPerson[`${category}Info`]}
-            {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius
-          quisquam, molestiae commodi sunt quibusdam error illo hic voluptatum
-          vero, quas est. */}
+            {selectedPerson[`${category}Info`]
+              ? selectedPerson[`${category}Info`]
+              : "No information was added"}
           </p>
         )}
       </div>

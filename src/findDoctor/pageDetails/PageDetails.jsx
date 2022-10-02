@@ -73,7 +73,7 @@ const PageDetails = ({ category, selectedPerson }) => {
           width: "100%",
           height: "100%",
           display: "grid",
-          gridTemplateColumns: "11fr 3fr",
+          gridTemplateColumns: "11fr 4fr",
           gridTemplateRows: "auto 1fr",
           alignItems: "start",
           columnGap: `${theme.typography.sectionGap.medium}`,
@@ -106,6 +106,7 @@ const PageDetails = ({ category, selectedPerson }) => {
           style={{
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
             alignSelf: "stretch",
+            overflow: "hidden",
           }}
         >
           <TimeSlot category={category} selectedPerson={selectedPerson} />
