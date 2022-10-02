@@ -1,5 +1,5 @@
 import React from "react";
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
 
 const style = {
@@ -28,7 +28,7 @@ const style = {
 const PageSummary = ({
   category,
   displayDescription,
-  numberofPatients,
+  // numberofPatients,
   numberOfPerson,
 }) => {
   return (
@@ -45,7 +45,7 @@ const PageSummary = ({
           }
         `}
       </style>
-      <div
+      {/* <div
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -71,7 +71,7 @@ const PageSummary = ({
           </span>{" "}
           Patients
         </p>
-      </div>
+      </div> */}
 
       {displayDescription && (
         <div

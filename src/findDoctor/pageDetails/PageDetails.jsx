@@ -75,7 +75,7 @@ const PageDetails = ({ category, selectedPerson }) => {
           display: "grid",
           gridTemplateColumns: "11fr 4fr",
           gridTemplateRows: "auto 1fr",
-          alignItems: "start",
+          alignItems: "stretch",
           columnGap: `${theme.typography.sectionGap.medium}`,
           rowGap: `${theme.typography.sectionGap.mediumLow}`,
           overflow: "hidden",
@@ -83,6 +83,9 @@ const PageDetails = ({ category, selectedPerson }) => {
       >
         <div
           style={{
+            // alignSelf: "stretch",
+            borderRadius: "1.1rem",
+            backgroundColor: `${theme.typography.colors.background.personCard}`,
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
@@ -104,8 +107,8 @@ const PageDetails = ({ category, selectedPerson }) => {
 
         <div
           style={{
+            // alignSelf: "stretch",
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
-            alignSelf: "stretch",
             overflow: "hidden",
           }}
         >

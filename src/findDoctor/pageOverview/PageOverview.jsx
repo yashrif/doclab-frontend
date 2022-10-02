@@ -113,7 +113,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
-          <div style={{ margin: "1.6rem 2.4rem" }}>
+          <div style={{ margin: "2.4rem 2.4rem 1.6rem" }}>
             <div style={{ marginBottom: "2rem" }}>
               <PageSummary
                 displayDescription={displayDescription}
@@ -149,7 +149,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
           className={`${!displayDescription ? "slide-up" : "slide-down"}`}
           style={{
             height: "100%",
-            padding: "1.6rem 0",
+            padding: "1.2rem 0",
             marginTop: "0.4rem",
             borderRadius: "1.1rem",
             backgroundColor: `${theme.typography.colors.background.container}`,

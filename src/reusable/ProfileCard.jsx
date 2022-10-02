@@ -28,10 +28,17 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr" }}>
+    <div
+      style={{
+        height: "100%",
+        display: "grid",
+        gridTemplateColumns: "auto 1fr",
+        alignItems: "stretch",
+      }}
+    >
       <img
         style={{
-          maxWidth: "200px",
+          maxWidth: "180px",
           maxHeight: "210px",
           display: "block",
           borderTopLeftRadius: "1.1rem",
@@ -49,9 +56,6 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
         style={{
           fontSize: "1.4rem",
           padding: "1.6rem 3.2rem",
-          backgroundColor: `${theme.typography.colors.background.personCard}`,
-          borderTopRightRadius: "1.1rem",
-          borderBottomRightRadius: "1.1rem",
 
           display: "flex",
           flexDirection: "column",

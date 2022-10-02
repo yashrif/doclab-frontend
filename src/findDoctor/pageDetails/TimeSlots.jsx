@@ -184,7 +184,7 @@ const TimeSlot = () => {
             style={{
               ...style.icon,
               ...style.iconRounded,
-              fontSize: "1.2rem",
+              fontSize: "1.4rem",
               padding: ".4rem",
               color: "#fff",
               backgroundColor: "rgba(28, 126, 214, .70)",
@@ -205,7 +205,7 @@ const TimeSlot = () => {
             style={{
               ...style.icon,
               ...style.iconRounded,
-              fontSize: "1.2rem",
+              fontSize: "1.4rem",
               padding: ".4rem",
               color: "#fff",
               backgroundColor: "rgba(28, 126, 214, .70)",
@@ -221,6 +221,7 @@ const TimeSlot = () => {
           style={{
             paddingBottom: "1.2rem",
             overflowX: "scroll",
+            marginBottom: ".4rem",
           }}
         >
           <h3
