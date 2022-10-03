@@ -32,7 +32,6 @@ const Accordion = ({ selectedPerson, category, number }) => {
         onClick={() => setisOpen(!isOpen)}
         onKeyDown={() => {}}
         style={{
-          cursor: "pointer",
           padding: "2.2rem 2.4rem 2.4rem",
           borderRadius: ".9rem  ",
           boxShadow: "0 0 1.6rem rgba(0, 0, 0, 0.08)",

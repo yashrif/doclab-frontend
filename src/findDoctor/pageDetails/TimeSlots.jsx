@@ -68,20 +68,28 @@ const TimeSlot = () => {
   const scheduleGenerator = (times, period) => {
     const render = times.map((time, index) => {
       return (
-        <p
+        <div
           key={index}
-          style={{
-            display: "inline-block",
-            color: `${theme.colors.primary.base}`,
-            fontSize: "1rem",
-            padding: ".4rem .8rem",
-            border: `1px solid ${theme.colors.primary.base}`,
-            borderRadius: ".5rem",
-            whiteSpace: "nowrap",
-          }}
+          role={"button"}
+          tabIndex={index}
+          onClick={() => {}}
+          onKeyDown={() => {}}
         >
-          {time} {period}
-        </p>
+          <p
+            style={{
+              display: "inline-block",
+              color: `${theme.colors.primary.base}`,
+              fontSize: "1rem",
+              fontWeight: "500",
+              padding: ".4rem .8rem",
+              border: `1px solid ${theme.colors.primary.base}`,
+              borderRadius: ".5rem",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {time} {period}
+          </p>
+        </div>
       );
     });
 
