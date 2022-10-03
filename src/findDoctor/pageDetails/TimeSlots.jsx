@@ -100,18 +100,26 @@ const TimeSlot = () => {
     <>
       <style>
         {`
-         .time-slot ion-icon:hover {
+         .time-slot--date ion-icon:hover {
           background-color: rgba(28, 126, 214) !important;
           box-shadow: inset 0 0 0 0.25rem rgba(28, 126, 214, 0.25),  0 0 1.2rem rgba(28, 126, 214, 0.5) !important;
          }
 
-         .time-slot ion-icon:active {
+         .time-slot--date ion-icon:active {
             transform: scale(1.2);
          }
 
          ::-webkit-scrollbar {
           height: .8rem;
         }
+
+          @keyframes slide-down-reset {
+            0% {
+              opacity: 0;
+              transform: translate(-50%, -100%);
+
+            }
+          }
         `}
       </style>
       <div
@@ -168,8 +176,9 @@ const TimeSlot = () => {
             </p> */}
 
         <div
-          className="time-slot"
+          className="time-slot--date"
           style={{
+            position: "relative",
             fontSize: "1.3rem",
             display: "flex",
             gap: "1.2rem",
@@ -202,7 +211,45 @@ const TimeSlot = () => {
             }}
             name="chevron-back-outline"
           ></ion-icon>
+
+          {increment != 0 && (
+            <div
+              className="btn"
+              role={"button"}
+              tabIndex={0}
+              onClick={() => {
+                setIncrement(0);
+              }}
+              onKeyDown={() => {}}
+              style={{
+                position: "absolute",
+                top: "190%",
+                left: "50%",
+                zIndex: "100",
+                transform: "translate(-50%, -50%)",
+                animation: "slide-down-reset .3s ease-in-out",
+              }}
+            >
+              <ion-icon
+                style={{
+                  ...style.icon,
+                  ...style.iconRounded,
+                  fontSize: "1.4rem",
+                  padding: ".4rem",
+                  color: "#fff",
+                  backgroundColor: "rgba(28, 126, 214, .70)",
+                  boxShadow: "0 -.4rem .4rem rgba(0, 0, 0, .15)",
+                  cursor: "pointer",
+                  transition: "all .3s",
+                  transform: "rotateX(180deg)",
+                }}
+                name="refresh-outline"
+              ></ion-icon>
+            </div>
+          )}
+
           {renderedDate}
+
           <ion-icon
             className="btn"
             role={"button"}
