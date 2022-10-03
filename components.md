@@ -19,6 +19,8 @@
 
 #### Badge Profile
 
+#### AppointmentPopUp
+
 #### AuthPopUp
 
 - Login Form

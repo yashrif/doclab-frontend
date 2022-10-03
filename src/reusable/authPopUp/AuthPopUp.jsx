@@ -1,8 +1,4 @@
-import {
-  Box, Modal,
-  ModalOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import LoginForm from "./LoginForm.jsx";
 import { useState } from "react";
@@ -17,37 +13,36 @@ import apiSignup from "../../hooks/apiSignup.jsx";
 // fetch functions
 // const [signupData, signupError, signupFetch] = apiSignup();
 
-const AuthPopUp = ({ children, setIsLoggedIn }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const initialRef = React.useRef(null)
-  const finalRef = React.useRef(null)
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
   const [password, setPassword] = useState("");
   const [doLogin, setDoLogin] = useState(1);
   const [doSignup, setDoSignup] = useState(1);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [currWindow, setCurrWindow] = useState('logInWindow')
+  const [currWindow, setCurrWindow] = useState(
+    initialWindow ? initialWindow : "logInWindow"
+  );
   const [signupInfo, setSignupInfo] = useState(initialSignup);
   const [catagory, setCatagory] = useState("doctor");
 
   const onModalClose = () => {
-    setCurrWindow('logInWindow');
-    setPassword('');
-    setEmail('');
+    setCurrWindow(initialWindow ? initialWindow : "logInWindow");
+    setPassword("");
+    setEmail("");
     setSignupInfo(initialSignup);
     onClose();
-  }
-
-
-
+  };
 
   // Login API connections
 
   const [loginData, loginError, loginFetch] = apiLogin();
-  
+
   useEffect(() => {
-    const credentials = { "authEmail": email, "authPassword": password };
+    const credentials = { authEmail: email, authPassword: password };
     if (validateEmail(email ?? "") && password.length < 21) {
       setLoading(true);
       console.log(credentials);
@@ -57,11 +52,11 @@ const AuthPopUp = ({ children, setIsLoggedIn }) => {
 
   useEffect(() => {
     if (loginData != undefined) {
-      setCurrWindow('signInSuccess');
+      setCurrWindow("signInSuccess");
       if (loginData.authDoctor != null)
-        localStorage.setItem('doctorToken', loginData.authToken);
+        localStorage.setItem("doctorToken", loginData.authToken);
       else if (loginData.authPatient != null)
-        localStorage.setItem('patientToken', loginData.authToken);
+        localStorage.setItem("patientToken", loginData.authToken);
 
       console.log(loginData);
 
@@ -77,10 +72,6 @@ const AuthPopUp = ({ children, setIsLoggedIn }) => {
     }
   }, [loginError]);
 
-
-
-
-
   // Signup API connections
   const [signupData, signupError, signupFetch, signupValidate] = apiSignup();
 
@@ -94,7 +85,7 @@ const AuthPopUp = ({ children, setIsLoggedIn }) => {
 
   useEffect(() => {
     if (signupData != undefined) {
-      setCurrWindow('signUpSuccess');
+      setCurrWindow("signUpSuccess");
       console.log(signupData);
 
       setLoading(false);
@@ -108,11 +99,6 @@ const AuthPopUp = ({ children, setIsLoggedIn }) => {
     }
   }, [signupError]);
 
-
-
-
-
-
   return (
     <>
       <Box onClick={onOpen} ref={finalRef}>
@@ -125,19 +111,19 @@ const AuthPopUp = ({ children, setIsLoggedIn }) => {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
-        size='xl'
+        size="xl"
         onClick={() => console.log("clicked")}
       >
         <ModalOverlay
-          bg='blackAlpha.300'
-          backdropFilter='auto'
-          backdropBlur='2px'
+          bg="blackAlpha.300"
+          backdropFilter="auto"
+          backdropBlur="2px"
         />
-        {
-          (() => {
-            switch (currWindow) {
-              case 'logInWindow':
-                return <LoginForm
+        {(() => {
+          switch (currWindow) {
+            case "logInWindow":
+              return (
+                <LoginForm
                   initialRef={initialRef}
                   email={email}
                   setEmail={setEmail}
@@ -150,8 +136,10 @@ const AuthPopUp = ({ children, setIsLoggedIn }) => {
                   setLoading={setLoading}
                   onModalClose={onModalClose}
                 />
-              case 'signUpWindow':
-                return <SignupForm
+              );
+            case "signUpWindow":
+              return (
+                <SignupForm
                   initialRef={initialRef}
                   setCurrWindow={setCurrWindow}
                   loading={loading}
@@ -162,25 +150,27 @@ const AuthPopUp = ({ children, setIsLoggedIn }) => {
                   setDoSignup={setDoSignup}
                   doSignup={doSignup}
                   setCatagory={setCatagory}
-                />;
-              case 'signUpSuccess':
-                return <SignupSuccess
+                />
+              );
+            case "signUpSuccess":
+              return (
+                <SignupSuccess
                   onModalClose={onModalClose}
                   setCurrWindow={setCurrWindow}
-                />;
-              case 'signInSuccess':
-                return <LoginSuccess
-                setIsLoggedIn = {setIsLoggedIn}
+                />
+              );
+            case "signInSuccess":
+              return (
+                <LoginSuccess
+                  setIsLoggedIn={setIsLoggedIn}
                   setCurrWindow={setCurrWindow}
                   onModalClose={onModalClose}
-                />;
-            }
-          })()
-        }
+                />
+              );
+          }
+        })()}
       </Modal>
     </>
   );
-
-
-}
+};
 export default AuthPopUp;

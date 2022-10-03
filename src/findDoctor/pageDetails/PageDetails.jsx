@@ -84,8 +84,6 @@ const PageDetails = ({ category, selectedPerson }) => {
         <div
           style={{
             // alignSelf: "stretch",
-            borderRadius: "1.1rem",
-            backgroundColor: `${theme.typography.colors.background.personCard}`,
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >

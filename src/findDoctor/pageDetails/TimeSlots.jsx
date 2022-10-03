@@ -61,8 +61,8 @@ const TimeSlot = ({ selectedPerson }) => {
       {selectedDate.toLocaleDateString() === TODAY.toLocaleDateString()
         ? "Today"
         : selectedDate.toLocaleDateString() === TOMORROW.toLocaleDateString()
-          ? "Tomorrow"
-          : selectedDate.toLocaleDateString("en-US", DATE_FOTMAT)}
+        ? "Tomorrow"
+        : selectedDate.toLocaleDateString("en-US", DATE_FOTMAT)}
     </p>
   );
 
@@ -73,14 +73,15 @@ const TimeSlot = ({ selectedPerson }) => {
           key={index}
           role={"button"}
           tabIndex={index}
-          onClick={() => { }}
-          onKeyDown={() => { }}
+          onClick={() => {}}
+          onKeyDown={() => {}}
         >
           <AppointmentPopUp
             time={time}
             selectedPerson={selectedPerson}
             period={period}
-            selectedDate={selectedDate}>
+            selectedDate={selectedDate}
+          >
             <button
               style={{
                 display: "inline-block",
@@ -227,7 +228,7 @@ const TimeSlot = ({ selectedPerson }) => {
               onClick={() => {
                 setIncrement(0);
               }}
-              onKeyDown={() => { }}
+              onKeyDown={() => {}}
               style={{
                 position: "absolute",
                 top: "190%",
@@ -296,8 +297,22 @@ const TimeSlot = ({ selectedPerson }) => {
           >
             Morning
           </h3>
-          <div style={{ display: "flex", gap: ".8rem" }}>
-            {scheduleGenerator(["08:00", "08:30", "09:00"], "AM")}
+          <div style={{ display: "flex", gap: ".8rem", padding: "0 .4rem" }}>
+            {scheduleGenerator(
+              [
+                "07:00",
+                "07:30",
+                "08:00",
+                "08:30",
+                "09:00",
+                "09:30",
+                "10:00",
+                "10:30",
+                "11:00",
+                "11:30",
+              ],
+              "AM"
+            )}
           </div>
           <h3
             style={{
@@ -309,9 +324,12 @@ const TimeSlot = ({ selectedPerson }) => {
           >
             Evening
           </h3>
-          <div style={{ display: "flex", gap: ".8rem" }}>
+          <div style={{ display: "flex", gap: ".8rem", padding: "0 .4rem" }}>
             {scheduleGenerator(
               [
+                "12:00",
+                "12:30",
+                "01:00",
                 "05:00",
                 "05:30",
                 "06:00",
@@ -321,6 +339,8 @@ const TimeSlot = ({ selectedPerson }) => {
                 "08:00",
                 "08:30",
                 "09:00",
+                "09:30",
+                "10:00",
               ],
               "PM"
             )}

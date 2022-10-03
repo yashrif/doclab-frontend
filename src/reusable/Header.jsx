@@ -2,6 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { useState } from "react";
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
 import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
 import AuthPopUp from "./authPopUp/AuthPopUp.jsx";
@@ -12,6 +21,12 @@ const Header = () => {
     localStorage.getItem("doctorToken") != null ||
       localStorage.getItem("patientToken") != null
   );
+  const {
+    isOpen: isDashOpen,
+    onOpen: onDashOpen,
+    onClose: onDashClose,
+  } = useDisclosure();
+
   const style = {
     headerNavList: {
       listStyle: "none",
@@ -83,6 +98,68 @@ const Header = () => {
           /* box-shadow: "0 0 0 .1rem rgba(0, 0, 0, 0.1)", */
         }}
       >
+        <Modal isOpen={isDashOpen} onClose={onDashClose} size="2xl">
+          <ModalOverlay
+            bg="blackAlpha.300"
+            backdropFilter="auto"
+            backdropBlur="2px"
+          />
+          <ModalContent my="auto" py="32" px="12" borderRadius="11px">
+            <ModalCloseButton m={"4"} />
+            <ModalBody
+              fontSize={"xl"}
+              py="16"
+              textAlign={"center"}
+              fontWeight={"medium"}
+              mb={"8"}
+            >
+              You need to to be logged in to access dashboard
+            </ModalBody>
+
+            <ModalFooter mx={"auto"} display={"flex"} gap={"24"}>
+              <AuthPopUp
+                setIsLoggedIn={setIsLoggedIn}
+                initialWindow={"logInWindow"}
+              >
+                <ButtonFull
+                  py="16"
+                  px="20"
+                  fontSize={"14"}
+                  borderRadius={"lg"}
+                  fontWeight={"medium"}
+                  fontColor={"#fff"}
+                  onClick={() => {
+                    localStorage.clear();
+                    setIsLoggedIn(false);
+                  }}
+                >
+                  Login
+                </ButtonFull>
+              </AuthPopUp>
+
+              <AuthPopUp
+                setIsLoggedIn={setIsLoggedIn}
+                initialWindow={"signUpWindow"}
+              >
+                <ButtonFull
+                  py="16"
+                  px="20"
+                  fontSize={"14"}
+                  borderRadius={"lg"}
+                  fontWeight={"medium"}
+                  fontColor={"#fff"}
+                  onClick={() => {
+                    localStorage.clear();
+                    setIsLoggedIn(false);
+                  }}
+                >
+                  Sign Up
+                </ButtonFull>
+              </AuthPopUp>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
         <Link
           style={{ textDecoration: "none", height: "5.2rem", width: "13.8rem" }}
           to="/"
@@ -113,20 +190,26 @@ const Header = () => {
                 Find Doctor
               </Link>
             </li>
-            {(localStorage.getItem("doctorToken") !=null ||
-            localStorage.getItem("patientToken") != null)&&
+
             <li className="header-global-nav-link ">
               <Link
                 className="header-link"
+                onClick={() => {
+                  localStorage.getItem("doctorToken") == null &&
+                    localStorage.getItem("doctorToken") == null &&
+                    onDashOpen();
+                }}
                 to={
                   localStorage.getItem("doctorToken") != null
                     ? "/doctorDashboard"
-                    : "/patientDashboard"
+                    : localStorage.getItem("doctorToken") != null
+                    ? "/patientDashboard"
+                    : ""
                 }
               >
                 Dashboard
               </Link>
-            </li>}
+            </li>
 
             {/* <li className="header-global-nav-link ">
               <Link className="header-link" to="/patientDashboard">

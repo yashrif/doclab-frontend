@@ -34,10 +34,13 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
         display: "grid",
         gridTemplateColumns: "auto 1fr",
         alignItems: "stretch",
+        borderRadius: "1.1rem",
+        backgroundColor: `${theme.typography.colors.background.personCard}`,
       }}
     >
       <img
         style={{
+          maxWidth: "180px",
           maxHeight: "210px",
           display: "block",
           borderTopLeftRadius: "1.1rem",
