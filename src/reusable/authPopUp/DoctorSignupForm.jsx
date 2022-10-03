@@ -102,7 +102,7 @@ const DoctorSignup = ({
           clearable
           imagesOnly
           previewStep
-          imageShrink="400x300"
+          imageShrink="200x210"
           tabs="file gdrive url"
 
           

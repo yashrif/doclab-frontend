@@ -38,7 +38,6 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
     >
       <img
         style={{
-          maxWidth: "180px",
           maxHeight: "210px",
           display: "block",
           borderTopLeftRadius: "1.1rem",

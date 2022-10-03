@@ -113,21 +113,20 @@ const Header = () => {
                 Find Doctor
               </Link>
             </li>
-
+            {(localStorage.getItem("doctorToken") !=null ||
+            localStorage.getItem("patientToken") != null)&&
             <li className="header-global-nav-link ">
               <Link
                 className="header-link"
                 to={
                   localStorage.getItem("doctorToken") != null
                     ? "/doctorDashboard"
-                    : localStorage.getItem("patientToken") != null
-                    ? "/patientDashboard"
-                    : ""
+                    : "/patientDashboard"
                 }
               >
                 Dashboard
               </Link>
-            </li>
+            </li>}
 
             {/* <li className="header-global-nav-link ">
               <Link className="header-link" to="/patientDashboard">

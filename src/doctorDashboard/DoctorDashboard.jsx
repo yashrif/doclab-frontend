@@ -124,7 +124,7 @@ const Dashboard = () => {
                 >
                   Find Doctor
                 </Link>
-                <Link
+                {/* <Link
                   as={ReachLink}
                   to="/patientDashboard"
                   fontSize={"16"}
@@ -140,7 +140,7 @@ const Dashboard = () => {
                   }}
                 >
                   Dashboard
-                </Link>
+                </Link> */}
               </Flex>
             </GridItem>
             <GridItem justifySelf={"end"}>

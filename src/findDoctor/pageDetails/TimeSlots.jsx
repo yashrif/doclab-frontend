@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import AppointmentPopUp from "../../reusable/appointmentPopUp/AppointmentPopUp.jsx";
 // import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
 
-const TimeSlot = () => {
+const TimeSlot = ({ selectedPerson }) => {
   const TODAY = new Date();
   const TOMORROW = new Date();
   TOMORROW.setDate(TOMORROW.getDate() + 1);
@@ -60,8 +61,8 @@ const TimeSlot = () => {
       {selectedDate.toLocaleDateString() === TODAY.toLocaleDateString()
         ? "Today"
         : selectedDate.toLocaleDateString() === TOMORROW.toLocaleDateString()
-        ? "Tomorrow"
-        : selectedDate.toLocaleDateString("en-US", DATE_FOTMAT)}
+          ? "Tomorrow"
+          : selectedDate.toLocaleDateString("en-US", DATE_FOTMAT)}
     </p>
   );
 
@@ -72,23 +73,29 @@ const TimeSlot = () => {
           key={index}
           role={"button"}
           tabIndex={index}
-          onClick={() => {}}
-          onKeyDown={() => {}}
+          onClick={() => { }}
+          onKeyDown={() => { }}
         >
-          <p
-            style={{
-              display: "inline-block",
-              color: `${theme.colors.primary.base}`,
-              fontSize: "1rem",
-              fontWeight: "500",
-              padding: ".4rem .8rem",
-              border: `1px solid ${theme.colors.primary.base}`,
-              borderRadius: ".5rem",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {time} {period}
-          </p>
+          <AppointmentPopUp
+            time={time}
+            selectedPerson={selectedPerson}
+            period={period}
+            selectedDate={selectedDate}>
+            <button
+              style={{
+                display: "inline-block",
+                color: `${theme.colors.primary.base}`,
+                fontSize: "1rem",
+                fontWeight: "500",
+                padding: ".4rem .8rem",
+                border: `1px solid ${theme.colors.primary.base}`,
+                borderRadius: ".5rem",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {time} {period}
+            </button>
+          </AppointmentPopUp>
         </div>
       );
     });
@@ -220,7 +227,7 @@ const TimeSlot = () => {
               onClick={() => {
                 setIncrement(0);
               }}
-              onKeyDown={() => {}}
+              onKeyDown={() => { }}
               style={{
                 position: "absolute",
                 top: "190%",
