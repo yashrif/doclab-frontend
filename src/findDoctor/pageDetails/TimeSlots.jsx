@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { SlideFade, useDisclosure } from "@chakra-ui/react";
 import AppointmentPopUp from "../../reusable/appointmentPopUp/AppointmentPopUp.jsx";
 // import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
@@ -16,12 +16,20 @@ const TimeSlot = ({ selectedPerson }) => {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [increment, setIncrement] = useState(0);
+  const {
+    isOpen: isResetOpen,
+    onOpen: onResetOpen,
+    onClose: onResetClose,
+  } = useDisclosure();
 
   useEffect(() => {
     let tempDate = new Date();
     tempDate.setDate(tempDate.getDate() + increment);
     // console.log(tempDate);
     setSelectedDate(tempDate);
+
+    if (increment == 0) onResetClose();
+    else onResetOpen();
   }, [increment]);
 
   const style = {
@@ -119,15 +127,7 @@ const TimeSlot = ({ selectedPerson }) => {
 
          ::-webkit-scrollbar {
           height: .8rem;
-        }
-
-          @keyframes slide-down-reset {
-            0% {
-              opacity: 0;
-              transform: translate(-50%, -100%);
-
-            }
-          }
+         }
         `}
       </style>
       <div
@@ -220,41 +220,35 @@ const TimeSlot = ({ selectedPerson }) => {
             name="chevron-back-outline"
           ></ion-icon>
 
-          {increment != 0 && (
-            <div
-              className="btn"
-              role={"button"}
-              tabIndex={0}
-              onClick={() => {
-                setIncrement(0);
-              }}
-              onKeyDown={() => {}}
+          <SlideFade
+            in={isResetOpen}
+            offsetY="-20px"
+            onClick={() => {
+              setIncrement(0);
+            }}
+            style={{
+              position: "absolute",
+              top: "100%",
+              left: "50%",
+              zIndex: "100",
+            }}
+          >
+            <ion-icon
               style={{
-                position: "absolute",
-                top: "190%",
-                left: "50%",
-                zIndex: "100",
-                transform: "translate(-50%, -50%)",
-                animation: "slide-down-reset .3s ease-in-out",
+                ...style.icon,
+                ...style.iconRounded,
+                fontSize: "1.4rem",
+                padding: ".4rem",
+                color: "#fff",
+                backgroundColor: "rgba(28, 126, 214, .70)",
+                boxShadow: "0 -.4rem .4rem rgba(0, 0, 0, .15)",
+                cursor: "pointer",
+                transition: "all .3s",
+                transform: "rotateX(180deg) translate(-50%, -50%)",
               }}
-            >
-              <ion-icon
-                style={{
-                  ...style.icon,
-                  ...style.iconRounded,
-                  fontSize: "1.4rem",
-                  padding: ".4rem",
-                  color: "#fff",
-                  backgroundColor: "rgba(28, 126, 214, .70)",
-                  boxShadow: "0 -.4rem .4rem rgba(0, 0, 0, .15)",
-                  cursor: "pointer",
-                  transition: "all .3s",
-                  transform: "rotateX(180deg)",
-                }}
-                name="refresh-outline"
-              ></ion-icon>
-            </div>
-          )}
+              name="refresh-outline"
+            ></ion-icon>
+          </SlideFade>
 
           {renderedDate}
 

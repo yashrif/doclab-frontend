@@ -113,7 +113,7 @@ const Header = () => {
               fontWeight={"medium"}
               mb={"8"}
             >
-              You need to to be logged in to access dashboard
+              You need to be logged in to access dashboard
             </ModalBody>
 
             <ModalFooter mx={"auto"} display={"flex"} gap={"24"}>
