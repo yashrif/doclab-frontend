@@ -11,8 +11,10 @@ import {
   InputLeftElement,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons";
-import PasswordInput from "./PaswordInput.jsx";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { TbMail } from "react-icons/tb";
+import PasswordInput from "./PasswordInput.jsx";
+import ButtonFull from "../button/ButtonFull.jsx";
 
 const LoginForm = ({
   initialRef,
@@ -40,13 +42,13 @@ const LoginForm = ({
         <FormControl display="flex" alignItems="center">
           <InputGroup>
             <InputLeftElement pointerEvents="none" size="xs">
-              {" "}
-              <EmailIcon
-                w="1.8rem"
-                h="1.8rem"
-                mt="auto"
-                ml="1rem"
-                color="blue"
+              <TbMail
+                style={{
+                  width: "1.8rem",
+                  height: "1.8rem",
+                  margin: ".4rem 0 0 auto",
+                  color: "blue",
+                }}
               />
             </InputLeftElement>
             <Input
@@ -54,7 +56,7 @@ const LoginForm = ({
               variant="outline"
               ref={initialRef}
               name="doctorEmail"
-              pl="3rem"
+              pl="36"
               placeholder="User Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -72,16 +74,20 @@ const LoginForm = ({
       </ModalBody>
 
       <ModalFooter display="flex" mt="3.6rem" justifyContent="space-evenly">
-        <Button
+        <ButtonFull
           isLoading={loading}
-          colorScheme="blue"
-          size="lg"
+          py="1.4rem"
+          px="16"
+          fontSize={"14"}
+          borderRadius={"lg"}
+          fontWeight={"medium"}
+          color={"#fff"}
           onClick={() => {
             setDoLogin(1 - doLogin);
           }}
         >
           Login
-        </Button>
+        </ButtonFull>
         <Button onClick={() => setCurrWindow("signUpWindow")} size="lg">
           <Text mr="0.4rem">Sign Up</Text>
           <ArrowForwardIcon />

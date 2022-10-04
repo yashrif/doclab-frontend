@@ -11,6 +11,7 @@ import { useState, useRef, useEffect } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import DoctorSignupForm from "./DoctorSignupForm.jsx";
 import PatientSignupForm from "./PatientSignupForm.jsx";
+import ButtonFull from "../button/ButtonFull.jsx";
 const SignupForm = ({
   setCatagory,
   setCurrWindow,
@@ -41,7 +42,12 @@ const SignupForm = ({
       <ModalHeader textAlign="center" fontSize="2.4rem " color="blue.700">
         Sign Up
       </ModalHeader>
-      <ModalHeader textAlign="center" fontSize="1.4rem" color="gray.400">
+      <ModalHeader
+        textAlign="center"
+        fontSize="1.4rem"
+        color="gray.400"
+        fontWeight={"medium"}
+      >
         Enter your details
       </ModalHeader>
       <Box display="flex" mt="2.4rem" justifyContent={"center"}>
@@ -55,11 +61,11 @@ const SignupForm = ({
           variant="none"
           textDecoration="none"
           fontSize={12}
-          fontWeight="semiBold"
+          fontWeight="medium"
           letterSpacing=".25px"
           px={5}
           py={12}
-          color="#000"
+          color={docNow ? "font.light" : "font.general"}
           border="none"
           // borderRadius="xl"
           borderRadius="5px"
@@ -86,10 +92,10 @@ const SignupForm = ({
           variant="none"
           textDecoration="none"
           fontSize={12}
-          fontWeight="semiBold"
+          fontWeight="medium"
           letterSpacing=".25px"
           px={5}
-          color="#000"
+          color={!docNow ? "font.light" : "font.general"}
           border="none"
           // borderRadius="xl"
 
@@ -126,16 +132,20 @@ const SignupForm = ({
       )}
 
       <ModalFooter display="flex" mt="1.8rem" justifyContent="space-evenly">
-        <Button
+        <ButtonFull
           isLoading={loading}
-          colorScheme="blue"
-          size="lg"
+          py="1.4rem"
+          px="16"
+          fontSize={"14"}
+          borderRadius={"lg"}
+          fontWeight={"medium"}
+          color={"#fff"}
           onClick={() => {
             setDoSignup(1 - doSignup);
           }}
         >
           SignUp
-        </Button>
+        </ButtonFull>
         <Button onClick={() => setCurrWindow("logInWindow")} size="lg">
           <Text mr="0.4rem">Login</Text>
           <ArrowForwardIcon />

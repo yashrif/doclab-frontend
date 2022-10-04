@@ -101,6 +101,25 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
 
   return (
     <>
+      <style>
+        {`
+          .uploadcare--widget__button {
+            padding: .4rem .8rem !important;
+            background-color: #e2e8f0;
+            border: 0px solid #e2e8f0;
+            border-radius: 4px;
+            color: #555;
+            font-size: 1.2rem !important;
+            font-weight: 500 !important;
+          }
+
+          .uploadcare--widget__button:hover,
+          .uploadcare--widget__button:active {
+            background-color: #1b77cb;
+            color: #fff;
+          }
+        `}
+      </style>
       <Box onClick={onOpen} ref={finalRef}>
         {children}
       </Box>
