@@ -130,7 +130,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
-        size="xl"
+        size="2xl"
         onClick={() => console.log("clicked")}
       >
         <ModalOverlay

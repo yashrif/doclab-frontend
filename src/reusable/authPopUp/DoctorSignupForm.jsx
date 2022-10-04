@@ -5,6 +5,7 @@ import {
   Select,
   InputLeftElement,
   InputGroup,
+  Flex,
 } from "@chakra-ui/react";
 import { subDistrictList } from "../../assets/variable/values";
 import PasswordInput from "./PasswordInput.jsx";
@@ -52,28 +53,32 @@ const DoctorSignup = ({
         />
       </FormControl>
 
-      <Select
-        placeholder="Select Gender"
-        name="doctorGender"
-        mt="2.4rem"
-        h="2.8rem"
-        onChange={handleSignupChange}
-      >
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </Select>
-      <Select
-        name="doctorSubDistrict"
-        mt="2.4rem"
-        onChange={handleSignupChange}
-        placeholder="Select Sub-Distric"
-      >
-        {subDistrictList.map((ele) => (
-          <option value={ele} key={ele}>
-            {ele}
-          </option>
-        ))}
-      </Select>
+      <Flex gap={"24"} alignItems={"center"} justifyContent={"space-evenly"}>
+        <Select
+          fontSize={"md"}
+          placeholder="Select Gender"
+          name="doctorGender"
+          mt="2.4rem"
+          onChange={handleSignupChange}
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </Select>
+
+        <Select
+          fontSize={"md"}
+          name="doctorSubDistrict"
+          mt="2.4rem"
+          onChange={handleSignupChange}
+          placeholder="Select Sub-District"
+        >
+          {subDistrictList.map((ele) => (
+            <option value={ele} key={ele}>
+              {ele}
+            </option>
+          ))}
+        </Select>
+      </Flex>
 
       <FormControl display="flex" mt="1rem" alignItems="center">
         <Input
@@ -123,7 +128,7 @@ const DoctorSignup = ({
         />
       </FormControl>
 
-      <FormControl display="flex" mt="2.4rem" alignItems="center">
+      <FormControl display="flex" mt="24" alignItems="center">
         <Widget
           onChange={(fileInfo) =>
             setSignupInfo((prevState) => ({

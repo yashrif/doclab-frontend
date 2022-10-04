@@ -29,7 +29,7 @@ const LoginForm = ({
   onModalClose,
 }) => {
   return (
-    <ModalContent my="auto" p="2rem" borderRadius="11px">
+    <ModalContent my="auto" px="36" py="24" borderRadius="11px">
       <ModalCloseButton onClick={onModalClose} p="2rem" />
       <ModalHeader alignSelf="center" fontSize="2.4rem " color="blue.700">
         Welcome Back
