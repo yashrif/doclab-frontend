@@ -41,7 +41,12 @@ const SearchContainer = ({ term, setTerm, category }) => {
         </div>
       </div>
       <div className="search-bar">
-        <Search term={term} setTerm={setTerm} category={category} bg="#e9ecef" />
+        <Search
+          term={term}
+          setTerm={setTerm}
+          category={category}
+          bg="#e9ecef"
+        />
       </div>
     </>
   );

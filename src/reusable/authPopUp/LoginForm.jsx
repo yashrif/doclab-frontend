@@ -15,6 +15,8 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { TbMail } from "react-icons/tb";
 import PasswordInput from "./PasswordInput.jsx";
 import ButtonFull from "../button/ButtonFull.jsx";
+import { useEffect, useState } from "react";
+import { validateEmail } from "../../assets/variable/values.js";
 
 const LoginForm = ({
   initialRef,
@@ -27,10 +29,33 @@ const LoginForm = ({
   loading,
   setDoLogin,
   onModalClose,
+  loginError,
 }) => {
+  const [inputBlankWarning, setInputBlankWarning] = useState(false);
+  const [credentialErrorMessage, setCredentialErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (loginError != undefined) {
+      if (loginError.response.status == 404)
+        setCredentialErrorMessage("Invalid Email/Password");
+    }
+  }, [loginError]);
+
+  useEffect(() => {
+    if (doLogin != null && (email == "" || password == ""))
+      setInputBlankWarning(true);
+    setCredentialErrorMessage("");
+  }, [doLogin]);
+
   return (
     <ModalContent my="auto" px="36" py="24" borderRadius="11px">
-      <ModalCloseButton onClick={onModalClose} p="2rem" />
+      <ModalCloseButton
+        onClick={() => {
+          setDoLogin(null);
+          onModalClose();
+        }}
+        p="2rem"
+      />
       <ModalHeader alignSelf="center" fontSize="2.4rem " color="blue.700">
         Welcome Back
       </ModalHeader>
@@ -52,25 +77,40 @@ const LoginForm = ({
               />
             </InputLeftElement>
             <Input
+              errorBorderColor="red.300"
+              isInvalid={
+                !validateEmail(email) || (email == "" && inputBlankWarning)
+              }
               h="3rem"
               variant="outline"
+              type="email"
               ref={initialRef}
               name="doctorEmail"
               pl="36"
               placeholder="User Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setCredentialErrorMessage("");
+                setEmail(e.target.value);
+              }}
             />
           </InputGroup>
         </FormControl>
 
         <FormControl mt="2.4rem" display="flex" alignItems="center">
           <PasswordInput
+            inputBlankWarning={inputBlankWarning}
             password={password}
             setPassword={setPassword}
             initialRef={initialRef}
+            setCredentialErrorMessage={setCredentialErrorMessage}
           />
         </FormControl>
+        {credentialErrorMessage != "" && (
+          <Text color="red" pt="1.4rem" fontSize={"md"}>
+            {credentialErrorMessage}
+          </Text>
+        )}
       </ModalBody>
 
       <ModalFooter display="flex" mt="3.6rem" justifyContent="space-evenly">
@@ -83,12 +123,19 @@ const LoginForm = ({
           fontWeight={"medium"}
           color={"#fff"}
           onClick={() => {
-            setDoLogin(1 - doLogin);
+            setDoLogin(doLogin ? !doLogin : true);
           }}
         >
           Login
         </ButtonFull>
-        <Button onClick={() => setCurrWindow("signUpWindow")} size="lg">
+        <Button
+          onClick={() => {
+            setDoLogin(null);
+            setCredentialErrorMessage("");
+            setCurrWindow("signUpWindow");
+          }}
+          size="lg"
+        >
           <Text mr="0.4rem">Sign Up</Text>
           <ArrowForwardIcon />
         </Button>

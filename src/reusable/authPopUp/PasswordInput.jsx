@@ -8,7 +8,12 @@ import {
 } from "@chakra-ui/react";
 import { BiLockOpen } from "react-icons/bi";
 
-const PasswordInput = ({ password, setPassword }) => {
+const PasswordInput = ({
+  password,
+  setPassword,
+  inputBlankWarning,
+  setCredentialErrorMessage,
+}) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -26,13 +31,19 @@ const PasswordInput = ({ password, setPassword }) => {
           />
         </InputLeftElement>
         <Input
+          errorBorderColor="red.300"
+          isInvalid={password == "" && inputBlankWarning}
           h="3.4rem"
           pl="36"
           pr="4.5rem"
           variant="outline"
           type={show ? "text" : "password"}
           placeholder="Enter password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            if (setCredentialErrorMessage != null)
+              setCredentialErrorMessage("");
+            setPassword(e.target.value);
+          }}
           value={password}
         />
         <InputRightElement width="5rem" mt="0.4rem">

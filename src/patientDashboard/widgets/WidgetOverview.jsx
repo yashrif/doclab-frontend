@@ -12,7 +12,7 @@ import { faker } from "@faker-js/faker";
 import { BsTelephone } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 
-const WidgetOverview = ({selectedPerson}) => {
+const WidgetOverview = ({ selectedPerson }) => {
   return (
     <Stack
       height={"full"}
@@ -24,7 +24,9 @@ const WidgetOverview = ({selectedPerson}) => {
       <StackItem>
         <Center>
           <Image
-            src={'https://ucarecdn.com/' + selectedPerson.patientImageUUID + '/'}
+            src={
+              "https://ucarecdn.com/" + selectedPerson.patientImageUUID + "/"
+            }
             borderRadius="50%"
             w={"36"}
             h="36"

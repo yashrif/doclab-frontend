@@ -6,21 +6,49 @@ import {
   InputLeftElement,
   InputGroup,
   Flex,
+  Box,
 } from "@chakra-ui/react";
 import { subDistrictList } from "../../assets/variable/values";
 import PasswordInput from "./PasswordInput.jsx";
 import { TbMail } from "react-icons/tb";
 import { Widget } from "@uploadcare/react-widget";
+import { useEffect, useState } from "react";
+import { validateEmail } from "../../assets/variable/values.js";
+
 const DoctorSignup = ({
   handleSignupChange,
   signupInfo,
   refInput,
   setSignupInfo,
+  doSignup,
 }) => {
+  const [inputBlankWarning, setInputBlankWarning] = useState(false);
+  useEffect(() => {
+    if (
+      doSignup != null &&
+      (signupInfo.doctorName == "" ||
+        signupInfo.doctorSpeciality == "" ||
+        signupInfo.doctorClinicName == "" ||
+        signupInfo.doctorGender == "" ||
+        signupInfo.doctorSubDistrict == "" ||
+        signupInfo.doctorLocation == "" ||
+        signupInfo.authEmail == "" ||
+        signupInfo.doctorImageUUID == "" ||
+        signupInfo.authPassword == "" ||
+        !validateEmail(signupInfo.authEmail))
+    ) {
+      setInputBlankWarning(true);
+    }
+  }, [doSignup]);
+
   return (
     <ModalBody mt="1.8rem" pb="1.4rem">
       <FormControl display="flex" alignItems="center">
         <Input
+          errorBorderColor="red.300"
+          borderColor={
+            signupInfo.doctorName == "" && inputBlankWarning ? "red" : "black"
+          }
           ref={refInput}
           h="3.4rem"
           variant="flushed"
@@ -33,6 +61,8 @@ const DoctorSignup = ({
 
       <FormControl mt="1rem" display="flex" alignItems="center">
         <Input
+          errorBorderColor="red.300"
+          isInvalid={signupInfo.doctorSpeciality == "" && inputBlankWarning}
           h="3.4rem"
           variant="flushed"
           placeholder="Speciality"
@@ -44,6 +74,8 @@ const DoctorSignup = ({
 
       <FormControl mt="1rem">
         <Input
+          errorBorderColor="red.300"
+          isInvalid={signupInfo.doctorClinicName == "" && inputBlankWarning}
           h="3.4rem"
           variant="flushed"
           placeholder="Affiliated Hospital"
@@ -55,6 +87,8 @@ const DoctorSignup = ({
 
       <Flex gap={"24"} alignItems={"center"} justifyContent={"space-evenly"}>
         <Select
+          errorBorderColor="red.300"
+          isInvalid={signupInfo.doctorGender == "" && inputBlankWarning}
           fontSize={"md"}
           placeholder="Select Gender"
           name="doctorGender"
@@ -66,6 +100,8 @@ const DoctorSignup = ({
         </Select>
 
         <Select
+          errorBorderColor="red.300"
+          isInvalid={signupInfo.doctorSubDistrict == "" && inputBlankWarning}
           fontSize={"md"}
           name="doctorSubDistrict"
           mt="2.4rem"
@@ -82,6 +118,8 @@ const DoctorSignup = ({
 
       <FormControl display="flex" mt="1rem" alignItems="center">
         <Input
+          errorBorderColor="red.300"
+          isInvalid={signupInfo.doctorLocation == "" && inputBlankWarning}
           h="3.4rem"
           variant="flushed"
           placeholder="Location"
@@ -104,6 +142,11 @@ const DoctorSignup = ({
             />
           </InputLeftElement>
           <Input
+            errorBorderColor="red.300"
+            isInvalid={
+              !validateEmail(signupInfo.authEmail) ||
+              (signupInfo.authEmail == "" && inputBlankWarning)
+            }
             h="3rem"
             variant="outline"
             placeholder="User Email"
@@ -118,6 +161,7 @@ const DoctorSignup = ({
 
       <FormControl mt="2.4rem" display="flex" alignItems="center">
         <PasswordInput
+          inputBlankWarning={inputBlankWarning}
           setPassword={(val) =>
             setSignupInfo((prevState) => ({
               ...prevState,
@@ -129,20 +173,35 @@ const DoctorSignup = ({
       </FormControl>
 
       <FormControl display="flex" mt="24" alignItems="center">
-        <Widget
-          onChange={(fileInfo) =>
-            setSignupInfo((prevState) => ({
-              ...prevState,
-              ["doctorImageUUID"]: fileInfo.uuid,
-            }))
+        <Box
+          border={
+            signupInfo.doctorImageUUID == "" && inputBlankWarning
+              ? "2px solid"
+              : "none"
           }
-          publicKey="6c3c08a73b43963de87b"
-          clearable
-          imagesOnly
-          previewStep
-          imageShrink="200x210"
-          tabs="file gdrive url"
-        />
+          borderColor={
+            signupInfo.doctorImageUUID == "" && inputBlankWarning
+              ? "red.300"
+              : "black"
+          }
+          borderRadius="4px"
+        >
+          <Widget
+            onChange={(fileInfo) =>
+              setSignupInfo((prevState) => ({
+                ...prevState,
+                ["doctorImageUUID"]: fileInfo.uuid,
+              }))
+            }
+            publicKey="6c3c08a73b43963de87b"
+            clearable
+            imagesOnly
+            previewStep
+            imageShrink="420x210"
+            tabs="file gdrive url"
+            crop="1:1"
+          />
+        </Box>
       </FormControl>
     </ModalBody>
   );

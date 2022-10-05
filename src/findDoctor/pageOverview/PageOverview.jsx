@@ -13,7 +13,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    fetchpersonList(`${SERVER}/${category}`,{});
+    fetchpersonList(`${SERVER}/${category}`, {});
   }, []);
 
   useEffect(() => {

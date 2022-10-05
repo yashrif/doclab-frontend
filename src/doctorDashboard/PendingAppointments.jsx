@@ -14,13 +14,14 @@ import WidgetAppointment from "./WidgetAppointment.jsx";
 const PendingAppointments = ({
   allAppointments,
   setChangedAppointmentId,
-  setAcceptAppointment
+  setAcceptAppointment,
 }) => {
-  const [allPendings, setAllPendings] = useState([])
+  const [allPendings, setAllPendings] = useState([]);
   useEffect(() => {
     if (allAppointments != null)
-      setAllPendings(allAppointments.filter((appo) => (!appo.appointmentAccepted)));
-
+      setAllPendings(
+        allAppointments.filter((appo) => !appo.appointmentAccepted)
+      );
   }, [allAppointments]);
 
   const TableHeads = ["Name", "Age", "Date", "Time", "Action"];
@@ -35,14 +36,12 @@ const PendingAppointments = ({
         color="font.muted"
         py="16"
         textTransform="none"
-      // textAlign="center"
+        // textAlign="center"
       >
         {value}
       </Th>
     );
   });
-
-
 
   return (
     <Box
@@ -57,7 +56,7 @@ const PendingAppointments = ({
       borderRadius="2xl"
       boxShadow="0 0.4rem 0.8rem rgba(0, 0, 0, 0.01)"
 
-    // border="1px solid #e6e6e6"
+      // border="1px solid #e6e6e6"
     >
       <Text
         fontSize="xl"
@@ -77,26 +76,25 @@ const PendingAppointments = ({
         bg="bg"
         // justifyContent="space-around"
         overflowY="scroll"
-      // height="80%"
-      // overflow="scroll"
+        // height="80%"
+        // overflow="scroll"
       >
         <Table variant="unstyled">
           <Thead>
             <Tr>{renderedTableHealds}</Tr>
           </Thead>
-          {
-            (allPendings != null) &&
+          {allPendings != null && (
             <Tbody>
-              {allPendings.map((appointment) =>
+              {allPendings.map((appointment) => (
                 <WidgetAppointment
                   appointment={appointment}
                   key={appointment.appointmentId}
                   setChangedAppointmentId={setChangedAppointmentId}
                   setAcceptAppointment={setAcceptAppointment}
-
-                />)}
+                />
+              ))}
             </Tbody>
-          }
+          )}
         </Table>
       </TableContainer>
     </Box>

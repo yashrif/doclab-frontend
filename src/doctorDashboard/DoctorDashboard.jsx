@@ -12,23 +12,20 @@ import { SERVER } from "../assets/variable/values.js";
 import apiPut from "../hooks/apiPut.jsx";
 import apiDelete from "../hooks/apiDelete.jsx";
 
-
 const Dashboard = () => {
   //Accepting an appointment
-   const [acceptAppointment, setAcceptAppointment] = useState(true);
+  const [acceptAppointment, setAcceptAppointment] = useState(true);
   const [changedAppointmentId, setChangedAppointmentId] = useState(null);
   const [responseData, , putData] = apiPut();
-  const[responseDelete, , deleteAppointment] = apiDelete();
+  const [responseDelete, , deleteAppointment] = apiDelete();
 
-  useEffect(()=>{
-    if(acceptAppointment)
-        putData(`${SERVER}/appointment/put/${changedAppointmentId}`)
-    else{
-        deleteAppointment(`${SERVER}/appointment/delete/${changedAppointmentId}`)
+  useEffect(() => {
+    if (acceptAppointment)
+      putData(`${SERVER}/appointment/put/${changedAppointmentId}`);
+    else {
+      deleteAppointment(`${SERVER}/appointment/delete/${changedAppointmentId}`);
     }
-  },[changedAppointmentId]);
-
-
+  }, [changedAppointmentId]);
 
   // Fetch Logged in doctor
 
@@ -42,7 +39,7 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-      setSelectedPerson(person["authDoctor"]);
+    setSelectedPerson(person["authDoctor"]);
   }, [person]);
 
   // Fetch Appointments
@@ -51,12 +48,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (selectedPerson != null)
-      fetchAppointments(`${SERVER}/appointment/listPatients/${selectedPerson.doctorID}` );
+      fetchAppointments(
+        `${SERVER}/appointment/listPatients/${selectedPerson.doctorID}`
+      );
   }, [selectedPerson, responseData, responseDelete]);
 
   useEffect(() => {
     setAllAppointments(appointments);
-    
   }, [appointments]);
 
   return (
@@ -161,15 +159,14 @@ const Dashboard = () => {
             selectedPerson={selectedPerson}
             allAppointments={allAppointments}
             setAcceptAppointment={setAcceptAppointment}
-            setChangedAppointmentId={setChangedAppointmentId} />
+            setChangedAppointmentId={setChangedAppointmentId}
+          />
         </GridItem>
         <GridItem>
           <Schedule allAppointments={allAppointments} />
         </GridItem>
       </Grid>
     </Box>
-
-
   );
 };
 

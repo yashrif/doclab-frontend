@@ -5,10 +5,8 @@ const apiDelete = () => {
   const [data, fetchData] = useState(null);
   const [error, setError] = useState(null);
 
-  const fetch = async (url,headers) => {
-    const response = await axios
-      .delete(url,headers)
-      .catch(setError);
+  const fetch = async (url, headers) => {
+    const response = await axios.delete(url, headers).catch(setError);
 
     fetchData(response.data);
   };
