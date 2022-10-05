@@ -38,7 +38,13 @@ const SignupForm = ({
 
   return (
     <ModalContent my="auto" px="36" py={"24"} borderRadius="11px">
-      <ModalCloseButton onClick={onModalClose} p="2rem" />
+      <ModalCloseButton
+        onClick={() => {
+          setDoSignup(null);
+          onModalClose();
+        }}
+        p="2rem"
+      />
       <ModalHeader textAlign="center" fontSize="2.4rem " color="blue.700">
         Sign Up
       </ModalHeader>
@@ -121,6 +127,7 @@ const SignupForm = ({
           signupInfo={signupInfo}
           refInput={refInput}
           setSignupInfo={setSignupInfo}
+          doSignup={doSignup}
         />
       ) : (
         <PatientSignupForm
@@ -128,6 +135,7 @@ const SignupForm = ({
           signupInfo={signupInfo}
           refInput={refInput}
           setSignupInfo={setSignupInfo}
+          doSignup={doSignup}
         />
       )}
 
@@ -141,12 +149,18 @@ const SignupForm = ({
           fontWeight={"medium"}
           color={"#fff"}
           onClick={() => {
-            setDoSignup(1 - doSignup);
+            setDoSignup(doSignup ? !doSignup : true);
           }}
         >
           SignUp
         </ButtonFull>
-        <Button onClick={() => setCurrWindow("logInWindow")} size="lg">
+        <Button
+          onClick={() => {
+            setDoSignup(null);
+            setCurrWindow("logInWindow");
+          }}
+          size="lg"
+        >
           <Text mr="0.4rem">Login</Text>
           <ArrowForwardIcon />
         </Button>

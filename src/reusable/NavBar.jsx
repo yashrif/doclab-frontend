@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -36,8 +36,8 @@ const NavBar = () => {
       title: "Log out",
       onClick: () => {
         localStorage.clear();
-        navigate('/home');
-      }
+        navigate("/home");
+      },
     },
   ];
 
@@ -64,7 +64,6 @@ const NavBar = () => {
         <ion-icon
           name={value.icon}
           style={{ fontSize: "2rem", ...style.icon }}
-          
         ></ion-icon>
         <Text>{value.title}</Text>
       </Flex>

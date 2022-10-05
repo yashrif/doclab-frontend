@@ -5,12 +5,11 @@ import Statistic from "./Statistic.jsx";
 import PendingAppointments from "./PendingAppointments.jsx";
 import ProfileCard from "../reusable/ProfileCard.jsx";
 
-
 const UserInfo = ({
   selectedPerson,
   allAppointments,
   setChangedAppointmentId,
-  setAcceptAppointment
+  setAcceptAppointment,
 }) => {
   return (
     <Grid
@@ -25,8 +24,8 @@ const UserInfo = ({
       borderRadius="3xl"
       py="16"
       px="24"
-    // overflow="hidden"
-    // alignItems="strech"
+      // overflow="hidden"
+      // alignItems="strech"
     >
       <GridItem>
         {selectedPerson ? (

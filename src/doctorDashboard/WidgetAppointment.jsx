@@ -5,7 +5,7 @@ import { faker } from "@faker-js/faker";
 const WidgetAppointment = ({
   appointment,
   setChangedAppointmentId,
-  setAcceptAppointment
+  setAcceptAppointment,
 }) => {
   const style = {
     icon: {
@@ -17,18 +17,18 @@ const WidgetAppointment = ({
     {
       icon: "close-circle-outline",
       iconColor: "#ff6b6b",
-      onclicky: ()=>{
+      onclicky: () => {
         setChangedAppointmentId(appointment.appointmentId);
         setAcceptAppointment(false);
-      }
+      },
     },
     {
       icon: "checkmark-circle-outline",
       iconColor: "#40c057",
-      onclicky: ()=>{
+      onclicky: () => {
         setChangedAppointmentId(appointment.appointmentId);
         setAcceptAppointment(true);
-      }
+      },
     },
   ];
 
@@ -56,9 +56,11 @@ const WidgetAppointment = ({
       <Td overflow="hidden" py="8" px="16">
         <Flex columnGap="12" alignItems="center">
           <Image
-
-            src={appointment.patientImageUUID ? 'https://ucarecdn.com/' + appointment.patientImageUUID + '/'
-              : faker.image.avatar()}
+            src={
+              appointment.patientImageUUID
+                ? "https://ucarecdn.com/" + appointment.patientImageUUID + "/"
+                : faker.image.avatar()
+            }
             alt="avatar"
             boxSize="3.6rem"
             borderRadius="full"

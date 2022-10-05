@@ -1,38 +1,38 @@
 import { useState } from "react";
 import axios from "axios";
-import { SERVER } from "../assets/variable/values";
+import { SERVER, validateEmail } from "../assets/variable/values";
 
 const apiLogin = () => {
   const [data, fetchData] = useState();
   const [error, setError] = useState();
 
   const signupValidate = (catagory, data) => {
-
     if (catagory == "doctor") {
-      if (data["doctorName"] == "" ||
+      if (
+        data["doctorName"] == "" ||
         data["doctorGender"] == "" ||
         data["doctorSubDistrict"] == "" ||
         data["doctorSpeciality"] == "" ||
         data["doctorClinicName"] == "" ||
         data["doctorLocation"] == "" ||
-        data["doctorImageUUID"] == ""
-        
-        )
+        data["doctorImageUUID"] == "" ||
+        !validateEmail(data["authEmail"])
+      )
         return false;
       else return true;
-
-    }
-    else if (catagory == "patient") {
-      if (data["patientName"] == "" ||
+    } else if (catagory == "patient") {
+      if (
+        data["patientName"] == "" ||
         data["patientGender"] == "" ||
         data["patientPhone"] == "" ||
         data["patientSubDistrict"] == "" ||
-        data["patientImageUUID"] == "")
+        data["patientImageUUID"] == "" ||
+        !validateEmail(data["authEmail"])
+      )
         return false;
       else return true;
-    }
-    else return false;
-  }
+    } else return false;
+  };
 
   const fetch = async (data, catagory) => {
     const url = `${SERVER}/${catagory}/add`;
@@ -45,33 +45,36 @@ const apiLogin = () => {
         doctorSpeciality: data["doctorSpeciality"],
         doctorClinicName: data["doctorClinicName"],
         doctorLocation: data["doctorLocation"],
-        doctorImageUUID : data["doctorImageUUID"]
-
-      }
+        doctorImageUUID: data["doctorImageUUID"],
+      };
     else if (catagory == "patient")
       credentials = {
         patientName: data["patientName"],
         patientGender: data["patientGender"],
         patientPhone: data["patientPhone"],
         patientSubDistrict: data["patientSubDistrict"],
-        patientImageUUID : data["patientImageUUID"]
-      }
+        patientImageUUID: data["patientImageUUID"],
+      };
 
-    axios.post(`${SERVER}/auth/signup`, {
-      authEmail: data["authEmail"],
-      authPassword: data["authPassword"]
-    })
+    axios
+      .post(`${SERVER}/auth/signup`, {
+        authEmail: data["authEmail"],
+        authPassword: data["authPassword"],
+      })
       .then((response) => {
         return axios.post(`${SERVER}/auth/getToken`, response.data);
       })
       .then((response) => {
-        return axios.post(url, credentials, { headers: { TOKEN: response.data } });
+        return axios.post(url, credentials, {
+          headers: { TOKEN: response.data },
+        });
       })
 
       .then((response) => {
-        fetchData(response.data)
-      }).catch(setError);
-  }
+        fetchData(response.data);
+      })
+      .catch(setError);
+  };
 
   return [data, error, fetch, signupValidate];
 };

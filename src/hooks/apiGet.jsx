@@ -5,10 +5,8 @@ const apiGet = () => {
   const [data, fetchData] = useState([]);
   const [error, setError] = useState(null);
 
-  const fetch = async (url,headers) => {
-    const response = await axios
-      .get(url,headers)
-      .catch(setError);
+  const fetch = async (url, headers) => {
+    const response = await axios.get(url, headers).catch(setError);
 
     fetchData(response.data);
   };

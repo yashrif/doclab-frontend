@@ -491,9 +491,11 @@ export const initialSignup = {
   doctorSpeciality: "",
   doctorClinicName: "",
   doctorImageUUID: "",
+  doctorLocation: "",
+
   authEmail: "",
   authPassword: "",
-  doctorLocation: "",
+
   patientName: "",
   patientGender: "",
   patientPhone: "",
@@ -504,4 +506,4 @@ export const initialSignup = {
 //export const SERVER = "http://localhost:8085";
 //export const SERVER = "https://doclab24.herokuapp.com";
 
-export const SERVER = "https://doclab-backend.herokuapp.com"
+export const SERVER = "https://doclab-backend.herokuapp.com";

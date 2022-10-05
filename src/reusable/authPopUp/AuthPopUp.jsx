@@ -19,8 +19,8 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const [password, setPassword] = useState("");
-  const [doLogin, setDoLogin] = useState(1);
-  const [doSignup, setDoSignup] = useState(1);
+  const [doLogin, setDoLogin] = useState(null);
+  const [doSignup, setDoSignup] = useState(null);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [currWindow, setCurrWindow] = useState(
@@ -39,7 +39,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
 
   // Login API connections
 
-  const [loginData, loginError, loginFetch] = apiLogin();
+  const [loginData, loginError, loginFetch, setLoginError] = apiLogin();
 
   useEffect(() => {
     const credentials = { authEmail: email, authPassword: password };
@@ -47,7 +47,12 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
       setLoading(true);
       console.log(credentials);
       loginFetch(credentials);
-    }
+    } else if (email != "" || password != "")
+      setLoginError({
+        response: {
+          status: 404,
+        },
+      });
   }, [doLogin]);
 
   useEffect(() => {
@@ -66,8 +71,6 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
 
   useEffect(() => {
     if (loginError != undefined) {
-      console.log(loginError);
-
       setLoading(false);
     }
   }, [loginError]);
@@ -154,6 +157,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
                   setDoLogin={setDoLogin}
                   setLoading={setLoading}
                   onModalClose={onModalClose}
+                  loginError={loginError}
                 />
               );
             case "signUpWindow":
