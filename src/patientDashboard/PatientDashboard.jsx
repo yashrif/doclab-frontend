@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, GridItem, Box, Center, Flex, Link } from "@chakra-ui/react";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
@@ -13,9 +13,9 @@ import apiGet from "../hooks/apiGet.jsx";
 import { SERVER } from "../assets/variable/values.js";
 
 const PatientDashboard = () => {
-
   const [person, , fetchperson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
+  const [term, setTerm] = useState("");
 
   useEffect(() => {
     fetchperson(`${SERVER}/auth`, {
@@ -60,7 +60,7 @@ const PatientDashboard = () => {
             <GridItem>
               <Flex gap={"24"}>
                 <Link
-                as ={ReachLink}
+                  as={ReachLink}
                   to="/home"
                   fontSize={"16"}
                   fontWeight={"medium"}
@@ -77,7 +77,7 @@ const PatientDashboard = () => {
                   Home
                 </Link>
                 <Link
-                as ={ReachLink}
+                  as={ReachLink}
                   to="/findDoctor"
                   fontSize={"16"}
                   fontWeight={"medium"}
@@ -114,7 +114,12 @@ const PatientDashboard = () => {
             </GridItem>
 
             <GridItem justifySelf={"end"}>
-              <Search bg="transparent" category="something..." />
+              <Search
+                term={term}
+                setTerm={setTerm}
+                bg="transparent"
+                category="something..."
+              />
             </GridItem>
           </Grid>
         </GridItem>
@@ -136,7 +141,9 @@ const PatientDashboard = () => {
             height={"full"}
           >
             <GridItem rowSpan={"2"}>
-             {selectedPerson && <WidgetOverview selectedPerson={selectedPerson}/>}
+              {selectedPerson && (
+                <WidgetOverview selectedPerson={selectedPerson} />
+              )}
             </GridItem>
 
             <PatientHealth />
@@ -150,7 +157,6 @@ const PatientDashboard = () => {
         </GridItem>
       </Grid>
     </Box>
-   
   );
 };
 

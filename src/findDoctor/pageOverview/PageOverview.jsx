@@ -5,6 +5,7 @@ import SearchContainer from "./SearchContainer.jsx";
 import PersonList from "./PersonList.jsx";
 import theme from "../../styling/theme.jsx";
 import { SERVER } from "../../assets/variable/values.js";
+
 const PageOverview = ({ category, setSelectedPerson }) => {
   const [term, setTerm] = useState("");
   const [personList, errorMessage, fetchPersonList] = apiGet([]);

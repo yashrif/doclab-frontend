@@ -8,6 +8,8 @@ const Search = ({ term, setTerm, category, bg }) => {
     },
   };
 
+  console.log(term);
+
   return (
     <>
       <style>
