@@ -7,13 +7,13 @@ import theme from "../../styling/theme.jsx";
 import { SERVER } from "../../assets/variable/values.js";
 const PageOverview = ({ category, setSelectedPerson }) => {
   const [term, setTerm] = useState("");
-  const [personList, errorMessage, fetchpersonList] = apiGet([]);
+  const [personList, errorMessage, fetchPersonList] = apiGet([]);
   const [personFilteredList, setPersonFilteredList] = useState(personList);
   const [displayDescription, setDisplayDescription] = useState(true);
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    fetchpersonList(`${SERVER}/${category}`,{});
+    fetchPersonList(`${SERVER}/${category}`, {});
   }, []);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
   useEffect(() => {
     setPersonFilteredList(
       personList.filter(({ doctorName }) => {
-        return doctorName.toLowerCase().includ.es(term.toLowerCase());
+        return doctorName.toLowerCase().includes(term.toLowerCase());
       })
     );
   }, [term]);
@@ -119,7 +119,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
                 displayDescription={displayDescription}
                 category={category}
                 numberOfPerson={personFilteredList.length}
-                numberofPatients={500}
+                numberOfPatients={500}
               />
             </div>
             {displayDescription && (

@@ -56,7 +56,9 @@ const Search = ({ term, setTerm, category, bg }) => {
           type="text"
           placeholder={`Search ${category}`}
           value={term}
-          onChange={(e) => setTerm(e.target.value)}
+          onChange={(e) => {
+            setTerm(e.target.value);
+          }}
         />
       </Center>
     </>

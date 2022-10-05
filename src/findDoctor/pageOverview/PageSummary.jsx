@@ -28,7 +28,7 @@ const style = {
 const PageSummary = ({
   category,
   displayDescription,
-  // numberofPatients,
+  // numberOfPatients,
   numberOfPerson,
 }) => {
   return (
