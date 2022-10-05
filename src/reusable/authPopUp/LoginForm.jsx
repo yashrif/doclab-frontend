@@ -34,7 +34,7 @@ const LoginForm = ({
       <ModalHeader alignSelf="center" fontSize="2.4rem " color="blue.700">
         Welcome Back
       </ModalHeader>
-      <ModalHeader fontSize="1.4rem" color="gray.400">
+      <ModalHeader fontSize="1.4rem" color="gray.400" fontWeight={"medium"}>
         Enter your credentials to access your account
       </ModalHeader>
 

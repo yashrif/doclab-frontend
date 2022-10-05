@@ -232,7 +232,7 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
           <p style={{ marginTop: ".8rem", lineHeight: "1.5" }}>
             {selectedPerson[`${category}Info`]
               ? selectedPerson[`${category}Info`]
-              : "No information was added"}
+              : "No information was provided"}
           </p>
         )}
       </div>

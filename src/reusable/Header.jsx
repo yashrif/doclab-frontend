@@ -111,6 +111,7 @@ const Header = () => {
               py="16"
               textAlign={"center"}
               fontWeight={"medium"}
+              color={"gray.500"}
               mb={"8"}
             >
               You need to be logged in to access dashboard
