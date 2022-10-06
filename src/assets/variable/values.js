@@ -484,7 +484,7 @@ export const validateEmail = (email) => {
   );
 };
 
-export const initialSignup = {
+export const initialSignUp = {
   doctorName: "",
   doctorGender: "",
   doctorSubDistrict: "",

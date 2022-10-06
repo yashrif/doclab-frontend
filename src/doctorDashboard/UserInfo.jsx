@@ -1,7 +1,7 @@
 import React from "react";
 import { Center, Grid, GridItem, Spinner } from "@chakra-ui/react";
 import Statistic from "./Statistic.jsx";
-// import PendingAppointmets from "./PendingAppointments.jsx";
+// import PendingAppointments from "./PendingAppointments.jsx";
 import PendingAppointments from "./PendingAppointments.jsx";
 import ProfileCard from "../reusable/ProfileCard.jsx";
 
@@ -25,7 +25,7 @@ const UserInfo = ({
       py="16"
       px="24"
       // overflow="hidden"
-      // alignItems="strech"
+      // alignItems="stretch"
     >
       <GridItem>
         {selectedPerson ? (
@@ -60,7 +60,7 @@ const UserInfo = ({
       </GridItem>
 
       {/* <GridItem>
-        <PendingAppointmets />
+        <PendingAppointments />
       </GridItem> */}
 
       <GridItem overflow="hidden">

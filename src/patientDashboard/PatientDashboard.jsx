@@ -13,18 +13,18 @@ import apiGet from "../hooks/apiGet.jsx";
 import { SERVER } from "../assets/variable/values.js";
 
 const PatientDashboard = () => {
-  const [person, , fetchperson] = apiGet();
+  const [person, , fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [term, setTerm] = useState("");
 
   useEffect(() => {
-    fetchperson(`${SERVER}/auth`, {
+    fetchPerson(`${SERVER}/auth`, {
       headers: { TOKEN: localStorage.getItem("patientToken") },
     });
   }, []);
 
   useEffect(() => {
-    console.log(person["authPatient"]);
+    // console.log(person["authPatient"]);
     setSelectedPerson(person["authPatient"]);
   }, [person]);
 

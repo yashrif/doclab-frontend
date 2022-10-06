@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import theme from "../../styling/theme.jsx";
 
-const Navigation = ({ selectedNav, setselectedNav }) => {
+const Navigation = ({ selectedNav, setSelectedNav }) => {
   const [activeNav, setActiveNav] = useState(null);
 
   const style = {
@@ -25,7 +25,7 @@ const Navigation = ({ selectedNav, setselectedNav }) => {
     },
   };
 
-  const renderedNavList = ["Info", "Reviews", "Consult Q&A", "Healthfeed"].map(
+  const renderedNavList = ["Info", "Reviews", "Consult Q&A", "Health feed"].map(
     (value, index) => {
       return (
         <div
@@ -51,7 +51,7 @@ const Navigation = ({ selectedNav, setselectedNav }) => {
           }
           onMouseEnter={() => setActiveNav(index)}
           onMouseLeave={() => setActiveNav(null)}
-          onClick={() => setselectedNav(index)}
+          onClick={() => setSelectedNav(index)}
           onKeyDown={() => {}}
         >
           {value}

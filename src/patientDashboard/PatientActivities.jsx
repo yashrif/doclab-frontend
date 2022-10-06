@@ -4,9 +4,9 @@ import WidgetActivities from "./widgets/WidgetActivities.jsx";
 
 const PatientActivities = () => {
   const content = [
-    ["High BP", "Diabets"],
-    ["High BP", "Diabets"],
-    ["High BP", "Diabets"],
+    ["High BP", "Diabetes"],
+    ["High BP", "Diabetes"],
+    ["High BP", "Diabetes"],
   ];
 
   return (

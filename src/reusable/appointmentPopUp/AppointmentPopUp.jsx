@@ -28,8 +28,8 @@ const AppointmentPopUp = ({
   const finalRef = React.useRef(null);
 
   const [loading, setLoading] = useState(false);
-  const [succesful, setSuccesful] = useState(false);
-  const DATE_FOTMAT = {
+  const [successful, setSuccessful] = useState(false);
+  const DATE_FORMAT = {
     // weekday: "short",
     month: "short",
     day: "numeric",
@@ -43,16 +43,16 @@ const AppointmentPopUp = ({
 
   const closePopUp = () => {
     setLoading(false);
-    setSuccesful(false);
+    setSuccessful(false);
     onClose();
   };
 
   // Submit appointment
-  const [successResponse, , fetchsuccess] = apiGet();
+  const [successResponse, , fetchSuccess] = apiGet();
 
   useEffect(() => {
     if (loading)
-      fetchsuccess(
+      fetchSuccess(
         `${SERVER}/appointment/post`,
         {
           doctorId: selectedPerson.doctorID,
@@ -70,7 +70,7 @@ const AppointmentPopUp = ({
   useEffect(() => {
     if (successResponse != null && successResponse.appointmentId != null) {
       setLoading(false);
-      setSuccesful(true);
+      setSuccessful(true);
     }
   }, [successResponse]);
 
@@ -86,7 +86,7 @@ const AppointmentPopUp = ({
         isOpen={isOpen}
         onClose={onClose}
         size="xl"
-        onClick={() => console.log("clicked")}
+        // onClick={() => console.log("clicked")}
       >
         <ModalOverlay
           bg="blackAlpha.300"
@@ -106,7 +106,7 @@ const AppointmentPopUp = ({
           >
             {`On ${selectedDate.toLocaleDateString(
               "en-US",
-              DATE_FOTMAT
+              DATE_FORMAT
             )} at ${time} ${period} with ${selectedPerson.doctorName}`}
           </ModalHeader>
           {localStorage.getItem("patientToken") != null ? (
@@ -115,7 +115,7 @@ const AppointmentPopUp = ({
               mt="2.6rem"
               justifyContent="space-evenly"
             >
-              {succesful ? (
+              {successful ? (
                 <Text fontSize="1.4rem" color="blue.400" textAlign="center">
                   Appointment submitted
                 </Text>

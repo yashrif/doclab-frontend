@@ -31,7 +31,7 @@ const PageDetails = ({ category, selectedPerson }) => {
   //   },
   // };
 
-  const [selectedNav, setselectedNav] = useState(0);
+  const [selectedNav, setSelectedNav] = useState(0);
 
   return (
     <div
@@ -96,7 +96,7 @@ const PageDetails = ({ category, selectedPerson }) => {
               "Degrees",
               "Rating",
               "Info",
-              "ConsultencyCount",
+              "ConsultancyCount",
               "Experience",
               "Verification",
             ]}
@@ -127,7 +127,7 @@ const PageDetails = ({ category, selectedPerson }) => {
         >
           <Navigation
             selectedNav={selectedNav}
-            setselectedNav={setselectedNav}
+            setSelectedNav={setSelectedNav}
           />
           {selectedNav === 0 && (
             <Info selectedPerson={selectedPerson} category={category} />

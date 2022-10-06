@@ -5,18 +5,18 @@ import Calendar from "./Calendar.jsx";
 import TimelineUpcomingAppointments from "./reusable/TimelineUpcomingAppointments.jsx";
 
 const Schedule = () => {
-  const NumberOfrender = 3;
+  const NumberOfRenders = 3;
 
   let renderedWidgets = [];
 
-  for (let i = 0; i < NumberOfrender; i++) {
+  for (let i = 0; i < NumberOfRenders; i++) {
     // renderedWidgets.push(<WidgetUpcomingAppointments key={i} i={i} />);
 
     renderedWidgets.push(
       <TimelineUpcomingAppointments
         key={i}
         i={i}
-        dots={i === NumberOfrender - 1 ? false : true}
+        dots={i === NumberOfRenders - 1 ? false : true}
       />
     );
   }

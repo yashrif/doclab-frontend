@@ -2,16 +2,16 @@ import { Box, Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import LoginForm from "./LoginForm.jsx";
 import { useState } from "react";
-import SignupForm from "./SignupForm.jsx";
+import SignUpForm from "./SignUpForm.jsx";
 import LoginSuccess from "./LogInSuccess.jsx";
-import SignupSuccess from "./SignupSuccess.jsx";
+import SignUpSuccess from "./SignUpSuccess.jsx";
 import { useEffect } from "react";
-import { validateEmail, initialSignup } from "../../assets/variable/values.js";
+import { validateEmail, initialSignUp } from "../../assets/variable/values.js";
 import apiLogin from "../../hooks/apiLogin.jsx";
-import apiSignup from "../../hooks/apiSignup.jsx";
+import apiSignUp from "../../hooks/apiSignUp.jsx";
 
 // fetch functions
-// const [signupData, signupError, signupFetch] = apiSignup();
+// const [signUpData, signUpError, signUpFetch] = apiSignUp();
 
 const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -20,20 +20,20 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
   const finalRef = React.useRef(null);
   const [password, setPassword] = useState("");
   const [doLogin, setDoLogin] = useState(null);
-  const [doSignup, setDoSignup] = useState(null);
+  const [doSignUp, setDoSignUp] = useState(null);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [currWindow, setCurrWindow] = useState(
     initialWindow ? initialWindow : "logInWindow"
   );
-  const [signupInfo, setSignupInfo] = useState(initialSignup);
-  const [catagory, setCatagory] = useState("doctor");
+  const [signUpInfo, setSignUpInfo] = useState(initialSignUp);
+  const [category, setCategory] = useState("doctor");
 
   const onModalClose = () => {
     setCurrWindow(initialWindow ? initialWindow : "logInWindow");
     setPassword("");
     setEmail("");
-    setSignupInfo(initialSignup);
+    setSignUpInfo(initialSignUp);
     onClose();
   };
 
@@ -45,7 +45,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
     const credentials = { authEmail: email, authPassword: password };
     if (validateEmail(email ?? "") && password.length < 21) {
       setLoading(true);
-      console.log(credentials);
+      // console.log(credentials);
       loginFetch(credentials);
     } else if (email != "" || password != "")
       setLoginError({
@@ -63,7 +63,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
       else if (loginData.authPatient != null)
         localStorage.setItem("patientToken", loginData.authToken);
 
-      console.log(loginData);
+      // console.log(loginData);
 
       setLoading(false);
     }
@@ -75,32 +75,32 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
     }
   }, [loginError]);
 
-  // Signup API connections
-  const [signupData, signupError, signupFetch, signupValidate] = apiSignup();
+  // SignUp API connections
+  const [signUpData, signUpError, signUpFetch, signUpValidate] = apiSignUp();
 
   useEffect(() => {
-    if (signupValidate(catagory, signupInfo)) {
+    if (signUpValidate(category, signUpInfo)) {
       setLoading(true);
-      signupFetch(signupInfo, catagory);
-      console.log(signupInfo);
+      signUpFetch(signUpInfo, category);
+      // console.log(signUpInfo);
     }
-  }, [doSignup]);
+  }, [doSignUp]);
 
   useEffect(() => {
-    if (signupData != undefined) {
+    if (signUpData != undefined) {
       setCurrWindow("signUpSuccess");
-      console.log(signupData);
+      // console.log(signUpData);
 
       setLoading(false);
     }
-  }, [signupData]);
+  }, [signUpData]);
 
   useEffect(() => {
-    if (signupError != undefined) {
-      console.log(signupError);
+    if (signUpError != undefined) {
+      // console.log(signUpError);
       setLoading(false);
     }
-  }, [signupError]);
+  }, [signUpError]);
 
   return (
     <>
@@ -134,7 +134,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
         isOpen={isOpen}
         onClose={onClose}
         size="2xl"
-        onClick={() => console.log("clicked")}
+        // onClick={() => console.log("clicked")}
       >
         <ModalOverlay
           bg="blackAlpha.300"
@@ -162,22 +162,22 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
               );
             case "signUpWindow":
               return (
-                <SignupForm
+                <SignUpForm
                   initialRef={initialRef}
                   setCurrWindow={setCurrWindow}
                   loading={loading}
                   setLoading={setLoading}
                   onModalClose={onModalClose}
-                  signupInfo={signupInfo}
-                  setSignupInfo={setSignupInfo}
-                  setDoSignup={setDoSignup}
-                  doSignup={doSignup}
-                  setCatagory={setCatagory}
+                  signUpInfo={signUpInfo}
+                  setSignUpInfo={setSignUpInfo}
+                  setDoSignUp={setDoSignUp}
+                  doSignUp={doSignUp}
+                  setCategory={setCategory}
                 />
               );
             case "signUpSuccess":
               return (
-                <SignupSuccess
+                <SignUpSuccess
                   onModalClose={onModalClose}
                   setCurrWindow={setCurrWindow}
                 />

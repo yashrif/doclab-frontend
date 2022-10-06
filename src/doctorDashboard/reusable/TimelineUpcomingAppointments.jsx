@@ -81,7 +81,7 @@ const TimelineUpcomingAppointments = ({ i, dots }) => {
           animation={`slide-up ${0.3 * (i + 1)}s ease-in-out`}
           transition="all 0.3s ease-in-out"
         >
-          <Text color={"font.muted"} fontSize={"12"}>
+          <Text color={"gray.400"} fontSize={"12"} fontWeight="medium">
             Appointment
           </Text>
           <Text fontSize={"16"} fontWeight={"medium"} color={"font.general"}>

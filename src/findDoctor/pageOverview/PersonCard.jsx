@@ -238,7 +238,7 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
               zIndex: "9999",
             }}
           >
-            Avaiable
+            Available
           </p> */}
         </div>
       </div>

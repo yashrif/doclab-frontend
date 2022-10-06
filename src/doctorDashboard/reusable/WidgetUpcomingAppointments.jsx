@@ -2,7 +2,7 @@ import React from "react";
 import { Text, Grid, Image, GridItem } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 
-const WidgetUpcomingAppointmets = ({ i }) => {
+const WidgetUpcomingAppointments = ({ i }) => {
   return (
     <>
       <style>
@@ -92,4 +92,4 @@ const WidgetUpcomingAppointmets = ({ i }) => {
   );
 };
 
-export default WidgetUpcomingAppointmets;
+export default WidgetUpcomingAppointments;

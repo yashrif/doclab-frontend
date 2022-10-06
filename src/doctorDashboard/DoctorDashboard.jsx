@@ -14,27 +14,30 @@ import apiDelete from "../hooks/apiDelete.jsx";
 
 const Dashboard = () => {
   //Accepting an appointment
-  const [acceptAppointment, setAcceptAppointment] = useState(true);
+  const [acceptedAppointment, setAcceptedAppointment] = useState(true);
   const [changedAppointmentId, setChangedAppointmentId] = useState(null);
   const [responseData, , putData] = apiPut();
   const [responseDelete, , deleteAppointment] = apiDelete();
   const [term, setTerm] = useState("");
 
+  // Fetch Logged in doctor
+  const [person, , fetchPerson] = apiGet();
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  // Fetch Appointments
+  const [appointments, , fetchAppointments] = apiGet();
+  const [allAppointments, setAllAppointments] = useState(null);
+
   useEffect(() => {
-    if (acceptAppointment)
+    if (acceptedAppointment)
       putData(`${SERVER}/appointment/put/${changedAppointmentId}`);
     else {
       deleteAppointment(`${SERVER}/appointment/delete/${changedAppointmentId}`);
     }
   }, [changedAppointmentId]);
 
-  // Fetch Logged in doctor
-
-  const [person, , fetchperson] = apiGet();
-  const [selectedPerson, setSelectedPerson] = useState(null);
-
   useEffect(() => {
-    fetchperson(`${SERVER}/auth`, {
+    fetchPerson(`${SERVER}/auth`, {
       headers: { TOKEN: localStorage.getItem("doctorToken") },
     });
   }, []);
@@ -42,10 +45,6 @@ const Dashboard = () => {
   useEffect(() => {
     setSelectedPerson(person["authDoctor"]);
   }, [person]);
-
-  // Fetch Appointments
-  const [appointments, , fetchAppointments] = apiGet();
-  const [allAppointments, setAllAppointments] = useState(null);
 
   useEffect(() => {
     if (selectedPerson != null)
@@ -154,7 +153,7 @@ const Dashboard = () => {
         </GridItem>
 
         <GridItem justifySelf={"end"} mr="36">
-          <ProfileLink imageuuid={selectedPerson?.doctorImageUUID} />
+          <ProfileLink imageUuid={selectedPerson?.doctorImageUUID} />
         </GridItem>
 
         <GridItem>
@@ -164,7 +163,7 @@ const Dashboard = () => {
           <UserInfo
             selectedPerson={selectedPerson}
             allAppointments={allAppointments}
-            setAcceptAppointment={setAcceptAppointment}
+            setAcceptedAppointment={setAcceptedAppointment}
             setChangedAppointmentId={setChangedAppointmentId}
           />
         </GridItem>

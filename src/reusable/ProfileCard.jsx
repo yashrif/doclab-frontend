@@ -117,7 +117,7 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
             )}
           </div>
 
-          {entity.includes("ConsultencyCount") && (
+          {entity.includes("ConsultancyCount") && (
             <div style={{ ...style.iconAndText }}>
               <ion-icon
                 style={{
@@ -130,8 +130,8 @@ const ProfileCard = ({ category, selectedPerson, entity }) => {
               ></ion-icon>
               <p>
                 <span style={{ ...style.span }}>
-                  {selectedPerson[`${category}ConsultencyCount`]
-                    ? selectedPerson[`${category}ConsultencyCount`]
+                  {selectedPerson[`${category}ConsultancyCount`]
+                    ? selectedPerson[`${category}ConsultancyCount`]
                     : 0}
                 </span>
                 Patients

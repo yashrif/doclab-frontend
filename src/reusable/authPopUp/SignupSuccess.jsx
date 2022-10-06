@@ -13,7 +13,7 @@ const signUpSuccess = ({ setCurrWindow, onModalClose }) => {
     <ModalContent my="auto" p="2rem" borderRadius="11px">
       <ModalCloseButton onClick={onModalClose} p="2rem" />
       <ModalHeader textAlign="center" fontSize="2.4rem " color="blue.700">
-        Sign Up Succesful!
+        Sign Up Successful!
       </ModalHeader>
       <ModalHeader textAlign="center" fontSize="1.4rem" color="gray.400">
         Go to Login page to Login

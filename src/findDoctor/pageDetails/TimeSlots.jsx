@@ -8,7 +8,7 @@ const TimeSlot = ({ selectedPerson }) => {
   const TODAY = new Date();
   const TOMORROW = new Date();
   TOMORROW.setDate(TOMORROW.getDate() + 1);
-  const DATE_FOTMAT = {
+  const DATE_FORMAT = {
     // weekday: "short",
     month: "short",
     day: "numeric",
@@ -70,7 +70,7 @@ const TimeSlot = ({ selectedPerson }) => {
         ? "Today"
         : selectedDate.toLocaleDateString() === TOMORROW.toLocaleDateString()
         ? "Tomorrow"
-        : selectedDate.toLocaleDateString("en-US", DATE_FOTMAT)}
+        : selectedDate.toLocaleDateString("en-US", DATE_FORMAT)}
     </p>
   );
 

@@ -15,40 +15,40 @@ import { Widget } from "@uploadcare/react-widget";
 import { useState, useEffect } from "react";
 import { validateEmail } from "../../assets/variable/values.js";
 
-const PatientSignup = ({
-  handleSignupChange,
-  signupInfo,
+const PatientSignUp = ({
+  handleSignUpChange,
+  signUpInfo,
   refInput,
-  setSignupInfo,
-  doSignup,
+  setSignUpInfo,
+  doSignUp,
 }) => {
   const [inputBlankWarning, setInputBlankWarning] = useState(false);
   useEffect(() => {
     if (
-      doSignup != null &&
-      (signupInfo.patientName == "" ||
-        signupInfo.patientPhone == "" ||
-        signupInfo.patientGender == "" ||
-        signupInfo.patientSubDistrict == "" ||
-        signupInfo.authEmail == "" ||
-        signupInfo.patientImageUUID == "" ||
-        !validateEmail(signupInfo.authEmail))
+      doSignUp != null &&
+      (signUpInfo.patientName == "" ||
+        signUpInfo.patientPhone == "" ||
+        signUpInfo.patientGender == "" ||
+        signUpInfo.patientSubDistrict == "" ||
+        signUpInfo.authEmail == "" ||
+        signUpInfo.patientImageUUID == "" ||
+        !validateEmail(signUpInfo.authEmail))
     )
       setInputBlankWarning(true);
-  }, [doSignup]);
+  }, [doSignUp]);
 
   return (
     <ModalBody mt="1.8rem" pb="1.4rem">
       <FormControl display="flex" alignItems="center">
         <Input
           errorBorderColor="red.400"
-          isInvalid={signupInfo.patientName == "" && inputBlankWarning}
+          isInvalid={signUpInfo.patientName == "" && inputBlankWarning}
           ref={refInput}
           h="3.4rem"
           variant="flushed"
           placeholder="Full Name"
-          onChange={handleSignupChange}
-          value={signupInfo.patientName}
+          onChange={handleSignUpChange}
+          value={signUpInfo.patientName}
           name="patientName"
         />
       </FormControl>
@@ -56,42 +56,42 @@ const PatientSignup = ({
       <FormControl mt="1rem" display="flex" alignItems="center" type="tel">
         <Input
           errorBorderColor="red.300"
-          isInvalid={signupInfo.patientPhone == "" && inputBlankWarning}
+          isInvalid={signUpInfo.patientPhone == "" && inputBlankWarning}
           h="3.4rem"
           variant="flushed"
           placeholder="Phone no"
-          onChange={handleSignupChange}
-          value={signupInfo.patientPhone}
+          onChange={handleSignUpChange}
+          value={signUpInfo.patientPhone}
           name="patientPhone"
         />
       </FormControl>
 
       {/* <FormControl mt='1rem' >
         <Input h='3.4rem' variant='flushed' placeholder='Affiliated Hospital'
-          onChange={handleSignupChange}
-          value={signupInfo.doctorClinicName}
+          onChange={handleSignUpChange}
+          value={signUpInfo.doctorClinicName}
           name="doctorClinicName" />
       </FormControl> */}
 
       <Flex gap={"24"} alignItems={"center"} justifyContent={"space-evenly"}>
         <Select
           errorBorderColor="red.300"
-          isInvalid={signupInfo.patientGender == "" && inputBlankWarning}
+          isInvalid={signUpInfo.patientGender == "" && inputBlankWarning}
           placeholder="Select Gender"
           name="patientGender"
           mt="2.4rem"
-          onChange={handleSignupChange}
+          onChange={handleSignUpChange}
         >
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </Select>
         <Select
           errorBorderColor="red.300"
-          isInvalid={signupInfo.patientSubDistrict == "" && inputBlankWarning}
+          isInvalid={signUpInfo.patientSubDistrict == "" && inputBlankWarning}
           fontSize={"md"}
           name="patientSubDistrict"
           mt="2.4rem"
-          onChange={handleSignupChange}
+          onChange={handleSignUpChange}
           placeholder="Select Sub-District"
         >
           {subDistrictList.map((ele) => (
@@ -121,13 +121,13 @@ const PatientSignup = ({
             type="email"
             errorBorderColor="red.300"
             isInvalid={
-              !validateEmail(signupInfo.authEmail) ||
-              (signupInfo.authEmail == "" && inputBlankWarning)
+              !validateEmail(signUpInfo.authEmail) ||
+              (signUpInfo.authEmail == "" && inputBlankWarning)
             }
             name="authEmail"
             pl="36"
-            onChange={handleSignupChange}
-            value={signupInfo.authEmail}
+            onChange={handleSignUpChange}
+            value={signUpInfo.authEmail}
           />
         </InputGroup>
       </FormControl>
@@ -136,24 +136,24 @@ const PatientSignup = ({
         <PasswordInput
           inputBlankWarning={inputBlankWarning}
           setPassword={(val) =>
-            setSignupInfo((prevState) => ({
+            setSignUpInfo((prevState) => ({
               ...prevState,
               ["authPassword"]: val,
             }))
           }
-          password={signupInfo.authPassword}
+          password={signUpInfo.authPassword}
         />
       </FormControl>
 
       <FormControl display="flex" mt="24" alignItems="center">
         <Box
           border={
-            signupInfo.patientImageUUID == "" && inputBlankWarning
+            signUpInfo.patientImageUUID == "" && inputBlankWarning
               ? "2px solid"
               : "none"
           }
           borderColor={
-            signupInfo.patientImageUUID == "" && inputBlankWarning
+            signUpInfo.patientImageUUID == "" && inputBlankWarning
               ? "red.300"
               : "black"
           }
@@ -161,7 +161,7 @@ const PatientSignup = ({
         >
           <Widget
             onChange={(fileInfo) =>
-              setSignupInfo((prevState) => ({
+              setSignUpInfo((prevState) => ({
                 ...prevState,
                 ["patientImageUUID"]: fileInfo.uuid,
               }))
@@ -179,4 +179,4 @@ const PatientSignup = ({
     </ModalBody>
   );
 };
-export default PatientSignup;
+export default PatientSignUp;

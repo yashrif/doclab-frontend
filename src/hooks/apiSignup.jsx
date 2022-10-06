@@ -6,8 +6,8 @@ const apiLogin = () => {
   const [data, fetchData] = useState();
   const [error, setError] = useState();
 
-  const signupValidate = (catagory, data) => {
-    if (catagory == "doctor") {
+  const signUpValidate = (category, data) => {
+    if (category == "doctor") {
       if (
         data["doctorName"] == "" ||
         data["doctorGender"] == "" ||
@@ -20,7 +20,7 @@ const apiLogin = () => {
       )
         return false;
       else return true;
-    } else if (catagory == "patient") {
+    } else if (category == "patient") {
       if (
         data["patientName"] == "" ||
         data["patientGender"] == "" ||
@@ -34,10 +34,10 @@ const apiLogin = () => {
     } else return false;
   };
 
-  const fetch = async (data, catagory) => {
-    const url = `${SERVER}/${catagory}/add`;
+  const fetch = async (data, category) => {
+    const url = `${SERVER}/${category}/add`;
     var credentials = null;
-    if (catagory == "doctor")
+    if (category == "doctor")
       credentials = {
         doctorName: data["doctorName"],
         doctorGender: data["doctorGender"],
@@ -47,7 +47,7 @@ const apiLogin = () => {
         doctorLocation: data["doctorLocation"],
         doctorImageUUID: data["doctorImageUUID"],
       };
-    else if (catagory == "patient")
+    else if (category == "patient")
       credentials = {
         patientName: data["patientName"],
         patientGender: data["patientGender"],
@@ -57,7 +57,7 @@ const apiLogin = () => {
       };
 
     axios
-      .post(`${SERVER}/auth/signup`, {
+      .post(`${SERVER}/auth/signUp`, {
         authEmail: data["authEmail"],
         authPassword: data["authPassword"],
       })
@@ -76,7 +76,7 @@ const apiLogin = () => {
       .catch(setError);
   };
 
-  return [data, error, fetch, signupValidate];
+  return [data, error, fetch, signUpValidate];
 };
 
 export default apiLogin;

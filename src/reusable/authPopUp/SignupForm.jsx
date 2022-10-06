@@ -9,17 +9,17 @@ import {
 } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import DoctorSignupForm from "./DoctorSignupForm.jsx";
-import PatientSignupForm from "./PatientSignupForm.jsx";
+import DoctorSignUpForm from "./DoctorSignUpForm.jsx";
+import PatientSignUpForm from "./PatientSignUpForm.jsx";
 import ButtonFull from "../button/ButtonFull.jsx";
-const SignupForm = ({
-  setCatagory,
+const SignUpForm = ({
+  setCategory,
   setCurrWindow,
   loading,
-  setSignupInfo,
-  signupInfo,
-  doSignup,
-  setDoSignup,
+  setSignUpInfo,
+  signUpInfo,
+  doSignUp,
+  setDoSignUp,
   onModalClose,
 }) => {
   const [docNow, setDocNow] = useState(true);
@@ -28,9 +28,9 @@ const SignupForm = ({
   useEffect(() => {
     refInput.current.focus();
   }, [docNow]);
-  const handleSignupChange = (e) => {
+  const handleSignUpChange = (e) => {
     const { name, value } = e.target;
-    setSignupInfo((prevState) => ({
+    setSignUpInfo((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -40,7 +40,7 @@ const SignupForm = ({
     <ModalContent my="auto" px="36" py={"24"} borderRadius="11px">
       <ModalCloseButton
         onClick={() => {
-          setDoSignup(null);
+          setDoSignUp(null);
           onModalClose();
         }}
         p="2rem"
@@ -60,7 +60,7 @@ const SignupForm = ({
         <Button
           onClick={() => {
             setDocNow(true);
-            setCatagory("doctor");
+            setCategory("doctor");
             refInput.current.focus();
           }}
           colorScheme="none"
@@ -92,7 +92,7 @@ const SignupForm = ({
           onClick={() => {
             setDocNow(false);
             refInput.current.focus();
-            setCatagory("patient");
+            setCategory("patient");
           }}
           colorScheme="none"
           variant="none"
@@ -122,20 +122,20 @@ const SignupForm = ({
       </Box>
 
       {docNow ? (
-        <DoctorSignupForm
-          handleSignupChange={handleSignupChange}
-          signupInfo={signupInfo}
+        <DoctorSignUpForm
+          handleSignUpChange={handleSignUpChange}
+          signUpInfo={signUpInfo}
           refInput={refInput}
-          setSignupInfo={setSignupInfo}
-          doSignup={doSignup}
+          setSignUpInfo={setSignUpInfo}
+          doSignUp={doSignUp}
         />
       ) : (
-        <PatientSignupForm
-          handleSignupChange={handleSignupChange}
-          signupInfo={signupInfo}
+        <PatientSignUpForm
+          handleSignUpChange={handleSignUpChange}
+          signUpInfo={signUpInfo}
           refInput={refInput}
-          setSignupInfo={setSignupInfo}
-          doSignup={doSignup}
+          setSignUpInfo={setSignUpInfo}
+          doSignUp={doSignUp}
         />
       )}
 
@@ -149,14 +149,14 @@ const SignupForm = ({
           fontWeight={"medium"}
           color={"#fff"}
           onClick={() => {
-            setDoSignup(doSignup ? !doSignup : true);
+            setDoSignUp(doSignUp ? !doSignUp : true);
           }}
         >
           SignUp
         </ButtonFull>
         <Button
           onClick={() => {
-            setDoSignup(null);
+            setDoSignUp(null);
             setCurrWindow("logInWindow");
           }}
           size="lg"
@@ -169,4 +169,4 @@ const SignupForm = ({
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

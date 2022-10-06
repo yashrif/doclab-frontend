@@ -14,19 +14,21 @@ import WidgetAppointment from "./WidgetAppointment.jsx";
 const PendingAppointments = ({
   allAppointments,
   setChangedAppointmentId,
-  setAcceptAppointment,
+  setAcceptedAppointment,
 }) => {
-  const [allPendings, setAllPendings] = useState([]);
+  const [allPending, setAllPending] = useState([]);
   useEffect(() => {
     if (allAppointments != null)
-      setAllPendings(
-        allAppointments.filter((appo) => !appo.appointmentAccepted)
+      setAllPending(
+        allAppointments.filter(
+          (appointment) => !appointment.appointmentAccepted
+        )
       );
   }, [allAppointments]);
 
   const TableHeads = ["Name", "Age", "Date", "Time", "Action"];
 
-  const renderedTableHealds = TableHeads.map((value, index) => {
+  const renderedTableHeads = TableHeads.map((value, index) => {
     return (
       <Th
         key={index}
@@ -81,16 +83,16 @@ const PendingAppointments = ({
       >
         <Table variant="unstyled">
           <Thead>
-            <Tr>{renderedTableHealds}</Tr>
+            <Tr>{renderedTableHeads}</Tr>
           </Thead>
-          {allPendings != null && (
+          {allPending != null && (
             <Tbody>
-              {allPendings.map((appointment) => (
+              {allPending.map((appointment) => (
                 <WidgetAppointment
                   appointment={appointment}
                   key={appointment.appointmentId}
                   setChangedAppointmentId={setChangedAppointmentId}
-                  setAcceptAppointment={setAcceptAppointment}
+                  setAcceptedAppointment={setAcceptedAppointment}
                 />
               ))}
             </Tbody>

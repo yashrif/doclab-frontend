@@ -3,9 +3,9 @@ import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
 
 const Accordion = ({ selectedPerson, category, number }) => {
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  console.log(number, isOpen);
+  // console.log(number, isOpen);
 
   return (
     <>
@@ -29,7 +29,7 @@ const Accordion = ({ selectedPerson, category, number }) => {
       <div
         role={"button"}
         tabIndex={number}
-        onClick={() => setisOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}
         onKeyDown={() => {}}
         style={{
           padding: "2.2rem 2.4rem 2.4rem",

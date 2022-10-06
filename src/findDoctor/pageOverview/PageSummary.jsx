@@ -55,7 +55,7 @@ const PageSummary = ({
         }}
       >
         <img
-          style={{ height: "4.8rem", width: "atuo", borderRadius: "0.9rem" }}
+          style={{ height: "4.8rem", width: "auto", borderRadius: "0.9rem" }}
           src={faker.image.avatar()}
           alt="Page logo"
         />
@@ -67,7 +67,7 @@ const PageSummary = ({
           }}
         >
           <span style={{ color: "#333", fontWeight: "500" }}>
-            {numberofPatients - 1}+
+            {numberOfPatients - 1}+
           </span>{" "}
           Patients
         </p>

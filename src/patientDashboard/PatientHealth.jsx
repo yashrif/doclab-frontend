@@ -26,7 +26,7 @@ const PatientHealth = () => {
         cordY={[10, 5, 15, 25, 15, 26, 16, 10, 30, 14, 21]}
       />
       <WidgetHealth
-        title={"Glusoce"}
+        title={"Glucose"}
         description="Above the room"
         value="100"
         unit="mg/dl"

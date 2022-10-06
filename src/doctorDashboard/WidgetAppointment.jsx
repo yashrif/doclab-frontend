@@ -17,7 +17,7 @@ const WidgetAppointment = ({
     {
       icon: "close-circle-outline",
       iconColor: "#ff6b6b",
-      onclicky: () => {
+      onclick: () => {
         setChangedAppointmentId(appointment.appointmentId);
         setAcceptAppointment(false);
       },
@@ -25,7 +25,7 @@ const WidgetAppointment = ({
     {
       icon: "checkmark-circle-outline",
       iconColor: "#40c057",
-      onclicky: () => {
+      onclick: () => {
         setChangedAppointmentId(appointment.appointmentId);
         setAcceptAppointment(true);
       },
@@ -38,7 +38,7 @@ const WidgetAppointment = ({
         key={index}
         name={value.icon}
         style={{ color: value.iconColor, fontSize: "2rem", ...style.icon }}
-        onClick={value.onclicky}
+        onClick={value.onclick}
       ></ion-icon>
     );
   });

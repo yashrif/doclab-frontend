@@ -12,5 +12,12 @@
       "connectionTimeout": 3000
     }
   ],
-  "cSpell.words": ["ionicon"]
+  "cSpell.words": [
+    "fontawesome",
+    "fortawesome",
+    "gdrive",
+    "imageuuid",
+    "ionicon",
+    "uploadcare"
+  ]
 }
