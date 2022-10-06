@@ -15,6 +15,7 @@ const PendingAppointments = ({
   allAppointments,
   setChangedAppointmentId,
   setAcceptedAppointment,
+  changedAppointmentId,
 }) => {
   const [allPending, setAllPending] = useState([]);
   useEffect(() => {
@@ -93,6 +94,7 @@ const PendingAppointments = ({
                   key={appointment.appointmentId}
                   setChangedAppointmentId={setChangedAppointmentId}
                   setAcceptedAppointment={setAcceptedAppointment}
+                  changedAppointmentId={changedAppointmentId}
                 />
               ))}
             </Tbody>
