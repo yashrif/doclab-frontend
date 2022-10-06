@@ -6,6 +6,7 @@ const WidgetAppointment = ({
   appointment,
   setChangedAppointmentId,
   setAcceptAppointment,
+  changedAppointmentId
 }) => {
   const style = {
     icon: {
@@ -43,6 +44,9 @@ const WidgetAppointment = ({
     );
   });
 
+  if(changedAppointmentId==appointment.appointmentId)
+    return null;
+    
   return (
     <Tr
       cursor="pointer"

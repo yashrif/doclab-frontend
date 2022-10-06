@@ -197,13 +197,13 @@ const Header = () => {
                 className="header-link"
                 onClick={() => {
                   localStorage.getItem("doctorToken") == null &&
-                    localStorage.getItem("doctorToken") == null &&
+                    localStorage.getItem("patientToken") == null &&
                     onDashOpen();
                 }}
                 to={
                   localStorage.getItem("doctorToken") != null
                     ? "/doctorDashboard"
-                    : localStorage.getItem("doctorToken") != null
+                    : localStorage.getItem("patientToken") != null
                     ? "/patientDashboard"
                     : ""
                 }

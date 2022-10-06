@@ -10,6 +10,7 @@ const UserInfo = ({
   allAppointments,
   setChangedAppointmentId,
   setAcceptAppointment,
+  changedAppointmentId
 }) => {
   return (
     <Grid
@@ -68,6 +69,7 @@ const UserInfo = ({
           allAppointments={allAppointments}
           setChangedAppointmentId={setChangedAppointmentId}
           setAcceptAppointment={setAcceptAppointment}
+          changedAppointmentId={changedAppointmentId}
         />
       </GridItem>
     </Grid>

@@ -21,9 +21,9 @@ const Dashboard = () => {
   const [term, setTerm] = useState("");
 
   useEffect(() => {
-    if (acceptAppointment)
+    if (changedAppointmentId!=null && acceptAppointment)
       putData(`${SERVER}/appointment/put/${changedAppointmentId}`);
-    else {
+    else if(changedAppointmentId!=null && !acceptAppointment){
       deleteAppointment(`${SERVER}/appointment/delete/${changedAppointmentId}`);
     }
   }, [changedAppointmentId]);
@@ -166,6 +166,7 @@ const Dashboard = () => {
             allAppointments={allAppointments}
             setAcceptAppointment={setAcceptAppointment}
             setChangedAppointmentId={setChangedAppointmentId}
+            changedAppointmentId={changedAppointmentId}
           />
         </GridItem>
         <GridItem>
