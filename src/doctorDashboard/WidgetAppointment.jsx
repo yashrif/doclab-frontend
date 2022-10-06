@@ -6,6 +6,7 @@ const WidgetAppointment = ({
   appointment,
   setChangedAppointmentId,
   setAcceptAppointment,
+  changedAppointmentId,
 }) => {
   const style = {
     icon: {
@@ -42,6 +43,8 @@ const WidgetAppointment = ({
       ></ion-icon>
     );
   });
+
+  if (changedAppointmentId == appointment.appointmentId) return null;
 
   return (
     <Tr

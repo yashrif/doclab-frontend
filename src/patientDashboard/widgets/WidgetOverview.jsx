@@ -8,7 +8,6 @@ import {
   Text,
   Spacer,
 } from "@chakra-ui/react";
-import { faker } from "@faker-js/faker";
 import { BsTelephone } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 
@@ -46,7 +45,7 @@ const WidgetOverview = ({ selectedPerson }) => {
             </Text>
             <Spacer />
             <Text fontSize={"md"} fontWeight="medium" color={"#333"}>
-              Male
+              {selectedPerson.patientGender}
             </Text>
           </Flex>
           {/* <Flex gap={"20"}>
@@ -96,7 +95,7 @@ const WidgetOverview = ({ selectedPerson }) => {
             <Flex gap="8" alignItems={"center"}>
               <IoLocationOutline fontSize="1.6rem" color="#555" />
               <Text fontSize={"lg"} fontWeight="medium" color={"#333"}>
-                {faker.address.cityName()}
+                {selectedPerson.patientSubDistrict}
               </Text>
             </Flex>
           </Center>
@@ -109,7 +108,7 @@ const WidgetOverview = ({ selectedPerson }) => {
                 color={"#333"}
                 textAlign="center"
               >
-                {faker.phone.number()}
+                {selectedPerson.patientPhone}
               </Text>
             </Flex>
           </Center>
