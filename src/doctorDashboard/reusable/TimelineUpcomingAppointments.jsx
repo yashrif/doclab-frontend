@@ -3,7 +3,7 @@ import { Grid, GridItem, Text } from "@chakra-ui/react";
 // import { faker } from "@faker-js/faker";
 import { MdOutlineSchedule } from "react-icons/md";
 
-const TimelineUpcomingAppointments = ({ i, dots }) => {
+const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
   return (
     <>
       <style>
@@ -85,10 +85,17 @@ const TimelineUpcomingAppointments = ({ i, dots }) => {
             Appointment
           </Text>
           <Text fontSize={"16"} fontWeight={"medium"} color={"font.general"}>
-            8.00 am
+            {acceptedAppointment.appointmentTime}
           </Text>
-          <Text fontSize={"12"} color={"font.general"}>
-            Lorem ipsum dolor sit amet.
+          <Text fontSize={"12"} color={"font.muted"}>
+            with &nbsp;
+            <Text
+              fontWeight={"medium"}
+              display={"inline-block"}
+              color={"font.general"}
+            >
+              {acceptedAppointment.patientName}
+            </Text>
           </Text>
         </GridItem>
       </Grid>

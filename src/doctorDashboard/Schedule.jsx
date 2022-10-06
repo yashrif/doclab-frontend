@@ -1,25 +1,70 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@chakra-ui/react";
 import Calendar from "./Calendar.jsx";
-// import WidgetUpcomingAppointments from "./reusable/WidgetUpcomingAppointments.jsx";
 import TimelineUpcomingAppointments from "./reusable/TimelineUpcomingAppointments.jsx";
+// import WidgetUpcomingAppointments from "./reusable/WidgetUpcomingAppointments.jsx";
 
-const Schedule = () => {
-  const NumberOfRenders = 3;
-
+const Schedule = ({ allAppointments }) => {
+  const NUMBER_OF_RENDERS = 3;
   let renderedWidgets = [];
+  const TODAY = new Date();
 
-  for (let i = 0; i < NumberOfRenders; i++) {
+  const [acceptedAppointments, setAcceptedAppointments] = useState([]);
+
+  useEffect(() => {
+    if (allAppointments != null)
+      setAcceptedAppointments(
+        allAppointments.filter((appointment) => {
+          const time1String = appointment.appointmentTime
+            .slice(0, 5)
+            .split(":");
+          const time2String = TODAY.toLocaleTimeString()
+            .toString()
+            .slice(0, 5)
+            .split(":");
+
+          let time1 =
+            parseInt(time1String[0]) +
+            parseInt(time1String[1]) / 100 +
+            (appointment.appointmentTime.includes("PM") ? 12 : 0);
+
+          let time2 =
+            parseInt(time2String[0]) +
+            parseInt(time2String[1]) / 100 +
+            (TODAY.toLocaleTimeString().toString().includes("PM") ? 12 : 0) -
+            (parseInt(time2String[0]) == 12 ? 12 : 0);
+
+          console.log(time1, time2);
+
+          return (
+            appointment.appointmentAccepted &&
+            appointment.appointmentDate == TODAY.toDateString() &&
+            time2 < time1
+          );
+        })
+      );
+  }, [allAppointments]);
+
+  console.log(acceptedAppointments);
+
+  acceptedAppointments.map((acceptedAppointment, index) => {
     // renderedWidgets.push(<WidgetUpcomingAppointments key={i} i={i} />);
 
-    renderedWidgets.push(
-      <TimelineUpcomingAppointments
-        key={i}
-        i={i}
-        dots={i === NumberOfRenders - 1 ? false : true}
-      />
-    );
-  }
+    if (index < NUMBER_OF_RENDERS)
+      renderedWidgets.push(
+        <TimelineUpcomingAppointments
+          key={index}
+          i={index}
+          dots={
+            index === NUMBER_OF_RENDERS - 1 ||
+            index === acceptedAppointments.length - 1
+              ? false
+              : true
+          }
+          acceptedAppointment={acceptedAppointment}
+        />
+      );
+  });
 
   return (
     <Grid templateColumns="1fr" templateRows="auto 1fr" gap="16" h="full">

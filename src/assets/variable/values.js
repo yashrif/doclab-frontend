@@ -503,6 +503,12 @@ export const initialSignUp = {
   patientImageUUID: "",
 };
 
+export const DATE_FORMAT = {
+  // weekday: "short",
+  month: "short",
+  day: "numeric",
+};
+
 //export const SERVER = "http://localhost:8085";
 //export const SERVER = "https://doclab24.herokuapp.com";
 

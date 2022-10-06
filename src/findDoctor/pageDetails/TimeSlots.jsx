@@ -3,16 +3,12 @@ import { SlideFade, useDisclosure } from "@chakra-ui/react";
 import AppointmentPopUp from "../../reusable/appointmentPopUp/AppointmentPopUp.jsx";
 // import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
+import { DATE_FORMAT } from "../../assets/variable/values.js";
 
 const TimeSlot = ({ selectedPerson }) => {
   const TODAY = new Date();
   const TOMORROW = new Date();
   TOMORROW.setDate(TOMORROW.getDate() + 1);
-  const DATE_FORMAT = {
-    // weekday: "short",
-    month: "short",
-    day: "numeric",
-  };
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [increment, setIncrement] = useState(0);

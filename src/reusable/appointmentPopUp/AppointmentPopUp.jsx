@@ -13,7 +13,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import apiGet from "../../hooks/apiPost.jsx";
-import { SERVER } from "../../assets/variable/values";
+import { SERVER, DATE_FORMAT } from "../../assets/variable/values";
 
 const AppointmentPopUp = ({
   children,
@@ -29,11 +29,6 @@ const AppointmentPopUp = ({
 
   const [loading, setLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
-  const DATE_FORMAT = {
-    // weekday: "short",
-    month: "short",
-    day: "numeric",
-  };
 
   const formattedDate = () => {
     const offset = selectedDate.getTimezoneOffset();

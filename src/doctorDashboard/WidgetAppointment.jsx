@@ -5,7 +5,7 @@ import { faker } from "@faker-js/faker";
 const WidgetAppointment = ({
   appointment,
   setChangedAppointmentId,
-  setAcceptAppointment,
+  setAcceptedAppointment,
   changedAppointmentId,
 }) => {
   const style = {
@@ -20,7 +20,7 @@ const WidgetAppointment = ({
       iconColor: "#ff6b6b",
       onclick: () => {
         setChangedAppointmentId(appointment.appointmentId);
-        setAcceptAppointment(false);
+        setAcceptedAppointment(false);
       },
     },
     {
@@ -28,7 +28,7 @@ const WidgetAppointment = ({
       iconColor: "#40c057",
       onclick: () => {
         setChangedAppointmentId(appointment.appointmentId);
-        setAcceptAppointment(true);
+        setAcceptedAppointment(true);
       },
     },
   ];
