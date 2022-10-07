@@ -9,6 +9,7 @@ const Schedule = ({ allAppointments }) => {
   let renderedWidgets = [];
   const TODAY = new Date();
 
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [acceptedAppointments, setAcceptedAppointments] = useState([]);
 
   useEffect(() => {
@@ -18,7 +19,8 @@ const Schedule = ({ allAppointments }) => {
           const time1String = appointment.appointmentTime
             .slice(0, 5)
             .split(":");
-          const time2String = TODAY.toLocaleTimeString()
+          const time2String = selectedDate
+            .toLocaleTimeString()
             .toString()
             .slice(0, 5)
             .split(":");
@@ -31,21 +33,22 @@ const Schedule = ({ allAppointments }) => {
           let time2 =
             parseInt(time2String[0]) +
             parseInt(time2String[1]) / 100 +
-            (TODAY.toLocaleTimeString().toString().includes("PM") ? 12 : 0) -
+            (selectedDate.toLocaleTimeString().toString().includes("PM")
+              ? 12
+              : 0) -
             (parseInt(time2String[0]) == 12 ? 12 : 0);
-
-          console.log(time1, time2);
 
           return (
             appointment.appointmentAccepted &&
-            appointment.appointmentDate == TODAY.toDateString() &&
-            time2 < time1
+            appointment.appointmentDate == selectedDate.toDateString() &&
+            time2 < time1 &&
+            selectedDate >= TODAY
           );
         })
       );
-  }, [allAppointments]);
+  }, [allAppointments, selectedDate]);
 
-  console.log(acceptedAppointments);
+  // console.log(allAppointments);
 
   acceptedAppointments.map((acceptedAppointment, index) => {
     // renderedWidgets.push(<WidgetUpcomingAppointments key={i} i={i} />);
@@ -68,7 +71,7 @@ const Schedule = ({ allAppointments }) => {
 
   return (
     <Grid templateColumns="1fr" templateRows="auto 1fr" gap="16" h="full">
-      <Calendar />
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <Grid
         maxH={"full"}
         rowGap="4"

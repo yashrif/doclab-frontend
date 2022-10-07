@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import apiGet from "../../hooks/apiPost.jsx";
+import apiPost from "../../hooks/apiPost.jsx";
 import { SERVER, DATE_FORMAT } from "../../assets/variable/values";
 
 const AppointmentPopUp = ({
@@ -43,7 +43,7 @@ const AppointmentPopUp = ({
   };
 
   // Submit appointment
-  const [successResponse, , fetchSuccess] = apiGet();
+  const [successResponse, , fetchSuccess] = apiPost();
 
   useEffect(() => {
     if (loading)
