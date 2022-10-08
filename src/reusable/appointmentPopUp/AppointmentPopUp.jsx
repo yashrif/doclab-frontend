@@ -16,7 +16,6 @@ import apiPost from "../../hooks/apiPost.jsx";
 import {
   SERVER,
   DATE_FORMAT,
-  convertBetween24HourAnd12Hour,
 } from "../../assets/variable/values";
 
 const AppointmentPopUp = ({
@@ -35,13 +34,14 @@ const AppointmentPopUp = ({
   const [successful, setSuccessful] = useState(false);
 
   const formattedDate = () => {
-    const [formattedTime] = convertBetween24HourAnd12Hour({
-      time: time,
-      period: period,
-    });
+    const temp = time.split(":");
     const offset = selectedDate.getTimezoneOffset();
     const date = new Date(selectedDate.getTime() - offset * 60 * 1000);
-    return `${date.toISOString().split("T")[0]}T${formattedTime}`;
+    return `${date.toISOString().split("T")[0]}T${
+      period == "PM" && temp[0] < 12
+        ? [parseInt(temp[0]) + 12, temp[1]].join(":")
+        : time
+    }`;
   };
 
   const closePopUp = () => {
@@ -54,6 +54,7 @@ const AppointmentPopUp = ({
   const [successResponse, , fetchSuccess] = apiPost();
 
   useEffect(() => {
+    console.log(formattedDate());
     if (loading)
       fetchSuccess(
         `${SERVER}/appointment/post`,

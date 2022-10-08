@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -15,12 +14,45 @@ import logo from "../assets/img/logo.png";
 import theme from "../styling/theme.jsx";
 import AuthPopUp from "./authPopUp/AuthPopUp.jsx";
 import ButtonFull from "./button/ButtonFull.jsx";
+import BadgeProfile from "./BadgeProfile.jsx";
+import apiGet from "../hooks/apiGet.jsx";
+import { SERVER } from "../assets/variable/values";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("doctorToken") != null ||
       localStorage.getItem("patientToken") != null
   );
+
+  const [person, , fetchPerson] = apiGet();
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("doctorToken") ||
+      localStorage.getItem("patientToken")
+    )
+      fetchPerson(`${SERVER}/auth`, {
+        headers: {
+          TOKEN: localStorage.getItem(
+            `${
+              localStorage.getItem("doctorToken")
+                ? "doctorToken"
+                : "patientToken"
+            }`
+          ),
+        },
+      });
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    setSelectedPerson(
+      person[
+        `${localStorage.getItem("doctorToken") ? "authDoctor" : "authPatient"}`
+      ]
+    );
+  }, [person]);
+
   const {
     isOpen: isDashOpen,
     onOpen: onDashOpen,
@@ -246,19 +278,14 @@ const Header = () => {
               </>
             )}
             {isLoggedIn ? (
-              <ButtonFull
-                py="18"
-                px="24"
-                fontSize={"17"}
-                fontWeight={"medium"}
-                fontColor={"#fff"}
-                onClick={() => {
-                  localStorage.clear();
-                  setIsLoggedIn(false);
-                }}
-              >
-                Logout
-              </ButtonFull>
+              <BadgeProfile
+                ImageUUID={
+                  localStorage.getItem("doctorToken")
+                    ? selectedPerson?.doctorImageUUID
+                    : selectedPerson?.patientImageUUID
+                }
+                setIsLoggedIn={setIsLoggedIn}
+              />
             ) : (
               <AuthPopUp setIsLoggedIn={setIsLoggedIn}>
                 <li className="header-page-nav-link ">

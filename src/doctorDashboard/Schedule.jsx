@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@chakra-ui/react";
+import { Center, Grid, Text } from "@chakra-ui/react";
 import Calendar from "./Calendar.jsx";
 import TimelineUpcomingAppointments from "./reusable/TimelineUpcomingAppointments.jsx";
 // import WidgetUpcomingAppointments from "./reusable/WidgetUpcomingAppointments.jsx";
@@ -60,7 +60,15 @@ const Schedule = ({ allAppointments }) => {
         overflow="hidden"
         py={"24"}
       >
-        {renderedWidgets}
+        {renderedWidgets.length > 0 ? (
+          renderedWidgets
+        ) : (
+          <Center gridRow={"1 / -1"}>
+            <Text fontSize={"14"} color={"gray.500"} fontWeight={"medium"}>
+              No Upcoming events
+            </Text>
+          </Center>
+        )}
       </Grid>
     </Grid>
   );

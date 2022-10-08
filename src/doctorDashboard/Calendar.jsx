@@ -7,9 +7,13 @@ import "./Calendar.css";
 // import dayjs from "dayjs";
 
 const App = ({ selectedDate, setSelectedDate }) => {
+  let yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+
   const tileDisabled = ({ date }) => {
-    return date < new Date();
+    return date < yesterday;
   };
+
   return (
     <Box boxShadow="0 0.4rem 0.8rem rgba(0, 0, 0, 0.08)" borderRadius="3xl">
       <Calendar
