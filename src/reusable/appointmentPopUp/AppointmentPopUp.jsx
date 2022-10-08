@@ -13,7 +13,11 @@ import {
 import React, { useState, useEffect } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import apiPost from "../../hooks/apiPost.jsx";
-import { SERVER, DATE_FORMAT } from "../../assets/variable/values";
+import {
+  SERVER,
+  DATE_FORMAT,
+  convertBetween24HourAnd12Hour,
+} from "../../assets/variable/values";
 
 const AppointmentPopUp = ({
   children,
@@ -31,9 +35,13 @@ const AppointmentPopUp = ({
   const [successful, setSuccessful] = useState(false);
 
   const formattedDate = () => {
+    const [formattedTime] = convertBetween24HourAnd12Hour({
+      time: time,
+      period: period,
+    });
     const offset = selectedDate.getTimezoneOffset();
     const date = new Date(selectedDate.getTime() - offset * 60 * 1000);
-    return `${date.toISOString().split("T")[0]}T${time}`;
+    return `${date.toISOString().split("T")[0]}T${formattedTime}`;
   };
 
   const closePopUp = () => {
@@ -51,7 +59,7 @@ const AppointmentPopUp = ({
         `${SERVER}/appointment/post`,
         {
           doctorId: selectedPerson.doctorID,
-          appointmentSlotStartTime: formattedDate(),
+          appointmentSlotDate: formattedDate(),
         },
         {
           headers: {

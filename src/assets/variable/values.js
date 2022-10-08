@@ -509,6 +509,29 @@ export const DATE_FORMAT = {
   day: "numeric",
 };
 
+export const convertBetween24HourAnd12Hour = (args) => {
+  if (args.period != null) {
+    if (args.period == "PM" && args.time.slice(0, 2) != "12") {
+      args.time = `${parseInt(args.time.slice(0, 2)) + 12}${args.time.slice(
+        2
+      )}`;
+    }
+    if (args.period == "AM" && args.time.slice(0, 2) == "12") {
+      args.time = `00${args.time.slice(2)}`;
+    }
+    return [args.time];
+  } else {
+    let time = args.time;
+    let period = "AM";
+    if (parseInt(time.slice(0, 2)) >= 12) {
+      period = "PM";
+      if (parseInt(time.slice(0, 2)) > 12)
+        time = `${parseInt(time.slice(0, 2)) - 12}${time.slice(2)}`;
+    } else if (!parseInt(time.slice(0, 2))) time = `12${time.slice(2)}`;
+
+    return [time, period];
+  }
+};
 //export const SERVER = "http://localhost:8085";
 //export const SERVER = "https://doclab24.herokuapp.com";
 

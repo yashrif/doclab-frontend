@@ -16,32 +16,11 @@ const Schedule = ({ allAppointments }) => {
     if (allAppointments != null)
       setAcceptedAppointments(
         allAppointments.filter((appointment) => {
-          const time1String = appointment.appointmentTime
-            .slice(0, 5)
-            .split(":");
-          const time2String = selectedDate
-            .toLocaleTimeString()
-            .toString()
-            .slice(0, 5)
-            .split(":");
-
-          let time1 =
-            parseInt(time1String[0]) +
-            parseInt(time1String[1]) / 100 +
-            (appointment.appointmentTime.includes("PM") ? 12 : 0);
-
-          let time2 =
-            parseInt(time2String[0]) +
-            parseInt(time2String[1]) / 100 +
-            (selectedDate.toLocaleTimeString().toString().includes("PM")
-              ? 12
-              : 0) -
-            (parseInt(time2String[0]) == 12 ? 12 : 0);
-
           return (
             appointment.appointmentAccepted &&
-            appointment.appointmentDate == selectedDate.toDateString() &&
-            time2 < time1 &&
+            new Date(appointment.appointmentSlotDate) >= selectedDate &&
+            new Date(appointment.appointmentSlotDate).toDateString() ==
+              selectedDate.toDateString() &&
             selectedDate >= TODAY
           );
         })

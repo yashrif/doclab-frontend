@@ -75,10 +75,10 @@ const WidgetAppointment = ({
         {appointment.patientAge ? appointment.patientAge : 19}
       </Td>
       <Td overflow="hidden" px="16">
-        {appointment.appointmentDate}
+        {new Date(appointment.appointmentSlotDate).toDateString()}
       </Td>
       <Td overflow="hidden" px="16">
-        {appointment.appointmentTime}
+        {new Date(appointment.appointmentSlotDate).toLocaleTimeString()}
       </Td>
       <Td>
         <Flex alignItems="center" columnGap="12">
