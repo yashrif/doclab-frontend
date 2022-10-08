@@ -33,9 +33,11 @@ const theme = extendTheme({
     font: {
       // hero: "#204289",
       hero: "#064273",
+      primary: "#1c7ed6",
       focused: "#18181B",
       muted: "#767676",
       general: "#555",
+      light: "#fff",
     },
   },
 

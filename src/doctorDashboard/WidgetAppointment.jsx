@@ -1,8 +1,14 @@
 import React from "react";
 import { Flex, Image, Td, Text, Tr } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
+import { TIME_FORMAT } from "../assets/variable/values";
 
-const WidgetAppointment = () => {
+const WidgetAppointment = ({
+  appointment,
+  setChangedAppointmentId,
+  setAcceptedAppointment,
+  changedAppointmentId,
+}) => {
   const style = {
     icon: {
       "--ionicon-stroke-width": "3.6rem",
@@ -13,10 +19,18 @@ const WidgetAppointment = () => {
     {
       icon: "close-circle-outline",
       iconColor: "#ff6b6b",
+      onclick: () => {
+        setChangedAppointmentId(appointment.appointmentId);
+        setAcceptedAppointment(false);
+      },
     },
     {
       icon: "checkmark-circle-outline",
       iconColor: "#40c057",
+      onclick: () => {
+        setChangedAppointmentId(appointment.appointmentId);
+        setAcceptedAppointment(true);
+      },
     },
   ];
 
@@ -26,9 +40,12 @@ const WidgetAppointment = () => {
         key={index}
         name={value.icon}
         style={{ color: value.iconColor, fontSize: "2rem", ...style.icon }}
+        onClick={value.onclick}
       ></ion-icon>
     );
   });
+
+  if (changedAppointmentId == appointment.appointmentId) return null;
 
   return (
     <Tr
@@ -43,22 +60,26 @@ const WidgetAppointment = () => {
       <Td overflow="hidden" py="8" px="16">
         <Flex columnGap="12" alignItems="center">
           <Image
-            src={faker.image.avatar()}
+            src={
+              appointment.patientImageUUID
+                ? "https://ucarecdn.com/" + appointment.patientImageUUID + "/"
+                : faker.image.avatar()
+            }
             alt="avatar"
             boxSize="3.6rem"
             borderRadius="full"
           />
-          <Text>{faker.name.findName()}</Text>
+          <Text>{appointment.patientName}</Text>
         </Flex>
       </Td>
       <Td overflow="hidden" px="16">
-        {Math.floor(Math.random() * 80)}
+        {appointment.patientAge ? appointment.patientAge : 19}
       </Td>
       <Td overflow="hidden" px="16">
-        {new Date().toDateString()}
+        {new Date(appointment.appointmentSlotDate).toDateString()}
       </Td>
       <Td overflow="hidden" px="16">
-        {new Date().toLocaleTimeString()}
+        {new Date(appointment.appointmentSlotDate).toLocaleTimeString([], TIME_FORMAT)}
       </Td>
       <Td>
         <Flex alignItems="center" columnGap="12">

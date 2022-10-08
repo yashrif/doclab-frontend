@@ -484,20 +484,36 @@ export const validateEmail = (email) => {
   );
 };
 
-export const initialSignup = {
+export const initialSignUp = {
   doctorName: "",
   doctorGender: "",
   doctorSubDistrict: "",
   doctorSpeciality: "",
   doctorClinicName: "",
+  doctorImageUUID: "",
+  doctorLocation: "",
+
   authEmail: "",
   authPassword: "",
-  doctorLocation: "",
+
   patientName: "",
   patientGender: "",
   patientPhone: "",
   patientSubDistrict: "",
+  patientImageUUID: "",
 };
 
-// export const SERVER = "http://localhost:8085";
-export const SERVER = "https://doclab24.herokuapp.com";
+export const DATE_FORMAT = {
+  // weekday: "short",
+  month: "short",
+  day: "numeric",
+};
+
+export const TIME_FORMAT = {
+  hour: '2-digit',
+  minute: '2-digit' 
+}
+//export const SERVER = "http://localhost:8085";
+//export const SERVER = "https://doclab24.herokuapp.com";
+
+export const SERVER = "https://doclab-backend.herokuapp.com";

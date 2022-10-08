@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, GridItem, Box, Center, Flex, Link } from "@chakra-ui/react";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
@@ -9,8 +9,34 @@ import PatientHealth from "./PatientHealth.jsx";
 import PatientSchedule from "./PatientSchedule.jsx";
 import PatientActivities from "./PatientActivities.jsx";
 import theme from "../styling/theme.jsx";
+import apiGet from "../hooks/apiGet.jsx";
+import { SERVER } from "../assets/variable/values.js";
+import { useNavigate } from "react-router-dom";
 
 const PatientDashboard = () => {
+  const navigate = useNavigate();
+  const [person, errorPerson, fetchPerson] = apiGet();
+  const [selectedPerson, setSelectedPerson] = useState(null);
+  const [term, setTerm] = useState("");
+
+  useEffect(() => {
+    fetchPerson(`${SERVER}/auth`, {
+      headers: { TOKEN: localStorage.getItem("patientToken") },
+    });
+  }, []);
+
+  useEffect(() => {
+    // console.log(person["authPatient"]);
+    setSelectedPerson(person["authPatient"]);
+  }, [person]);
+
+  useEffect(() => {
+    if (errorPerson != null) {
+      localStorage.clear();
+      navigate("/home");
+    }
+  }, [errorPerson]);
+
   return (
     <Box overflow="hidden" bg={"bgContainer"}>
       <Grid
@@ -43,7 +69,7 @@ const PatientDashboard = () => {
             <GridItem>
               <Flex gap={"24"}>
                 <Link
-                as ={ReachLink}
+                  as={ReachLink}
                   to="/home"
                   fontSize={"16"}
                   fontWeight={"medium"}
@@ -60,7 +86,7 @@ const PatientDashboard = () => {
                   Home
                 </Link>
                 <Link
-                as ={ReachLink}
+                  as={ReachLink}
                   to="/findDoctor"
                   fontSize={"16"}
                   fontWeight={"medium"}
@@ -76,7 +102,7 @@ const PatientDashboard = () => {
                 >
                   Find Doctor
                 </Link>
-                <Link
+                {/* <Link
                 as ={ReachLink}
                   to="/doctorDashboard"
                   fontSize={"16"}
@@ -92,18 +118,25 @@ const PatientDashboard = () => {
                   }}
                 >
                   Dashboard
-                </Link>
+                </Link> */}
               </Flex>
             </GridItem>
 
             <GridItem justifySelf={"end"}>
-              <Search bg="transparent" category="something..." />
+              <Search
+                term={term}
+                setTerm={setTerm}
+                bg="transparent"
+                category="something..."
+              />
             </GridItem>
           </Grid>
         </GridItem>
 
         <GridItem justifySelf={"end"} mr="36">
-          <ProfileLink />
+          <ProfileLink
+            ImageUUID={selectedPerson ? selectedPerson.patientImageUUID : null}
+          />
         </GridItem>
 
         <GridItem>
@@ -119,7 +152,9 @@ const PatientDashboard = () => {
             height={"full"}
           >
             <GridItem rowSpan={"2"}>
-              <WidgetOverview />
+              {selectedPerson && (
+                <WidgetOverview selectedPerson={selectedPerson} />
+              )}
             </GridItem>
 
             <PatientHealth />

@@ -31,7 +31,7 @@ const PageDetails = ({ category, selectedPerson }) => {
   //   },
   // };
 
-  const [selectedNav, setselectedNav] = useState(0);
+  const [selectedNav, setSelectedNav] = useState(0);
 
   return (
     <div
@@ -73,9 +73,9 @@ const PageDetails = ({ category, selectedPerson }) => {
           width: "100%",
           height: "100%",
           display: "grid",
-          gridTemplateColumns: "11fr 3fr",
+          gridTemplateColumns: "11fr 4fr",
           gridTemplateRows: "auto 1fr",
-          alignItems: "start",
+          alignItems: "stretch",
           columnGap: `${theme.typography.sectionGap.medium}`,
           rowGap: `${theme.typography.sectionGap.mediumLow}`,
           overflow: "hidden",
@@ -83,6 +83,7 @@ const PageDetails = ({ category, selectedPerson }) => {
       >
         <div
           style={{
+            // alignSelf: "stretch",
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
@@ -95,7 +96,7 @@ const PageDetails = ({ category, selectedPerson }) => {
               "Degrees",
               "Rating",
               "Info",
-              "ConsultencyCount",
+              "ConsultancyCount",
               "Experience",
               "Verification",
             ]}
@@ -104,8 +105,9 @@ const PageDetails = ({ category, selectedPerson }) => {
 
         <div
           style={{
+            // alignSelf: "stretch",
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
-            alignSelf: "stretch",
+            overflow: "hidden",
           }}
         >
           <TimeSlot category={category} selectedPerson={selectedPerson} />
@@ -125,7 +127,7 @@ const PageDetails = ({ category, selectedPerson }) => {
         >
           <Navigation
             selectedNav={selectedNav}
-            setselectedNav={setselectedNav}
+            setSelectedNav={setSelectedNav}
           />
           {selectedNav === 0 && (
             <Info selectedPerson={selectedPerson} category={category} />

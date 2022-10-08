@@ -8,11 +8,10 @@ import {
   Text,
   Spacer,
 } from "@chakra-ui/react";
-import { faker } from "@faker-js/faker";
 import { BsTelephone } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 
-const WidgetOverview = () => {
+const WidgetOverview = ({ selectedPerson }) => {
   return (
     <Stack
       height={"full"}
@@ -24,7 +23,9 @@ const WidgetOverview = () => {
       <StackItem>
         <Center>
           <Image
-            src={faker.image.avatar()}
+            src={
+              "https://ucarecdn.com/" + selectedPerson.patientImageUUID + "/"
+            }
             borderRadius="50%"
             w={"36"}
             h="36"
@@ -33,7 +34,7 @@ const WidgetOverview = () => {
       </StackItem>
       <StackItem>
         <Center fontWeight={"medium"} fontSize="xl">
-          {faker.name.findName()}
+          {selectedPerson.patientName}
         </Center>
       </StackItem>
       <StackItem>
@@ -44,7 +45,7 @@ const WidgetOverview = () => {
             </Text>
             <Spacer />
             <Text fontSize={"md"} fontWeight="medium" color={"#333"}>
-              Male
+              {selectedPerson.patientGender}
             </Text>
           </Flex>
           {/* <Flex gap={"20"}>
@@ -94,7 +95,7 @@ const WidgetOverview = () => {
             <Flex gap="8" alignItems={"center"}>
               <IoLocationOutline fontSize="1.6rem" color="#555" />
               <Text fontSize={"lg"} fontWeight="medium" color={"#333"}>
-                {faker.address.cityName()}
+                {selectedPerson.patientSubDistrict}
               </Text>
             </Flex>
           </Center>
@@ -107,7 +108,7 @@ const WidgetOverview = () => {
                 color={"#333"}
                 textAlign="center"
               >
-                {faker.phone.number()}
+                {selectedPerson.patientPhone}
               </Text>
             </Flex>
           </Center>

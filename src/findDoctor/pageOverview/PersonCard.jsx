@@ -118,12 +118,19 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
           >
             <img
               style={{
+                width: "4.8rem",
                 height: "4.8rem",
                 borderRadius: "50%",
                 gridRow: "1/ -3",
                 // alignSelf: "flex-start",
               }}
-              src={faker.image.avatar()}
+              src={
+                person[`${category}ImageUUID`]
+                  ? "https://ucarecdn.com/" +
+                    person[`${category}ImageUUID`] +
+                    "/"
+                  : faker.image.avatar()
+              }
               alt="avatar"
             />
 
@@ -231,7 +238,7 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
               zIndex: "9999",
             }}
           >
-            Avaiable
+            Available
           </p> */}
         </div>
       </div>

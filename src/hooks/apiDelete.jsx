@@ -1,12 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 
-const apiGet = () => {
-  const [data, fetchData] = useState([]);
+const apiDelete = () => {
+  const [data, fetchData] = useState(null);
   const [error, setError] = useState(null);
 
   const fetch = async (url, headers) => {
-    const response = await axios.get(url, headers).catch(setError);
+    const response = await axios.delete(url, headers).catch(setError);
 
     fetchData(response.data);
   };
@@ -14,4 +14,4 @@ const apiGet = () => {
   return [data, error, fetch];
 };
 
-export default apiGet;
+export default apiDelete;

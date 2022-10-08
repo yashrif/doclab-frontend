@@ -5,15 +5,16 @@ import SearchContainer from "./SearchContainer.jsx";
 import PersonList from "./PersonList.jsx";
 import theme from "../../styling/theme.jsx";
 import { SERVER } from "../../assets/variable/values.js";
+
 const PageOverview = ({ category, setSelectedPerson }) => {
   const [term, setTerm] = useState("");
-  const [personList, errorMessage, fetchpersonList] = apiGet([]);
+  const [personList, errorMessage, fetchPersonList] = apiGet([]);
   const [personFilteredList, setPersonFilteredList] = useState(personList);
   const [displayDescription, setDisplayDescription] = useState(true);
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    fetchpersonList(`${SERVER}/${category}`,{});
+    fetchPersonList(`${SERVER}/${category}`, {});
   }, []);
 
   useEffect(() => {
@@ -113,13 +114,13 @@ const PageOverview = ({ category, setSelectedPerson }) => {
             boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
           }}
         >
-          <div style={{ margin: "1.6rem 2.4rem" }}>
+          <div style={{ margin: "2.4rem 2.4rem 1.6rem" }}>
             <div style={{ marginBottom: "2rem" }}>
               <PageSummary
                 displayDescription={displayDescription}
                 category={category}
                 numberOfPerson={personFilteredList.length}
-                numberofPatients={500}
+                numberOfPatients={500}
               />
             </div>
             {displayDescription && (
@@ -149,7 +150,7 @@ const PageOverview = ({ category, setSelectedPerson }) => {
           className={`${!displayDescription ? "slide-up" : "slide-down"}`}
           style={{
             height: "100%",
-            padding: "1.6rem 0",
+            padding: "1.2rem 0",
             marginTop: "0.4rem",
             borderRadius: "1.1rem",
             backgroundColor: `${theme.typography.colors.background.container}`,

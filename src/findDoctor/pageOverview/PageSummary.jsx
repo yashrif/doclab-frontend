@@ -1,5 +1,5 @@
 import React from "react";
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
 
 const style = {
@@ -28,7 +28,7 @@ const style = {
 const PageSummary = ({
   category,
   displayDescription,
-  numberofPatients,
+  // numberOfPatients,
   numberOfPerson,
 }) => {
   return (
@@ -45,7 +45,7 @@ const PageSummary = ({
           }
         `}
       </style>
-      <div
+      {/* <div
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -55,7 +55,7 @@ const PageSummary = ({
         }}
       >
         <img
-          style={{ height: "4.8rem", width: "atuo", borderRadius: "0.9rem" }}
+          style={{ height: "4.8rem", width: "auto", borderRadius: "0.9rem" }}
           src={faker.image.avatar()}
           alt="Page logo"
         />
@@ -67,11 +67,11 @@ const PageSummary = ({
           }}
         >
           <span style={{ color: "#333", fontWeight: "500" }}>
-            {numberofPatients - 1}+
+            {numberOfPatients - 1}+
           </span>{" "}
           Patients
         </p>
-      </div>
+      </div> */}
 
       {displayDescription && (
         <div

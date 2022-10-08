@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
 
-const HeadingHeading = ({children}) => {
+const HeadingHeading = ({ children }) => {
   return (
     <Text
       textTransform={"capitalize"}

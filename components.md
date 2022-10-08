@@ -19,40 +19,42 @@
 
 #### Badge Profile
 
+#### AppointmentPopUp
+
 #### AuthPopUp
 
 - Login Form
-- Signup Form
+- Sign Up Form
 - Login Success
-- Signup Success
+- Sign Up Success
 - Api Login
-- Api Signup
+- Api Sign Up
 
 #### Login Form
 
 - Password Input
 
-#### Signup Form
+#### Sign Up Form
 
-- Doctor Signup Form
+- Doctor Sign Up Form
 
-#### Doctor Signup Form
+#### Doctor Sign Up Form
 
 - Password Input
 
-#### Patient Signup Form
+#### Patient Sign Up Form
 
 - Password Input
 
 #### Login Success
 
-#### Signup Success
+#### Sign Up Success
 
 #### Password Input
 
 #### Api Login
 
-#### Api Signup
+#### Api Sign Up
 
 #### Api Get
 
@@ -82,6 +84,9 @@
     - Heading Secondary
     - Widget Services Works
     - Button Full
+  - Testimonials
+    - Heading Primary
+    - Heading Secondary
   - Footer
 
 #### Find Doctor
@@ -102,6 +107,7 @@
   - Page Details
     - Profile Card
     - Time Slot
+      - AppointmentPopUp
     - Navigation
     - Reviews
       - Review

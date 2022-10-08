@@ -1,29 +1,56 @@
-import React from "react";
-import { Grid } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Center, Grid, Text } from "@chakra-ui/react";
 import Calendar from "./Calendar.jsx";
-// import WidgetUpcomingAppointments from "./reusable/WidgetUpcomingAppointments.jsx";
 import TimelineUpcomingAppointments from "./reusable/TimelineUpcomingAppointments.jsx";
+// import WidgetUpcomingAppointments from "./reusable/WidgetUpcomingAppointments.jsx";
 
-const Schedule = () => {
-  const NumberOfrender = 3;
-
+const Schedule = ({ allAppointments }) => {
+  const NUMBER_OF_RENDERS = 3;
   let renderedWidgets = [];
+  const TODAY = new Date();
 
-  for (let i = 0; i < NumberOfrender; i++) {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [acceptedAppointments, setAcceptedAppointments] = useState([]);
+
+  useEffect(() => {
+    if (allAppointments != null)
+      setAcceptedAppointments(
+        allAppointments.filter((appointment) => {
+          return (
+            appointment.appointmentAccepted &&
+            new Date(appointment.appointmentSlotDate) >= selectedDate &&
+            new Date(appointment.appointmentSlotDate).toDateString() ==
+              selectedDate.toDateString() &&
+            selectedDate >= TODAY
+          );
+        })
+      );
+  }, [allAppointments, selectedDate]);
+
+  // console.log(allAppointments);
+
+  acceptedAppointments.map((acceptedAppointment, index) => {
     // renderedWidgets.push(<WidgetUpcomingAppointments key={i} i={i} />);
 
-    renderedWidgets.push(
-      <TimelineUpcomingAppointments
-        key={i}
-        i={i}
-        dots={i === NumberOfrender - 1 ? false : true}
-      />
-    );
-  }
+    if (index < NUMBER_OF_RENDERS)
+      renderedWidgets.push(
+        <TimelineUpcomingAppointments
+          key={index}
+          i={index}
+          dots={
+            index === NUMBER_OF_RENDERS - 1 ||
+            index === acceptedAppointments.length - 1
+              ? false
+              : true
+          }
+          acceptedAppointment={acceptedAppointment}
+        />
+      );
+  });
 
   return (
     <Grid templateColumns="1fr" templateRows="auto 1fr" gap="16" h="full">
-      <Calendar />
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <Grid
         maxH={"full"}
         rowGap="4"
@@ -33,7 +60,15 @@ const Schedule = () => {
         overflow="hidden"
         py={"24"}
       >
-        {renderedWidgets}
+        {renderedWidgets.length > 0 ? (
+          renderedWidgets
+        ) : (
+          <Center gridRow={"1 / -1"}>
+            <Text fontSize={"14"} color={"gray.500"} fontWeight={"medium"}>
+              No Upcoming events
+            </Text>
+          </Center>
+        )}
       </Grid>
     </Grid>
   );

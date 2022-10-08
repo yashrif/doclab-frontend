@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Grid, GridItem, Center, Flex,Link } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Box, Grid, GridItem, Center, Flex, Link } from "@chakra-ui/react";
 import { Link as ReachLink } from "react-router-dom";
 import NavBar from "../reusable/NavBar.jsx";
 import Search from "../reusable/Search.jsx";
@@ -7,11 +7,69 @@ import UserInfo from "./UserInfo.jsx";
 import Schedule from "./Schedule.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
 import theme from "../styling/theme.jsx";
-// import Header from "../reusable/Header.jsx";
+import apiGet from "../hooks/apiGet.jsx";
+import { SERVER } from "../assets/variable/values.js";
+import apiPut from "../hooks/apiPut.jsx";
+import apiDelete from "../hooks/apiDelete.jsx";
+import { useNavigate } from "react-router-dom";
+
 
 const Dashboard = () => {
+
+  const navigate = useNavigate();
+  //Accepting an appointment
+  const [acceptedAppointment, setAcceptedAppointment] = useState(true);
+  const [changedAppointmentId, setChangedAppointmentId] = useState(null);
+  const [responseData, , putData] = apiPut();
+  const [responseDelete, , deleteAppointment] = apiDelete();
+  const [term, setTerm] = useState("");
+
+  // Fetch Logged in doctor
+  const [person, errorPerson, fetchPerson] = apiGet();
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  // Fetch Appointments
+  const [appointments, , fetchAppointments] = apiGet();
+  const [allAppointments, setAllAppointments] = useState(null);
+
+  useEffect(() => {
+    if (changedAppointmentId != null && acceptedAppointment)
+      putData(`${SERVER}/appointment/put/${changedAppointmentId}`);
+    else if (changedAppointmentId != null && !acceptedAppointment) {
+      deleteAppointment(`${SERVER}/appointment/delete/${changedAppointmentId}`);
+    }
+  }, [changedAppointmentId]);
+
+  useEffect(() => {
+    fetchPerson(`${SERVER}/auth`, {
+      headers: { TOKEN: localStorage.getItem("doctorToken") },
+    });
+  }, []);
+
+  useEffect(() => {
+    setSelectedPerson(person["authDoctor"]);
+  }, [person]);
+
+  useEffect(() => {
+    if (selectedPerson != null)
+      fetchAppointments(
+        `${SERVER}/appointment/listPatients/${selectedPerson.doctorID}`
+      );
+  }, [selectedPerson, responseData, responseDelete]);
+
+  useEffect(() => {
+    setAllAppointments(appointments);
+  }, [appointments]);
+
+  useEffect(() => {
+    if (errorPerson != null) {
+      localStorage.clear();
+      navigate("/home");
+    }
+  }, [errorPerson]);
+
   return (
-    <Box overflow="hidden"  bg={"bgContainer"}>
+    <Box overflow="hidden" bg={"bgContainer"}>
       <Grid
         height="calc(100vh - 4.8rem)"
         maxW="1280px"
@@ -75,7 +133,7 @@ const Dashboard = () => {
                 >
                   Find Doctor
                 </Link>
-                <Link
+                {/* <Link
                   as={ReachLink}
                   to="/patientDashboard"
                   fontSize={"16"}
@@ -91,27 +149,38 @@ const Dashboard = () => {
                   }}
                 >
                   Dashboard
-                </Link>
+                </Link> */}
               </Flex>
             </GridItem>
             <GridItem justifySelf={"end"}>
-              <Search bg="transparent" category="something..." />
+              <Search
+                term={term}
+                setTerm={setTerm}
+                bg="transparent"
+                category="something..."
+              />
             </GridItem>
           </Grid>
         </GridItem>
 
         <GridItem justifySelf={"end"} mr="36">
-          <ProfileLink />
+          <ProfileLink ImageUUID={selectedPerson?.doctorImageUUID} />
         </GridItem>
 
         <GridItem>
           <NavBar />
         </GridItem>
         <GridItem overflow="hidden">
-          <UserInfo />
+          <UserInfo
+            selectedPerson={selectedPerson}
+            allAppointments={allAppointments}
+            setAcceptedAppointment={setAcceptedAppointment}
+            setChangedAppointmentId={setChangedAppointmentId}
+            changedAppointmentId={changedAppointmentId}
+          />
         </GridItem>
         <GridItem>
-          <Schedule />
+          <Schedule allAppointments={allAppointments} />
         </GridItem>
       </Grid>
     </Box>

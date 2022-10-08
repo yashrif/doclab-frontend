@@ -1,26 +1,31 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { SlideFade, useDisclosure } from "@chakra-ui/react";
+import AppointmentPopUp from "../../reusable/appointmentPopUp/AppointmentPopUp.jsx";
 // import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
+import { DATE_FORMAT } from "../../assets/variable/values.js";
 
-const TimeSlot = () => {
+const TimeSlot = ({ selectedPerson }) => {
   const TODAY = new Date();
   const TOMORROW = new Date();
   TOMORROW.setDate(TOMORROW.getDate() + 1);
-  const DATE_FOTMAT = {
-    // weekday: "short",
-    month: "short",
-    day: "numeric",
-  };
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [increment, setIncrement] = useState(0);
+  const {
+    isOpen: isResetOpen,
+    onOpen: onResetOpen,
+    onClose: onResetClose,
+  } = useDisclosure();
 
   useEffect(() => {
     let tempDate = new Date();
     tempDate.setDate(tempDate.getDate() + increment);
-    console.log(tempDate);
+    // console.log(tempDate);
     setSelectedDate(tempDate);
+
+    if (increment == 0) onResetClose();
+    else onResetOpen();
   }, [increment]);
 
   const style = {
@@ -46,7 +51,7 @@ const TimeSlot = () => {
     },
   };
 
-  console.log("selected date: " + selectedDate.toLocaleDateString());
+  // console.log("selected date: " + selectedDate.toLocaleDateString());
 
   const renderedDate = (
     <p
@@ -61,28 +66,70 @@ const TimeSlot = () => {
         ? "Today"
         : selectedDate.toLocaleDateString() === TOMORROW.toLocaleDateString()
         ? "Tomorrow"
-        : selectedDate.toLocaleDateString("en-US", DATE_FOTMAT)}
+        : selectedDate.toLocaleDateString("en-US", DATE_FORMAT)}
     </p>
   );
+
+  const scheduleGenerator = (times, period) => {
+    const render = times.map((time, index) => {
+      return (
+        <div
+          key={index}
+          role={"button"}
+          tabIndex={index}
+          onClick={() => {}}
+          onKeyDown={() => {}}
+        >
+          <AppointmentPopUp
+            time={time}
+            selectedPerson={selectedPerson}
+            period={period}
+            selectedDate={selectedDate}
+          >
+            <button
+              style={{
+                display: "inline-block",
+                color: `${theme.colors.primary.base}`,
+                fontSize: "1rem",
+                fontWeight: "500",
+                padding: ".4rem .8rem",
+                border: `1px solid ${theme.colors.primary.base}`,
+                borderRadius: ".5rem",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {time} {period}
+            </button>
+          </AppointmentPopUp>
+        </div>
+      );
+    });
+
+    return render;
+  };
 
   return (
     <>
       <style>
         {`
-         .time-slot ion-icon:hover {
+         .time-slot--date ion-icon:hover {
           background-color: rgba(28, 126, 214) !important;
           box-shadow: inset 0 0 0 0.25rem rgba(28, 126, 214, 0.25),  0 0 1.2rem rgba(28, 126, 214, 0.5) !important;
          }
 
-         .time-slot ion-icon:active {
+         .time-slot--date ion-icon:active {
             transform: scale(1.2);
+         }
+
+         ::-webkit-scrollbar {
+          height: .8rem;
          }
         `}
       </style>
       <div
         style={{
           fontSize: "1.4rem",
-          padding: "1.6rem 1.6rem",
+          padding: "1.6rem 1.6rem 0",
           backgroundColor: `${theme.typography.colors.background.personCard}`,
           borderRadius: "1.1rem",
           borderBottomRightRadius: "1.1rem",
@@ -133,13 +180,15 @@ const TimeSlot = () => {
             </p> */}
 
         <div
-          className="time-slot"
+          className="time-slot--date"
           style={{
+            position: "relative",
             fontSize: "1.3rem",
             display: "flex",
             gap: "1.2rem",
             justifyContent: "space-between",
             alignItems: "center",
+            marginBottom: "2.4rem",
           }}
         >
           <ion-icon
@@ -156,7 +205,7 @@ const TimeSlot = () => {
             style={{
               ...style.icon,
               ...style.iconRounded,
-              fontSize: "1.2rem",
+              fontSize: "1.4rem",
               padding: ".4rem",
               color: "#fff",
               backgroundColor: "rgba(28, 126, 214, .70)",
@@ -166,7 +215,39 @@ const TimeSlot = () => {
             }}
             name="chevron-back-outline"
           ></ion-icon>
+
+          <SlideFade
+            in={isResetOpen}
+            offsetY="-20px"
+            onClick={() => {
+              setIncrement(0);
+            }}
+            style={{
+              position: "absolute",
+              top: "100%",
+              left: "50%",
+              zIndex: "100",
+            }}
+          >
+            <ion-icon
+              style={{
+                ...style.icon,
+                ...style.iconRounded,
+                fontSize: "1.4rem",
+                padding: ".4rem",
+                color: "#fff",
+                backgroundColor: "rgba(28, 126, 214, .70)",
+                boxShadow: "0 -.4rem .4rem rgba(0, 0, 0, .15)",
+                cursor: "pointer",
+                transition: "all .3s",
+                transform: "rotateX(180deg) translate(-50%, -50%)",
+              }}
+              name="refresh-outline"
+            ></ion-icon>
+          </SlideFade>
+
           {renderedDate}
+
           <ion-icon
             className="btn"
             role={"button"}
@@ -177,7 +258,7 @@ const TimeSlot = () => {
             style={{
               ...style.icon,
               ...style.iconRounded,
-              fontSize: "1.2rem",
+              fontSize: "1.4rem",
               padding: ".4rem",
               color: "#fff",
               backgroundColor: "rgba(28, 126, 214, .70)",
@@ -187,6 +268,73 @@ const TimeSlot = () => {
             }}
             name="chevron-forward-outline"
           ></ion-icon>
+        </div>
+
+        <div
+          style={{
+            paddingBottom: "1.2rem",
+            overflowX: "scroll",
+            marginBottom: ".4rem",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "1.3rem",
+              fontWeight: "500",
+              color: `${theme.colors.font.focused}`,
+              margin: ".8rem 0",
+            }}
+          >
+            Morning
+          </h3>
+          <div style={{ display: "flex", gap: ".8rem", padding: "0 .4rem" }}>
+            {scheduleGenerator(
+              [
+                "07:00",
+                "07:30",
+                "08:00",
+                "08:30",
+                "09:00",
+                "09:30",
+                "10:00",
+                "10:30",
+                "11:00",
+                "11:30",
+              ],
+              "AM"
+            )}
+          </div>
+          <h3
+            style={{
+              fontSize: "1.3rem",
+              fontWeight: "500",
+              color: `${theme.colors.font.focused}`,
+              margin: ".8rem 0",
+            }}
+          >
+            Evening
+          </h3>
+          <div style={{ display: "flex", gap: ".8rem", padding: "0 .4rem" }}>
+            {scheduleGenerator(
+              [
+                "12:00",
+                "12:30",
+                "01:00",
+                "05:00",
+                "05:30",
+                "06:00",
+                "06:30",
+                "07:00",
+                "07:30",
+                "08:00",
+                "08:30",
+                "09:00",
+                "09:30",
+                "10:00",
+              ],
+              "PM"
+            )}
+          </div>
         </div>
       </div>
     </>

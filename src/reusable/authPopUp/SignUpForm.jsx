@@ -9,17 +9,20 @@ import {
 } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import DoctorSignupForm from "./DoctorSignupForm.jsx";
-import PatientSignupForm from "./PatientSignupForm.jsx";
-const SignupForm = ({
-  setCatagory,
+import DoctorSignUpForm from "./DoctorSignUpForm.jsx";
+import PatientSignUpForm from "./PatientSignUpForm.jsx";
+import ButtonFull from "../button/ButtonFull.jsx";
+import { initialSignUp } from "../../assets/variable/values.js";
+const SignUpForm = ({
+  setCategory,
   setCurrWindow,
   loading,
-  setSignupInfo,
-  signupInfo,
-  doSignup,
-  setDoSignup,
+  setSignUpInfo,
+  signUpInfo,
+  doSignUp,
+  setDoSignUp,
   onModalClose,
+  clearAll
 }) => {
   const [docNow, setDocNow] = useState(true);
   const refInput = useRef(null);
@@ -27,39 +30,52 @@ const SignupForm = ({
   useEffect(() => {
     refInput.current.focus();
   }, [docNow]);
-  const handleSignupChange = (e) => {
+  const handleSignUpChange = (e) => {
     const { name, value } = e.target;
-    setSignupInfo((prevState) => ({
+    setSignUpInfo((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
   return (
-    <ModalContent my="auto" p="2rem" borderRadius="11px">
-      <ModalCloseButton onClick={onModalClose} p="2rem" />
+    <ModalContent my="auto" px="36" py={"24"} borderRadius="11px">
+      <ModalCloseButton
+        onClick={() => {
+          clearAll()
+          onModalClose();
+        }}
+        p="2rem"
+      />
       <ModalHeader textAlign="center" fontSize="2.4rem " color="blue.700">
         Sign Up
       </ModalHeader>
-      <ModalHeader textAlign="center" fontSize="1.4rem" color="gray.400">
+      <ModalHeader
+        textAlign="center"
+        fontSize="1.4rem"
+        color="gray.400"
+        fontWeight={"medium"}
+      >
         Enter your details
       </ModalHeader>
       <Box display="flex" mt="2.4rem" justifyContent={"center"}>
         <Button
           onClick={() => {
             setDocNow(true);
-            setCatagory("doctor");
+            setDoSignUp(null);
+            setSignUpInfo(initialSignUp)
+            setCategory("doctor");
             refInput.current.focus();
           }}
           colorScheme="none"
           variant="none"
           textDecoration="none"
           fontSize={12}
-          fontWeight="semiBold"
+          fontWeight="medium"
           letterSpacing=".25px"
           px={5}
           py={12}
-          color="#000"
+          color={docNow ? "font.light" : "font.general"}
           border="none"
           // borderRadius="xl"
           borderRadius="5px"
@@ -79,17 +95,19 @@ const SignupForm = ({
         <Button
           onClick={() => {
             setDocNow(false);
+            setDoSignUp(null);
+            setSignUpInfo(initialSignUp)
             refInput.current.focus();
-            setCatagory("patient");
+            setCategory("patient");
           }}
           colorScheme="none"
           variant="none"
           textDecoration="none"
           fontSize={12}
-          fontWeight="semiBold"
+          fontWeight="medium"
           letterSpacing=".25px"
           px={5}
-          color="#000"
+          color={!docNow ? "font.light" : "font.general"}
           border="none"
           // borderRadius="xl"
 
@@ -110,33 +128,45 @@ const SignupForm = ({
       </Box>
 
       {docNow ? (
-        <DoctorSignupForm
-          handleSignupChange={handleSignupChange}
-          signupInfo={signupInfo}
+        <DoctorSignUpForm
+          handleSignUpChange={handleSignUpChange}
+          signUpInfo={signUpInfo}
           refInput={refInput}
-          setSignupInfo={setSignupInfo}
+          setSignUpInfo={setSignUpInfo}
+          doSignUp={doSignUp}
         />
       ) : (
-        <PatientSignupForm
-          handleSignupChange={handleSignupChange}
-          signupInfo={signupInfo}
+        <PatientSignUpForm
+          handleSignUpChange={handleSignUpChange}
+          signUpInfo={signUpInfo}
           refInput={refInput}
-          setSignupInfo={setSignupInfo}
+          setSignUpInfo={setSignUpInfo}
+          doSignUp={doSignUp}
         />
       )}
 
       <ModalFooter display="flex" mt="1.8rem" justifyContent="space-evenly">
-        <Button
+        <ButtonFull
           isLoading={loading}
-          colorScheme="blue"
-          size="lg"
+          py="1.4rem"
+          px="16"
+          fontSize={"14"}
+          borderRadius={"lg"}
+          fontWeight={"medium"}
+          color={"#fff"}
           onClick={() => {
-            setDoSignup(1 - doSignup);
+            setDoSignUp(doSignUp ? !doSignUp : true);
           }}
         >
           SignUp
-        </Button>
-        <Button onClick={() => setCurrWindow("logInWindow")} size="lg">
+        </ButtonFull>
+        <Button
+          onClick={() => {
+            setDoSignUp(null);
+            setCurrWindow("logInWindow");
+          }}
+          size="lg"
+        >
           <Text mr="0.4rem">Login</Text>
           <ArrowForwardIcon />
         </Button>
@@ -145,4 +175,4 @@ const SignupForm = ({
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

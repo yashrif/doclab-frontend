@@ -3,7 +3,7 @@ import { Center } from "@chakra-ui/react";
 import BadgeProfile from "./BadgeProfile.jsx";
 import theme from "../styling/theme.jsx";
 
-const ProfileLink = () => {
+const ProfileLink = ({ ImageUUID }) => {
   return (
     <Center gap={"16"}>
       <style>
@@ -52,7 +52,7 @@ const ProfileLink = () => {
         name="notifications-outline"
       ></ion-icon>
 
-      <BadgeProfile />
+      <BadgeProfile ImageUUID={ImageUUID} />
     </Center>
   );
 };

@@ -2,8 +2,9 @@ import React from "react";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
 // import { faker } from "@faker-js/faker";
 import { MdOutlineSchedule } from "react-icons/md";
+import { TIME_FORMAT } from "../../assets/variable/values";
 
-const TimelineUpcomingAppointments = ({ i, dots }) => {
+const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
   return (
     <>
       <style>
@@ -81,14 +82,21 @@ const TimelineUpcomingAppointments = ({ i, dots }) => {
           animation={`slide-up ${0.3 * (i + 1)}s ease-in-out`}
           transition="all 0.3s ease-in-out"
         >
-          <Text color={"font.muted"} fontSize={"12"}>
+          <Text color={"gray.400"} fontSize={"12"} fontWeight="medium">
             Appointment
           </Text>
           <Text fontSize={"16"} fontWeight={"medium"} color={"font.general"}>
-            8.00 am
+            {new Date(acceptedAppointment.appointmentSlotDate).toLocaleTimeString([], TIME_FORMAT)}
           </Text>
-          <Text fontSize={"12"} color={"font.general"}>
-            Lorem ipsum dolor sit amet.
+          <Text fontSize={"12"} color={"font.muted"}>
+            with &nbsp;
+            <Text
+              fontWeight={"medium"}
+              display={"inline-block"}
+              color={"font.general"}
+            >
+              {acceptedAppointment.patientName}
+            </Text>
           </Text>
         </GridItem>
       </Grid>
