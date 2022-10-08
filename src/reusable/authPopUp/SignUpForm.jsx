@@ -12,6 +12,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import DoctorSignUpForm from "./DoctorSignUpForm.jsx";
 import PatientSignUpForm from "./PatientSignUpForm.jsx";
 import ButtonFull from "../button/ButtonFull.jsx";
+import { initialSignUp } from "../../assets/variable/values.js";
 const SignUpForm = ({
   setCategory,
   setCurrWindow,
@@ -21,6 +22,7 @@ const SignUpForm = ({
   doSignUp,
   setDoSignUp,
   onModalClose,
+  clearAll
 }) => {
   const [docNow, setDocNow] = useState(true);
   const refInput = useRef(null);
@@ -40,7 +42,7 @@ const SignUpForm = ({
     <ModalContent my="auto" px="36" py={"24"} borderRadius="11px">
       <ModalCloseButton
         onClick={() => {
-          setDoSignUp(null);
+          clearAll()
           onModalClose();
         }}
         p="2rem"
@@ -60,6 +62,8 @@ const SignUpForm = ({
         <Button
           onClick={() => {
             setDocNow(true);
+            setDoSignUp(null);
+            setSignUpInfo(initialSignUp)
             setCategory("doctor");
             refInput.current.focus();
           }}
@@ -91,6 +95,8 @@ const SignUpForm = ({
         <Button
           onClick={() => {
             setDocNow(false);
+            setDoSignUp(null);
+            setSignUpInfo(initialSignUp)
             refInput.current.focus();
             setCategory("patient");
           }}

@@ -11,8 +11,12 @@ import apiGet from "../hooks/apiGet.jsx";
 import { SERVER } from "../assets/variable/values.js";
 import apiPut from "../hooks/apiPut.jsx";
 import apiDelete from "../hooks/apiDelete.jsx";
+import { useNavigate } from "react-router-dom";
+
 
 const Dashboard = () => {
+
+  const navigate = useNavigate();
   //Accepting an appointment
   const [acceptedAppointment, setAcceptedAppointment] = useState(true);
   const [changedAppointmentId, setChangedAppointmentId] = useState(null);
@@ -21,7 +25,7 @@ const Dashboard = () => {
   const [term, setTerm] = useState("");
 
   // Fetch Logged in doctor
-  const [person, , fetchPerson] = apiGet();
+  const [person, errorPerson, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   // Fetch Appointments
@@ -56,6 +60,13 @@ const Dashboard = () => {
   useEffect(() => {
     setAllAppointments(appointments);
   }, [appointments]);
+
+  useEffect(() => {
+    if (errorPerson != null) {
+      localStorage.clear();
+      navigate("/home");
+    }
+  }, [errorPerson]);
 
   return (
     <Box overflow="hidden" bg={"bgContainer"}>

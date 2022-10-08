@@ -8,10 +8,10 @@ import {
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
-const signUpSuccess = ({ setCurrWindow, onModalClose }) => {
+const signUpSuccess = ({ setCurrWindow, onModalClose, clearAll }) => {
   return (
     <ModalContent my="auto" p="2rem" borderRadius="11px">
-      <ModalCloseButton onClick={onModalClose} p="2rem" />
+      <ModalCloseButton onClick={() => { clearAll(); onModalClose(); }} p="2rem" />
       <ModalHeader textAlign="center" fontSize="2.4rem " color="blue.700">
         Sign Up Successful!
       </ModalHeader>

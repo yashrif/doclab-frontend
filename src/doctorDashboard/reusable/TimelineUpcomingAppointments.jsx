@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
 // import { faker } from "@faker-js/faker";
 import { MdOutlineSchedule } from "react-icons/md";
+import { TIME_FORMAT } from "../../assets/variable/values";
 
 const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
   return (
@@ -85,7 +86,7 @@ const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
             Appointment
           </Text>
           <Text fontSize={"16"} fontWeight={"medium"} color={"font.general"}>
-            {acceptedAppointment.appointmentTime}
+            {new Date(acceptedAppointment.appointmentSlotDate).toLocaleTimeString([], TIME_FORMAT)}
           </Text>
           <Text fontSize={"12"} color={"font.muted"}>
             with &nbsp;

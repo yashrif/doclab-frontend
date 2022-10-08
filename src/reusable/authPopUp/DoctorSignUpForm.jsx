@@ -46,9 +46,7 @@ const DoctorSignUp = ({
       <FormControl display="flex" alignItems="center">
         <Input
           errorBorderColor="red.300"
-          borderColor={
-            signUpInfo.doctorName == "" && inputBlankWarning ? "red" : "black"
-          }
+          isInvalid={signUpInfo.doctorName == "" && inputBlankWarning}
           ref={refInput}
           h="3.4rem"
           variant="flushed"
@@ -144,7 +142,7 @@ const DoctorSignUp = ({
           <Input
             errorBorderColor="red.300"
             isInvalid={
-              !validateEmail(signUpInfo.authEmail) ||
+              (!validateEmail(signUpInfo.authEmail) && inputBlankWarning) ||
               (signUpInfo.authEmail == "" && inputBlankWarning)
             }
             h="3rem"

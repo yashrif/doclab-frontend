@@ -11,9 +11,11 @@ import PatientActivities from "./PatientActivities.jsx";
 import theme from "../styling/theme.jsx";
 import apiGet from "../hooks/apiGet.jsx";
 import { SERVER } from "../assets/variable/values.js";
+import { useNavigate } from "react-router-dom";
 
 const PatientDashboard = () => {
-  const [person, , fetchPerson] = apiGet();
+  const navigate = useNavigate();
+  const [person, errorPerson, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [term, setTerm] = useState("");
 
@@ -27,6 +29,13 @@ const PatientDashboard = () => {
     // console.log(person["authPatient"]);
     setSelectedPerson(person["authPatient"]);
   }, [person]);
+
+  useEffect(() => {
+    if (errorPerson != null) {
+      localStorage.clear();
+      navigate("/home");
+    }
+  }, [errorPerson]);
 
   return (
     <Box overflow="hidden" bg={"bgContainer"}>

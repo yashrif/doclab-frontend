@@ -1,6 +1,7 @@
 import React from "react";
 import { Flex, Image, Td, Text, Tr } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
+import { TIME_FORMAT } from "../assets/variable/values";
 
 const WidgetAppointment = ({
   appointment,
@@ -78,7 +79,7 @@ const WidgetAppointment = ({
         {new Date(appointment.appointmentSlotDate).toDateString()}
       </Td>
       <Td overflow="hidden" px="16">
-        {new Date(appointment.appointmentSlotDate).toLocaleTimeString()}
+        {new Date(appointment.appointmentSlotDate).toLocaleTimeString([], TIME_FORMAT)}
       </Td>
       <Td>
         <Flex alignItems="center" columnGap="12">

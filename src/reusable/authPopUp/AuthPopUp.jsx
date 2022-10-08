@@ -102,6 +102,18 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
     }
   }, [signUpError]);
 
+  const clearAll = () => {
+    setDoSignUp(null);
+    setDoLogin(null);
+    setSignUpInfo(initialSignUp);
+    setCurrWindow("logInWindow");
+    setPassword("");
+    setDoLogin(null);
+    setDoSignUp(null);
+    setEmail("");
+    setLoading(false);
+
+  }
   return (
     <>
       <style>
@@ -128,13 +140,14 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
       </Box>
 
       <Modal
-        closeOnOverlayClick={false}
+        closeOnOverlayClick
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
         size="2xl"
-        // onClick={() => console.log("clicked")}
+        onOverlayClick={clearAll}
+      // onClick={() => console.log("clicked")}
       >
         <ModalOverlay
           bg="blackAlpha.300"
@@ -158,6 +171,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
                   setLoading={setLoading}
                   onModalClose={onModalClose}
                   loginError={loginError}
+                  clearAll={clearAll}
                 />
               );
             case "signUpWindow":
@@ -173,6 +187,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
                   setDoSignUp={setDoSignUp}
                   doSignUp={doSignUp}
                   setCategory={setCategory}
+                  clearAll={clearAll}
                 />
               );
             case "signUpSuccess":
@@ -180,6 +195,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
                 <SignUpSuccess
                   onModalClose={onModalClose}
                   setCurrWindow={setCurrWindow}
+                  clearAll={clearAll}
                 />
               );
             case "signInSuccess":
@@ -188,6 +204,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
                   setIsLoggedIn={setIsLoggedIn}
                   setCurrWindow={setCurrWindow}
                   onModalClose={onModalClose}
+                  clearAll={clearAll}
                 />
               );
           }

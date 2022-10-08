@@ -30,6 +30,7 @@ const LoginForm = ({
   setDoLogin,
   onModalClose,
   loginError,
+  clearAll
 }) => {
   const [inputBlankWarning, setInputBlankWarning] = useState(false);
   const [credentialErrorMessage, setCredentialErrorMessage] = useState("");
@@ -51,7 +52,7 @@ const LoginForm = ({
     <ModalContent my="auto" px="36" py="24" borderRadius="11px">
       <ModalCloseButton
         onClick={() => {
-          setDoLogin(null);
+          clearAll();
           onModalClose();
         }}
         p="2rem"
@@ -79,7 +80,8 @@ const LoginForm = ({
             <Input
               errorBorderColor="red.300"
               isInvalid={
-                !validateEmail(email) || (email == "" && inputBlankWarning)
+                (!validateEmail(email) && inputBlankWarning) ||
+                (email == "" && inputBlankWarning)
               }
               h="3rem"
               variant="outline"

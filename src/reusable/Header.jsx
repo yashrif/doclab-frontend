@@ -130,7 +130,7 @@ const Header = () => {
           /* box-shadow: "0 0 0 .1rem rgba(0, 0, 0, 0.1)", */
         }}
       >
-        <Modal isOpen={isDashOpen} onClose={onDashClose} size="2xl">
+        <Modal closeOnOverlayClick isOpen={isDashOpen} onClose={onDashClose} size="2xl">
           <ModalOverlay
             bg="blackAlpha.300"
             backdropFilter="auto"

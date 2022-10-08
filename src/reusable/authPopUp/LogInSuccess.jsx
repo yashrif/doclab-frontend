@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 
-const LoginSuccess = ({ onModalClose, setIsLoggedIn }) => {
+const LoginSuccess = ({ onModalClose, clearAll , setIsLoggedIn }) => {
   useEffect(() => {
     setIsLoggedIn(true);
   }, []);
@@ -27,7 +27,10 @@ const LoginSuccess = ({ onModalClose, setIsLoggedIn }) => {
       </ModalHeader>
 
       <ModalFooter display="flex" mt="2.6rem" justifyContent="space-evenly">
-        <Button onClick={onModalClose} size="lg">
+        <Button onClick={()=>{
+            clearAll();
+            onModalClose();}
+            } size="lg">
           <Text mr="0.4rem">Close</Text>
         </Button>
       </ModalFooter>

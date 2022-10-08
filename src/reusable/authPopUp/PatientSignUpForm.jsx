@@ -121,7 +121,7 @@ const PatientSignUp = ({
             type="email"
             errorBorderColor="red.300"
             isInvalid={
-              !validateEmail(signUpInfo.authEmail) ||
+              (!validateEmail(signUpInfo.authEmail) && inputBlankWarning) ||
               (signUpInfo.authEmail == "" && inputBlankWarning)
             }
             name="authEmail"

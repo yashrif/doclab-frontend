@@ -509,6 +509,10 @@ export const DATE_FORMAT = {
   day: "numeric",
 };
 
+export const TIME_FORMAT = {
+  hour: '2-digit',
+  minute: '2-digit' 
+}
 //export const SERVER = "http://localhost:8085";
 //export const SERVER = "https://doclab24.herokuapp.com";
 

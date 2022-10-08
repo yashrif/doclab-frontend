@@ -1,5 +1,6 @@
 import {
   Box,
+  Flex,
   Modal,
   ModalOverlay,
   useDisclosure,
@@ -11,13 +12,12 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 import apiPost from "../../hooks/apiPost.jsx";
 import {
   SERVER,
   DATE_FORMAT,
 } from "../../assets/variable/values";
-
+import theme from "../../styling/theme.jsx";
 const AppointmentPopUp = ({
   children,
   time,
@@ -37,11 +37,10 @@ const AppointmentPopUp = ({
     const temp = time.split(":");
     const offset = selectedDate.getTimezoneOffset();
     const date = new Date(selectedDate.getTime() - offset * 60 * 1000);
-    return `${date.toISOString().split("T")[0]}T${
-      period == "PM" && temp[0] < 12
-        ? [parseInt(temp[0]) + 12, temp[1]].join(":")
-        : time
-    }`;
+    return `${date.toISOString().split("T")[0]}T${period == "PM" && temp[0] < 12
+      ? [parseInt(temp[0]) + 12, temp[1]].join(":")
+      : time
+      }`;
   };
 
   const closePopUp = () => {
@@ -84,65 +83,89 @@ const AppointmentPopUp = ({
         {children}
       </Box>
       <Modal
-        closeOnOverlayClick={false}
+        closeOnOverlayClick
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
         size="xl"
-        // onClick={() => console.log("clicked")}
+        onOverlayClick={closePopUp}
+      // onClick={() => console.log("clicked")}
       >
         <ModalOverlay
+          closeOnOverlayClick
           bg="blackAlpha.300"
           backdropFilter="auto"
           backdropBlur="2px"
         />
-        <ModalContent my="auto" p="2rem" borderRadius="11px">
-          <ModalCloseButton onClick={closePopUp} p="2rem" />
-          <ModalHeader alignSelf="center" fontSize="1.8rem " color="blue.700">
+        <ModalContent my="auto" py="24" px='12' borderRadius="11px">
+          <ModalCloseButton onClick={closePopUp} m={"4"} />
+          <ModalHeader
+            fontSize="2xl"
+            fontWeight={"bold"}
+            color="blue.700"
+            mb="1.2rem"
+          >
             Request Appointment
           </ModalHeader>
-          <ModalHeader
-            fontSize="1.4rem"
-            mt="0.3rem"
-            color="gray.400"
-            textAlign="center"
-          >
-            {`On ${selectedDate.toLocaleDateString(
-              "en-US",
-              DATE_FORMAT
-            )} at ${time} ${period} with ${selectedPerson.doctorName}`}
-          </ModalHeader>
           {localStorage.getItem("patientToken") != null ? (
+
             <ModalFooter
               display="flex"
-              mt="2.6rem"
               justifyContent="space-evenly"
+              flexDir={"column"}
+              alignItems="flex-start"
             >
+              <Text
+                fontSize="lg"
+                color="gray"
+              >
+                {`Make an appointment on ${selectedDate.toLocaleDateString(
+                  "en-US",
+                  DATE_FORMAT
+                )} at ${time} ${period} with Dr. ${selectedPerson.doctorName}.`}
+              </Text>
               {successful ? (
-                <Text fontSize="1.4rem" color="blue.400" textAlign="center">
+                <Text fontSize="lg" color="blue.400"  mt="1.6rem" textAlign="center">
                   Appointment submitted
                 </Text>
               ) : (
+                <Flex
+                width="full"
+                px="2rem"
+                mt="1.8rem"
+                justifyContent={"space-between"}
+                >
                 <Button
+                variant={"outline"}
+                  alignSelf={"center"}
                   size="lg"
+                  onClick={onClose}
+                  px="3.2rem"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  alignSelf={"center"}
+                  size="lg"
+                  color={theme.typography.colors.primaryFirst.primary}
                   onClick={() => setLoading(true)}
                   isLoading={loading}
+                  px="3.2rem"
+                  
                 >
-                  <Text mr="0.4rem">Submit</Text>
-                  <ArrowForwardIcon />
+                  Submit
                 </Button>
+                </Flex>
               )}
             </ModalFooter>
           ) : (
             <Text
-              fontSize="1.4rem"
-              mt="1rem"
-              color="blue.400"
-              p="1rem"
-              textAlign="center"
+              fontSize="lg"
+              pl="1.4rem"
+              color="gray.400"
             >
-              Please log in as patient to request for appointment
+              Please log in as patient to request for appointment.
             </Text>
           )}
         </ModalContent>
