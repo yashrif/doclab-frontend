@@ -125,7 +125,9 @@ const PatientDashboard = () => {
         </GridItem>
 
         <GridItem justifySelf={"end"} mr="36">
-          <ProfileLink imageuuid={selectedPerson? selectedPerson.patientImageUUID : null}/>
+          <ProfileLink
+            ImageUUID={selectedPerson ? selectedPerson.patientImageUUID : null}
+          />
         </GridItem>
 
         <GridItem>

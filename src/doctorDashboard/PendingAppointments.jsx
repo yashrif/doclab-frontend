@@ -8,6 +8,7 @@ import {
   Tbody,
   TableContainer,
   Box,
+  Center,
 } from "@chakra-ui/react";
 import WidgetAppointment from "./WidgetAppointment.jsx";
 
@@ -72,21 +73,22 @@ const PendingAppointments = ({
         Pending Appointments
       </Text>
       {/* <Box overflowY="scroll"> */}
-      <TableContainer
-        // py="24"
-        maxW="full"
-        px="12"
-        bg="bg"
-        // justifyContent="space-around"
-        overflowY="scroll"
-        // height="80%"
-        // overflow="scroll"
-      >
-        <Table variant="unstyled">
-          <Thead>
-            <Tr>{renderedTableHeads}</Tr>
-          </Thead>
-          {allPending != null && (
+      {allPending.length > 0 ? (
+        <TableContainer
+          // py="24"
+          maxW="full"
+          px="12"
+          bg="bg"
+          // justifyContent="space-around"
+          overflowY="scroll"
+          // height="80%"
+          // overflow="scroll"
+        >
+          <Table variant="unstyled">
+            <Thead>
+              <Tr>{renderedTableHeads}</Tr>
+            </Thead>
+
             <Tbody>
               {allPending.map((appointment) => (
                 <WidgetAppointment
@@ -98,9 +100,15 @@ const PendingAppointments = ({
                 />
               ))}
             </Tbody>
-          )}
-        </Table>
-      </TableContainer>
+          </Table>
+        </TableContainer>
+      ) : (
+        <Center h={"100%"} w="100%">
+          <Text fontSize={"16"} color={"gray.500"} fontWeight={"medium"}>
+            No pending appointments
+          </Text>
+        </Center>
+      )}
     </Box>
     // </Box>
   );

@@ -153,7 +153,7 @@ const Dashboard = () => {
         </GridItem>
 
         <GridItem justifySelf={"end"} mr="36">
-          <ProfileLink imageUuid={selectedPerson?.doctorImageUUID} />
+          <ProfileLink ImageUUID={selectedPerson?.doctorImageUUID} />
         </GridItem>
 
         <GridItem>

@@ -31,9 +31,14 @@ const AppointmentPopUp = ({
   const [successful, setSuccessful] = useState(false);
 
   const formattedDate = () => {
+    const temp = time.split(":");
     const offset = selectedDate.getTimezoneOffset();
     const date = new Date(selectedDate.getTime() - offset * 60 * 1000);
-    return `${date.toISOString().split("T")[0]}T${time}`;
+    return `${date.toISOString().split("T")[0]}T${
+      period == "PM" && temp[0] < 12
+        ? [parseInt(temp[0]) + 12, temp[1]].join(":")
+        : time
+    }`;
   };
 
   const closePopUp = () => {
@@ -46,6 +51,7 @@ const AppointmentPopUp = ({
   const [successResponse, , fetchSuccess] = apiPost();
 
   useEffect(() => {
+    console.log(formattedDate());
     if (loading)
       fetchSuccess(
         `${SERVER}/appointment/post`,
