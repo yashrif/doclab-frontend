@@ -12,6 +12,7 @@ const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
   return (
     <Box position={"relative"}>
       <Image
+        cursor={"pointer"}
         onClick={() => {
           setIsOpen(!isOpen);
           onToggle();
