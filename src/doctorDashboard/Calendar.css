@@ -162,6 +162,11 @@ abbr {
     padding: .8rem;
 }
 
+.react-calendar__year-view__months__month {
+    background-color: transparent !important;
+}
+
+
 .react-calendar__month-view__days__day abbr {
     padding: 1.6rem;
 }
@@ -352,7 +357,11 @@ abbr {
     font-weight: 600;
 }
 
-*:focus {
+.react-calendar__year-view__months__month abbr:hover {
+    border-radius: 50%;
+}
+
+.react-calendar *:focus {
     border: none !important;
     box-shadow: none !important;
 }
