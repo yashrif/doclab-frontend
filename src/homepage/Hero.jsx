@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Grid, GridItem, Text, Image } from "@chakra-ui/react";
-import HeroImage from "../assets/img/hero2.png";
+// import HeroImage from "../assets/img/hero2.png";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
 import ButtonOutline from "../reusable/button/ButtonOutline.jsx";
 
@@ -57,7 +57,12 @@ const Hero = () => {
         </Text>
       </GridItem>
 
-      <Image src={HeroImage} w="55%" justifySelf={"center"} alignSelf={"end"} />
+      <Image
+        src={"img/home-img.svg"}
+        w="85%"
+        justifySelf={"center"}
+        alignSelf={"end"}
+      />
     </Grid>
   );
 };

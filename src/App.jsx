@@ -7,6 +7,7 @@ import DoctorDashboard from "./doctorDashboard/DoctorDashboard.jsx";
 import PatientDashboard from "./patientDashboard/PatientDashboard.jsx";
 import theme from "./styling/theme.jsx";
 import "./styling/style.css";
+import "./styling/app.css";
 
 const App = () => {
   return (

@@ -130,7 +130,12 @@ const Header = () => {
           /* box-shadow: "0 0 0 .1rem rgba(0, 0, 0, 0.1)", */
         }}
       >
-        <Modal closeOnOverlayClick isOpen={isDashOpen} onClose={onDashClose} size="2xl">
+        <Modal
+          closeOnOverlayClick
+          isOpen={isDashOpen}
+          onClose={onDashClose}
+          size="2xl"
+        >
           <ModalOverlay
             bg="blackAlpha.300"
             backdropFilter="auto"
@@ -261,6 +266,11 @@ const Header = () => {
               window.location.pathname == "/") && (
               <>
                 <li className="header-page-nav-link ">
+                  <HashLink className="header-link" to="/#about">
+                    About
+                  </HashLink>
+                </li>
+                <li className="header-page-nav-link ">
                   <HashLink className="header-link" to="/#howItWorks">
                     How it works
                   </HashLink>
@@ -273,6 +283,11 @@ const Header = () => {
                 <li className="header-page-nav-link ">
                   <HashLink className="header-link" to="/#testimonials">
                     Testimonials
+                  </HashLink>
+                </li>
+                <li className="header-page-nav-link ">
+                  <HashLink className="header-link" to="/#blog">
+                    Blogs
                   </HashLink>
                 </li>
               </>

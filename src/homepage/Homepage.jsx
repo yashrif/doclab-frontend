@@ -3,9 +3,11 @@ import { Box } from "@chakra-ui/react";
 import Container from "./reusable/Container.jsx";
 import Header from "../reusable/Header.jsx";
 import Hero from "./Hero.jsx";
+import About from "./About.jsx";
 import HowItWorks from "./HowItWorks.jsx";
 import Services from "./Services.jsx";
 import Testimonials from "./Testimonials.jsx";
+import Blog from "./Blogs.jsx";
 import Footer from "./Footer.jsx";
 
 const Homepage = () => {
@@ -18,6 +20,10 @@ const Homepage = () => {
         <Hero />
       </Box>
 
+      <Container id="about">
+        <About />
+      </Container>
+
       <Container id="howItWorks">
         <HowItWorks />
       </Container>
@@ -28,6 +34,10 @@ const Homepage = () => {
 
       <Container id="testimonials">
         <Testimonials />
+      </Container>
+
+      <Container id="blog">
+        <Blog />
       </Container>
 
       <Box mt="12.8rem">

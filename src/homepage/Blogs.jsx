@@ -1,16 +1,24 @@
 import React from "react";
+import BlogImage1 from "../assets/img/blog-1.jpg";
+import BlogImage2 from "../assets/img/blog-2.jpg";
+import BlogImage3 from "../assets/img/blog-3.jpg";
+import HeadingPrimary from "./reusable/HeadingPrimary.jsx";
+import HeadingSecondary from "./reusable/HeadingSecondary.jsx";
 
 const Blogs = () => {
   return (
-    <section className="blogs" id="blogs">
-      <h1 className="heading">
-        our <span>blogs</span>
-      </h1>
+    <section
+      className="blogs"
+      id="blogs"
+      style={{ padding: "9.6rem 4.8rem 0" }}
+    >
+      <HeadingPrimary>Our blogs</HeadingPrimary>
+      <HeadingSecondary>Most updated content for uyour healh</HeadingSecondary>
 
       <div className="box-container">
         <div className="box">
           <div className="image">
-            <img src="image/blog-1.jpg" alt="" />
+            <img src={BlogImage1} alt="" />
           </div>
           <div className="content">
             <div className="icon">
@@ -34,7 +42,7 @@ const Blogs = () => {
 
         <div className="box">
           <div className="image">
-            <img src="image/blog-2.jpg" alt="" />
+            <img src={BlogImage2} alt="" />
           </div>
           <div className="content">
             <div className="icon">
@@ -58,7 +66,7 @@ const Blogs = () => {
 
         <div className="box">
           <div className="image">
-            <img src="image/blog-3.jpg" alt="" />
+            <img src={BlogImage3} alt="" />
           </div>
           <div className="content">
             <div className="icon">

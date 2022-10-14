@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 
 :root {
-  --green: #16a085;
+  --green: rgb(28, 126, 214);
   --black: #444;
   --light-color: #777;
-  --box-shadow: 0.5rem 0.5rem 0 rgba(22, 160, 133, 0.2);
+  --box-shadow: 0.5rem 0.5rem 0 rgba(28, 126, 214, 0.2);
   --text-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.2);
   --border: 0.2rem solid var(--green);
 }
@@ -28,9 +28,9 @@ html {
   scroll-behavior: smooth;
 }
 
-section {
+/* section {
   padding: 2rem 9%;
-}
+} */
 
 section:nth-child(even) {
   background: #f5f5f5;
@@ -420,21 +420,35 @@ section:nth-child(even) {
 
 .blogs .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 6.4rem;
+  justify-content: space-evenly;
 }
 
 .blogs .box-container .box {
-  border: var(--border);
-  box-shadow: var(--box-shadow);
-  border-radius: 0.5rem;
+  /* border: var(--border); */
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.9rem;
+  /* padding: 2rem; */
+  padding-bottom: 2.4rem;
+}
+
+.blogs .content {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.blogs .content .btn {
+  margin-top: 2.4rem;
+  align-self: center;
 }
 
 .blogs .box-container .box .image {
   height: 20rem;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
 }
 
 .blogs .box-container .box .image img {
@@ -448,7 +462,7 @@ section:nth-child(even) {
 }
 
 .blogs .box-container .box .content {
-  padding-top: 1rem;
+  padding-top: 1.6rem;
 }
 
 .blogs .box-container .box .content .icon {
@@ -459,8 +473,9 @@ section:nth-child(even) {
 }
 
 .blogs .box-container .box .content .icon a {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: var(--light-color);
+  margin-bottom: 1.2rem;
 }
 
 .blogs .box-container .box .content .icon a:hover {
@@ -474,12 +489,13 @@ section:nth-child(even) {
 
 .blogs .box-container .box .content h3 {
   color: var(--black);
-  font-size: 3rem;
+  font-size: 2.4rem;
+  margin-bottom: .8rem;
 }
 
 .blogs .box-container .box .content p {
   color: var(--light-color);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 1.8;
   padding: 1rem 0;
 }
