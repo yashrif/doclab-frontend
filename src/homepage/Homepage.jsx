@@ -13,10 +13,10 @@ import Footer from "./Footer.jsx";
 const Homepage = () => {
   return (
     <Box>
-      <Box bg="bgContainer">
+      <Box bg="bgContainer2">
         <Header />
       </Box>
-      <Box bg="bgContainer">
+      <Box bg="bgContainer2">
         <Hero />
       </Box>
 

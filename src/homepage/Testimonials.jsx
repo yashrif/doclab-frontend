@@ -24,7 +24,7 @@ const Testimonials = () => {
       ...testimonial,
       image: `${faker.image.avatar()}`,
       name: `${faker.name.findName()}`,
-      text: `${faker.lorem.paragraph()}`,
+      text: `${faker.lorem.paragraphs(2)}`,
     }));
   }, []);
 
@@ -33,7 +33,7 @@ const Testimonials = () => {
       setTestimonial(() => ({
         image: `${faker.image.avatar()}`,
         name: `${faker.name.findName()}`,
-        text: `${faker.lorem.paragraph()}`,
+        text: `${faker.lorem.paragraphs(2)}`,
       }));
     }, 10000);
   });
@@ -58,13 +58,13 @@ const Testimonials = () => {
   const animationSlideUp = `${slideUp} 10s linear infinite`;
 
   return (
-    <Box pt={"96"} mb={"9.6rem"}>
+    <Box pt={"96"} mb={"9.6rem"} px="48">
       <HeadingPrimary>Testimonials</HeadingPrimary>
       <HeadingSecondary>Client&apos;s Kind words</HeadingSecondary>
 
       <Box
         bg={"primary.400"}
-        w="85%"
+        // w="85%"
         mx="auto"
         px={"64"}
         py={"48"}
@@ -123,7 +123,7 @@ const Testimonials = () => {
                 {testimonial.name}
               </Text>
               <Text color={"font.light"} fontSize="14">
-                Web Developer
+                Client
               </Text>
             </VStack>
           </HStack>

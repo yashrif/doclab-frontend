@@ -14,7 +14,9 @@ const About = () => {
       }}
     >
       <HeadingPrimary>About us</HeadingPrimary>
-      <HeadingSecondary>We provide the best services</HeadingSecondary>
+      <HeadingSecondary mb="1.6rem">
+        We provide the best services
+      </HeadingSecondary>
 
       <div className="row">
         <div className="image">
@@ -30,7 +32,7 @@ const About = () => {
             lineHeight="short"
             mb="32"
           >
-            We always ensure best medical treatment for your health
+            we take care of your healthy life
           </Text>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure
