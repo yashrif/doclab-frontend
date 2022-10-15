@@ -22,18 +22,18 @@ const Testimonials = () => {
   useEffect(() => {
     setTestimonial((testimonial) => ({
       ...testimonial,
-      image: `${faker.image.avatar()}`,
-      name: `${faker.name.fullName()}`,
-      text: `${faker.lorem.paragraphs(2)}`,
+      image: faker.image.avatar(),
+      name: faker.name.findName(),
+      text: faker.lorem.paragraphs(2),
     }));
   }, []);
 
   useEffect(() => {
     setTimeout(() => {
       setTestimonial(() => ({
-        image: `${faker.image.avatar()}`,
-        name: `${faker.name.fullName()}`,
-        text: `${faker.lorem.paragraphs(2)}`,
+        image: faker.image.avatar(),
+        name: faker.name.findName(),
+        text: faker.lorem.paragraphs(2),
       }));
     }, 10000);
   });
