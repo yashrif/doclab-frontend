@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import {
@@ -28,7 +28,13 @@ const Header = () => {
   const [person, , fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [isOptionOpen, setIsOptionOpen] = useState(false);
-  const { isOpen: isResetOpen, onToggle } = useDisclosure();
+  const {
+    isOpen: isResetOpen,
+    onToggle: onResetToggle,
+    onClose: onResetClose,
+  } = useDisclosure();
+
+  const ref = useRef();
 
   useEffect(() => {
     if (
@@ -55,6 +61,21 @@ const Header = () => {
       ]
     );
   }, [person]);
+
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref.current.contains(event.target)) return;
+
+      onResetClose();
+      setIsOptionOpen(false);
+    };
+
+    document.body.addEventListener("click", onBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
+  }, []);
 
   const {
     isOpen: isDashOpen,
@@ -297,11 +318,12 @@ const Header = () => {
                   </HashLink>
                 </li>
                 <div
+                  ref={ref}
                   tabIndex={0}
                   role={"button"}
                   onClick={() => {
                     setIsOptionOpen(!isOptionOpen);
-                    onToggle();
+                    onResetToggle();
                   }}
                   onKeyDown={() => {}}
                   style={{
@@ -315,11 +337,18 @@ const Header = () => {
                       color: `${
                         isOptionOpen
                           ? theme.typography.colors.primaryFirst.primary
-                          : "inherit"
+                          : ""
                       }`,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: ".4rem",
                     }}
                   >
-                    More
+                    <p>More</p>
+                    <ion-icon
+                      style={{ fontSize: "1.8rem" }}
+                      name="chevron-down-outline"
+                    ></ion-icon>
                   </li>
 
                   {isOptionOpen && (
