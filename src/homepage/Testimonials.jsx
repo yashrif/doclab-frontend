@@ -58,7 +58,7 @@ const Testimonials = () => {
   const animationSlideUp = `${slideUp} 10s linear infinite`;
 
   return (
-    <Box pt={"96"} mb={"9.6rem"} px="48">
+    <Box mb={"9.6rem"} px="48" id="testimonials">
       <HeadingPrimary>Testimonials</HeadingPrimary>
       <HeadingSecondary>Client&apos;s Kind words</HeadingSecondary>
 

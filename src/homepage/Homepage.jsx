@@ -20,7 +20,7 @@ const Homepage = () => {
         <Hero />
       </Box>
 
-      <Container id="about">
+      <Container pt={"9.6rem"}>
         <About />
       </Container>
 
@@ -28,15 +28,15 @@ const Homepage = () => {
         <HowItWorks />
       </Container>
 
-      <Container id="services">
+      <Container pt="96">
         <Services />
       </Container>
 
-      <Container id="testimonials">
+      <Container pt={"96"}>
         <Testimonials />
       </Container>
 
-      <Container id="blog">
+      <Container pt={"96"}>
         <Blog />
       </Container>
 

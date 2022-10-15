@@ -396,7 +396,7 @@ const Header = () => {
                           </HashLink>
                         </li>
                         <li className="header-page-nav-link">
-                          <HashLink className="header-link-extra" to="/#blog">
+                          <HashLink className="header-link-extra" to="/#blogs">
                             Blogs
                           </HashLink>
                         </li>

@@ -7,11 +7,7 @@ import HeadingSecondary from "./reusable/HeadingSecondary.jsx";
 
 const Blogs = () => {
   return (
-    <section
-      className="blogs"
-      id="blogs"
-      style={{ padding: "9.6rem 4.8rem 0" }}
-    >
+    <section className="blogs" id="blogs" style={{ padding: "0 4.8rem" }}>
       <HeadingPrimary>Our blogs</HeadingPrimary>
       <HeadingSecondary>Most updated content for uyour healh</HeadingSecondary>
 
