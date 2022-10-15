@@ -68,7 +68,7 @@ const WidgetUpcomingAppointments = ({ i }) => {
             color="focused"
             _groupHover={{ color: "#fff" }}
           >
-            {faker.name.findName()}
+            {faker.name.fullName()}
           </Text>
           <Text
             fontSize="10"

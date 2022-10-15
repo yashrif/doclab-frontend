@@ -8,6 +8,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalOverlay,
+  SlideFade,
   useDisclosure,
 } from "@chakra-ui/react";
 import logo from "../assets/img/logo.png";
@@ -26,6 +27,8 @@ const Header = () => {
 
   const [person, , fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
+  const [isOptionOpen, setIsOptionOpen] = useState(false);
+  const { isOpen: isResetOpen, onToggle } = useDisclosure();
 
   useEffect(() => {
     if (
@@ -72,6 +75,12 @@ const Header = () => {
     <>
       <style>
         {`
+        .header *:focus{
+          border: none;
+          box-shadow: none;
+        }
+
+        .header-link,
         .header-link:link,
         .header-link:visited {
           display: inline-block;
@@ -112,9 +121,21 @@ const Header = () => {
           box-shadow: inset 0 0 0 0.3rem rgba(28, 126, 214, 0.25),
             0 0.8rem 1.6rem rgba(28, 126, 214, 0.5);
         }
+
+        .header-link-extra:link,
+        .header-link-extra:visited{
+          font-size: 1.5rem;
+          color: inherit;
+        }
+
+        .header-link-extra:active,
+        .header-link-extra:hover{
+            color:  ${theme.typography.colors.primaryFirst.primary};
+        }
       `}
       </style>
       <header
+        className="header"
         style={{
           height: `${theme.typography.containerHeight.header}`,
           fontSize: "1.7rem",
@@ -265,31 +286,95 @@ const Header = () => {
             {(window.location.pathname == "/home" ||
               window.location.pathname == "/") && (
               <>
-                <li className="header-page-nav-link ">
+                <li className="header-page-nav-link">
                   <HashLink className="header-link" to="/#about">
                     About
                   </HashLink>
                 </li>
-                <li className="header-page-nav-link ">
+                <li className="header-page-nav-link">
                   <HashLink className="header-link" to="/#howItWorks">
                     How it works
                   </HashLink>
                 </li>
-                <li className="header-page-nav-link ">
-                  <HashLink className="header-link" to="/#services">
-                    Services
-                  </HashLink>
-                </li>
-                <li className="header-page-nav-link ">
-                  <HashLink className="header-link" to="/#testimonials">
-                    Testimonials
-                  </HashLink>
-                </li>
-                <li className="header-page-nav-link ">
-                  <HashLink className="header-link" to="/#blog">
-                    Blogs
-                  </HashLink>
-                </li>
+                <div
+                  tabIndex={0}
+                  role={"button"}
+                  onClick={() => {
+                    setIsOptionOpen(!isOptionOpen);
+                    onToggle();
+                  }}
+                  onKeyDown={() => {}}
+                  style={{
+                    cursor: "pointer",
+                    position: "relative",
+                  }}
+                >
+                  <li
+                    className="header-link"
+                    style={{
+                      color: `${
+                        isOptionOpen
+                          ? theme.typography.colors.primaryFirst.primary
+                          : "inherit"
+                      }`,
+                    }}
+                  >
+                    More
+                  </li>
+
+                  {isOptionOpen && (
+                    <SlideFade
+                      in={isResetOpen}
+                      offsetY="-10px"
+                      transition={{
+                        enter: { duration: 0.05 },
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "105%",
+                          left: "50%",
+                          transform: "translate(-50%, 0)",
+                          padding: "1.6rem",
+                          borderRadius: ".9rem",
+                          // backgroundColor: "red",
+                          // backgroundColor: "rgba(255, 255, 255, 0.6)",
+                          background:
+                            "linear-gradient(155deg, #ffffffbf, #ffffffbf, #ffffffbf, #d0bfffc2, #d0bfffc2)",
+                          zIndex: 5,
+
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          gap: "1.6rem",
+                        }}
+                      >
+                        <li className="header-page-nav-link">
+                          <HashLink
+                            className="header-link-extra"
+                            to="/#services"
+                          >
+                            Services
+                          </HashLink>
+                        </li>
+                        <li className="header-page-nav-link">
+                          <HashLink
+                            className="header-link-extra"
+                            to="/#testimonials"
+                          >
+                            Testimonials
+                          </HashLink>
+                        </li>
+                        <li className="header-page-nav-link">
+                          <HashLink className="header-link-extra" to="/#blog">
+                            Blogs
+                          </HashLink>
+                        </li>
+                      </div>
+                    </SlideFade>
+                  )}
+                </div>
               </>
             )}
             {isLoggedIn ? (
@@ -303,7 +388,7 @@ const Header = () => {
               />
             ) : (
               <AuthPopUp setIsLoggedIn={setIsLoggedIn}>
-                <li className="header-page-nav-link ">
+                <li className="header-page-nav-link">
                   <ButtonFull
                     py="18"
                     px="24"

@@ -23,7 +23,7 @@ const Testimonials = () => {
     setTestimonial((testimonial) => ({
       ...testimonial,
       image: `${faker.image.avatar()}`,
-      name: `${faker.name.findName()}`,
+      name: `${faker.name.fullName()}`,
       text: `${faker.lorem.paragraphs(2)}`,
     }));
   }, []);
@@ -32,7 +32,7 @@ const Testimonials = () => {
     setTimeout(() => {
       setTestimonial(() => ({
         image: `${faker.image.avatar()}`,
-        name: `${faker.name.findName()}`,
+        name: `${faker.name.fullName()}`,
         text: `${faker.lorem.paragraphs(2)}`,
       }));
     }, 10000);
