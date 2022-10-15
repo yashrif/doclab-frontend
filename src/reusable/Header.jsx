@@ -64,7 +64,7 @@ const Header = () => {
 
   useEffect(() => {
     const onBodyClick = (event) => {
-      if (ref.current.contains(event.target)) return;
+      if (ref.current?.contains(event.target)) return;
 
       onResetClose();
       setIsOptionOpen(false);

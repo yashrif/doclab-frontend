@@ -53,7 +53,7 @@ const AppointmentPopUp = ({
   const [successResponse, , fetchSuccess] = apiPost();
 
   useEffect(() => {
-    console.log(formattedDate());
+    // console.log(formattedDate());
     if (loading)
       fetchSuccess(
         `${SERVER}/appointment/post`,
@@ -152,7 +152,7 @@ const AppointmentPopUp = ({
                   onClick={() => setLoading(true)}
                   isLoading={loading}
                   px="3.2rem"
-                  
+
                 >
                   Submit
                 </Button>
