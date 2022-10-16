@@ -9,7 +9,7 @@ const Blogs = () => {
   return (
     <section className="blogs" id="blogs" style={{ padding: "0 4.8rem" }}>
       <HeadingPrimary>Our blogs</HeadingPrimary>
-      <HeadingSecondary>Most updated content for uyour healh</HeadingSecondary>
+      <HeadingSecondary>Most updated content for your healh</HeadingSecondary>
 
       <div className="box-container">
         <div className="box">
