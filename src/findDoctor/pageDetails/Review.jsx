@@ -32,7 +32,7 @@ const Review = () => {
           }}
         >
           <h3 style={{ fontSize: "1.4rem", fontWeight: "500" }}>
-            {faker.name.fullName()}
+            {faker.name.findName()}
           </h3>
           <p
             style={{ fontSize: "1.2rem", color: "#999" }}
