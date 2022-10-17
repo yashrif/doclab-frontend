@@ -64,9 +64,9 @@
 
 #### Button Outline
 
-<!-- Not reusable -->
+<!-- Non reusable -->
 
-### Not Reusable
+### Non Reusable
 
 #### Homepage
 

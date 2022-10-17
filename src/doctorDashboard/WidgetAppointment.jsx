@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Image, Td, Text, Tr } from "@chakra-ui/react";
+import { Flex, Image, Td, Text, Tr, Box } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 import { TIME_FORMAT } from "../assets/variable/values";
 
@@ -36,12 +36,19 @@ const WidgetAppointment = ({
 
   const renderedActionIcons = ActionIcons.map((value, index) => {
     return (
-      <ion-icon
+      <Box
         key={index}
-        name={value.icon}
-        style={{ color: value.iconColor, fontSize: "2rem", ...style.icon }}
-        onClick={value.onclick}
-      ></ion-icon>
+        transition={"all .3s"}
+        _hover={{
+          transform: "scale(1.2)",
+        }}
+      >
+        <ion-icon
+          name={value.icon}
+          style={{ color: value.iconColor, fontSize: "2rem", ...style.icon }}
+          onClick={value.onclick}
+        ></ion-icon>
+      </Box>
     );
   });
 
@@ -79,7 +86,10 @@ const WidgetAppointment = ({
         {new Date(appointment.appointmentSlotDate).toDateString()}
       </Td>
       <Td overflow="hidden" px="16">
-        {new Date(appointment.appointmentSlotDate).toLocaleTimeString([], TIME_FORMAT)}
+        {new Date(appointment.appointmentSlotDate).toLocaleTimeString(
+          [],
+          TIME_FORMAT
+        )}
       </Td>
       <Td>
         <Flex alignItems="center" columnGap="12">
