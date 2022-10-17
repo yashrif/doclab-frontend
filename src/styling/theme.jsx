@@ -30,6 +30,7 @@ const theme = extendTheme({
     bgContainer2: "#f7faff",
     bg: "#fff",
     bgDarker: "#fafafc",
+    bgAsh: "#f2f3f4",
 
     font: {
       // hero: "#204289",

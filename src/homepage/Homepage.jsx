@@ -24,7 +24,7 @@ const Homepage = () => {
         <About />
       </Container>
 
-      <Container id="howItWorks">
+      <Container bg="bgContainer2" id="howItWorks">
         <HowItWorks />
       </Container>
 
@@ -32,7 +32,7 @@ const Homepage = () => {
         <Services />
       </Container>
 
-      <Container pt={"96"}>
+      <Container bg="bgContainer2" pt={"96"}>
         <Testimonials />
       </Container>
 
@@ -44,7 +44,7 @@ const Homepage = () => {
         <hr style={{ borderTop: "1px solid #eee" }} />
       </Box>
 
-      <Container bg="bg">
+      <Container bg="bgAsh">
         <Footer />
       </Container>
     </Box>

@@ -61,7 +61,7 @@ const HowItWorks = () => {
   });
 
   return (
-    <Box pt={"96"} mb="96">
+    <Box pt={"96"} pb="96" >
       <HeadingPrimary>How it works</HeadingPrimary>
       <HeadingSecondary>Easy steps to get your solution</HeadingSecondary>
       <Grid templateColumns={"repeat(4, 1fr)"} gap={"24"}>
