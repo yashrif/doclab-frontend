@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Flex, Grid, GridItem, Text, Image } from "@chakra-ui/react";
 // import HeroImage from "../assets/img/hero2.png";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
 import ButtonOutline from "../reusable/button/ButtonOutline.jsx";
 
-const Hero = () => {
+const Hero = ({ setOutOfScope }) => {
+  const ref = useRef(null);
+
+  const [scrollPosition, setScrollPosition] = useState(window.scrollY);
+
+  const onScroll = (e) => {
+    if (scrollPosition > ref?.current.clientHeight) setOutOfScope(true);
+    else setOutOfScope(false);
+
+    setScrollPosition(e.currentTarget.scrollY);
+  };
+
+  useEffect(() => {
+    setScrollPosition(window.scrollY);
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [onScroll]);
+
   return (
-    <Grid templateColumns={"45fr 55fr"} maxW={"13xl"} mx="auto" pt="64" mb="96">
+    <Grid
+      ref={ref}
+      templateColumns={"45fr 55fr"}
+      maxW={"13xl"}
+      mx="auto"
+      pt="64"
+      mb="96"
+    >
       <GridItem pb={"13.1rem"}>
         <Text
           color={"primary.600"}

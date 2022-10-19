@@ -161,7 +161,7 @@ const Header = () => {
           height: `${theme.typography.containerHeight.header}`,
           fontSize: "1.7rem",
           padding: `0 ${theme.typography.sectionGap.large}`,
-          marginBottom: `${theme.typography.sectionGap.headerBottom}`,
+          // marginBottom: `${theme.typography.sectionGap.headerBottom}`,
 
           display: "grid",
           // gridTemplateColumns: "1fr 1fr 1fr",
@@ -362,7 +362,7 @@ const Header = () => {
                       <div
                         style={{
                           position: "absolute",
-                          top: "105%",
+                          top: "115%",
                           left: "50%",
                           transform: "translate(-50%, 0)",
                           padding: "1.6rem",
@@ -370,7 +370,8 @@ const Header = () => {
                           // backgroundColor: "red",
                           // backgroundColor: "rgba(255, 255, 255, 0.6)",
                           background:
-                            "linear-gradient(155deg, #ffffffbf, #ffffffbf, #ffffffbf, #d0bfffc2, #d0bfffc2)",
+                            "linear-gradient(155deg, #ffffffbf, #ffffffbf,#ffffffbf, #8ec0ebbf, #1c7fd6bf)",
+                          boxShadow: "0 1.2rem 1.2rem rgba(0, 0, 0, 0.08)",
                           zIndex: 5,
 
                           display: "flex",

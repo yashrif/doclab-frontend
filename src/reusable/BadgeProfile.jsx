@@ -56,21 +56,21 @@ const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
         >
           <Box
             position={"absolute"}
-            top={"110%"}
+            top={"115%"}
             left={"50%"}
             transform={"translate(-50%, 0)"}
             h={"auto"}
             bg={
-              "linear-gradient(155deg, #ffffffbf, #ffffffbf, #ffffffbf, #d0bfffc2, #d0bfffc2)"
+              "linear-gradient(155deg, #ffffffbf, #ffffffbf,#ffffffbf, #8ec0ebbf, #1c7fd6bf)"
             }
+            boxShadow="0 1.2rem 1.2rem rgba(0, 0, 0, 0.08)"
             // bg="rgba(255, 255, 255, .6)"
-            backdropFilter={"blur(50%)"}
             display={"flex"}
             flexDirection={"column"}
             alignItems={"center"}
             // px={16}
             // py={12}
-            padding="1.6rem"
+            padding="1.2rem 1.6rem"
             borderRadius={"xl"}
             zIndex={5}
           >

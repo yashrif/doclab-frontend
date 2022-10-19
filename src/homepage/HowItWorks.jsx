@@ -54,14 +54,14 @@ const HowItWorks = () => {
           // alignItems="center"
           // textAlign={"center"}
           // textAlign={"justify"}
-          isBoxShadow={false}
+          isBoxShadow={true}
         />
       </GridItem>
     );
   });
 
   return (
-    <Box pt={"96"} pb="96" >
+    <Box pt={"96"} pb="96">
       <HeadingPrimary>How it works</HeadingPrimary>
       <HeadingSecondary>Easy steps to get your solution</HeadingSecondary>
       <Grid templateColumns={"repeat(4, 1fr)"} gap={"24"}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Image, Td, Text, Tr, Box } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
-import { TIME_FORMAT } from "../assets/variable/values";
+import { TIME_FORMAT } from "../../assets/variable/values";
 
 const WidgetAppointment = ({
   appointment,

@@ -107,7 +107,6 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
             transition: "all 0.3s",
           }}
         >
-          {/* <div> */}
           <div
             style={{
               display: "grid",
@@ -147,7 +146,8 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                   display: "flex",
                   alignItems: "baseline",
                   columnGap: "1.6rem",
-                  // justifyContent: "space-between",
+                  justifyContent: "space-between",
+                  marginBottom: ".8rem",
                 }}
               >
                 <h3
@@ -191,20 +191,27 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
               <div
                 style={{
                   display: "flex",
-                  gap: "1.6rem",
+                  gap: "1.2rem",
                   fontSize: "1.2rem",
                   // fontWeight: "500",
                 }}
               >
-                <p
-                  style={{
-                    fontSize: "1.2rem",
-                    // fontWeight: "500",
-                    marginBottom: ".4rem",
-                  }}
-                >
-                  {theme.methods.capitalize(person[`${category}Speciality`])}
-                </p>
+                <div className="icon-location" style={{ ...style.iconAndText }}>
+                  <ion-icon
+                    style={{
+                      ...style.icon,
+                      color: "#fa5252",
+                    }}
+                    name="medkit-outline"
+                  ></ion-icon>
+                  <p
+                    style={{
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    {theme.methods.capitalize(person[`${category}Speciality`])}
+                  </p>
+                </div>
 
                 <div className="icon-location" style={{ ...style.iconAndText }}>
                   <ion-icon
@@ -214,7 +221,13 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                     }}
                     name="location-outline"
                   ></ion-icon>
-                  <p>{person[`${category}SubDistrict`]}</p>
+                  <p
+                    style={{
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {person[`${category}SubDistrict`]}
+                  </p>
                 </div>
               </div>
             </div>

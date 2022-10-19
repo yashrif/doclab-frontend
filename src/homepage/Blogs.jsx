@@ -58,7 +58,14 @@ const Blogs = () => {
               temperature,blood pressure,heart rate and so on to keep yourself
               motivated.
             </p>
-            <a href="a" className="btn">
+            <a
+              href="a"
+              className="btn"
+              style={{
+                positiion: "relative",
+                bottom: "0",
+              }}
+            >
               learn more <span className="fas fa-chevron-right"></span>
             </a>
           </div>
