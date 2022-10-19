@@ -215,7 +215,7 @@ const theme = extendTheme({
     },
 
     containerHeight: {
-      header: "9.6rem",
+      header: "8rem",
     },
   },
 

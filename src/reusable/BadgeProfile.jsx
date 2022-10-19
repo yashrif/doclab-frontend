@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { faker } from "@faker-js/faker";
 import { Box, Image, Text, SlideFade, useDisclosure } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import Avatar from "../assets/img/avatar.png";
 
 const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -38,11 +38,7 @@ const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
           setIsOpen(!isOpen);
           onResetToggle();
         }}
-        src={
-          ImageUUID
-            ? "https://ucarecdn.com/" + ImageUUID + "/"
-            : faker.image.avatar()
-        }
+        src={ImageUUID ? "https://ucarecdn.com/" + ImageUUID + "/" : Avatar}
         alt="Profile"
         w="14"
         h={"14"}
@@ -87,9 +83,9 @@ const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
               }}
             >
               <Text
-                fontSize={"14"}
+                fontSize={"1.5rem"}
                 fontWeight="medium"
-                color={"font.hero"}
+                color={"font.focused"}
                 transition="all .3s"
                 _hover={{
                   color: "font.primary",

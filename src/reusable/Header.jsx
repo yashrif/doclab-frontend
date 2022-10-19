@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import {
   Modal,
@@ -25,6 +25,10 @@ const Header = () => {
       localStorage.getItem("patientToken") != null
   );
 
+  const ref = useRef();
+
+  const navigate = useNavigate();
+
   const [person, , fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [isOptionOpen, setIsOptionOpen] = useState(false);
@@ -34,7 +38,11 @@ const Header = () => {
     onClose: onResetClose,
   } = useDisclosure();
 
-  const ref = useRef();
+  const {
+    isOpen: isDashOpen,
+    onOpen: onDashOpen,
+    onClose: onDashClose,
+  } = useDisclosure();
 
   useEffect(() => {
     if (
@@ -52,6 +60,15 @@ const Header = () => {
           ),
         },
       });
+
+    if (isLoggedIn && isDashOpen)
+      navigate(
+        localStorage.getItem("doctorToken") != null
+          ? "/doctorDashboard"
+          : "/patientDashboard"
+      );
+
+    if (isLoggedIn) onDashClose();
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -76,12 +93,6 @@ const Header = () => {
       document.body.removeEventListener("click", onBodyClick);
     };
   }, []);
-
-  const {
-    isOpen: isDashOpen,
-    onOpen: onDashOpen,
-    onClose: onDashClose,
-  } = useDisclosure();
 
   const style = {
     headerNavList: {
@@ -153,13 +164,23 @@ const Header = () => {
         .header-link-extra:hover{
             color:  ${theme.typography.colors.primaryFirst.primary};
         }
+
+        @keyframes slide-vertical {
+          50% {
+            transform: translateY(.8rem);
+          }
+        }
+
+        .header-link--more:hover .arrow-down-icon {
+          animation: slide-vertical .3s ease-in-out;
+        }
       `}
       </style>
       <header
         className="header"
         style={{
           height: `${theme.typography.containerHeight.header}`,
-          fontSize: "1.7rem",
+          fontSize: "1.8rem",
           padding: `0 ${theme.typography.sectionGap.large}`,
           // marginBottom: `${theme.typography.sectionGap.headerBottom}`,
 
@@ -332,7 +353,7 @@ const Header = () => {
                   }}
                 >
                   <li
-                    className="header-link"
+                    className="header-link header-link--more"
                     style={{
                       color: `${
                         isOptionOpen
@@ -345,10 +366,20 @@ const Header = () => {
                     }}
                   >
                     <p>More</p>
-                    <ion-icon
-                      style={{ fontSize: "1.8rem" }}
-                      name="chevron-down-outline"
-                    ></ion-icon>
+                    <div
+                      className="arrow-down-icon"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <ion-icon
+                        style={{
+                          fontSize: "1.8rem",
+                        }}
+                        name="chevron-down-outline"
+                      ></ion-icon>
+                    </div>
                   </li>
 
                   {isOptionOpen && (
@@ -380,7 +411,12 @@ const Header = () => {
                           gap: "1.6rem",
                         }}
                       >
-                        <li className="header-page-nav-link">
+                        <li
+                          className="header-page-nav-link"
+                          style={{
+                            fontWeight: "500",
+                          }}
+                        >
                           <HashLink
                             className="header-link-extra"
                             to="/#services"
@@ -388,7 +424,12 @@ const Header = () => {
                             Services
                           </HashLink>
                         </li>
-                        <li className="header-page-nav-link">
+                        <li
+                          className="header-page-nav-link"
+                          style={{
+                            fontWeight: "500",
+                          }}
+                        >
                           <HashLink
                             className="header-link-extra"
                             to="/#testimonials"
@@ -396,7 +437,12 @@ const Header = () => {
                             Testimonials
                           </HashLink>
                         </li>
-                        <li className="header-page-nav-link">
+                        <li
+                          className="header-page-nav-link"
+                          style={{
+                            fontWeight: "500",
+                          }}
+                        >
                           <HashLink className="header-link-extra" to="/#blogs">
                             Blogs
                           </HashLink>
