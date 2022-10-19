@@ -10,7 +10,7 @@ import {
   Box,
   Center,
 } from "@chakra-ui/react";
-import WidgetAppointment from "./WidgetAppointment.jsx";
+import WidgetAppointment from "./reusable/WidgetAppointment.jsx";
 
 const PendingAppointments = ({
   allAppointments,

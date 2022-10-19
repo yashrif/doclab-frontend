@@ -86,7 +86,9 @@ const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
             Appointment
           </Text>
           <Text fontSize={"16"} fontWeight={"medium"} color={"font.general"}>
-            {new Date(acceptedAppointment.appointmentSlotDate).toLocaleTimeString([], TIME_FORMAT)}
+            {new Date(
+              acceptedAppointment.appointmentSlotDate
+            ).toLocaleTimeString([], TIME_FORMAT)}
           </Text>
           <Text fontSize={"12"} color={"font.muted"}>
             with &nbsp;
