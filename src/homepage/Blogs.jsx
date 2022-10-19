@@ -31,10 +31,10 @@ const Blogs = () => {
               <li>Boosts immunity.</li>
               <li>Keeps skin,teeth,eyes healthy.</li>
               <li>Supports muscles</li>
-              <li>strengthenes bones</li>
+              <li>Strengthens bones</li>
             </p>
             <a href="a" className="btn">
-              learn more <span className="fas fa-chevron-right"></span>
+              Learn more <span className="fas fa-chevron-right"></span>
             </a>
           </div>
         </div>
@@ -54,19 +54,12 @@ const Blogs = () => {
             </div>
             <h3>Check Up at Home</h3>
             <p>
-              Checking health at home is a good thing.You can check your
-              temperature,blood pressure,heart rate and so on to keep yourself
-              motivated.
+              Checking health at home is a good thing. You can check your
+              temperature, blood pressure, heart rate and so on to keep yourself
+              motivated and improve your physical condition.
             </p>
-            <a
-              href="a"
-              className="btn"
-              style={{
-                positiion: "relative",
-                bottom: "0",
-              }}
-            >
-              learn more <span className="fas fa-chevron-right"></span>
+            <a href="a" className="btn">
+              Learn more <span className="fas fa-chevron-right"></span>
             </a>
           </div>
         </div>
@@ -84,14 +77,14 @@ const Blogs = () => {
                 <i className="fas fa-user"></i> by admin
               </a>
             </div>
-            <h3>tobacco kills</h3>
+            <h3>Tobacco Kills</h3>
             <p>
-              Tobacco kills more than 8 million people each year.Among them more
-              than 1.2 million deaths are the result of non-smokers being
+              Tobacco kills more than 8 million people each year. Among them
+              more than 1.2 million deaths are the result of non-smokers being
               exposed to second-hand smoke.
             </p>
             <a href="a" className="btn">
-              learn more <span className="fas fa-chevron-right"></span>
+              Learn more <span className="fas fa-chevron-right"></span>
             </a>
           </div>
         </div>
