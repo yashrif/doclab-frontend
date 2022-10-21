@@ -46,7 +46,7 @@ const About = () => {
               temporibus deserunt vel?
             </p>
             <a href="a" className="btn">
-              learn more <span className="fas fa-chevron-right"></span>
+              Learn more <span className="fas fa-chevron-right"></span>
             </a>
           </div>
         </div>

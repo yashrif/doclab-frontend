@@ -30,6 +30,21 @@ const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isResetOpen) {
+        setIsOpen(false);
+        onResetToggle();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isOpen]);
+
   return (
     <Box ref={ref} position={"relative"}>
       <Image

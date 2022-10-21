@@ -57,7 +57,10 @@ const UserInfo = ({
       </GridItem>
 
       <GridItem>
-        <Statistic />
+        <Statistic
+          selectedPerson={selectedPerson}
+          allAppointments={allAppointments}
+        />
       </GridItem>
 
       {/* <GridItem>

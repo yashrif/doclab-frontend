@@ -10,7 +10,7 @@ const style = {
   },
   ionIcon: {
     color: `${theme.typography.colors.primaryFirst.primary}`,
-    fontSize: "1.2rem",
+    fontSize: "1.4rem",
     padding: ".4rem",
     borderRadius: "50%",
     backgroundColor: "rgba(166, 216, 255, 0.5)",
@@ -20,7 +20,7 @@ const style = {
   iconAndText: {
     fontSize: "1.4rem",
     display: "flex",
-    gap: "0.8rem",
+    gap: "1.2rem",
     alignItems: "center",
   },
 };
@@ -118,10 +118,10 @@ const PageSummary = ({
           }}
         >
           <div style={style.iconAndText}>
-            <ion-icon style={style.ionIcon} name="person-outline"></ion-icon>
+            <ion-icon style={style.ionIcon} name="people-outline"></ion-icon>
             <p>
               <span style={style.analyticSpan}>
-                {numberOfPerson > 0 ? numberOfPerson - 1 + "+" : "..."}
+                {numberOfPerson > 0 ? numberOfPerson : "..."}
               </span>
               {[category.slice(0, 1).toUpperCase(), category.slice(1)].join(
                 ""

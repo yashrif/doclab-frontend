@@ -97,11 +97,11 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
             // display: "flex",
             // justifyContent: "space-between",
             // gap: ".4rem",
-            boxShadow: "0 0 .8rem rgba(173, 181, 189, .35)",
+            boxShadow: "0.4rem 0.4rem 1rem rgba(0, 0, 0, .08)",
             borderRadius: " 0.9rem",
 
             background:
-              "linear-gradient(135deg, #ffff, #fff, #e6f9f0, #cdf3e1, #82e2b5)",
+              "linear-gradient(135deg, #ffff, #fff, #e6f9f0, #cdf3e1, #72e2a5)",
 
             zIndex: "1",
             transition: "all 0.3s",

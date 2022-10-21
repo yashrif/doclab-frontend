@@ -33,9 +33,9 @@ const Header = () => {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [isOptionOpen, setIsOptionOpen] = useState(false);
   const {
-    isOpen: isResetOpen,
-    onToggle: onResetToggle,
-    onClose: onResetClose,
+    isOpen: isNavOpen,
+    onToggle: onNavToggle,
+    onClose: onNavClose,
   } = useDisclosure();
 
   const {
@@ -83,7 +83,7 @@ const Header = () => {
     const onBodyClick = (event) => {
       if (ref.current?.contains(event.target)) return;
 
-      onResetClose();
+      onNavClose();
       setIsOptionOpen(false);
     };
 
@@ -93,6 +93,23 @@ const Header = () => {
       document.body.removeEventListener("click", onBodyClick);
     };
   }, []);
+
+  // Closing nav scrolling
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOptionOpen) {
+        setIsOptionOpen(false);
+        onNavClose();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isOptionOpen]);
 
   const style = {
     headerNavList: {
@@ -344,7 +361,7 @@ const Header = () => {
                   role={"button"}
                   onClick={() => {
                     setIsOptionOpen(!isOptionOpen);
-                    onResetToggle();
+                    onNavToggle();
                   }}
                   onKeyDown={() => {}}
                   style={{
@@ -384,7 +401,7 @@ const Header = () => {
 
                   {isOptionOpen && (
                     <SlideFade
-                      in={isResetOpen}
+                      in={isNavOpen}
                       offsetY="-10px"
                       transition={{
                         enter: { duration: 0.05 },

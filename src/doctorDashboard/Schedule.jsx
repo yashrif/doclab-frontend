@@ -35,7 +35,7 @@ const Schedule = ({ allAppointments }) => {
     if (index < NUMBER_OF_RENDERS)
       renderedWidgets.push(
         <TimelineUpcomingAppointments
-          key={index}
+          key={index + selectedDate.getDay()}
           i={index}
           dots={
             index === NUMBER_OF_RENDERS - 1 ||

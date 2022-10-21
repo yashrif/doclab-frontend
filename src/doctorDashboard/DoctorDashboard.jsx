@@ -13,9 +13,7 @@ import apiPut from "../hooks/apiPut.jsx";
 import apiDelete from "../hooks/apiDelete.jsx";
 import { useNavigate } from "react-router-dom";
 
-
 const Dashboard = () => {
-
   const navigate = useNavigate();
   //Accepting an appointment
   const [acceptedAppointment, setAcceptedAppointment] = useState(true);
@@ -78,7 +76,7 @@ const Dashboard = () => {
         padding="1.6rem 1.2rem 0"
         bg="bg"
         // overflow="hidden"
-        templateColumns="auto 7fr 3fr"
+        templateColumns="auto 8fr 3fr"
         templateRows="auto 1fr"
         gap="12"
         borderRadius="3xl"

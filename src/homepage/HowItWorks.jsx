@@ -54,7 +54,7 @@ const HowItWorks = () => {
           // alignItems="center"
           // textAlign={"center"}
           // textAlign={"justify"}
-          isBoxShadow={true}
+          // isBoxShadow={true}
         />
       </GridItem>
     );

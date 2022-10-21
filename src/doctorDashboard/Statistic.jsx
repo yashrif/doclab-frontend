@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Stack, Box } from "@chakra-ui/react";
 
-const Statistic = () => {
+const Statistic = ({ selectedPerson, allAppointments }) => {
   const style = {
     icon: {
       "--ionicon-stroke-width": "3.6rem",
@@ -12,26 +12,26 @@ const Statistic = () => {
     {
       icon: "people-outline",
       iconColor: "#01d1ec",
-      count: 100,
+      count: selectedPerson?.doctorConsultancyCount,
       category: "Patients",
-    },
-    {
-      icon: "document-text-outline",
-      iconColor: "#2a70fc",
-      count: 100,
-      category: "Reports",
     },
     {
       icon: "chatbubble-outline",
       iconColor: "#ca58ff",
-      count: 100,
+      count: allAppointments?.length,
       category: "Consultaions",
     },
     {
-      icon: "happy-outline",
+      icon: "pulse-outline",
+      iconColor: "#2a70fc",
+      count: 0,
+      category: "Operations",
+    },
+    {
+      icon: "eye-outline",
       iconColor: "#ef008f",
-      count: 100,
-      category: "Experience",
+      count: allAppointments?.length + selectedPerson?.doctorConsultancyCount,
+      category: "Visitors",
     },
   ];
 

@@ -15,6 +15,7 @@ const MainContainer = ({ children }) => {
         columnGap: `${theme.typography.sectionGap.medium}`,
         // overflow: "hidden",
         backgroundColor: `${theme.colors.bgContainer}`,
+        overflowY: "hidden",
       }}
     >
       {children.map((child) => child)}
