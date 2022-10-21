@@ -22,7 +22,8 @@ const UserInfo = ({
       fontSize="xl"
       color="font.focused"
       bg="bgDarker"
-      borderRadius="3xl"
+      borderTopLeftRadius="3xl"
+      borderTopRightRadius="3xl"
       py="16"
       px="24"
       // overflow="hidden"
@@ -46,7 +47,7 @@ const UserInfo = ({
         ) : (
           <Center minH="48">
             <Spinner
-              thickness="4px"
+              thickness=".4rem"
               speed="0.65s"
               emptyColor="gray.200"
               color="primary.base"

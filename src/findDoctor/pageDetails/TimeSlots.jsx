@@ -218,7 +218,7 @@ const TimeSlot = ({ selectedPerson }) => {
 
           <SlideFade
             in={isResetOpen}
-            offsetY="-20px"
+            offsetY="-2rem"
             onClick={() => {
               setIncrement(0);
             }}

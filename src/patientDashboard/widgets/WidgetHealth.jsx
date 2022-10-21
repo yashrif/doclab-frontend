@@ -29,7 +29,7 @@ const WidgetHealth = ({ title, description, value, unit, cordY }) => {
       bg="bg"
       alignItems={"center"}
       borderRadius={"2xl"}
-      boxShadow={"0 0 24px rgba(28, 126, 214, .1)"}
+      boxShadow={"0 0 2.4rem rgba(28, 126, 214, .1)"}
     >
       <GridItem>
         <Text
@@ -54,7 +54,7 @@ const WidgetHealth = ({ title, description, value, unit, cordY }) => {
         </Flex>
       </GridItem>
       <GridItem transform={"rotateX(180deg)"}>
-        <svg ref={ref} width="100%" height={`${graphWidth / ratioXY}px`}>
+        <svg ref={ref} width="100%" height={`${graphWidth / ratioXY / 10}rem`}>
           <CatmullRomCurve
             alpha={0}
             data={data}

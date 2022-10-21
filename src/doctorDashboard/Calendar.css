@@ -38,7 +38,7 @@
     color: #333;
     /* min-width: 0; */
     /* background: none; */
-    font-size: 16px !important;
+    font-size: 1.6rem !important;
     flex-grow: 0;
     /* margin-top: 8px; */
 }
@@ -99,8 +99,8 @@
     border-radius: 50%;
     text-decoration: none;
     background-color: rgba(28, 127, 214, 0.75) !important;
-    width: 34px !important;
-    height: 34px !important;
+    width: 3.4rem !important;
+    height: 3.4rem !important;
     color: white;
     transition: all .3s ease-in-out;
 
@@ -116,7 +116,7 @@
 
 .react-calendar__navigation__label {
     font-weight: 700 !important;
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 
 .react-calendar__navigation__label:hover,
@@ -182,7 +182,7 @@ abbr {
 }
 
 .react-calendar__month-view__days__day {
-    color: #999;
+    color: #777;
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
@@ -336,7 +336,7 @@ abbr {
 
 .react-calendar__month-view__days__day abbr {
     text-decoration: none;
-    font-size: 11px !important;
+    font-size: 1.2rem !important;
     width: 1.6rem !important;
     height: 1.6rem !important;
     border-radius: 50%;
@@ -348,6 +348,11 @@ abbr {
 .react-calendar__tile:disabled {
     background-color: inherit;
     color: #ccc;
+    font-weight: 400 !important;
+}
+
+.react-calendar__tile:disabled abbr {
+    font-weight: 400 !important;
 }
 
 .react-calendar__decade-view__years__year:hover {

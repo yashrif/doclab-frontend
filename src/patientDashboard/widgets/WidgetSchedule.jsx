@@ -10,7 +10,7 @@ const WidgetNextAppointment = ({ icon, bg, heading, content }) => {
       py="16"
       bg={bg}
       borderRadius={"2xl"}
-      boxShadow={`0 0 16px ${"#f4f2ff"}40`}
+      boxShadow={`0 0 1.6rem ${"#f4f2ff"}40`}
     >
       <Flex alignItems={"center"} mb="4">
         <Text fontSize={"2xl"} fontWeight="medium">

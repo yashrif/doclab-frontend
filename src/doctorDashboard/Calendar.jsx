@@ -21,8 +21,10 @@ const App = ({ selectedDate, setSelectedDate }) => {
         onChange={setSelectedDate}
         value={selectedDate}
         // formatDay={(locale, selectedDate) => dayjs(selectedDate).format("DD")}
-        prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
-        nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
+        prevLabel={<Icon as={MdChevronLeft} w="2.4rem" h="2.4rem" mt=".4rem" />}
+        nextLabel={
+          <Icon as={MdChevronRight} w="2.4rem" h="2.4rem" mt=".4rem" />
+        }
       />
     </Box>
   );

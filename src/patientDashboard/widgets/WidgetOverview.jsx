@@ -16,9 +16,9 @@ const WidgetOverview = ({ selectedPerson }) => {
     <Stack
       height={"full"}
       spacing={"20"}
-      padding="24px 24px"
+      padding="2.4rem 2.4rem"
       borderRadius={"2xl"}
-      boxShadow={"0 0 24px rgba(28, 126, 214, .1)"}
+      boxShadow={"0 0 2.4rem rgba(28, 126, 214, .1)"}
     >
       <StackItem>
         <Center>

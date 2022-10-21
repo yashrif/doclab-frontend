@@ -62,7 +62,7 @@ const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
       {isOpen && (
         <SlideFade
           in={isResetOpen}
-          offsetY="-15px"
+          offsetY="-1.5rem"
           transition={{ enter: { duration: 0.01 } }}
         >
           <Box
