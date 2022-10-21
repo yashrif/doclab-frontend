@@ -13,10 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import apiPost from "../../hooks/apiPost.jsx";
-import {
-  SERVER,
-  DATE_FORMAT,
-} from "../../assets/variable/values";
+import { SERVER, DATE_FORMAT } from "../../assets/variable/values";
 import theme from "../../styling/theme.jsx";
 const AppointmentPopUp = ({
   children,
@@ -37,10 +34,11 @@ const AppointmentPopUp = ({
     const temp = time.split(":");
     const offset = selectedDate.getTimezoneOffset();
     const date = new Date(selectedDate.getTime() - offset * 60 * 1000);
-    return `${date.toISOString().split("T")[0]}T${period == "PM" && temp[0] < 12
-      ? [parseInt(temp[0]) + 12, temp[1]].join(":")
-      : time
-      }`;
+    return `${date.toISOString().split("T")[0]}T${
+      period == "PM" && temp[0] < 12
+        ? [parseInt(temp[0]) + 12, temp[1]].join(":")
+        : time
+    }`;
   };
 
   const closePopUp = () => {
@@ -90,7 +88,7 @@ const AppointmentPopUp = ({
         onClose={onClose}
         size="xl"
         onOverlayClick={closePopUp}
-      // onClick={() => console.log("clicked")}
+        // onClick={() => console.log("clicked")}
       >
         <ModalOverlay
           closeOnOverlayClick
@@ -98,73 +96,71 @@ const AppointmentPopUp = ({
           backdropFilter="auto"
           backdropBlur="2px"
         />
-        <ModalContent my="auto" py="24" px='12' borderRadius="11px">
+        <ModalContent my="auto" py="24" px="12" borderRadius="11px">
           <ModalCloseButton onClick={closePopUp} m={"4"} />
           <ModalHeader
             fontSize="2xl"
             fontWeight={"bold"}
             color="blue.700"
             mb="1.2rem"
+            textAlign={"center"}
           >
             Request Appointment
           </ModalHeader>
           {localStorage.getItem("patientToken") != null ? (
-
             <ModalFooter
               display="flex"
               justifyContent="space-evenly"
               flexDir={"column"}
               alignItems="flex-start"
             >
-              <Text
-                fontSize="lg"
-                color="gray"
-              >
+              <Text fontSize="lg" color="gray" textAlign={"center"}>
                 {`Make an appointment on ${selectedDate.toLocaleDateString(
                   "en-US",
                   DATE_FORMAT
                 )} at ${time} ${period} with Dr. ${selectedPerson.doctorName}.`}
               </Text>
               {successful ? (
-                <Text fontSize="lg" color="blue.400"  mt="1.6rem" textAlign="center">
+                <Text
+                  fontSize="lg"
+                  color="blue.400"
+                  mt="1.6rem"
+                  textAlign="center"
+                  w="full"
+                >
                   Appointment submitted
                 </Text>
               ) : (
                 <Flex
-                width="full"
-                px="2rem"
-                mt="1.8rem"
-                justifyContent={"space-between"}
+                  width="full"
+                  px="2rem"
+                  mt="1.8rem"
+                  justifyContent={"space-between"}
                 >
-                <Button
-                variant={"outline"}
-                  alignSelf={"center"}
-                  size="lg"
-                  onClick={onClose}
-                  px="3.2rem"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  alignSelf={"center"}
-                  size="lg"
-                  color={theme.typography.colors.primaryFirst.primary}
-                  onClick={() => setLoading(true)}
-                  isLoading={loading}
-                  px="3.2rem"
-
-                >
-                  Submit
-                </Button>
+                  <Button
+                    variant={"outline"}
+                    alignSelf={"center"}
+                    size="lg"
+                    onClick={onClose}
+                    px="3.2rem"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    alignSelf={"center"}
+                    size="lg"
+                    color={theme.typography.colors.primaryFirst.primary}
+                    onClick={() => setLoading(true)}
+                    isLoading={loading}
+                    px="3.2rem"
+                  >
+                    Submit
+                  </Button>
                 </Flex>
               )}
             </ModalFooter>
           ) : (
-            <Text
-              fontSize="lg"
-              pl="1.4rem"
-              color="gray.400"
-            >
+            <Text fontSize="lg" pl="1.4rem" color="gray.400">
               Please log in as patient to request for appointment.
             </Text>
           )}

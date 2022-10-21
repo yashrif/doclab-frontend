@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import {
   ModalBody,
   FormControl,
@@ -6,14 +7,14 @@ import {
   InputLeftElement,
   InputGroup,
   Flex,
-  Box,
+  Image,
 } from "@chakra-ui/react";
 import { subDistrictList } from "../../assets/variable/values";
 import PasswordInput from "./PasswordInput.jsx";
 import { TbMail } from "react-icons/tb";
 import { Widget } from "@uploadcare/react-widget";
-import { useEffect, useState } from "react";
 import { validateEmail } from "../../assets/variable/values.js";
+import Avatar from "../../assets/img/avatar.png";
 
 const DoctorSignUp = ({
   handleSignUpChange,
@@ -23,6 +24,9 @@ const DoctorSignUp = ({
   doSignUp,
 }) => {
   const [inputBlankWarning, setInputBlankWarning] = useState(false);
+  const [imgPath, setImgPath] = useState("");
+  const widgetRef = useRef();
+
   useEffect(() => {
     if (
       doSignUp != null &&
@@ -42,7 +46,58 @@ const DoctorSignUp = ({
   }, [doSignUp]);
 
   return (
-    <ModalBody mt="1.8rem" pb="1.4rem">
+    <ModalBody>
+      <FormControl
+        display="flex"
+        mt="20"
+        mb="4"
+        alignItems="center"
+        justifyContent={"center"}
+        flexDirection={"column"}
+      >
+        <Image
+          src={imgPath ? imgPath : Avatar}
+          boxSize={"7.2rem"}
+          p={0}
+          role={"button"}
+          onClick={() => widgetRef.current.openDialog()}
+          border={
+            signUpInfo.doctorImageUUID == "" && inputBlankWarning
+              ? "2px solid"
+              : "2px solid"
+          }
+          borderColor={
+            signUpInfo.doctorImageUUID == "" && inputBlankWarning
+              ? "red.300"
+              : "#777"
+          }
+          objectFit={"cover"}
+          borderRadius="50%"
+          transition={"all .3s"}
+          _hover={{
+            backgroundColor: "#000",
+            opacity: "0.5",
+          }}
+        />
+        <Widget
+          ref={widgetRef}
+          onChange={(fileInfo) => {
+            setSignUpInfo((prevState) => ({
+              ...prevState,
+              ["doctorImageUUID"]: fileInfo.uuid,
+            }));
+            setImgPath(fileInfo.cdnUrl);
+          }}
+          publicKey="6c3c08a73b43963de87b"
+          clearable
+          imagesOnly
+          previewStep
+          imageShrink="420x420"
+          tabs="file gdrive url"
+          crop="8:10"
+        />
+      </FormControl>
+
       <FormControl display="flex" alignItems="center">
         <Input
           errorBorderColor="red.300"
@@ -168,38 +223,6 @@ const DoctorSignUp = ({
           }
           password={signUpInfo.authPassword}
         />
-      </FormControl>
-
-      <FormControl display="flex" mt="24" alignItems="center">
-        <Box
-          border={
-            signUpInfo.doctorImageUUID == "" && inputBlankWarning
-              ? "2px solid"
-              : "none"
-          }
-          borderColor={
-            signUpInfo.doctorImageUUID == "" && inputBlankWarning
-              ? "red.300"
-              : "black"
-          }
-          borderRadius="4px"
-        >
-          <Widget
-            onChange={(fileInfo) =>
-              setSignUpInfo((prevState) => ({
-                ...prevState,
-                ["doctorImageUUID"]: fileInfo.uuid,
-              }))
-            }
-            publicKey="6c3c08a73b43963de87b"
-            clearable
-            imagesOnly
-            previewStep
-            imageShrink="420x210"
-            tabs="file gdrive url"
-            crop="1:1"
-          />
-        </Box>
       </FormControl>
     </ModalBody>
   );

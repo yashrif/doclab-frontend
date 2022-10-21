@@ -5,7 +5,7 @@ const theme = extendTheme({
   /*                             Chakra Custom Theme                            */
   /* -------------------------------------------------------------------------- */
   fonts: {
-    body: "Lato, sans-serif",
+    // body: "Lato, sans-serif",
     // heading: "Georgia, serif",
     // mono: "Menlo, monospace",
   },

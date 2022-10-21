@@ -58,7 +58,7 @@ const Schedule = ({ allAppointments }) => {
         templateColumns={"1fr"}
         alignSelf="stretch"
         overflow="hidden"
-        py={"24"}
+        py={"32"}
       >
         {renderedWidgets.length > 0 ? (
           renderedWidgets
