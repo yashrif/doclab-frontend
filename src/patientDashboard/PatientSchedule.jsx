@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@chakra-ui/react";
 import WidgetSchedule from "./widgets/WidgetSchedule.jsx";
 import { HiOutlineCalendar } from "react-icons/hi";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { FaCapsules } from "react-icons/fa";
+import { TIME_FORMAT } from "../assets/variable/values.js";
 
-const WidgetScheduleWidgets = () => {
+const WidgetScheduleWidgets = ({ appointments }) => {
+  useEffect(() => {
+    if (appointments)
+      appointments.sort((first, second) => {
+        new Date(first.appointmentSlotDate) >
+        new Date(second.appointmentSlotDate)
+          ? -1
+          : new Date(first.appointmentSlotDate) <
+            new Date(second.appointmentSlotDate)
+          ? 1
+          : 0;
+      });
+  }, [appointments]);
+
   const iconStyle = {
     fontSize: "2rem",
     color: "#555",
@@ -16,7 +30,14 @@ const WidgetScheduleWidgets = () => {
       bg: "#f4f2ff",
       heading: "Next Appointment",
       icon: <HiOutlineCalendar {...iconStyle} />,
-      content: new Date().toLocaleDateString(),
+      content:
+        appointments.length > 0
+          ? `${new Date(
+              appointments[0].appointmentSlotDate
+            ).toLocaleDateString()}, ${new Date(
+              appointments[0].appointmentSlotDate
+            ).toLocaleTimeString([], TIME_FORMAT)}`
+          : "No appointments",
     },
     {
       bg: "#fff2ec",

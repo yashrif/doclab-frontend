@@ -14,10 +14,16 @@ import { SERVER } from "../assets/variable/values.js";
 import { useNavigate } from "react-router-dom";
 
 const PatientDashboard = () => {
+  const TODAY = new Date();
+
   const navigate = useNavigate();
   const [person, errorPerson, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [term, setTerm] = useState("");
+
+  // Fetch Appointments
+  const [appointments, , fetchAppointments] = apiGet();
+  const [acceptedAppointments, setAcceptedAppointments] = useState([]);
 
   useEffect(() => {
     fetchPerson(`${SERVER}/auth`, {
@@ -36,6 +42,29 @@ const PatientDashboard = () => {
       navigate("/home");
     }
   }, [errorPerson]);
+
+  // Appointments
+
+  useEffect(() => {
+    if (selectedPerson != null)
+      fetchAppointments(
+        `${SERVER}/appointment/getByPatient/${selectedPerson.patientId}`
+      );
+  }, [selectedPerson]);
+
+  useEffect(() => {
+    if (appointments != null)
+      setAcceptedAppointments(
+        appointments.filter((appointment) => {
+          return (
+            appointment.appointmentAccepted &&
+            new Date(appointment.appointmentSlotDate) >= TODAY &&
+            new Date(appointment.appointmentSlotDate).toDateString() ==
+              TODAY.toDateString()
+          );
+        })
+      );
+  }, [appointments]);
 
   return (
     <Box overflow="hidden" bg={"bgContainer"}>
@@ -159,7 +188,7 @@ const PatientDashboard = () => {
 
             <PatientHealth />
 
-            <PatientSchedule />
+            <PatientSchedule appointments={acceptedAppointments} />
 
             <GridItem colSpan={"2"} mb="8">
               <PatientActivities />
