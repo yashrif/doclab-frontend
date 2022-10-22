@@ -122,6 +122,7 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                 borderRadius: "50%",
                 gridRow: "1/ -3",
                 // alignSelf: "flex-start",
+                objectFit: "cover",
               }}
               src={
                 person[`${category}ImageUUID`]

@@ -59,7 +59,7 @@ const PatientDashboard = () => {
           return (
             appointment.appointmentAccepted &&
             new Date(appointment.appointmentSlotDate) >= TODAY &&
-            new Date(appointment.appointmentSlotDate).toDateString() ==
+            new Date(appointment.appointmentSlotDate).toDateString() <=
               TODAY.toDateString()
           );
         })
