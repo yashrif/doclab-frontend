@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Grid, GridItem, Box, Center, Flex, Link } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Box,
+  Center,
+  Flex,
+  Link,
+  Spinner,
+} from "@chakra-ui/react";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
 import { Link as ReachLink } from "react-router-dom";
@@ -181,8 +189,18 @@ const PatientDashboard = () => {
             height={"full"}
           >
             <GridItem rowSpan={"2"}>
-              {selectedPerson && (
+              {selectedPerson ? (
                 <WidgetOverview selectedPerson={selectedPerson} />
+              ) : (
+                <Center h="full" w="full">
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="primary.base"
+                    size="xl"
+                  />
+                </Center>
               )}
             </GridItem>
 

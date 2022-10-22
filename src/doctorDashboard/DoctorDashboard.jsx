@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   // Fetch Appointments
   const [appointments, , fetchAppointments] = apiGet();
-  const [allAppointments, setAllAppointments] = useState(null);
+  const [allAppointments, setAllAppointments] = useState([]);
 
   useEffect(() => {
     if (changedAppointmentId != null && acceptedAppointment)

@@ -151,7 +151,7 @@ const Info = ({ selectedPerson, category }) => {
           }}
         >
           <span style={{ marginRight: ".2rem" }}>&#2547;</span>
-          {selectedPerson[`${category}VisitingFee`] - 100}
+          {parseInt(selectedPerson[`${category}VisitingFee`] * 2) / 3}
         </p>
         <p style={{ fontSize: "1.4rem", color: "#777" }}>For old patient</p>
       </div>

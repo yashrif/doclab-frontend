@@ -29,7 +29,7 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const [person, , fetchPerson] = apiGet();
+  const [person, personFetchError, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [isOptionOpen, setIsOptionOpen] = useState(false);
   const {
@@ -110,6 +110,15 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isOptionOpen]);
+
+  // Force Logout
+
+  useEffect(() => {
+    if (personFetchError != null) {
+      localStorage.clear();
+      navigate("/home");
+    }
+  }, [personFetchError]);
 
   const style = {
     headerNavList: {
@@ -211,7 +220,7 @@ const Header = () => {
         }}
       >
         <Modal
-          closeOnOverlayClick
+          closeonoverlayclick="true"
           isOpen={isDashOpen}
           onClose={onDashClose}
           size="2xl"

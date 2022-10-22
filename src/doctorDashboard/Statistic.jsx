@@ -31,7 +31,7 @@ const Statistic = ({ selectedPerson, allAppointments }) => {
       icon: "eye-outline",
       iconColor: "#ef008f",
       count: allAppointments
-        ? allAppointments.length
+        ? allAppointments?.length
         : 0 + selectedPerson?.doctorConsultancyCount,
       category: "Visitors",
     },

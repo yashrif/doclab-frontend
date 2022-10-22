@@ -81,7 +81,7 @@ const AppointmentPopUp = ({
         {children}
       </Box>
       <Modal
-        closeOnOverlayClick
+        closeonoverlayclick="true"
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
@@ -91,7 +91,7 @@ const AppointmentPopUp = ({
         // onClick={() => console.log("clicked")}
       >
         <ModalOverlay
-          closeOnOverlayClick
+          closeonoverlayclick="true"
           bg="blackAlpha.300"
           backdropFilter="auto"
           backdropBlur="2px"

@@ -127,7 +127,7 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
       </Box>
 
       <Modal
-        closeOnOverlayClick
+        closeonoverlayclick="true"
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
