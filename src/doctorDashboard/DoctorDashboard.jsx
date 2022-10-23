@@ -1,42 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, GridItem, Center, Flex, Link } from "@chakra-ui/react";
-import { Link as ReachLink } from "react-router-dom";
+import { Link as ReachLink, useNavigate } from "react-router-dom";
 import NavBar from "../reusable/NavBar.jsx";
 import Search from "../reusable/Search.jsx";
-import UserInfo from "./UserInfo.jsx";
-import Schedule from "./Schedule.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
+import Dashboard from "./Dashboard.jsx";
 import theme from "../styling/theme.jsx";
 import apiGet from "../hooks/apiGet.jsx";
 import { SERVER } from "../assets/variable/values.js";
-import apiPut from "../hooks/apiPut.jsx";
-import apiDelete from "../hooks/apiDelete.jsx";
-import { useNavigate } from "react-router-dom";
 
-const Dashboard = () => {
+const DoctorDashboard = () => {
   const navigate = useNavigate();
-  //Accepting an appointment
-  const [acceptedAppointment, setAcceptedAppointment] = useState(true);
-  const [changedAppointmentId, setChangedAppointmentId] = useState(null);
-  const [responseData, , putData] = apiPut();
-  const [responseDelete, , deleteAppointment] = apiDelete();
+
   const [term, setTerm] = useState("");
 
   // Fetch Logged in doctor
   const [person, errorPerson, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
-
-  // Fetch Appointments
-  const [appointments, , fetchAppointments] = apiGet();
-  const [allAppointments, setAllAppointments] = useState([]);
-
-  useEffect(() => {
-    if (changedAppointmentId != null && acceptedAppointment)
-      putData(`${SERVER}/appointment/put/${changedAppointmentId}`);
-    else if (changedAppointmentId != null && !acceptedAppointment) {
-      deleteAppointment(`${SERVER}/appointment/delete/${changedAppointmentId}`);
-    }
-  }, [changedAppointmentId]);
 
   useEffect(() => {
     fetchPerson(`${SERVER}/auth`, {
@@ -47,17 +27,6 @@ const Dashboard = () => {
   useEffect(() => {
     setSelectedPerson(person["authDoctor"]);
   }, [person]);
-
-  useEffect(() => {
-    if (selectedPerson != null)
-      fetchAppointments(
-        `${SERVER}/appointment/listPatients/${selectedPerson.doctorID}`
-      );
-  }, [selectedPerson, responseData, responseDelete]);
-
-  useEffect(() => {
-    setAllAppointments(appointments);
-  }, [appointments]);
 
   useEffect(() => {
     if (errorPerson != null) {
@@ -168,21 +137,13 @@ const Dashboard = () => {
         <GridItem>
           <NavBar />
         </GridItem>
-        <GridItem overflow="hidden">
-          <UserInfo
-            selectedPerson={selectedPerson}
-            allAppointments={allAppointments}
-            setAcceptedAppointment={setAcceptedAppointment}
-            setChangedAppointmentId={setChangedAppointmentId}
-            changedAppointmentId={changedAppointmentId}
-          />
-        </GridItem>
-        <GridItem>
-          <Schedule allAppointments={allAppointments} />
+
+        <GridItem colSpan={2} overflow="hidden">
+          <Dashboard selectedPerson={selectedPerson} />
         </GridItem>
       </Grid>
     </Box>
   );
 };
 
-export default Dashboard;
+export default DoctorDashboard;
