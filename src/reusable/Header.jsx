@@ -116,6 +116,7 @@ const Header = () => {
   useEffect(() => {
     if (personFetchError != null) {
       localStorage.clear();
+      setIsLoggedIn(false);
       navigate("/home");
     }
   }, [personFetchError]);
