@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, GridItem, Center, Flex, Link } from "@chakra-ui/react";
-import { Link as ReachLink, useNavigate } from "react-router-dom";
+import {
+  Link as ReachLink,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import NavBar from "../reusable/NavBar.jsx";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
 import Dashboard from "./Dashboard.jsx";
+import UserProfile from "../reusable/UserProfile.jsx";
 import theme from "../styling/theme.jsx";
 import apiGet from "../hooks/apiGet.jsx";
 import { SERVER } from "../assets/variable/values.js";
@@ -39,10 +45,10 @@ const DoctorDashboard = () => {
     <Box overflow="hidden" bg={"bgContainer"}>
       <Grid
         height="calc(100vh - 4.8rem)"
-        maxW="1280px"
+        maxW="130rem"
         mx="auto"
         my="24"
-        padding="1.6rem 1.2rem 0"
+        padding="1.6rem 0 0 1.2rem"
         bg="bg"
         // overflow="hidden"
         templateColumns="auto 8fr 3fr"
@@ -134,12 +140,30 @@ const DoctorDashboard = () => {
           <ProfileLink ImageUUID={selectedPerson?.doctorImageUUID} />
         </GridItem>
 
-        <GridItem>
+        <GridItem pt="8">
           <NavBar />
         </GridItem>
 
         <GridItem colSpan={2} overflow="hidden">
-          <Dashboard selectedPerson={selectedPerson} />
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<Dashboard selectedPerson={selectedPerson} />}
+            />
+
+            <Route
+              exact
+              path="/dashboard"
+              element={<Dashboard selectedPerson={selectedPerson} />}
+            />
+
+            <Route
+              exact
+              path="/profile"
+              element={<UserProfile selectedPerson={selectedPerson} />}
+            />
+          </Routes>
         </GridItem>
       </Grid>
     </Box>

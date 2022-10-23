@@ -34,7 +34,7 @@ const App = () => {
             <Route path="/home" exact element={<Homepage />} />
             <Route path="/findDoctor" exact element={<FindDoctor />} />
             <Route
-              path="/doctorDashboard"
+              path="/doctorDashboard/*"
               exact
               element={<DoctorDashboard />}
             />

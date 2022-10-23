@@ -6,7 +6,7 @@
     border-radius: 1.6rem;
     padding: .4rem .4rem;
     border: none;
-    box-shadow: 1.2rem 1.2rem 2.4rem rgba(0, 0, 0, 0.015);
+    box-shadow: none !important;
     font-family: inherit;
     line-height: 1.125em;
 }

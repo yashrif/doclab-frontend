@@ -15,7 +15,10 @@ const App = ({ selectedDate, setSelectedDate }) => {
   };
 
   return (
-    <Box boxShadow="0 0.4rem 0.8rem rgba(0, 0, 0, 0.08)" borderRadius="3xl">
+    <Box
+      boxShadow="0.4rem 0.6rem 1.6rem rgba(28, 126, 214, 0.1)"
+      borderRadius="3xl"
+    >
       <Calendar
         tileDisabled={tileDisabled}
         onChange={setSelectedDate}

@@ -38,7 +38,14 @@ const Dashboard = ({ selectedPerson }) => {
   }, [appointments]);
 
   return (
-    <Grid templateColumns="8fr 3fr" templateRows={"1fr"} gap="12" h="full">
+    <Grid
+      pt="8"
+      pr="16"
+      templateColumns="8fr 3fr"
+      templateRows={"1fr"}
+      gap="12"
+      h="full"
+    >
       <GridItem overflow="hidden">
         <UserInfo
           selectedPerson={selectedPerson}
