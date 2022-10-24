@@ -1,18 +1,15 @@
 import React from "react";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 const UserProfile = () => {
   return (
-    <Grid
-      pt="8"
-      pr="16"
-      templateColumns="8fr 3fr"
-      templateRows={"1fr"}
-      gap="12"
+    <Box
       h="full"
-    >
-      <GridItem overflow="hidden">lolololo</GridItem>
-    </Grid>
+      m=".8rem 1.6rem 12.6rem 0"
+      borderRadius={"3xl"}
+      bg="bgDarker"
+      overflow="hidden"
+    ></Box>
   );
 };
 

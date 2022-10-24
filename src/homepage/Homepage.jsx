@@ -35,7 +35,7 @@ const Homepage = () => {
         as={motion.div}
         animation={outOfScope ? animationSlideDown : ""}
         boxShadow={outOfScope ? "0 .8rem 1.6rem rgba(0, 0, 0, 0.08)" : ""}
-        opacity={0.95}
+        opacity={outOfScope ? 0.95 : 1}
         zIndex={100}
       >
         <Header />
