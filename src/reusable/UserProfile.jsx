@@ -137,6 +137,7 @@ const UserProfile = ({ selectedPerson }) => {
               }
               borderRadius={"base"}
               borderTopLeftRadius={"7.5rem"}
+              borderBottomRightRadius={"7.5rem"}
             ></Box>
 
             <Grid
@@ -198,7 +199,7 @@ const UserProfile = ({ selectedPerson }) => {
                     py="16"
                     px="16"
                     fontSize={"14"}
-                    borderColor={"#eaeaea"}
+                    borderColor={"#f5f5f5"}
                     onClick={() => {
                       setEditedSelectedPerson(selectedPerson);
                     }}

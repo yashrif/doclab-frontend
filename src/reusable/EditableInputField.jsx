@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Editable,
   EditableInput,
@@ -8,10 +8,21 @@ import {
 
 const EditableInputField = ({ value, setOnInputChange }) => {
   const [isFirstClick, setIsFirstClick] = useState(true);
+  const ref = useRef();
 
   useEffect(() => {
-    setIsFirstClick(true);
-  }, [value]);
+    const onBodyClick = (event) => {
+      if (ref.current?.contains(event.target)) return;
+
+      setIsFirstClick(true);
+    };
+
+    document.body.addEventListener("click", onBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
+  }, []);
 
   return (
     <>
@@ -27,6 +38,10 @@ const EditableInputField = ({ value, setOnInputChange }) => {
             {value.title}
           </Text>
           <Editable
+            ref={ref}
+            onClick={() => {
+              setIsFirstClick(false);
+            }}
             value={
               value &&
               (value.value?.length > 0 || typeof value.value == "number")
@@ -35,13 +50,8 @@ const EditableInputField = ({ value, setOnInputChange }) => {
                 ? "Empty..."
                 : ""
             }
-            onMouseLeave={() => {
-              if (!(value.value?.length > 0 || typeof value.value == "number"))
-                setIsFirstClick(true);
-            }}
-            onClick={() => {
-              setIsFirstClick(false);
-            }}
+            w={"25rem"}
+            transition={"all .3s"}
           >
             <EditablePreview
               py={"4"}
@@ -54,7 +64,7 @@ const EditableInputField = ({ value, setOnInputChange }) => {
               }
             />
             <EditableInput
-              w={"auto"}
+              // w={"auto"}
               name={value.name}
               onChange={setOnInputChange}
               _focus={{

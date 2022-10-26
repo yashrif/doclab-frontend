@@ -16,17 +16,20 @@ const EditableDropdown = ({ value, setOnInputChange }) => {
 
       <Select
         icon={"none"}
-        w={"20rem"}
+        w={"25rem"}
         border={"none"}
         outline={"none"}
         boxShadow={"none"}
         placeholder={value.value}
-        py={"4"}
-        px={"16"}
+        // py={"4"}
+        // px={"12"}
         fontSize={"14"}
         color={"font.general"}
         borderRadius={"lg"}
         transition="all .3s"
+        style={{
+          padding: ".4rem 1.6rem",
+        }}
         _focus={{
           backgroundColor: "#f7faff",
           boxShadow: "0 0 0 .2rem rgba(28, 126, 214, .35)",
