@@ -63,7 +63,8 @@ const Testimonials = () => {
       <HeadingSecondary>Client&apos;s Kind words</HeadingSecondary>
 
       <Box
-        bg={"primary.400"}
+        boxShadow="0 2.4rem 4.8rem rgb(0 0 0 / 15%)"
+        bg="linear-gradient(to right bottom, #4e98eb, #227ee6)"
         // w="85%"
         mx="auto"
         px={"64"}

@@ -28,6 +28,7 @@ const theme = extendTheme({
 
     bgContainer: "#f2f5fe",
     bgContainer2: "#f7faff",
+    bgContainer3: "#f9fcfe",
     bg: "#fff",
     bgDarker: "#fafafc",
     bgAsh: "#f2f3f4",
@@ -38,6 +39,7 @@ const theme = extendTheme({
       primary: "#1c7ed6",
       focused: "#18181B",
       muted: "#767676",
+      muted2: "#aaa",
       general: "#555",
       light: "#fff",
     },

@@ -31,10 +31,10 @@ const Hero = ({ setOutOfScope }) => {
       templateColumns={"45fr 55fr"}
       maxW={"13xl"}
       mx="auto"
-      pt="64"
+      pt="32"
       mb="96"
     >
-      <GridItem pb={"13.1rem"}>
+      <GridItem pb={"12.4rem"} pt={"32"}>
         <Text
           color={"primary.600"}
           fontSize="14"

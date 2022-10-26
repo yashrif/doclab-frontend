@@ -30,6 +30,7 @@ const SignUpForm = ({
   useEffect(() => {
     refInput.current.focus();
   }, [docNow]);
+
   const handleSignUpChange = (e) => {
     const { name, value } = e.target;
     setSignUpInfo((prevState) => ({

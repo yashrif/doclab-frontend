@@ -43,7 +43,7 @@ const Homepage = () => {
 
       <Box
         bg="bgContainer2"
-        pt={outOfScope ? theme.typography.containerHeight.header : 0}
+        pt={outOfScope ? theme.typography.containerHeight.header : "32"}
       >
         <Hero setOutOfScope={setOutOfScope} />
       </Box>
@@ -90,6 +90,7 @@ const Homepage = () => {
           w="20"
           borderRadius={"50%"}
           backgroundColor="rgba(28, 126, 214, .9)"
+          transition={"all 0.3s"}
           _hover={{
             boxShadow: "0 0.8rem 1.6rem rgba(28, 126, 214, 0.5)",
           }}

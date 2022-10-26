@@ -45,7 +45,7 @@ const About = () => {
               vero ipsam laborum porro voluptates voluptatibus a nihil
               temporibus deserunt vel?
             </p>
-            <a href="a" className="btn">
+            <a href="/" className="btn">
               Learn more <span className="fas fa-chevron-right"></span>
             </a>
           </div>
