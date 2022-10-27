@@ -15,6 +15,7 @@ const EditableDropdown = ({ value, setOnInputChange }) => {
       </Text>
 
       <Select
+        role={"button"}
         icon={"none"}
         w={"25rem"}
         border={"none"}
@@ -31,6 +32,10 @@ const EditableDropdown = ({ value, setOnInputChange }) => {
           padding: ".4rem 1.6rem",
         }}
         _focus={{
+          backgroundColor: "#f7faff",
+          boxShadow: "0 0 0 .2rem rgba(28, 126, 214, .35)",
+        }}
+        _hover={{
           backgroundColor: "#f7faff",
           boxShadow: "0 0 0 .2rem rgba(28, 126, 214, .35)",
         }}

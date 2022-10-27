@@ -54,6 +54,7 @@ const EditableInputField = ({ value, setOnInputChange }) => {
             transition={"all .3s"}
           >
             <EditablePreview
+              w={"full"}
               py={"4"}
               px={"16"}
               fontSize={"14"}
@@ -62,9 +63,12 @@ const EditableInputField = ({ value, setOnInputChange }) => {
                   ? "font.general"
                   : "#bbb"
               }
+              _hover={{
+                boxShadow: "0 0 0 .2rem rgba(28, 126, 214, .35)",
+              }}
             />
             <EditableInput
-              // w={"auto"}
+              w={"full"}
               name={value.name}
               onChange={setOnInputChange}
               _focus={{
