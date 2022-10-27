@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const apiPost = () => {
-  const [data, fetchData] = useState([]);
+  const [data, fetchData] = useState({});
   const [error, setError] = useState(null);
 
   const fetch = async (url, data, config) => {

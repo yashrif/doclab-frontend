@@ -23,12 +23,13 @@ const DoctorDashboard = () => {
   // Fetch Logged in doctor
   const [person, errorPerson, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
+  const [reloadSelectedPerson, setReloadSelectedPerson] = useState(true);
 
   useEffect(() => {
     fetchPerson(`${SERVER}/auth`, {
       headers: { TOKEN: localStorage.getItem("doctorToken") },
     });
-  }, []);
+  }, [reloadSelectedPerson]);
 
   useEffect(() => {
     setSelectedPerson(person["authDoctor"]);
@@ -161,7 +162,12 @@ const DoctorDashboard = () => {
             <Route
               exact
               path="/profile"
-              element={<UserProfile selectedPerson={selectedPerson} />}
+              element={<UserProfile
+                selectedPerson={selectedPerson}
+                setReloadSelectedPerson={setReloadSelectedPerson}
+                reloadSelectedPerson={reloadSelectedPerson}
+              />
+              }
             />
           </Routes>
         </GridItem>

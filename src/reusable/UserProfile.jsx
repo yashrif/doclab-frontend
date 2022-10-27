@@ -15,13 +15,22 @@ import Avatar from "../assets/img/avatar.png";
 import EditableInputField from "./EditableInputField.jsx";
 import EditableTextArea from "./EditableTextArea.jsx";
 import EditableDropdown from "./EditableDropdown.jsx";
-import { subDistrictList } from "../assets/variable/values";
+import { subDistrictList, SERVER } from "../assets/variable/values";
 import ButtonFull from "./button/ButtonFull.jsx";
 import ButtonOutline from "./button/ButtonOutline.jsx";
+import apiPost from "../hooks/apiPost.jsx";
 
-const UserProfile = ({ selectedPerson }) => {
+const UserProfile = ({
+  selectedPerson,
+  reloadSelectedPerson,
+  setReloadSelectedPerson
+}) => {
+
   const [editedSelectedPerson, setEditedSelectedPerson] = useState({});
   const [isEdited, setIsEdited] = useState(false);
+  const [response, , postPerson] = apiPost();
+  const [saving, setSaving] = useState(false);
+  const [submitEditedPerson, setSubmitEditedPerson] = useState(null)
   const widgetRef = useRef();
 
   const objectCompare = (object1, object2) => {
@@ -39,8 +48,23 @@ const UserProfile = ({ selectedPerson }) => {
   };
 
   useEffect(() => {
+    setSaving(false);
     setEditedSelectedPerson(selectedPerson);
   }, [selectedPerson]);
+
+  useEffect(() => {
+    if (submitEditedPerson != null) {
+      setSaving(true);
+      postPerson(`${SERVER}/doctor/update`, editedSelectedPerson);
+    }
+  }, [submitEditedPerson]);
+
+  useEffect(() => {
+    if (!objectCompare(response, editedSelectedPerson)) {
+      setReloadSelectedPerson(!reloadSelectedPerson);
+    }
+
+  }, [response]);
 
   const setOnInputChange = (e) => {
     setEditedSelectedPerson((prevState) => ({
@@ -206,7 +230,16 @@ const UserProfile = ({ selectedPerson }) => {
                   >
                     Cancel
                   </ButtonOutline>
-                  <ButtonFull py="16" px="16" fontSize={"14"}>
+                  <ButtonFull
+                    py="16"
+                    px="16"
+                    fontSize={"14"}
+                    isLoading={saving}
+                    onClick={() => {
+                      submitEditedPerson == null ?
+                        setSubmitEditedPerson(true) :
+                        setSubmitEditedPerson(!submitEditedPerson);
+                    }}>
                     Save
                   </ButtonFull>
                 </Flex>
