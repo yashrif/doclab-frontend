@@ -1,9 +1,8 @@
 import React from "react";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const navigate = useNavigate();
   const style = {
     icon: {
       "--ionicon-stroke-width": "4rem",
@@ -14,41 +13,41 @@ const NavBar = () => {
     {
       icon: "grid-outline",
       title: "Dashboard",
-      link: "dashboard",
+      link: "doctorDashboard/dashboard",
     },
     {
       icon: "calendar-clear-outline",
       title: "Calendar",
-      link: "calendar",
+      link: "doctorDashboard/calendar",
     },
     {
       icon: "pie-chart-outline",
       title: "Statistics",
-      link: "statistics",
+      link: "doctorDashboard/statistics",
     },
     {
       icon: "person-outline",
       title: "Profile",
-      link: "profile",
+      link: "doctorDashboard/profile",
     },
     {
       icon: "chatbox-outline",
       title: "Chat",
-      link: "chat",
+      link: "doctorDashboard/chat",
     },
     {
       icon: "log-out-outline",
       title: "Log out",
+      link: "home",
       onClick: () => {
         localStorage.clear();
-        navigate("/home");
       },
     },
   ];
 
   const renderedNavList = NavBar.map((value, index) => {
     return (
-      <Link key={index} to={`/doctorDashboard/${value.link}`}>
+      <Link key={index} to={`/${value.link}`}>
         <Flex
           cursor="pointer"
           alignItems="center"
