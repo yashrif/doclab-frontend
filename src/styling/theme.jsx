@@ -5,7 +5,7 @@ const theme = extendTheme({
   /*                             Chakra Custom Theme                            */
   /* -------------------------------------------------------------------------- */
   fonts: {
-    body: "Lato, sans-serif",
+    // body: "Lato, sans-serif",
     // heading: "Georgia, serif",
     // mono: "Menlo, monospace",
   },
@@ -27,8 +27,11 @@ const theme = extendTheme({
     },
 
     bgContainer: "#f2f5fe",
+    bgContainer2: "#f7faff",
+    bgContainer3: "#f9fcfe",
     bg: "#fff",
     bgDarker: "#fafafc",
+    bgAsh: "#f2f3f4",
 
     font: {
       // hero: "#204289",
@@ -36,6 +39,7 @@ const theme = extendTheme({
       primary: "#1c7ed6",
       focused: "#18181B",
       muted: "#767676",
+      muted2: "#aaa",
       general: "#555",
       light: "#fff",
     },
@@ -213,7 +217,7 @@ const theme = extendTheme({
     },
 
     containerHeight: {
-      header: "9.6rem",
+      header: "8rem",
     },
   },
 

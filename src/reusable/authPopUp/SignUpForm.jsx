@@ -22,7 +22,7 @@ const SignUpForm = ({
   doSignUp,
   setDoSignUp,
   onModalClose,
-  clearAll
+  clearAll,
 }) => {
   const [docNow, setDocNow] = useState(true);
   const refInput = useRef(null);
@@ -30,6 +30,7 @@ const SignUpForm = ({
   useEffect(() => {
     refInput.current.focus();
   }, [docNow]);
+
   const handleSignUpChange = (e) => {
     const { name, value } = e.target;
     setSignUpInfo((prevState) => ({
@@ -39,31 +40,38 @@ const SignUpForm = ({
   };
 
   return (
-    <ModalContent my="auto" px="36" py={"24"} borderRadius="11px">
+    <ModalContent my="auto" px="36" py={"16"} borderRadius="11px">
       <ModalCloseButton
         onClick={() => {
-          clearAll()
+          clearAll();
           onModalClose();
         }}
-        p="2rem"
+        p="16"
+        size={"36"}
       />
-      <ModalHeader textAlign="center" fontSize="2.4rem " color="blue.700">
+      <ModalHeader
+        textAlign="center"
+        fontSize="2.4rem "
+        color="blue.700"
+        py={"0"}
+      >
         Sign Up
       </ModalHeader>
       <ModalHeader
         textAlign="center"
         fontSize="1.4rem"
         color="gray.400"
+        py={"0"}
         fontWeight={"medium"}
       >
         Enter your details
       </ModalHeader>
-      <Box display="flex" mt="2.4rem" justifyContent={"center"}>
+      <Box display="flex" mt="2rem" justifyContent={"center"}>
         <Button
           onClick={() => {
             setDocNow(true);
             setDoSignUp(null);
-            setSignUpInfo(initialSignUp)
+            setSignUpInfo(initialSignUp);
             setCategory("doctor");
             refInput.current.focus();
           }}
@@ -96,7 +104,7 @@ const SignUpForm = ({
           onClick={() => {
             setDocNow(false);
             setDoSignUp(null);
-            setSignUpInfo(initialSignUp)
+            setSignUpInfo(initialSignUp);
             refInput.current.focus();
             setCategory("patient");
           }}
@@ -107,6 +115,7 @@ const SignUpForm = ({
           fontWeight="medium"
           letterSpacing=".25px"
           px={5}
+          py={12}
           color={!docNow ? "font.light" : "font.general"}
           border="none"
           // borderRadius="xl"

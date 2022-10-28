@@ -29,8 +29,11 @@ const Footer = () => {
 
   return (
     <Box py="64">
-      <Grid templateColumns="1.5fr 1fr 1fr 1fr">
-        <GridItem justifySelf={"center"}>
+      <Grid
+        templateColumns="auto auto auto auto auto"
+        justifyContent={"space-between"}
+      >
+        <GridItem>
           <Box mb={"24"}>
             <Link href="/">
               <Image src={logo} h="24" />
@@ -46,11 +49,12 @@ const Footer = () => {
           </Text>
         </GridItem>
 
-        <GridItem justifySelf={"center"}>
+        <GridItem>
           <Text
             fontSize={"18"}
             fontWeight={"500"}
-            mb={"36"}
+            pt={"16"}
+            mb={"48"}
             color="font.general"
           >
             Contact Us
@@ -82,11 +86,12 @@ const Footer = () => {
           </Flex>
         </GridItem>
 
-        <GridItem justifySelf={"center"}>
+        <GridItem>
           <Text
             fontSize={"18"}
             fontWeight={"500"}
-            mb={"36"}
+            pt={"16"}
+            mb={"48"}
             color="font.general"
           >
             Account
@@ -118,10 +123,42 @@ const Footer = () => {
           </Flex>
         </GridItem>
 
-        <GridItem justifySelf={"center"}>
+        <GridItem>
           <Text
             fontSize={"18"}
             fontWeight={"500"}
+            pt={"16"}
+            mb={"48"}
+            color="font.general"
+          >
+            Company
+          </Text>
+
+          <Flex flexDirection={"column"} gap={"24"}>
+            {["About DocLab", "Carrers", "Sponsers"].map((value, key) => {
+              return (
+                <Link
+                  key={key}
+                  href={`/`}
+                  fontSize={"16"}
+                  color={"font.muted"}
+                  transition="all .3s"
+                  _hover={{
+                    color: "#555",
+                  }}
+                >
+                  {value}
+                </Link>
+              );
+            })}
+          </Flex>
+        </GridItem>
+
+        <GridItem>
+          <Text
+            fontSize={"18"}
+            fontWeight={"500"}
+            pt={"16"}
             mb={"36"}
             color="font.general"
           >

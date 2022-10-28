@@ -9,6 +9,7 @@ import {
   TableContainer,
   Box,
   Center,
+  Spinner,
 } from "@chakra-ui/react";
 import WidgetAppointment from "./reusable/WidgetAppointment.jsx";
 
@@ -19,13 +20,25 @@ const PendingAppointments = ({
   changedAppointmentId,
 }) => {
   const [allPending, setAllPending] = useState([]);
+  const [initialLoad, setInitialLoad] = useState(true);
+
   useEffect(() => {
     if (allAppointments != null)
       setAllPending(
-        allAppointments.filter(
+        allAppointments?.filter(
           (appointment) => !appointment.appointmentAccepted
         )
       );
+  }, [allAppointments]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setInitialLoad(false);
+    }, 5000);
+
+    if (allAppointments?.length > 0) setInitialLoad(false);
+
+    return () => clearTimeout(timeoutId);
   }, [allAppointments]);
 
   const TableHeads = ["Name", "Age", "Date", "Time", "Action"];
@@ -73,40 +86,52 @@ const PendingAppointments = ({
         Pending Appointments
       </Text>
       {/* <Box overflowY="scroll"> */}
-      {allPending.length > 0 ? (
-        <TableContainer
-          // py="24"
-          maxW="full"
-          px="12"
-          bg="bg"
-          // justifyContent="space-around"
-          overflowY="scroll"
-          // height="80%"
-          // overflow="scroll"
-        >
-          <Table variant="unstyled">
-            <Thead>
-              <Tr>{renderedTableHeads}</Tr>
-            </Thead>
+      {!initialLoad ? (
+        allPending?.length > 0 ? (
+          <TableContainer
+            // py="24"
+            maxW="full"
+            px="12"
+            bg="bg"
+            // justifyContent="space-around"
+            overflowY="scroll"
+            // height="80%"
+            // overflow="scroll"
+          >
+            <Table variant="unstyled">
+              <Thead>
+                <Tr>{renderedTableHeads}</Tr>
+              </Thead>
 
-            <Tbody>
-              {allPending.map((appointment) => (
-                <WidgetAppointment
-                  appointment={appointment}
-                  key={appointment.appointmentId}
-                  setChangedAppointmentId={setChangedAppointmentId}
-                  setAcceptedAppointment={setAcceptedAppointment}
-                  changedAppointmentId={changedAppointmentId}
-                />
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
+              <Tbody>
+                {allPending.map((appointment) => (
+                  <WidgetAppointment
+                    appointment={appointment}
+                    key={appointment.appointmentId}
+                    setChangedAppointmentId={setChangedAppointmentId}
+                    setAcceptedAppointment={setAcceptedAppointment}
+                    changedAppointmentId={changedAppointmentId}
+                  />
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <Center h={"100%"} w="100%">
+            <Text fontSize={"16"} color={"gray.500"} fontWeight={"medium"}>
+              No pending appointments
+            </Text>
+          </Center>
+        )
       ) : (
-        <Center h={"100%"} w="100%">
-          <Text fontSize={"16"} color={"gray.500"} fontWeight={"medium"}>
-            No pending appointments
-          </Text>
+        <Center>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="primary.base"
+            size="xl"
+          />
         </Center>
       )}
     </Box>

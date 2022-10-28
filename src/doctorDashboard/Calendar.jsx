@@ -15,14 +15,19 @@ const App = ({ selectedDate, setSelectedDate }) => {
   };
 
   return (
-    <Box boxShadow="0 0.4rem 0.8rem rgba(0, 0, 0, 0.08)" borderRadius="3xl">
+    <Box
+      boxShadow="0.4rem 0.6rem 1.6rem rgba(28, 126, 214, 0.1)"
+      borderRadius="3xl"
+    >
       <Calendar
         tileDisabled={tileDisabled}
         onChange={setSelectedDate}
         value={selectedDate}
         // formatDay={(locale, selectedDate) => dayjs(selectedDate).format("DD")}
-        prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
-        nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
+        prevLabel={<Icon as={MdChevronLeft} w="2.4rem" h="2.4rem" mt=".4rem" />}
+        nextLabel={
+          <Icon as={MdChevronRight} w="2.4rem" h="2.4rem" mt=".4rem" />
+        }
       />
     </Box>
   );

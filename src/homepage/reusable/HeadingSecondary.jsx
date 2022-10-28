@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
 
-const HeadingHeading = ({ children }) => {
+const HeadingHeading = ({ children, mb }) => {
   return (
     <Text
       textTransform={"capitalize"}
@@ -10,7 +10,7 @@ const HeadingHeading = ({ children }) => {
       fontSize="4.4rem"
       fontWeight={"bold"}
       lineHeight="1.2"
-      marginBottom="9.6rem"
+      marginBottom={mb ? mb : "9.6rem"}
     >
       {children}
     </Text>

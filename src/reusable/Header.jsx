@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import {
   Modal,
@@ -8,6 +8,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalOverlay,
+  SlideFade,
   useDisclosure,
 } from "@chakra-ui/react";
 import logo from "../assets/img/logo.png";
@@ -24,8 +25,24 @@ const Header = () => {
       localStorage.getItem("patientToken") != null
   );
 
-  const [person, , fetchPerson] = apiGet();
+  const ref = useRef();
+
+  const navigate = useNavigate();
+
+  const [person, personFetchError, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
+  const [isOptionOpen, setIsOptionOpen] = useState(false);
+  const {
+    isOpen: isNavOpen,
+    onToggle: onNavToggle,
+    onClose: onNavClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isDashOpen,
+    onOpen: onDashOpen,
+    onClose: onDashClose,
+  } = useDisclosure();
 
   useEffect(() => {
     if (
@@ -43,6 +60,15 @@ const Header = () => {
           ),
         },
       });
+
+    if (isLoggedIn && isDashOpen)
+      navigate(
+        localStorage.getItem("doctorToken") != null
+          ? "/doctorDashboard"
+          : "/patientDashboard"
+      );
+
+    if (isLoggedIn) onDashClose();
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -53,11 +79,47 @@ const Header = () => {
     );
   }, [person]);
 
-  const {
-    isOpen: isDashOpen,
-    onOpen: onDashOpen,
-    onClose: onDashClose,
-  } = useDisclosure();
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref.current?.contains(event.target)) return;
+
+      onNavClose();
+      setIsOptionOpen(false);
+    };
+
+    document.body.addEventListener("click", onBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
+  }, []);
+
+  // Closing nav scrolling
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOptionOpen) {
+        setIsOptionOpen(false);
+        onNavClose();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isOptionOpen]);
+
+  // Force Logout
+
+  useEffect(() => {
+    if (personFetchError != null) {
+      localStorage.clear();
+      setIsLoggedIn(false);
+      navigate("/home");
+    }
+  }, [personFetchError]);
 
   const style = {
     headerNavList: {
@@ -72,6 +134,12 @@ const Header = () => {
     <>
       <style>
         {`
+        .header *:focus{
+          border: none;
+          box-shadow: none;
+        }
+
+        .header-link,
         .header-link:link,
         .header-link:visited {
           display: inline-block;
@@ -112,14 +180,36 @@ const Header = () => {
           box-shadow: inset 0 0 0 0.3rem rgba(28, 126, 214, 0.25),
             0 0.8rem 1.6rem rgba(28, 126, 214, 0.5);
         }
+
+        .header-link-extra:link,
+        .header-link-extra:visited{
+          font-size: 1.5rem;
+          color: inherit;
+        }
+
+        .header-link-extra:active,
+        .header-link-extra:hover{
+            color:  ${theme.typography.colors.primaryFirst.primary};
+        }
+
+        @keyframes slide-vertical {
+          50% {
+            transform: translateY(.8rem);
+          }
+        }
+
+        .header-link--more:hover .arrow-down-icon {
+          animation: slide-vertical .3s ease-in-out;
+        }
       `}
       </style>
       <header
+        className="header"
         style={{
           height: `${theme.typography.containerHeight.header}`,
-          fontSize: "1.7rem",
+          fontSize: "1.8rem",
           padding: `0 ${theme.typography.sectionGap.large}`,
-          marginBottom: `${theme.typography.sectionGap.headerBottom}`,
+          // marginBottom: `${theme.typography.sectionGap.headerBottom}`,
 
           display: "grid",
           // gridTemplateColumns: "1fr 1fr 1fr",
@@ -130,7 +220,12 @@ const Header = () => {
           /* box-shadow: "0 0 0 .1rem rgba(0, 0, 0, 0.1)", */
         }}
       >
-        <Modal closeOnOverlayClick isOpen={isDashOpen} onClose={onDashClose} size="2xl">
+        <Modal
+          closeonoverlayclick="true"
+          isOpen={isDashOpen}
+          onClose={onDashClose}
+          size="2xl"
+        >
           <ModalOverlay
             bg="blackAlpha.300"
             backdropFilter="auto"
@@ -260,21 +355,129 @@ const Header = () => {
             {(window.location.pathname == "/home" ||
               window.location.pathname == "/") && (
               <>
-                <li className="header-page-nav-link ">
+                <li className="header-page-nav-link">
+                  <HashLink className="header-link" to="/#about">
+                    About
+                  </HashLink>
+                </li>
+                <li className="header-page-nav-link">
                   <HashLink className="header-link" to="/#howItWorks">
                     How it works
                   </HashLink>
                 </li>
-                <li className="header-page-nav-link ">
-                  <HashLink className="header-link" to="/#services">
-                    Services
-                  </HashLink>
-                </li>
-                <li className="header-page-nav-link ">
-                  <HashLink className="header-link" to="/#testimonials">
-                    Testimonials
-                  </HashLink>
-                </li>
+                <div
+                  ref={ref}
+                  tabIndex={0}
+                  role={"button"}
+                  onClick={() => {
+                    setIsOptionOpen(!isOptionOpen);
+                    onNavToggle();
+                  }}
+                  onKeyDown={() => {}}
+                  style={{
+                    cursor: "pointer",
+                    position: "relative",
+                  }}
+                >
+                  <li
+                    className="header-link header-link--more"
+                    style={{
+                      color: `${
+                        isOptionOpen
+                          ? theme.typography.colors.primaryFirst.primary
+                          : ""
+                      }`,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: ".4rem",
+                    }}
+                  >
+                    <p>More</p>
+                    <div
+                      className="arrow-down-icon"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <ion-icon
+                        style={{
+                          fontSize: "1.8rem",
+                        }}
+                        name="chevron-down-outline"
+                      ></ion-icon>
+                    </div>
+                  </li>
+
+                  {isOptionOpen && (
+                    <SlideFade
+                      in={isNavOpen}
+                      offsetY="-10px"
+                      transition={{
+                        enter: { duration: 0.05 },
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "115%",
+                          left: "50%",
+                          transform: "translate(-50%, 0)",
+                          padding: "1.6rem",
+                          borderRadius: ".9rem",
+                          // backgroundColor: "red",
+                          // backgroundColor: "rgba(255, 255, 255, 0.6)",
+                          background:
+                            "linear-gradient(155deg, #ffffffbf, #ffffffbf,#ffffffbf, #8ec0ebbf, #1c7fd6bf)",
+                          boxShadow: "0 1.2rem 1.2rem rgba(0, 0, 0, 0.08)",
+                          zIndex: 5,
+
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          gap: "1.6rem",
+                        }}
+                      >
+                        <li
+                          className="header-page-nav-link"
+                          style={{
+                            fontWeight: "500",
+                          }}
+                        >
+                          <HashLink
+                            className="header-link-extra"
+                            to="/#services"
+                          >
+                            Services
+                          </HashLink>
+                        </li>
+                        <li
+                          className="header-page-nav-link"
+                          style={{
+                            fontWeight: "500",
+                          }}
+                        >
+                          <HashLink
+                            className="header-link-extra"
+                            to="/#testimonials"
+                          >
+                            Testimonials
+                          </HashLink>
+                        </li>
+                        <li
+                          className="header-page-nav-link"
+                          style={{
+                            fontWeight: "500",
+                          }}
+                        >
+                          <HashLink className="header-link-extra" to="/#blogs">
+                            Blogs
+                          </HashLink>
+                        </li>
+                      </div>
+                    </SlideFade>
+                  )}
+                </div>
               </>
             )}
             {isLoggedIn ? (
@@ -288,7 +491,7 @@ const Header = () => {
               />
             ) : (
               <AuthPopUp setIsLoggedIn={setIsLoggedIn}>
-                <li className="header-page-nav-link ">
+                <li className="header-page-nav-link">
                   <ButtonFull
                     py="18"
                     px="24"

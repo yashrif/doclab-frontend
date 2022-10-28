@@ -22,18 +22,18 @@ const Testimonials = () => {
   useEffect(() => {
     setTestimonial((testimonial) => ({
       ...testimonial,
-      image: `${faker.image.avatar()}`,
-      name: `${faker.name.findName()}`,
-      text: `${faker.lorem.paragraph()}`,
+      image: faker.image.avatar(),
+      name: faker.name.findName(),
+      text: faker.lorem.paragraphs(2),
     }));
   }, []);
 
   useEffect(() => {
     setTimeout(() => {
       setTestimonial(() => ({
-        image: `${faker.image.avatar()}`,
-        name: `${faker.name.findName()}`,
-        text: `${faker.lorem.paragraph()}`,
+        image: faker.image.avatar(),
+        name: faker.name.findName(),
+        text: faker.lorem.paragraphs(2),
       }));
     }, 10000);
   });
@@ -58,13 +58,14 @@ const Testimonials = () => {
   const animationSlideUp = `${slideUp} 10s linear infinite`;
 
   return (
-    <Box pt={"96"}>
+    <Box pb={"9.6rem"} px="48" id="testimonials">
       <HeadingPrimary>Testimonials</HeadingPrimary>
       <HeadingSecondary>Client&apos;s Kind words</HeadingSecondary>
 
       <Box
-        bg={"primary.400"}
-        w="85%"
+        boxShadow="0 2.4rem 4.8rem rgb(0 0 0 / 15%)"
+        bg="linear-gradient(to right bottom, #4e98eb, #227ee6)"
+        // w="85%"
         mx="auto"
         px={"64"}
         py={"48"}
@@ -123,7 +124,7 @@ const Testimonials = () => {
                 {testimonial.name}
               </Text>
               <Text color={"font.light"} fontSize="14">
-                Web Developer
+                Client
               </Text>
             </VStack>
           </HStack>

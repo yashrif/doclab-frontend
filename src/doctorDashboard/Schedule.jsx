@@ -35,7 +35,7 @@ const Schedule = ({ allAppointments }) => {
     if (index < NUMBER_OF_RENDERS)
       renderedWidgets.push(
         <TimelineUpcomingAppointments
-          key={index}
+          key={index + selectedDate.getDay()}
           i={index}
           dots={
             index === NUMBER_OF_RENDERS - 1 ||
@@ -58,7 +58,7 @@ const Schedule = ({ allAppointments }) => {
         templateColumns={"1fr"}
         alignSelf="stretch"
         overflow="hidden"
-        py={"24"}
+        py={"32"}
       >
         {renderedWidgets.length > 0 ? (
           renderedWidgets

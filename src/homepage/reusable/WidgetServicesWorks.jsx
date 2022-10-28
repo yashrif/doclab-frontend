@@ -10,7 +10,9 @@ const WidgetServicesWorks = ({ value, alignItems, textAlign, isBoxShadow }) => {
       py={isBoxShadow ? "16" : "0"}
       alignItems={alignItems ? alignItems : "start"}
       bg="bg"
-      boxShadow={isBoxShadow ? "0 0 2rem rgba(0, 0, 0, 0.05)" : "none"}
+      boxShadow={
+        isBoxShadow ? ".8rem .8rem 2.4rem rgba(0, 0, 0, 0.05)" : "none"
+      }
     >
       <FontAwesomeIcon
         icon={value.icon}

@@ -1,51 +1,89 @@
-import React, { useState } from "react";
-import { faker } from "@faker-js/faker";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Image, Text, SlideFade, useDisclosure } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import Avatar from "../assets/img/avatar.png";
 
 const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
-  const { isOpen: isResetOpen, onToggle } = useDisclosure();
+  const {
+    isOpen: isResetOpen,
+    onToggle: onResetToggle,
+    onClose: onResetClose,
+  } = useDisclosure();
+
+  const ref = useRef();
+
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref.current?.contains(event.target)) return;
+
+      onResetClose();
+      setIsOpen(false);
+    };
+
+    document.body.addEventListener("click", onBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isResetOpen) {
+        setIsOpen(false);
+        onResetToggle();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isOpen]);
 
   return (
-    <Box position={"relative"}>
+    <Box ref={ref} position={"relative"}>
       <Image
         cursor={"pointer"}
         onClick={() => {
           setIsOpen(!isOpen);
-          onToggle();
+          onResetToggle();
         }}
-        src={
-          ImageUUID
-            ? "https://ucarecdn.com/" + ImageUUID + "/"
-            : faker.image.avatar()
-        }
+        src={ImageUUID ? "https://ucarecdn.com/" + ImageUUID + "/" : Avatar}
         alt="Profile"
         w="14"
         h={"14"}
         borderRadius="full"
       />
       {isOpen && (
-        <SlideFade in={isResetOpen} offsetY="-10px">
+        <SlideFade
+          in={isResetOpen}
+          offsetY="-1.5rem"
+          transition={{ enter: { duration: 0.01 } }}
+        >
           <Box
             position={"absolute"}
-            top={"105%"}
+            top={"115%"}
             left={"50%"}
             transform={"translate(-50%, 0)"}
-            w={32}
             h={"auto"}
             bg={
-              "linear-gradient(155deg, #ffffffbf, #ffffffbf, #ffffffbf, #d0bfffc2, #d0bfffc2)"
+              "linear-gradient(155deg, #ffffffbf, #ffffffbf,#ffffffbf, #8ec0ebbf, #1c7fd6bf)"
             }
-            // bg="rgba(255, 255, 255, .75)"
+            boxShadow="0 1.2rem 1.2rem rgba(0, 0, 0, 0.08)"
+            // bg="rgba(255, 255, 255, .6)"
             display={"flex"}
             flexDirection={"column"}
             alignItems={"center"}
-            px={16}
-            py={12}
+            // px={16}
+            // py={12}
+            padding="1.2rem 1.6rem"
             borderRadius={"xl"}
+            zIndex={5}
           >
             <Box
               cursor={"pointer"}
@@ -60,9 +98,9 @@ const BadgeProfile = ({ ImageUUID, setIsLoggedIn }) => {
               }}
             >
               <Text
-                fontSize={"14"}
+                fontSize={"1.5rem"}
                 fontWeight="medium"
-                color={"font.hero"}
+                color={"font.focused"}
                 transition="all .3s"
                 _hover={{
                   color: "font.primary",

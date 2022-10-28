@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Flex, Grid, GridItem, Text, Image } from "@chakra-ui/react";
-import HeroImage from "../assets/img/hero2.png";
+// import HeroImage from "../assets/img/hero2.png";
 import ButtonFull from "../reusable/button/ButtonFull.jsx";
 import ButtonOutline from "../reusable/button/ButtonOutline.jsx";
 
@@ -31,10 +31,10 @@ const Hero = ({ setOutOfScope }) => {
       templateColumns={"45fr 55fr"}
       maxW={"13xl"}
       mx="auto"
-      pt="64"
+      pt="32"
       mb="96"
     >
-      <GridItem pb={"13.1rem"}>
+      <GridItem pb={"12.4rem"} pt={"32"}>
         <Text
           color={"primary.600"}
           fontSize="14"
@@ -84,7 +84,12 @@ const Hero = ({ setOutOfScope }) => {
         </Text>
       </GridItem>
 
-      <Image src={HeroImage} w="55%" justifySelf={"center"} alignSelf={"end"} />
+      <Image
+        src={"img/home-img.svg"}
+        w="85%"
+        justifySelf={"center"}
+        alignSelf={"end"}
+      />
     </Grid>
   );
 };

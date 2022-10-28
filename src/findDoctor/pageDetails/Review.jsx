@@ -15,8 +15,8 @@ const Review = () => {
     >
       <img
         style={{
-          width: "50px",
-          height: "50px",
+          width: "5rem",
+          height: "5rem",
           borderRadius: "50%",
         }}
         src={faker.image.avatar()}

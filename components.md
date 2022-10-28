@@ -120,15 +120,20 @@
 - Search
 - Profile Link
 - Navbar
-- User Info
-  - Profile Card
-  - Api Get
-  - Statistics
-  - Pending Appointments
-    - Widget Appointment
-- Schedule
-  - Calendar
-  - Timeline Upcoming Appointments / Widget Upcoming Appointments
+- Dasboard
+  - User Info
+    - Profile Card
+    - Api Get
+    - Statistics
+    - Pending Appointments
+      - Widget Appointment
+  - Schedule
+    - Calendar
+    - Timeline Upcoming Appointments / Widget Upcoming Appointments
+- Profile
+  - EditableInputField
+  - EditableTextArea
+  - EditableDropdown
 
 #### Patient Dashboard
 

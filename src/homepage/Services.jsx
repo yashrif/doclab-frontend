@@ -1,22 +1,12 @@
 import React from "react";
-import {
-  Box,
-  Text,
-  Grid,
-  GridItem,
-  List,
-  ListItem,
-  ListIcon,
-} from "@chakra-ui/react";
+import { Box, Grid, GridItem, Image } from "@chakra-ui/react";
 import {
   faCapsules,
   faTooth,
   faEye,
   faBrain,
 } from "@fortawesome/free-solid-svg-icons";
-import { MdCheckCircle } from "react-icons/md";
 import WidgetServicesWorks from "./reusable/WidgetServicesWorks.jsx";
-import ButtonFull from "../reusable/button/ButtonFull.jsx";
 import HeadingPrimary from "./reusable/HeadingPrimary.jsx";
 import HeadingSecondary from "./reusable/HeadingSecondary.jsx";
 
@@ -56,13 +46,6 @@ const Services = () => {
     },
   ];
 
-  const ServiceList = [
-    { text: "Top Specialist Doctor" },
-    { text: "State of the art doctor service" },
-    { text: "discount for all medical treatment" },
-    { text: "Appointment is quick and easy" },
-  ];
-
   const renderedServiceWidget = ServiceWidget.map((value, index) => {
     return (
       <GridItem key={index}>
@@ -76,55 +59,24 @@ const Services = () => {
     );
   });
 
-  const renderedServiceList = ServiceList.map((value, index) => {
-    return (
-      <ListItem
-        key={index}
-        fontSize={"16"}
-        fontWeight="regular"
-        color={"font.muted"}
-        lineHeight={"tall"}
-        textTransform="capitalize"
-      >
-        <ListIcon
-          as={MdCheckCircle}
-          color="primary.400"
-          mr="12"
-          boxSize={"8"}
-        />
-        {value.text}
-      </ListItem>
-    );
-  });
-
   return (
-    <Box pt="96" mb="96">
+    <Box mb="96" id="services">
       <HeadingPrimary>Services</HeadingPrimary>
       <HeadingSecondary>The best quality services you can get</HeadingSecondary>
 
-      <Grid templateColumns="5fr 3fr" gap={"64"} alignItems="center">
+      <Grid templateColumns="4fr 3fr" alignItems="center">
         <Grid templateColumns={"repeat(2, 1fr)"} gap="24">
           {renderedServiceWidget}
         </Grid>
         <GridItem>
-          <Text
-            textTransform={"capitalize"}
-            color={"font.hero"}
-            fontSize="4xl"
-            fontWeight={"semibold"}
-            lineHeight="short"
-            mb="32"
-          >
-            We always ensure best medical treatment for your health
-          </Text>
-
-          <List spacing={"24"} mb="48" pl="8">
-            {renderedServiceList}
-          </List>
-
-          <ButtonFull py="24" px="32" fontSize={"18"}>
-            Read More
-          </ButtonFull>
+          <Box boxSize={"115%"}>
+            <Image
+              boxSize="100%"
+              objectFit="cover"
+              src="img/book-img.svg"
+              alt=""
+            />
+          </Box>
         </GridItem>
       </Grid>
     </Box>

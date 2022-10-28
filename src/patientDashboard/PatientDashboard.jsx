@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Grid, GridItem, Box, Center, Flex, Link } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Box,
+  Center,
+  Flex,
+  Link,
+  Spinner,
+} from "@chakra-ui/react";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
 import { Link as ReachLink } from "react-router-dom";
@@ -14,10 +22,16 @@ import { SERVER } from "../assets/variable/values.js";
 import { useNavigate } from "react-router-dom";
 
 const PatientDashboard = () => {
+  const TODAY = new Date();
+
   const navigate = useNavigate();
   const [person, errorPerson, fetchPerson] = apiGet();
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [term, setTerm] = useState("");
+
+  // Fetch Appointments
+  const [appointments, , fetchAppointments] = apiGet();
+  const [acceptedAppointments, setAcceptedAppointments] = useState([]);
 
   useEffect(() => {
     fetchPerson(`${SERVER}/auth`, {
@@ -36,6 +50,29 @@ const PatientDashboard = () => {
       navigate("/home");
     }
   }, [errorPerson]);
+
+  // Appointments
+
+  useEffect(() => {
+    if (selectedPerson != null)
+      fetchAppointments(
+        `${SERVER}/appointment/getByPatient/${selectedPerson.patientId}`
+      );
+  }, [selectedPerson]);
+
+  useEffect(() => {
+    if (appointments != null)
+      setAcceptedAppointments(
+        appointments.filter((appointment) => {
+          return (
+            appointment.appointmentAccepted &&
+            new Date(appointment.appointmentSlotDate) >= TODAY &&
+            new Date(appointment.appointmentSlotDate).toDateString() <=
+              TODAY.toDateString()
+          );
+        })
+      );
+  }, [appointments]);
 
   return (
     <Box overflow="hidden" bg={"bgContainer"}>
@@ -152,14 +189,24 @@ const PatientDashboard = () => {
             height={"full"}
           >
             <GridItem rowSpan={"2"}>
-              {selectedPerson && (
+              {selectedPerson ? (
                 <WidgetOverview selectedPerson={selectedPerson} />
+              ) : (
+                <Center h="full" w="full">
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="primary.base"
+                    size="xl"
+                  />
+                </Center>
               )}
             </GridItem>
 
             <PatientHealth />
 
-            <PatientSchedule />
+            <PatientSchedule appointments={acceptedAppointments} />
 
             <GridItem colSpan={"2"} mb="8">
               <PatientActivities />

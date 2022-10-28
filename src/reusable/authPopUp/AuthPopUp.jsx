@@ -112,26 +112,13 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
     setDoSignUp(null);
     setEmail("");
     setLoading(false);
-
-  }
+  };
   return (
     <>
       <style>
         {`
           .uploadcare--widget__button {
-            padding: .4rem .8rem !important;
-            background-color: #e2e8f0;
-            border: 0px solid #e2e8f0;
-            border-radius: 4px;
-            color: #555;
-            font-size: 1.2rem !important;
-            font-weight: 500 !important;
-          }
-
-          .uploadcare--widget__button:hover,
-          .uploadcare--widget__button:active {
-            background-color: #1b77cb;
-            color: #fff;
+            display: none;
           }
         `}
       </style>
@@ -140,14 +127,14 @@ const AuthPopUp = ({ children, setIsLoggedIn, initialWindow }) => {
       </Box>
 
       <Modal
-        closeOnOverlayClick
+        closeonoverlayclick="true"
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
         size="2xl"
         onOverlayClick={clearAll}
-      // onClick={() => console.log("clicked")}
+        // onClick={() => console.log("clicked")}
       >
         <ModalOverlay
           bg="blackAlpha.300"

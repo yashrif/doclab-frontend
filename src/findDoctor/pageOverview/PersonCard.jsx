@@ -97,17 +97,16 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
             // display: "flex",
             // justifyContent: "space-between",
             // gap: ".4rem",
-            boxShadow: "0 0 .8rem rgba(173, 181, 189, .35)",
+            boxShadow: "0.4rem 0.4rem 1rem rgba(0, 0, 0, .08)",
             borderRadius: " 0.9rem",
 
             background:
-              "linear-gradient(135deg, #ffff, #fff, #e6f9f0, #cdf3e1, #82e2b5)",
+              "linear-gradient(135deg, #ffff, #fff, #e6f9f0, #cdf3e1, #72e2a5)",
 
             zIndex: "1",
             transition: "all 0.3s",
           }}
         >
-          {/* <div> */}
           <div
             style={{
               display: "grid",
@@ -123,6 +122,7 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                 borderRadius: "50%",
                 gridRow: "1/ -3",
                 // alignSelf: "flex-start",
+                objectFit: "cover",
               }}
               src={
                 person[`${category}ImageUUID`]
@@ -147,7 +147,8 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                   display: "flex",
                   alignItems: "baseline",
                   columnGap: "1.6rem",
-                  // justifyContent: "space-between",
+                  justifyContent: "space-between",
+                  marginBottom: ".8rem",
                 }}
               >
                 <h3
@@ -191,20 +192,27 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
               <div
                 style={{
                   display: "flex",
-                  gap: "1.6rem",
+                  gap: "1.2rem",
                   fontSize: "1.2rem",
                   // fontWeight: "500",
                 }}
               >
-                <p
-                  style={{
-                    fontSize: "1.2rem",
-                    // fontWeight: "500",
-                    marginBottom: ".4rem",
-                  }}
-                >
-                  {theme.methods.capitalize(person[`${category}Speciality`])}
-                </p>
+                <div className="icon-location" style={{ ...style.iconAndText }}>
+                  <ion-icon
+                    style={{
+                      ...style.icon,
+                      color: "#fa5252",
+                    }}
+                    name="medkit-outline"
+                  ></ion-icon>
+                  <p
+                    style={{
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    {theme.methods.capitalize(person[`${category}Speciality`])}
+                  </p>
+                </div>
 
                 <div className="icon-location" style={{ ...style.iconAndText }}>
                   <ion-icon
@@ -214,7 +222,13 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                     }}
                     name="location-outline"
                   ></ion-icon>
-                  <p>{person[`${category}SubDistrict`]}</p>
+                  <p
+                    style={{
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {person[`${category}SubDistrict`]}
+                  </p>
                 </div>
               </div>
             </div>

@@ -14,20 +14,16 @@ const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
                   opacity: 0;
                   transform: translateY(${10 * (i + 0.5)}rem);
                 }
-                100% {
-                  opacity: 1;
-                  transform: translateY(0);
-                }
               }
 
               @keyframes slide-down {
                 0% {
                   opacity: 0;
-                  transform: translateY(-15rem);
+                  transform: translateY(-${5 * (i + 0.5)}rem);
                 }
-                100% {
-                  opacity: 1;
-                  transform: translateY(0rem);
+
+                ${20 * i}% {
+                  opacity: 0;
                 }
               }
           `}
@@ -54,7 +50,12 @@ const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
         //   bg: "primary.400",
         // }}
       >
-        <Grid templateColumns={"1fr"} templateRows={"auto 1fr"} rowGap={"4"}>
+        <Grid
+          templateColumns={"1fr"}
+          templateRows={"auto 1fr"}
+          rowGap={"4"}
+          animation={`slide-down ${0.3 * (i + 1)}s ease-in-out`}
+        >
           <GridItem
             alignSelf={"start"}
             padding={"8"}
@@ -93,6 +94,7 @@ const TimelineUpcomingAppointments = ({ i, dots, acceptedAppointment }) => {
           <Text fontSize={"12"} color={"font.muted"}>
             with &nbsp;
             <Text
+              as={"span"}
               fontWeight={"medium"}
               display={"inline-block"}
               color={"font.general"}
