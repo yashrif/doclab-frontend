@@ -23,14 +23,13 @@ import apiPost from "../hooks/apiPost.jsx";
 const UserProfile = ({
   selectedPerson,
   reloadSelectedPerson,
-  setReloadSelectedPerson
+  setReloadSelectedPerson,
 }) => {
-
   const [editedSelectedPerson, setEditedSelectedPerson] = useState({});
   const [isEdited, setIsEdited] = useState(false);
   const [response, , postPerson] = apiPost();
   const [saving, setSaving] = useState(false);
-  const [submitEditedPerson, setSubmitEditedPerson] = useState(null)
+  const [submitEditedPerson, setSubmitEditedPerson] = useState(null);
   const widgetRef = useRef();
 
   const objectCompare = (object1, object2) => {
@@ -44,7 +43,7 @@ const UserProfile = ({
         }
       }
       return true;
-    } else return false;
+    } else return true;
   };
 
   useEffect(() => {
@@ -63,7 +62,6 @@ const UserProfile = ({
     if (!objectCompare(response, editedSelectedPerson)) {
       setReloadSelectedPerson(!reloadSelectedPerson);
     }
-
   }, [response]);
 
   const setOnInputChange = (e) => {
@@ -236,10 +234,11 @@ const UserProfile = ({
                     fontSize={"14"}
                     isLoading={saving}
                     onClick={() => {
-                      submitEditedPerson == null ?
-                        setSubmitEditedPerson(true) :
-                        setSubmitEditedPerson(!submitEditedPerson);
-                    }}>
+                      submitEditedPerson == null
+                        ? setSubmitEditedPerson(true)
+                        : setSubmitEditedPerson(!submitEditedPerson);
+                    }}
+                  >
                     Save
                   </ButtonFull>
                 </Flex>

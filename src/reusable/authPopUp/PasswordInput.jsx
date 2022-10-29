@@ -7,6 +7,8 @@ import {
   InputLeftElement,
 } from "@chakra-ui/react";
 import { BiLockOpen } from "react-icons/bi";
+import { VscEye, VscEyeClosed } from "react-icons/vsc";
+import theme from "../../styling/theme.jsx";
 
 const PasswordInput = ({
   password,
@@ -17,6 +19,12 @@ const PasswordInput = ({
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
+  const eyeIcon = {
+    width: "1.6rem",
+    height: "1.6rem",
+    color: theme.colors.primary.base,
+  };
+
   return (
     <>
       <InputGroup size="md" display="flex" alignContent="center">
@@ -26,7 +34,7 @@ const PasswordInput = ({
               width: "1.8rem",
               height: "1.8rem",
               margin: ".4rem 0 0 auto",
-              color: "blue",
+              color: theme.colors.primary.base,
             }}
           />
         </InputLeftElement>
@@ -47,8 +55,12 @@ const PasswordInput = ({
           value={password}
         />
         <InputRightElement width="5rem" mt="0.4rem">
-          <Button size="sm" onClick={handleClick}>
-            {show ? "Hide" : "Show"}
+          <Button size="sm" onClick={handleClick} bg={"transparent"}>
+            {show ? (
+              <VscEyeClosed style={eyeIcon} />
+            ) : (
+              <VscEye style={eyeIcon} />
+            )}
           </Button>
         </InputRightElement>
       </InputGroup>
