@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const [category, setCategory] = useState("");
+
+  useEffect(() => {
+    setCategory(
+      localStorage.getItem("doctorToken")
+        ? "doctorDashboard"
+        : "patientDashboard"
+    );
+  }, []);
+
   const style = {
     icon: {
       "--ionicon-stroke-width": "4rem",
@@ -13,27 +23,27 @@ const NavBar = () => {
     {
       icon: "grid-outline",
       title: "Dashboard",
-      link: "doctorDashboard/dashboard",
+      link: `${category}/dashboard`,
     },
     {
       icon: "calendar-clear-outline",
       title: "Calendar",
-      link: "doctorDashboard/calendar",
+      link: `${category}/calendar`,
     },
     {
       icon: "pie-chart-outline",
       title: "Statistics",
-      link: "doctorDashboard/statistics",
+      link: `${category}/statistics`,
     },
     {
       icon: "person-outline",
       title: "Profile",
-      link: "doctorDashboard/profile",
+      link: `${category}/profile`,
     },
     {
       icon: "chatbox-outline",
       title: "Chat",
-      link: "doctorDashboard/chat",
+      link: `${category}/chat`,
     },
     {
       icon: "log-out-outline",

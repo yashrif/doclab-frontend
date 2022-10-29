@@ -39,7 +39,7 @@ const App = () => {
               element={<DoctorDashboard />}
             />
             <Route
-              path="/patientDashboard"
+              path="/patientDashboard/*"
               exact
               element={<PatientDashboard />}
             />

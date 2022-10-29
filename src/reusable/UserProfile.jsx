@@ -49,8 +49,6 @@ const UserProfile = ({
     } else return true;
   };
 
-  console.log(inputFields);
-
   useEffect(() => {
     setIsDoctor(localStorage.getItem("doctorToken") ? true : false);
   });

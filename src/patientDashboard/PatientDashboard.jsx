@@ -1,37 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { Grid, GridItem, Box, Center, Flex, Link } from "@chakra-ui/react";
 import {
-  Grid,
-  GridItem,
-  Box,
-  Center,
-  Flex,
-  Link,
-  Spinner,
-} from "@chakra-ui/react";
+  Link as ReachLink,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Search from "../reusable/Search.jsx";
 import ProfileLink from "../reusable/ProfileLink.jsx";
-import { Link as ReachLink } from "react-router-dom";
 import NavBar from "../reusable/NavBar.jsx";
-import WidgetOverview from "./widgets/WidgetOverview.jsx";
-import PatientHealth from "./PatientHealth.jsx";
-import PatientSchedule from "./PatientSchedule.jsx";
-import PatientActivities from "./PatientActivities.jsx";
+import Dashboard from "./Dashboard.jsx";
+import UserProfile from "../reusable/UserProfile.jsx";
 import theme from "../styling/theme.jsx";
 import apiGet from "../hooks/apiGet.jsx";
 import { SERVER } from "../assets/variable/values.js";
-import { useNavigate } from "react-router-dom";
 
 const PatientDashboard = () => {
-  const TODAY = new Date();
-
   const navigate = useNavigate();
-  const [person, errorPerson, fetchPerson] = apiGet();
-  const [selectedPerson, setSelectedPerson] = useState(null);
+
   const [term, setTerm] = useState("");
 
-  // Fetch Appointments
-  const [appointments, , fetchAppointments] = apiGet();
-  const [acceptedAppointments, setAcceptedAppointments] = useState([]);
+  // Fetch Logged in patient
+  const [person, errorPerson, fetchPerson] = apiGet();
+  const [selectedPerson, setSelectedPerson] = useState(null);
+  const [reloadSelectedPerson, setReloadSelectedPerson] = useState(true);
 
   useEffect(() => {
     fetchPerson(`${SERVER}/auth`, {
@@ -40,7 +32,6 @@ const PatientDashboard = () => {
   }, []);
 
   useEffect(() => {
-    // console.log(person["authPatient"]);
     setSelectedPerson(person["authPatient"]);
   }, [person]);
 
@@ -51,28 +42,11 @@ const PatientDashboard = () => {
     }
   }, [errorPerson]);
 
-  // Appointments
-
   useEffect(() => {
-    if (selectedPerson != null)
-      fetchAppointments(
-        `${SERVER}/appointment/getByPatient/${selectedPerson.patientId}`
-      );
-  }, [selectedPerson]);
-
-  useEffect(() => {
-    if (appointments != null)
-      setAcceptedAppointments(
-        appointments.filter((appointment) => {
-          return (
-            appointment.appointmentAccepted &&
-            new Date(appointment.appointmentSlotDate) >= TODAY &&
-            new Date(appointment.appointmentSlotDate).toDateString() <=
-              TODAY.toDateString()
-          );
-        })
-      );
-  }, [appointments]);
+    fetchPerson(`${SERVER}/auth`, {
+      headers: { TOKEN: localStorage.getItem("patientToken") },
+    });
+  }, [reloadSelectedPerson]);
 
   return (
     <Box overflow="hidden" bg={"bgContainer"}>
@@ -179,39 +153,33 @@ const PatientDashboard = () => {
         <GridItem>
           <NavBar />
         </GridItem>
-        <GridItem overflow="hidden" colSpan={"2"} pt="16" pb="16" px="24">
-          <Grid
-            gridTemplateColumns="1fr 4fr"
-            templateRows={"repeat(3, 1fr)"}
-            alignItems="stretch"
-            columnGap="24"
-            rowGap="32"
-            height={"full"}
-          >
-            <GridItem rowSpan={"2"}>
-              {selectedPerson ? (
-                <WidgetOverview selectedPerson={selectedPerson} />
-              ) : (
-                <Center h="full" w="full">
-                  <Spinner
-                    thickness="4px"
-                    speed="0.65s"
-                    emptyColor="gray.200"
-                    color="primary.base"
-                    size="xl"
-                  />
-                </Center>
-              )}
-            </GridItem>
 
-            <PatientHealth />
+        <GridItem colSpan={2} overflow="hidden">
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<Dashboard selectedPerson={selectedPerson} />}
+            />
 
-            <PatientSchedule appointments={acceptedAppointments} />
+            <Route
+              exact
+              path="/dashboard"
+              element={<Dashboard selectedPerson={selectedPerson} />}
+            />
 
-            <GridItem colSpan={"2"} mb="8">
-              <PatientActivities />
-            </GridItem>
-          </Grid>
+            <Route
+              exact
+              path="/profile"
+              element={
+                <UserProfile
+                  selectedPerson={selectedPerson}
+                  setReloadSelectedPerson={setReloadSelectedPerson}
+                  reloadSelectedPerson={reloadSelectedPerson}
+                />
+              }
+            />
+          </Routes>
         </GridItem>
       </Grid>
     </Box>
