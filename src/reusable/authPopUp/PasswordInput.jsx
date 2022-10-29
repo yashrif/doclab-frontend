@@ -55,7 +55,19 @@ const PasswordInput = ({
           value={password}
         />
         <InputRightElement width="5rem" mt="0.4rem">
-          <Button size="sm" onClick={handleClick} bg={"transparent"}>
+          <Button
+            // size="sm"
+            onClick={handleClick}
+            bg={"transparent"}
+            transition={"all .3s"}
+            _hover={{
+              bg: "transparent",
+              transform: "scale(1.15)",
+            }}
+            _focus={{
+              boxShadow: "none",
+            }}
+          >
             {show ? (
               <VscEyeClosed style={eyeIcon} />
             ) : (
