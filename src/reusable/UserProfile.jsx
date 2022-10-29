@@ -15,7 +15,7 @@ import Avatar from "../assets/img/avatar.png";
 import EditableInputField from "./EditableInputField.jsx";
 import EditableTextArea from "./EditableTextArea.jsx";
 import EditableDropdown from "./EditableDropdown.jsx";
-import { subDistrictList, SERVER } from "../assets/variable/values";
+import { SERVER, DoctorKeys, PatientKeys } from "../assets/variable/values";
 import ButtonFull from "./button/ButtonFull.jsx";
 import ButtonOutline from "./button/ButtonOutline.jsx";
 import apiPost from "../hooks/apiPost.jsx";
@@ -23,14 +23,16 @@ import apiPost from "../hooks/apiPost.jsx";
 const UserProfile = ({
   selectedPerson,
   reloadSelectedPerson,
-  setReloadSelectedPerson
+  setReloadSelectedPerson,
 }) => {
-
   const [editedSelectedPerson, setEditedSelectedPerson] = useState({});
   const [isEdited, setIsEdited] = useState(false);
   const [response, , postPerson] = apiPost();
   const [saving, setSaving] = useState(false);
-  const [submitEditedPerson, setSubmitEditedPerson] = useState(null)
+  const [submitEditedPerson, setSubmitEditedPerson] = useState(null);
+  const [inputFields, setInputFields] = useState([]);
+  const [isDoctor, setIsDoctor] = useState(true);
+  const [category, setCategory] = useState("");
   const widgetRef = useRef();
 
   const objectCompare = (object1, object2) => {
@@ -44,8 +46,22 @@ const UserProfile = ({
         }
       }
       return true;
-    } else return false;
+    } else return true;
   };
+
+  useEffect(() => {
+    setIsDoctor(localStorage.getItem("doctorToken") ? true : false);
+  });
+
+  useEffect(() => {
+    if (isDoctor) {
+      setInputFields(DoctorKeys(editedSelectedPerson));
+      setCategory("doctor");
+    } else {
+      setInputFields(PatientKeys(editedSelectedPerson));
+      setCategory("patient");
+    }
+  }, [isDoctor, editedSelectedPerson]);
 
   useEffect(() => {
     setSaving(false);
@@ -55,7 +71,7 @@ const UserProfile = ({
   useEffect(() => {
     if (submitEditedPerson != null) {
       setSaving(true);
-      postPerson(`${SERVER}/doctor/update`, editedSelectedPerson);
+      postPerson(`${SERVER}/${category}/update`, editedSelectedPerson);
     }
   }, [submitEditedPerson]);
 
@@ -63,7 +79,6 @@ const UserProfile = ({
     if (!objectCompare(response, editedSelectedPerson)) {
       setReloadSelectedPerson(!reloadSelectedPerson);
     }
-
   }, [response]);
 
   const setOnInputChange = (e) => {
@@ -181,8 +196,11 @@ const UserProfile = ({
                 >
                   <Image
                     src={
-                      editedSelectedPerson
-                        ? `https://ucarecdn.com/${editedSelectedPerson.doctorImageUUID}/`
+                      editedSelectedPerson &&
+                      editedSelectedPerson[`${category}ImageUUID`]
+                        ? `https://ucarecdn.com/${
+                            editedSelectedPerson[`${category}ImageUUID`]
+                          }/`
                         : Avatar
                     }
                     boxSize={"12.8em"}
@@ -193,11 +211,11 @@ const UserProfile = ({
                 </Box>
                 <Widget
                   ref={widgetRef}
-                  name={"doctorImageUUID"}
+                  name={`${category}ImageUUID`}
                   onChange={(e) => {
                     setEditedSelectedPerson((prevState) => ({
                       ...prevState,
-                      ["doctorImageUUID"]: e.uuid,
+                      [`${category}ImageUUID`]: e.uuid,
                     }));
                   }}
                   publicKey="6c3c08a73b43963de87b"
@@ -236,10 +254,11 @@ const UserProfile = ({
                     fontSize={"14"}
                     isLoading={saving}
                     onClick={() => {
-                      submitEditedPerson == null ?
-                        setSubmitEditedPerson(true) :
-                        setSubmitEditedPerson(!submitEditedPerson);
-                    }}>
+                      submitEditedPerson == null
+                        ? setSubmitEditedPerson(true)
+                        : setSubmitEditedPerson(!submitEditedPerson);
+                    }}
+                  >
                     Save
                   </ButtonFull>
                 </Flex>
@@ -254,133 +273,35 @@ const UserProfile = ({
               columnGap="128"
               rowGap={"16"}
             >
-              <EditableInputField
-                value={{
-                  name: "doctorName",
-                  title: "Name",
-                  value: editedSelectedPerson?.doctorName,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
+              {inputFields?.length > 0 &&
+                inputFields?.map((value, index, arr) => {
+                  return (
+                    <React.Fragment key={index}>
+                      {value.type === "textArea" ? (
+                        <EditableTextArea
+                          value={value}
+                          setOnInputChange={setOnInputChange}
+                        />
+                      ) : value.type === "dropDown" ? (
+                        <EditableDropdown
+                          value={value}
+                          setOnInputChange={setOnInputChange}
+                        />
+                      ) : (
+                        <EditableInputField
+                          value={value}
+                          setOnInputChange={setOnInputChange}
+                        />
+                      )}
 
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableDropdown
-                value={{
-                  name: "doctorGender",
-                  title: "Gender",
-                  value: editedSelectedPerson?.doctorGender,
-                  values: ["Male", "Female"],
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableInputField
-                value={{
-                  name: "doctorDegrees",
-                  title: "Degrees",
-                  value: editedSelectedPerson?.doctorDegrees,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableInputField
-                value={{
-                  name: "doctorSpeciality",
-                  title: "Speciality",
-                  value: editedSelectedPerson?.doctorSpeciality,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableInputField
-                value={{
-                  name: "doctorClinicName",
-                  title: "Clinic Nmae",
-                  value: editedSelectedPerson?.doctorClinicName,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableDropdown
-                value={{
-                  name: "doctorSubDistrict",
-                  title: "Sub-District",
-                  value: editedSelectedPerson?.doctorSubDistrict,
-                  values: subDistrictList,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableInputField
-                value={{
-                  name: "doctorLocation",
-                  title: "Location",
-                  value: editedSelectedPerson?.doctorLocation,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableInputField
-                value={{
-                  name: "doctorExperience",
-                  title: "Joining Year",
-                  value: editedSelectedPerson?.doctorExperience,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableInputField
-                value={{
-                  name: "doctorVisitingFee",
-                  title: "Visiting Fee",
-                  value: editedSelectedPerson?.doctorVisitingFee,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
-
-              <GridItem colSpan={2}>
-                <hr style={{ borderTop: "1px solid #f2efef" }} />
-              </GridItem>
-
-              <EditableTextArea
-                value={{
-                  name: "doctorInfo",
-                  title: "Bio",
-                  value: editedSelectedPerson?.doctorInfo,
-                }}
-                setOnInputChange={setOnInputChange}
-              />
+                      {index < arr.length - 1 && (
+                        <GridItem colSpan={2}>
+                          <hr style={{ borderTop: "1px solid #f2efef" }} />
+                        </GridItem>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
             </Grid>
           </>
         ) : (

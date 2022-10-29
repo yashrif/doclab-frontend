@@ -16,6 +16,7 @@ import { TbMail } from "react-icons/tb";
 import { Widget } from "@uploadcare/react-widget";
 import { validateEmail } from "../../assets/variable/values.js";
 import Avatar from "../../assets/img/avatar.png";
+import theme from "../../styling/theme.jsx";
 
 const DoctorSignUp = ({
   handleSignUpChange,
@@ -233,7 +234,7 @@ const DoctorSignUp = ({
                   width: "1.8rem",
                   height: "1.8rem",
                   margin: ".4rem 0 0 auto",
-                  color: "blue",
+                  color: theme.colors.primary.base,
                 }}
               />
             </InputLeftElement>

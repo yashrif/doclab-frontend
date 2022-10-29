@@ -510,10 +510,152 @@ export const DATE_FORMAT = {
 };
 
 export const TIME_FORMAT = {
-  hour: '2-digit',
-  minute: '2-digit' 
-}
+  hour: "2-digit",
+  minute: "2-digit",
+};
 //export const SERVER = "http://localhost:8085";
 //export const SERVER = "https://doclab24.herokuapp.com";
 
 export const SERVER = "https://doclab-backend.herokuapp.com";
+
+export const DoctorKeys = (editedSelectedPerson) => [
+  {
+    name: "doctorName",
+    title: "Name",
+    value: editedSelectedPerson?.doctorName,
+    type: "textBox",
+  },
+  {
+    name: "doctorGender",
+    title: "Gender",
+    value: editedSelectedPerson?.doctorGender,
+    values: ["Male", "Female"],
+    type: "dropDown",
+  },
+  {
+    name: "doctorDegrees",
+    title: "Degrees",
+    value: editedSelectedPerson?.doctorDegrees,
+    type: "textBox",
+  },
+  {
+    name: "doctorSpeciality",
+    title: "Speciality",
+    value: editedSelectedPerson?.doctorSpeciality,
+    type: "textBox",
+  },
+  {
+    name: "doctorClinicName",
+    title: "Clinic Nmae",
+    value: editedSelectedPerson?.doctorClinicName,
+    type: "textBox",
+  },
+  {
+    name: "doctorSubDistrict",
+    title: "Sub-District",
+    value: editedSelectedPerson?.doctorSubDistrict,
+    values: subDistrictList,
+    type: "dropdown",
+  },
+  {
+    name: "doctorLocation",
+    title: "Location",
+    value: editedSelectedPerson?.doctorLocation,
+    type: "textBox",
+  },
+  {
+    name: "doctorExperience",
+    title: "Joining Year",
+    value: editedSelectedPerson?.doctorExperience,
+    type: "textBox",
+  },
+  {
+    name: "doctorVisitingFee",
+    title: "Visiting Fee",
+    value: editedSelectedPerson?.doctorVisitingFee,
+    type: "textBox",
+  },
+  {
+    name: "doctorInfo",
+    title: "Bio",
+    value: editedSelectedPerson?.doctorInfo,
+    type: "textArea",
+  },
+];
+
+export const PatientKeys = (editedSelectedPerson) => [
+  {
+    name: "patientName",
+    title: "Name",
+    value: editedSelectedPerson?.patientName,
+    type: "textBox",
+  },
+  {
+    name: "patientAge",
+    title: "Age",
+    value: editedSelectedPerson?.patientAge,
+    type: "textBox",
+  },
+  {
+    name: "patientGender",
+    title: "Gender",
+    value: editedSelectedPerson?.patientGender,
+    values: ["Male", "Female"],
+    type: "dropDown",
+  },
+  {
+    name: "patientHeight",
+    title: "Height",
+    value: editedSelectedPerson?.patientHeight,
+    type: "textBox",
+  },
+  {
+    name: "patientWeight",
+    title: "Weight",
+    value: editedSelectedPerson?.patientWeight,
+    type: "textBox",
+  },
+  {
+    name: "patientPhone",
+    title: "Phone",
+    value: editedSelectedPerson?.patientPhone,
+    type: "textBox",
+  },
+  {
+    name: "patientSubDistrict",
+    title: "Sub-District",
+    value: editedSelectedPerson?.patientSubDistrict,
+    values: subDistrictList,
+    type: "dropdown",
+  },
+  {
+    name: "patientSystolicPressure",
+    title: "Systolic Pressure",
+    value: editedSelectedPerson?.patientSystolicPressure,
+    type: "textBox",
+  },
+  {
+    name: "patientDiastolicPressure",
+    title: "Diastolic Pressure",
+    value: editedSelectedPerson?.patientDiastolicPressure,
+    type: "textBox",
+  },
+  {
+    name: "patientGlucose",
+    title: "Glucose",
+    value: editedSelectedPerson?.patientGlucose,
+    type: "textBox",
+  },
+  {
+    name: "patientHeartRate",
+    title: "Heart Rate",
+    value: editedSelectedPerson?.patientHeartRate,
+    type: "textBox",
+  },
+  {
+    name: "patientRBC",
+    title: "RBC Count",
+    value: editedSelectedPerson?.patientRBC,
+    type: "textBox",
+  },
+];

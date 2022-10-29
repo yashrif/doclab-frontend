@@ -17,6 +17,7 @@ import PasswordInput from "./PasswordInput.jsx";
 import ButtonFull from "../button/ButtonFull.jsx";
 import { useEffect, useState } from "react";
 import { validateEmail } from "../../assets/variable/values.js";
+import theme from "../../styling/theme.jsx";
 
 const LoginForm = ({
   initialRef,
@@ -30,7 +31,7 @@ const LoginForm = ({
   setDoLogin,
   onModalClose,
   loginError,
-  clearAll
+  clearAll,
 }) => {
   const [inputBlankWarning, setInputBlankWarning] = useState(false);
   const [credentialErrorMessage, setCredentialErrorMessage] = useState("");
@@ -73,7 +74,7 @@ const LoginForm = ({
                   width: "1.8rem",
                   height: "1.8rem",
                   margin: ".4rem 0 0 auto",
-                  color: "blue",
+                  color: theme.colors.primary.base,
                 }}
               />
             </InputLeftElement>
