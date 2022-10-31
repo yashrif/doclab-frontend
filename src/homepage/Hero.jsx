@@ -27,12 +27,14 @@ const Hero = ({ setOutOfScope }) => {
 
   return (
     <Grid
+      className="hero"
       ref={ref}
       templateColumns={"45fr 55fr"}
       maxW={"13xl"}
       mx="auto"
       pt="32"
       mb="96"
+      // px={"24"}
     >
       <GridItem pb={"12.4rem"} pt={"32"}>
         <Text

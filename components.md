@@ -64,6 +64,15 @@
 
 #### Button Outline
 
+#### User Profile
+
+- EditableInputField
+- EditableTextArea
+- EditableDropdown
+- ButtonFull
+- ButtonOutline
+- apiPost
+
 <!-- Non reusable -->
 
 ### Non Reusable
@@ -130,20 +139,19 @@
   - Schedule
     - Calendar
     - Timeline Upcoming Appointments / Widget Upcoming Appointments
-- Profile
-  - EditableInputField
-  - EditableTextArea
-  - EditableDropdown
+- User Profile
 
 #### Patient Dashboard
 
 - Search
 - Profile Link
 - Navbar
-- Widget Overview
-- Patient Health
-  - Widget Health
-- Patient Schedule
-  - Widget Schedule
-- Patient Activities
-  - Widget Activities
+- Dashboard
+  - Widget Overview
+  - Patient Health
+    - Widget Health
+  - Patient Schedule
+    - Widget Schedule
+  - Patient Activities
+    - Widget Activities
+- User Profile
