@@ -513,10 +513,6 @@ export const TIME_FORMAT = {
   hour: "2-digit",
   minute: "2-digit",
 };
-//export const SERVER = "http://localhost:8085";
-//export const SERVER = "https://doclab24.herokuapp.com";
-
-export const SERVER = "https://doclab-backend.herokuapp.com";
 
 export const DoctorKeys = (editedSelectedPerson) => [
   {
@@ -659,3 +655,12 @@ export const PatientKeys = (editedSelectedPerson) => [
     type: "textBox",
   },
 ];
+
+/* -------------------------------------------------------------------------- */
+/*                               Backend Server                               */
+/* -------------------------------------------------------------------------- */
+
+//export const SERVER = "http://localhost:8085";
+//export const SERVER = "https://doclab24.herokuapp.com";
+
+export const SERVER = "http://localhost:8080/";
