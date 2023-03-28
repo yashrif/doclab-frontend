@@ -660,7 +660,6 @@ export const PatientKeys = (editedSelectedPerson) => [
 /*                               Backend Server                               */
 /* -------------------------------------------------------------------------- */
 
-//export const SERVER = "http://localhost:8085";
+export const SERVER = "http://localhost:8085";
 //export const SERVER = "https://doclab24.herokuapp.com";
-
-export const SERVER = "http://localhost:8080/";
+// export const SERVER = "https://doclab-backend.herokuapp.com";
