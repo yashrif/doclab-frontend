@@ -1,4 +1,6 @@
 import React from "react";
+import { Box, Flex, Stack, Text } from "@chakra-ui/react";
+
 import theme from "../../styling/theme.jsx";
 
 const Info = ({ selectedPerson, category }) => {
@@ -27,135 +29,61 @@ const Info = ({ selectedPerson, category }) => {
     );
 
   return (
-    <div
-      style={{
-        padding: "4.8rem 8.6rem",
-        display: "flex",
-        // gridTemplateColumns: "1.5fr 1fr 1.5fr",
-        rowGap: "2.4rem",
-        // columnGap: "3.6rem",
-        justifyContent: "space-between",
-      }}
-    >
-      <div>
-        <p
-          style={{
-            fontSize: "1.6rem",
-            fontWeight: "500",
-            marginBottom: "2rem",
-          }}
-        >
+    <Flex p="4.8rem 8.6rem" rowGap="2.4rem" justifyContent="space-between">
+      <Stack>
+        <Text fontSize="1.6rem" fontWeight="500" mb={"4"}>
           {selectedPerson[`${category}SubDistrict`]}
-        </p>
+        </Text>
 
-        <div
-          style={{
-            fontSize: "1.4rem",
-            display: "flex",
-            gap: "1.2rem",
-            alignItems: "center",
-            marginBottom: "1.2rem",
-          }}
-        >
-          <span style={{ fontWeight: "500" }}>
-            {selectedPerson[`${category}Rating`]}
-          </span>
-          <div
-            style={{
-              display: "flex",
-              gap: ".4rem",
-              alignItems: "center",
-            }}
-          >
+        <Stack spacing="1.2rem" fontSize="1.4rem">
+          <Text fontWeight="500">{selectedPerson[`${category}Rating`]}</Text>
+          <Flex gap=".4rem" alignItems="center">
             {starIcon}
-          </div>
-        </div>
+          </Flex>
+        </Stack>
 
-        <p
-          style={{
-            fontSize: "1.6rem",
-            fontWeight: "500",
-            color: `${theme.typography.colors.primaryFirst.primary}`,
-            marginBottom: ".6rem",
-          }}
+        <Text
+          fontSize="1.6rem"
+          fontWeight="500"
+          color={`${theme.typography.colors.primaryFirst.primary}`}
+          pt={".8rem"}
+          mb="1.6rem"
         >
           {selectedPerson[`${category}ClinicName`]}
-        </p>
+        </Text>
 
-        <p
-          style={{
-            fontSize: "1.6rem",
-            marginBottom: "2rem",
-            lineHeight: "1.6",
-          }}
-        >
+        <Text fontSize="1.6rem" marginBottom="2rem" lineHeight="1.6">
           {selectedPerson[`${category}Location`]}
-        </p>
-
-        {/* <p
-          style={{
-            fontSize: "1.4rem",
-            fontWeight: "500",
-            color: `${theme.typography.colors.primaryFirst.primary}`,
-          }}
-        >
-          location on google map
-        </p> */}
-      </div>
-      <div>
-        <p
-          style={{
-            fontSize: "1.6rem",
-            fontWeight: "500",
-            marginBottom: "1rem",
-          }}
-        >
+        </Text>
+      </Stack>
+      <Box>
+        <Text fontSize="1.6rem" fontWeight="500" mb="1rem">
           Sat &mdash; Fri
-        </p>
-        <p
-          style={{
-            fontSize: "1.4rem",
-            marginBottom: "1.6rem",
-          }}
-        >
+        </Text>
+        <Text fontSize="1.4rem" marginBottom="1.6rem">
           07:00 AM &mdash; 10:00 PM
-        </p>
-        <p
-          style={{
-            fontSize: "1.4rem",
-            color: "#777",
-          }}
-        >
+        </Text>
+        <Text fontSize="1.4rem" color="#777">
           Check calender for more info
-        </p>
-      </div>
-      <div>
-        <p
-          style={{
-            fontSize: "1.6rem",
-            fontWeight: "500",
-            marginBottom: ".4rem",
-          }}
-        >
+        </Text>
+      </Box>
+      <Box>
+        <Text fontSize="1.6rem" fontWeight="500" mb=".4rem">
           <span style={{ marginRight: ".2rem" }}>&#2547;</span>
           {selectedPerson[`${category}VisitingFee`]}
-        </p>
-        <p style={{ fontSize: "1.4rem", color: "#777", marginBottom: "2rem" }}>
+        </Text>
+        <Text fontSize="1.4rem" color="#777" marginBottom="2rem">
           For new patient
-        </p>
-        <p
-          style={{
-            fontSize: "1.6rem",
-            fontWeight: "500",
-            marginBottom: ".4rem",
-          }}
-        >
+        </Text>
+        <Text fontSize="1.6rem" fontWeight="500" marginBottom=".4rem">
           <span style={{ marginRight: ".2rem" }}>&#2547;</span>
           {parseInt(selectedPerson[`${category}VisitingFee`] * 2) / 3}
-        </p>
-        <p style={{ fontSize: "1.4rem", color: "#777" }}>For old patient</p>
-      </div>
-    </div>
+        </Text>
+        <Text fontSize="1.4rem" color="#777">
+          For old patient
+        </Text>
+      </Box>
+    </Flex>
   );
 };
 

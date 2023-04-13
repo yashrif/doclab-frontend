@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { Box, Text, Spinner } from "@chakra-ui/react";
+
 import theme from "../../styling/theme.jsx";
 import PersonCard from "./PersonCard.jsx";
 
@@ -64,64 +66,44 @@ const PersonList = ({
   });
 
   return (
-    <>
-      <style>
-        {`
-          @keyframes spinner {
-            0% {transform: rotate(0deg);}
-            100% {transform: rotate(360deg);}
-          }
-        `}
-      </style>
-      <div
-        ref={scrollListRef}
-        onScroll={onScroll}
-        style={{ height: "100%", overflowY: "scroll" }}
-      >
-        {personFilteredList.length > 0 ? (
-          <div
-            style={{
-              margin: "0.8rem 1.2rem 0.8rem 2.4rem",
-            }}
-          >
-            {renderedList}
-          </div>
-        ) : (
-          <div
-            style={{
-              height: "100%",
-              fontSize: "1.8rem",
-              fontWeight: "500",
-              color: "#333",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {!errorMessage && firstRender && (
-              <span
-                style={{
-                  border: ".3rem solid #ccc",
-                  borderTop: `.3rem solid ${theme.typography.colors.primaryFirst.primary}`,
-                  borderRadius: "50%",
-                  width: "2rem",
-                  height: "2rem",
-                  marginRight: ".8rem",
-                  animation: "spinner .75s linear infinite",
-                }}
-              ></span>
-            )}
-            <p style={{ fontWeight: "600" }}>{`${
-              errorMessage
-                ? "Failed to retrieve data!"
-                : firstRender
-                ? "Loading..."
-                : "No result found!"
-            }`}</p>
-          </div>
-        )}
-      </div>
-    </>
+    <Box
+      ref={scrollListRef}
+      onScroll={onScroll}
+      height="100%"
+      overflowY="scroll"
+    >
+      {personFilteredList.length > 0 ? (
+        <Box margin="0.8rem 1.2rem 0.8rem 2.4rem">{renderedList}</Box>
+      ) : (
+        <Box
+          height="100%"
+          fontSize="1.8rem"
+          fontWeight="500"
+          color="#333"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {!errorMessage && firstRender && (
+            <Spinner
+              thickness="0.3rem"
+              speed="0.75s"
+              emptyColor="#ccc"
+              color={theme.typography.colors.primaryFirst.primary}
+              size="lg"
+              mr="0.8rem"
+            />
+          )}
+          <Text fontWeight="600">{`${
+            errorMessage
+              ? "Failed to retrieve data!"
+              : firstRender
+              ? "Loading..."
+              : "No result found!"
+          }`}</Text>
+        </Box>
+      )}
+    </Box>
   );
 };
 

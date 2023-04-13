@@ -1,4 +1,6 @@
 import React from "react";
+import { Box } from "@chakra-ui/react";
+
 import Review from "./Review.jsx";
 
 const Reviews = () => {
@@ -18,9 +20,9 @@ const Reviews = () => {
   }
 
   return (
-    <div style={{ height: "100%", overflowY: "scroll", margin: "1.2rem 0" }}>
+    <Box height="100%" overflowY="scroll" margin="1.2rem 0">
       {renderedList}
-    </div>
+    </Box>
   );
 };
 
