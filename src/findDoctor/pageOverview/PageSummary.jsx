@@ -45,33 +45,6 @@ const PageSummary = ({
           }
         `}
       </style>
-      {/* <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gridGap: "1.2rem",
-          alignItems: "center",
-          marginBottom: "1.6rem",
-        }}
-      >
-        <img
-          style={{ height: "4.8rem", width: "auto", borderRadius: "0.9rem" }}
-          src={faker.image.avatar()}
-          alt="Page logo"
-        />
-        <p
-          style={{
-            justifySelf: "right",
-            fontSize: "1.4rem",
-            fontWeight: "400",
-          }}
-        >
-          <span style={{ color: "#333", fontWeight: "500" }}>
-            {numberOfPatients - 1}+
-          </span>{" "}
-          Patients
-        </p>
-      </div> */}
 
       {displayDescription && (
         <div
