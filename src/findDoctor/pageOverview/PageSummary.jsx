@@ -1,5 +1,6 @@
 import React from "react";
-// import { faker } from "@faker-js/faker";
+import { Box, Flex, keyframes, Stack, Text } from "@chakra-ui/react";
+
 import theme from "../../styling/theme.jsx";
 
 const style = {
@@ -25,6 +26,11 @@ const style = {
   },
 };
 
+const fadeOut = keyframes`
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+`;
+
 const PageSummary = ({
   category,
   displayDescription,
@@ -33,116 +39,52 @@ const PageSummary = ({
 }) => {
   return (
     <>
-      <style>
-        {`
-          @keyframes fade-out {
-            0% {
-              opacity: 0.5;
-            }
-            100% {
-              opacity: 1;
-            }
-          }
-        `}
-      </style>
-      {/* <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gridGap: "1.2rem",
-          alignItems: "center",
-          marginBottom: "1.6rem",
-        }}
-      >
-        <img
-          style={{ height: "4.8rem", width: "auto", borderRadius: "0.9rem" }}
-          src={faker.image.avatar()}
-          alt="Page logo"
-        />
-        <p
-          style={{
-            justifySelf: "right",
-            fontSize: "1.4rem",
-            fontWeight: "400",
-          }}
-        >
-          <span style={{ color: "#333", fontWeight: "500" }}>
-            {numberOfPatients - 1}+
-          </span>{" "}
-          Patients
-        </p>
-      </div> */}
-
       {displayDescription && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.2rem",
-            marginBottom: "1.6rem",
-            animation: "fade-out .3s ease-in",
-          }}
+        <Stack
+          spacing="1.2rem"
+          marginBottom="1.6rem"
+          animation={`${fadeOut} .3s ease-in`}
         >
-          <h2
-            style={{
-              color: `${theme.typography.colors.primaryFirst.primary}`,
-              fontSize: "1.8rem",
-              fontWeight: "500",
-              letterSpacing: "-0.05rem",
-              lineHeight: "1.1",
-            }}
+          <Text
+            color={theme.typography.colors.primaryFirst.primary}
+            fontSize="1.8rem"
+            fontWeight="500"
+            letterSpacing="-0.05rem"
+            lineHeight="1.1"
           >
             DocLab
-          </h2>
-          <p
-            className="analytics-container"
-            style={{
-              fontSize: "1.4rem",
-              lineHeight: "1.5",
-              letterSpacing: "0.025rem",
-            }}
-          >
+          </Text>
+          <Text fontSize="1.4rem" lineHeight="1.5" letterSpacing="0.025rem">
             Velit veniam dolor saepe similique pariatur. Voluptas quis doloribus
             fugit inventore et architecto.
-          </p>
-        </div>
+          </Text>
+        </Stack>
       )}
 
       {displayDescription && (
-        <div
-          className="analytics-container"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: "1.2rem",
-          }}
-        >
-          <div style={style.iconAndText}>
+        <Flex justifyContent="space-between" gap="1.2rem">
+          <Box sx={style.iconAndText}>
             <ion-icon style={style.ionIcon} name="people-outline"></ion-icon>
-            <p>
-              <span style={style.analyticSpan}>
+            <Text>
+              <Text as={"span"} sx={style.analyticSpan}>
                 {numberOfPerson > 0 ? numberOfPerson : "..."}
-              </span>
+              </Text>
               {[category.slice(0, 1).toUpperCase(), category.slice(1)].join(
                 ""
-              ) + "s"}
-            </p>
-          </div>
+              ) + (numberOfPerson > 1 ? "s" : "")}
+            </Text>
+          </Box>
 
-          <div style={style.iconAndText}>
+          <Box sx={style.iconAndText}>
             <ion-icon style={style.ionIcon} name="location-outline"></ion-icon>
-            <p>
-              <span style={style.analyticSpan}>65+</span>Districts
-            </p>
-          </div>
-
-          {/* <div style={style.iconAndText}>
-            <ion-icon style={style.ionIcon} name="time-outline"></ion-icon>
-            <p>
-              <span style={style.analyticSpan}>24/7</span>Available
-            </p>
-          </div> */}
-        </div>
+            <Text>
+              <Text as={"span"} style={style.analyticSpan}>
+                65+
+              </Text>
+              Districts
+            </Text>
+          </Box>
+        </Flex>
       )}
     </>
   );

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Box } from "@chakra-ui/react";
+
 import theme from "../../styling/theme.jsx";
 
 const Navigation = ({ selectedNav, setSelectedNav }) => {
@@ -28,11 +30,10 @@ const Navigation = ({ selectedNav, setSelectedNav }) => {
   const renderedNavList = ["Info", "Reviews", "Consult Q&A", "Health feed"].map(
     (value, index) => {
       return (
-        <div
+        <Box
           key={index}
           role={"button"}
           tabIndex={index}
-          className="nav-link"
           style={
             activeNav === index
               ? activeNav === selectedNav
@@ -55,34 +56,26 @@ const Navigation = ({ selectedNav, setSelectedNav }) => {
           onKeyDown={() => {}}
         >
           {value}
-        </div>
+        </Box>
       );
     }
   );
 
   return (
-    <>
-      <style>
-        {`
-          .nav-link:focus {
-            outline: none;
-            box-shadow: none;
-          }
-        `}
-      </style>
-      <div
-        onMouseLeave={() => setActiveNav(selectedNav)}
-        style={{
-          padding: "1.2rem 0",
-          display: "flex",
-          justifyContent: "center",
-          gap: "6.4rem",
-          borderBottom: "1px solid #e6e6e6",
-        }}
-      >
-        {renderedNavList}
-      </div>
-    </>
+    <Box
+      onMouseLeave={() => setActiveNav(selectedNav)}
+      padding="1.2rem 0"
+      display="flex"
+      justifyContent="center"
+      gap="6.4rem"
+      borderBottom="1px solid #e6e6e6"
+      _focus={{
+        outline: "none",
+        boxShadow: "none",
+      }}
+    >
+      {renderedNavList}
+    </Box>
   );
 };
 

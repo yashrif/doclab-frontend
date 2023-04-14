@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { SlideFade, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  SlideFade,
+  useDisclosure,
+  Button,
+  Flex,
+} from "@chakra-ui/react";
+
 import AppointmentPopUp from "../../reusable/appointmentPopUp/AppointmentPopUp.jsx";
-// import { faker } from "@faker-js/faker";
 import theme from "../../styling/theme.jsx";
 import { DATE_FORMAT } from "../../assets/variable/values.js";
 
@@ -54,28 +61,26 @@ const TimeSlot = ({ selectedPerson }) => {
   // console.log("selected date: " + selectedDate.toLocaleDateString());
 
   const renderedDate = (
-    <p
-      style={{
-        borderBottom: "1px solid blue",
-        color: "#333",
-        fontWeight: "600",
-        paddingBottom: ".3rem",
-      }}
+    <Text
+      borderBottom="1px solid blue"
+      color="#333"
+      fontWeight="600"
+      paddingBottom=".3rem"
     >
       {selectedDate.toLocaleDateString() === TODAY.toLocaleDateString()
         ? "Today"
         : selectedDate.toLocaleDateString() === TOMORROW.toLocaleDateString()
         ? "Tomorrow"
         : selectedDate.toLocaleDateString("en-US", DATE_FORMAT)}
-    </p>
+    </Text>
   );
 
   const scheduleGenerator = (times, period) => {
     const render = times.map((time, index) => {
       return (
-        <div
+        <Box
           key={index}
-          role={"button"}
+          as={"button"}
           tabIndex={index}
           onClick={() => {}}
           onKeyDown={() => {}}
@@ -86,22 +91,19 @@ const TimeSlot = ({ selectedPerson }) => {
             period={period}
             selectedDate={selectedDate}
           >
-            <button
-              style={{
-                display: "inline-block",
-                color: `${theme.colors.primary.base}`,
-                fontSize: "1rem",
-                fontWeight: "500",
-                padding: ".4rem .8rem",
-                border: `1px solid ${theme.colors.primary.base}`,
-                borderRadius: ".5rem",
-                whiteSpace: "nowrap",
-              }}
+            <Button
+              colorScheme="twitter"
+              variant="outline"
+              fontSize="1rem"
+              fontWeight="500"
+              padding=".4rem .8rem"
+              borderRadius=".5rem"
+              whiteSpace="nowrap"
             >
               {time} {period}
-            </button>
+            </Button>
           </AppointmentPopUp>
-        </div>
+        </Box>
       );
     });
 
@@ -126,60 +128,15 @@ const TimeSlot = ({ selectedPerson }) => {
          }
         `}
       </style>
-      <div
-        style={{
-          fontSize: "1.4rem",
-          padding: "1.6rem 1.6rem 0",
-          backgroundColor: `${theme.typography.colors.background.personCard}`,
-          borderRadius: "1.1rem",
-          borderBottomRightRadius: "1.1rem",
-          height: "100%",
-        }}
+      <Box
+        fontSize="1.4rem"
+        p="1.6rem 1.6rem 0"
+        backgroundColor={theme.typography.colors.background.personCard}
+        borderRadius="1.1rem"
+        borderBottomRightRadius="1.1rem"
+        height="100%"
       >
-        {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h3 style={{ fontSize: "1.4rem", marginBottom: ".4rem" }}>
-          {selectedPerson[`${category}ClinicName`]}
-        </h3> */}
-
-        {/* <p
-          style={{
-            color: "#767676",
-            fontSize: "1rem",
-            marginBottom: "1rem",
-            letterSpacing: "0.05rem",
-          }}
-        >
-          {`Time slots`.toUpperCase()}
-        </p> */}
-        {/* </div> */}
-
-        {/* <div style={{ display: "flex", gap: "1.6rem", marginBottom: ".8rem" }}>
-        <div
-          style={{
-            fontSize: "1.2rem",
-            marginBottom: ".6rem",
-          }}
-        >
-          <p>
-            <span style={{ marginRight: ".2rem" }}>&#2547;</span>
-            <span style={{ ...style.span, margin: "0" }}>
-              {selectedPerson[`${category}VisitingFee`]}
-            </span>
-          </p>
-        </div>
-      </div> */}
-
-        {/* <p style={{ fontSize: "1.2rem" }}>
-              {theme.methods.capitalize(selectedPerson[`${category}SubDistrict`])}
-            </p> */}
-
-        <div
+        <Box
           className="time-slot--date"
           style={{
             position: "relative",
@@ -192,7 +149,6 @@ const TimeSlot = ({ selectedPerson }) => {
           }}
         >
           <ion-icon
-            className="btn"
             role={"button"}
             tabIndex={0}
             onClick={() => {
@@ -249,7 +205,6 @@ const TimeSlot = ({ selectedPerson }) => {
           {renderedDate}
 
           <ion-icon
-            className="btn"
             role={"button"}
             tabIndex={0}
             onClick={() => {
@@ -268,26 +223,18 @@ const TimeSlot = ({ selectedPerson }) => {
             }}
             name="chevron-forward-outline"
           ></ion-icon>
-        </div>
+        </Box>
 
-        <div
-          style={{
-            paddingBottom: "1.2rem",
-            overflowX: "scroll",
-            marginBottom: ".4rem",
-          }}
-        >
-          <h3
-            style={{
-              fontSize: "1.3rem",
-              fontWeight: "500",
-              color: `${theme.colors.font.focused}`,
-              margin: ".8rem 0",
-            }}
+        <Box paddingBottom="1.2rem" overflowX="scroll" marginBottom=".4rem">
+          <Text
+            fontSize="1.3rem"
+            fontWeight="500"
+            color={theme.colors.font.focused}
+            margin=".8rem 0"
           >
             Morning
-          </h3>
-          <div style={{ display: "flex", gap: ".8rem", padding: "0 .4rem" }}>
+          </Text>
+          <Flex gap=".8rem" padding=".4rem">
             {scheduleGenerator(
               [
                 "07:00",
@@ -303,18 +250,16 @@ const TimeSlot = ({ selectedPerson }) => {
               ],
               "AM"
             )}
-          </div>
-          <h3
-            style={{
-              fontSize: "1.3rem",
-              fontWeight: "500",
-              color: `${theme.colors.font.focused}`,
-              margin: ".8rem 0",
-            }}
+          </Flex>
+          <Text
+            fontSize="1.3rem"
+            fontWeight="500"
+            color={`${theme.colors.font.focused}`}
+            margin=".8rem 0"
           >
             Evening
-          </h3>
-          <div style={{ display: "flex", gap: ".8rem", padding: "0 .4rem" }}>
+          </Text>
+          <Flex gap=".8rem" p="0 .4rem">
             {scheduleGenerator(
               [
                 "12:00",
@@ -334,9 +279,9 @@ const TimeSlot = ({ selectedPerson }) => {
               ],
               "PM"
             )}
-          </div>
-        </div>
-      </div>
+          </Flex>
+        </Box>
+      </Box>
     </>
   );
 };

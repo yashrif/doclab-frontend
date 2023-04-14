@@ -1,86 +1,71 @@
 import React from "react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 
 const Review = () => {
   const today = new Date();
 
   return (
-    <div
-      style={{
-        padding: "2.4rem 4.8rem",
-        display: "grid",
-        gridTemplateColumns: "auto 1fr",
-        columnGap: "1.6rem",
-      }}
-    >
-      <img
-        style={{
-          width: "5rem",
-          height: "5rem",
-          borderRadius: "50%",
-        }}
-        src={faker.image.avatar()}
-        alt="Profile pic"
-      />
-      <div>
-        <div
-          style={{
-            display: "flex",
-            columnGap: "1.2rem",
-            alignItems: "center",
-            marginBottom: "1.2rem",
-          }}
-        >
-          <h3 style={{ fontSize: "1.4rem", fontWeight: "500" }}>
+    <Grid p="2.4rem 4.8rem" templateColumns="auto 1fr" columnGap="1.6rem">
+      <Avatar size="xl" name="Patient" src={faker.image.avatar()} />
+      <Box>
+        <Flex alignItems="center" columnGap="1.2rem" marginBottom="1.2rem">
+          <Heading as="h3" size="md" fontWeight="500">
             {faker.name.findName()}
-          </h3>
-          <p
-            style={{ fontSize: "1.2rem", color: "#999" }}
+          </Heading>
+          <Text
+            fontSize="1.2rem"
+            color="#999"
           >{`${today.toLocaleDateString()} ${today.toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
-          })}`}</p>
-        </div>
-        <p
-          style={{
-            fontSize: "1.4rem",
-            lineHeight: "1.4",
-            marginBottom: "1.6rem",
-          }}
-        >
+          })}`}</Text>
+        </Flex>
+
+        <Text fontSize="1.4rem" lineHeight="1.4" mb="1.6rem">
           {faker.lorem.paragraph(3)}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: "1.2rem",
-            color: "#999",
-          }}
-        >
-          <div style={{ display: "flex", columnGap: "2.4rem" }}>
-            <p>Replay</p>
-            <p>Like</p>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              columnGap: ".8rem",
-            }}
-          >
+        </Text>
+        <Flex justify="space-between" fontSize="1.2rem" color="#999">
+          <Flex columnGap="1.2rem">
+            <Button
+              colorScheme="messenger"
+              variant="outline"
+              size="sm"
+              onClick={() => console.log("clicked")}
+            >
+              Replay
+            </Button>
+            <Button
+              colorScheme="red"
+              variant="outline"
+              size="sm"
+              onClick={() => console.log("clicked")}
+            >
+              Like
+            </Button>
+          </Flex>
+          <Flex alignItems="center" columnGap=".8rem">
             <ion-icon
               style={{
                 fontSize: "1.4rem",
+                color: "red",
                 "--ionicon-stroke-width": "4.8rem",
               }}
               name="heart-outline"
             ></ion-icon>
             <span>{Math.floor(Math.random() * 100)}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Flex>
+        </Flex>
+      </Box>
+    </Grid>
   );
 };
 

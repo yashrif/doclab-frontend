@@ -1,4 +1,6 @@
 import React from "react";
+import { Stack } from "@chakra-ui/react";
+
 import Accordion from "./Accordion.jsx";
 
 const Consult = ({ selectedPerson, category }) => {
@@ -16,19 +18,18 @@ const Consult = ({ selectedPerson, category }) => {
   }
 
   return (
-    <div
-      style={{
-        height: "100%",
-        margin: "1.6rem 0",
-        padding: "1.2rem 3.2rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem",
-        overflowY: "scroll",
-      }}
+    <Stack
+      spacing="2rem"
+      w="100%"
+      h="100%"
+      overflowY="scroll"
+      p="1.2rem 3.2rem"
+      mt="1.6rem"
+      mb="1.6rem"
+      direction="column"
     >
       {renderedList}
-    </div>
+    </Stack>
   );
 };
 

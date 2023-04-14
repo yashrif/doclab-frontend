@@ -9,6 +9,15 @@ const theme = extendTheme({
     // heading: "Georgia, serif",
     // mono: "Menlo, monospace",
   },
+
+  breakpoints: {
+    sm: "30em", // 480px
+    md: "48em", // 768px
+    lg: "62em", // 992px
+    xl: "80em", // 1280px
+    "2xl": "96em", // 1536px
+  },
+
   colors: {
     primary: {
       base: "#1c7ed6",

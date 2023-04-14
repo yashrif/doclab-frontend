@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Box, Stack, keyframes } from "@chakra-ui/react";
+
 import apiGet from "../../hooks/apiGet.jsx";
 import PageSummary from "./PageSummary.jsx";
 import SearchContainer from "./SearchContainer.jsx";
@@ -32,143 +34,120 @@ const PageOverview = ({ category, setSelectedPerson }) => {
     );
   }, [term]);
 
+  const slideUp = keyframes`
+    from {
+    opacity: 0;
+    transform: translateY(15rem);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+  `;
+
+  const slideDown = keyframes`
+    from {
+      opacity: 0;
+      transform: translateY(-15rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0rem);
+    }
+  `;
+
+  const animationSlideUp = `${slideUp} .3s ease-in-out`;
+  const animationSlideDown = `${slideDown} .3s ease-in-out`;
+
+  const slideUpSearch = keyframes`
+    from {
+      opacity: 0;
+      transform: translateY(5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  `;
+
+  const slideDownSearch = keyframes`
+    from {
+      opacity: 0;
+      transform: translateY(-5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0rem);
+    }
+  `;
+
+  const animationSlideUpSearch = `${slideUpSearch} .3s ease-in-out`;
+  const animationSlideDownSearch = `${slideDownSearch} .3s ease-in-out`;
+
   return (
-    <>
-      <style>
-        {`
-          @keyframes slide-up {
-          0% {
-            opacity: 0;
-            transform: translateY(15rem);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slide-down {
-          0% {
-            opacity: 0;
-            transform: translateY(-15rem);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0rem);
-          }
-        }
-
-        .slide-up {
-          animation: slide-up .3s ease-in-out;
-        }
-
-        .slide-down {
-          animation: slide-down .3s ease-in-out;
-        }
-
-        @keyframes slide-up-search {
-          0% {
-            opacity: 0;
-            transform: translateY(5rem);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slide-down-search {
-          0% {
-            opacity: 0;
-            transform: translateY(-5rem);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0rem);
-          }
-        }
-
-        .slide-up-search {
-          animation: slide-up-search .3s ease-in-out;
-        }
-
-        .slide-down-search {
-          animation: slide-down-search .3s ease-in-out;
-        }
-        `}
-      </style>
-      <div
-        style={{
-          height: "100%",
-          minHeight: "60rem",
-
-          display: "flex",
-          flexDirection: "column",
-          // overflow: "hidden",
-        }}
+    <Stack height="100%" minH="60rem">
+      <Box
+        backgroundColor={`${theme.typography.colors.background.container}`}
+        borderRadius="1.1rem"
+        boxShadow="0 0 2.4rem rgba(0, 0, 0, .05)"
       >
-        <div
-          style={{
-            backgroundColor: `${theme.typography.colors.background.container}`,
-            borderRadius: "1.1rem",
-            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
-          }}
-        >
-          <div style={{ margin: "2.4rem 2.4rem 1.6rem" }}>
-            <div style={{ marginBottom: "2rem" }}>
-              <PageSummary
-                displayDescription={displayDescription}
-                category={category}
-                numberOfPerson={personFilteredList.length}
-                numberOfPatients={500}
-              />
-            </div>
-            {displayDescription && (
-              <hr
-                style={{
-                  borderTop: "0.325rem dotted #ccc",
-                  borderBottom: "none",
-                }}
-              />
-            )}
-            <div
-              className={`${
-                !displayDescription ? "slide-up-search" : "slide-down-search"
-              }`}
-              style={{ marginTop: "2rem", marginBottom: "1.6rem" }}
-            >
-              <SearchContainer
-                term={term}
-                setTerm={setTerm}
-                category={category}
-              />
-            </div>
-          </div>
-        </div>
+        <Box margin="2.4rem 2.4rem 1.6rem">
+          <Box mb="2rem">
+            <PageSummary
+              displayDescription={displayDescription}
+              category={category}
+              numberOfPerson={personFilteredList.length}
+              numberOfPatients={500}
+            />
+          </Box>
+          {displayDescription && (
+            <hr
+              style={{
+                borderTop: "0.325rem dotted #ccc",
+                borderBottom: "none",
+              }}
+            />
+          )}
+          <Box
+            animation={`${
+              !displayDescription
+                ? animationSlideUpSearch
+                : animationSlideDownSearch
+            }`}
+            mt="2rem"
+            mb="1.6rem"
+          >
+            <SearchContainer
+              term={term}
+              setTerm={setTerm}
+              category={category}
+            />
+          </Box>
+        </Box>
+      </Box>
 
-        <div
-          className={`${!displayDescription ? "slide-up" : "slide-down"}`}
-          style={{
-            height: "100%",
-            padding: "1.2rem 0",
-            marginTop: "0.4rem",
-            borderRadius: "1.1rem",
-            backgroundColor: `${theme.typography.colors.background.container}`,
-            overflow: "hidden",
-            boxShadow: "0 0 2.4rem rgba(0, 0, 0, .05)",
-          }}
-        >
-          <PersonList
-            personFilteredList={personFilteredList}
-            errorMessage={errorMessage}
-            firstRender={firstRender}
-            category={category}
-            setSelectedPerson={setSelectedPerson}
-            setDisplayDescription={setDisplayDescription}
-          />
-        </div>
-      </div>
-    </>
+      <Box
+        animation={`${
+          !displayDescription ? animationSlideUp : animationSlideDown
+        }`}
+        h="100%"
+        p="1.2rem 0"
+        mt="0.4rem"
+        borderRadius="1.1rem"
+        bg={`${theme.typography.colors.background.container}`}
+        overflow="hidden"
+        boxShadow="0 0 2.4rem rgba(0, 0, 0, .05)"
+      >
+        <PersonList
+          personFilteredList={personFilteredList}
+          errorMessage={errorMessage}
+          firstRender={firstRender}
+          category={category}
+          setSelectedPerson={setSelectedPerson}
+          setDisplayDescription={setDisplayDescription}
+        />
+      </Box>
+    </Stack>
   );
 };
 export default PageOverview;

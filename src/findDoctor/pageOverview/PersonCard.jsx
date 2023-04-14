@@ -1,5 +1,7 @@
 import React from "react";
+import { Box, Flex, Grid, Image, Text } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
+
 import theme from "../../styling/theme.jsx";
 
 const PersonCard = ({ category, id, person, setSelectedPerson }) => {
@@ -22,12 +24,6 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
     <>
       <style>
         {`
-          .person-card:last-child { margin: 0 !important;}
-
-          .person-card:hover {
-            transform: scale(1.03);
-          }
-
           .person-card:hover h3,
           .person-card:hover p{
             color: #fff !important;
@@ -64,8 +60,6 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                 #1c7ed6
               );
 
-
-
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s linear;
@@ -75,55 +69,45 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
           }
         `}
       </style>
-      <div
-        className="person-card"
-        role={"button"}
-        tabIndex={id}
+      <Box
         onClick={() => setSelectedPerson(person)}
         onKeyDown={() => {}}
-        style={{
-          marginBottom: " 1.2rem",
-          transition: "all .3s",
+        tabIndex={id}
+        role={"button"}
+        className="person-card"
+        marginBottom="1.2rem"
+        transition="all .3s"
+        _hover={{
+          transform: "scale(1.03)",
+          color: "#fff !important",
+        }}
+        _last={{
+          marginBottom: "0",
         }}
       >
-        <div
+        <Box
           className="person-card-container"
-          style={{
-            position: "relative",
-            cursor: "pointer",
-            padding: "1.2rem 2rem",
-            overflow: "hidden",
-
-            // display: "flex",
-            // justifyContent: "space-between",
-            // gap: ".4rem",
-            boxShadow: "0.4rem 0.4rem 1rem rgba(0, 0, 0, .08)",
-            borderRadius: " 0.9rem",
-
-            background:
-              "linear-gradient(135deg, #ffff, #fff, #e6f9f0, #cdf3e1, #72e2a5)",
-
-            zIndex: "1",
-            transition: "all 0.3s",
-          }}
+          position="relative"
+          cursor="pointer"
+          padding="1.2rem 2rem"
+          overflow="hidden"
+          boxShadow="0.4rem 0.4rem 1rem rgba(0, 0, 0, .08)"
+          borderRadius=" 0.9rem"
+          background="linear-gradient(135deg, #ffff, #fff, #e6f9f0, #cdf3e1, #72e2a5)"
+          zIndex="1"
+          transition="all 0.3s"
         >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "auto 1fr",
-              columnGap: "1.6rem",
-              alignItems: "center",
-            }}
+          <Grid
+            templateColumns="auto 1fr"
+            columnGap={"1.6rem"}
+            alignItems="center"
           >
-            <img
-              style={{
-                width: "4.8rem",
-                height: "4.8rem",
-                borderRadius: "50%",
-                gridRow: "1/ -3",
-                // alignSelf: "flex-start",
-                objectFit: "cover",
-              }}
+            <Image
+              borderRadius="50%"
+              objectFit="cover"
+              gridRow="1/ -3"
+              w="4.8rem"
+              h="4.8rem"
               src={
                 person[`${category}ImageUUID`]
                   ? "https://ucarecdn.com/" +
@@ -134,41 +118,24 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
               alt="avatar"
             />
 
-            <div
-              style={{
-                // display: "flex",
-                // flexDirection: "column",
-                // gap: ".2rem",
-                color: "#767676",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  columnGap: "1.6rem",
-                  justifyContent: "space-between",
-                  marginBottom: ".8rem",
-                }}
+            <Box color="#767676">
+              <Flex
+                alignItems="baseline"
+                columnGap="1.6rem"
+                justifyContent="space-between"
+                marginBottom=".8rem"
               >
-                <h3
-                  className="title"
-                  style={{
-                    fontSize: "1.4rem",
-                    color: "#333",
-                    fontWeight: "500",
-                    marginBottom: ".2rem",
-                  }}
+                <Text
+                  fontSize="1.4rem"
+                  color="#333"
+                  fontWeight="500"
+                  marginBottom=".2rem"
                 >
                   {theme.methods.capitalize(person[`${category}Name`])}
-                </h3>
-                <div
+                </Text>
+                <Box
                   className="icon-star"
-                  style={{
-                    ...style.iconAndText,
-                    alignItems: "baseline",
-                    // backgroundColor: "#e8f2fbbf",
-                  }}
+                  sx={{ ...style.iconAndText, alignItems: "baseline" }}
                 >
                   <ion-icon
                     style={{
@@ -177,27 +144,14 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                     }}
                     name="star-outline"
                   ></ion-icon>
-                  <p
-                    style={{
-                      color: "#333",
-                      fontSize: "1.05rem",
-                      fontWeight: "500",
-                    }}
-                  >
+                  <Text color="#333" fontSize="1.05rem" fontWeight="500">
                     {person[`${category}Rating`]}
-                  </p>
-                </div>
-              </div>
+                  </Text>
+                </Box>
+              </Flex>
 
-              <div
-                style={{
-                  display: "flex",
-                  gap: "1.2rem",
-                  fontSize: "1.2rem",
-                  // fontWeight: "500",
-                }}
-              >
-                <div className="icon-location" style={{ ...style.iconAndText }}>
+              <Flex gap="1.2rem" fontSize="1.2rem">
+                <Box className="icon-location" style={{ ...style.iconAndText }}>
                   <ion-icon
                     style={{
                       ...style.icon,
@@ -205,16 +159,13 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                     }}
                     name="medkit-outline"
                   ></ion-icon>
-                  <p
-                    style={{
-                      fontSize: "1.2rem",
-                    }}
-                  >
-                    {theme.methods.capitalize(person[`${category}Speciality`])}
-                  </p>
-                </div>
 
-                <div className="icon-location" style={{ ...style.iconAndText }}>
+                  <Text fontSize="1.2rem">
+                    {theme.methods.capitalize(person[`${category}Speciality`])}
+                  </Text>
+                </Box>
+
+                <Box className="icon-location" style={{ ...style.iconAndText }}>
                   <ion-icon
                     style={{
                       ...style.icon,
@@ -222,41 +173,15 @@ const PersonCard = ({ category, id, person, setSelectedPerson }) => {
                     }}
                     name="location-outline"
                   ></ion-icon>
-                  <p
-                    style={{
-                      whiteSpace: "nowrap",
-                    }}
-                  >
+                  <Text whiteSpace="nowrap">
                     {person[`${category}SubDistrict`]}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* <p
-            style={{
-              alignSelf: "flex-start",
-              fontSize: "1rem",
-              color: "#fff",
-              fontWeight: "500",
-
-              padding: "0.2rem 3.6rem",
-              borderRadius: "2rem",
-              backgroundColor: "rgba(61, 194, 86, 1)",
-
-              position: "absolute",
-              top: "8px",
-              right: "-35px",
-              transform: "rotate(35deg)",
-
-              zIndex: "9999",
-            }}
-          >
-            Available
-          </p> */}
-        </div>
-      </div>
-      {/* </div> */}
+                  </Text>
+                </Box>
+              </Flex>
+            </Box>
+          </Grid>
+        </Box>
+      </Box>
     </>
   );
 };
